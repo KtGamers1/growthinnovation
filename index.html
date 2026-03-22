@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Growth Innovation | Pro Marketplace</title>
+    <title>Growth Innovation | Official</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -44,7 +44,7 @@
     <header class="border-b border-white/5 bg-[#000000]/80 backdrop-blur-xl sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-5 md:px-6 h-20 flex items-center justify-between">
             <button onclick="switchTab('home')" class="flex items-center gap-3 cursor-pointer group bg-transparent border-none outline-none">
-                <img src="letter-g-gg-hexagonal-modern-600nw-2661904643.png" alt="Growth Innovation Logo" class="w-10 h-10 object-contain group-hover:scale-110 transition drop-shadow-[0_0_10px_rgba(249,115,22,0.5)]">
+                <img src="logo.png" alt="Growth Innovation Logo" class="w-10 h-10 object-contain group-hover:scale-110 transition drop-shadow-[0_0_10px_rgba(249,115,22,0.5)]">
                 <h1 class="text-xl md:text-2xl font-black tracking-tight hidden sm:block">Growth Innovation</h1>
             </button>
             <nav class="hidden md:flex gap-8 items-center">
@@ -152,7 +152,7 @@
                     Growth Innovation was created to solve a massive problem: Small businesses are forced to pay heavy commissions to be visible online. Here, everything is <strong class="text-white font-bold">100% Free</strong>. No hidden charges. No algorithmic bias.
                 </p>
                 <div class="border-t border-[#1F1F1F] pt-8 flex flex-col md:flex-row items-center gap-6 justify-center md:justify-start">
-                    <img src="WhatsApp Image 2026-03-10 at 13.56.54 (3).jpeg" alt="KtDev" class="w-24 h-24 md:w-32 md:h-32 rounded-2xl object-cover border border-[#333] shadow-2xl">
+                    <img src="founder.jpeg" alt="KtDev" class="w-24 h-24 md:w-32 md:h-32 rounded-2xl object-cover border border-[#333] shadow-2xl">
                     <div class="text-center md:text-left">
                         <p class="text-[#f97316] text-xs font-black uppercase tracking-widest mb-1">Founder & Developer</p>
                         <h4 class="text-2xl md:text-3xl font-black mb-2">Kaustubh Deore</h4>
@@ -254,7 +254,7 @@
     <footer class="mt-auto border-t border-[#1F1F1F] bg-[#000] py-10 text-center pb-24 md:pb-10">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex justify-center items-center gap-2 mb-4">
-                <img src="letter-g-gg-hexagonal-modern-600nw-2661904643.png" alt="Logo" class="w-6 h-6 object-contain">
+                <img src="logo.png" alt="Logo" class="w-6 h-6 object-contain">
                 <h2 class="text-lg font-black text-gray-300">Growth Innovation</h2>
             </div>
             <p class="text-gray-500 text-xs mb-6 max-w-sm mx-auto">Providing a zero-commission digital ecosystem for modern local commerce.</p>
@@ -267,22 +267,22 @@
     </footer>
 
     <nav class="md:hidden fixed bottom-0 w-full bg-[#000000]/80 backdrop-blur-xl border-t border-[#27272a] flex justify-around p-2 pb-safe z-50">
-        <button onclick="switchTab('home')" data-target="home" class="nav-link flex flex-col items-center justify-center p-2 w-16 text-gray-500 hover:text-white"><i data-lucide="home" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Home</span></button>
-        <button onclick="switchTab('marketplace')" data-target="marketplace" class="nav-link flex flex-col items-center justify-center p-2 w-16 text-gray-500 hover:text-white"><i data-lucide="layout-grid" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Market</span></button>
-        <button onclick="switchTab('support')" data-target="support" class="nav-link flex flex-col items-center justify-center p-2 w-16 text-gray-500 hover:text-white"><i data-lucide="life-buoy" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Support</span></button>
+        <button onclick="switchTab('home')" class="flex flex-col items-center justify-center p-2 w-16 text-gray-500 hover:text-white"><i data-lucide="home" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Home</span></button>
+        <button onclick="switchTab('marketplace')" class="flex flex-col items-center justify-center p-2 w-16 text-gray-500 hover:text-white"><i data-lucide="layout-grid" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Market</span></button>
+        <button onclick="switchTab('support')" class="flex flex-col items-center justify-center p-2 w-16 text-gray-500 hover:text-white"><i data-lucide="life-buoy" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Support</span></button>
     </nav>
 
     <div id="toast"><i data-lucide="info" class="w-5 h-5 text-[#f97316]"></i> <span id="toastMsg"></span></div>
 
     <div id="authModal" class="modal-bg">
         <div class="modal-box relative">
-            <button onclick="closeModal('authModal')" class="absolute top-6 right-6 text-gray-500 hover:text-white transition"><i data-lucide="x" class="w-6 h-6"></i></button>
+            <button onclick="closeModal('authModal')" class="absolute top-6 right-6 text-gray-500 hover:text-white"><i data-lucide="x" class="w-6 h-6"></i></button>
             <h2 id="authTitle" class="text-3xl font-black mb-8 text-center">Sign In</h2>
             <div class="space-y-5">
                 <input type="email" id="email" class="modern-input" placeholder="Email Address">
                 <div id="passContainer" class="relative">
                     <input type="password" id="password" class="modern-input pr-12" placeholder="Password">
-                    <button type="button" id="togglePasswordBtn" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500"><i data-lucide="eye" id="eyeIcon" class="w-5 h-5"></i></button>
+                    <button type="button" id="togglePasswordBtn" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white"><i data-lucide="eye" id="eyeIcon" class="w-5 h-5"></i></button>
                 </div>
                 <div class="flex justify-end"><button id="forgotBtn" class="text-sm font-bold text-gray-400 hover:text-[#f97316] transition">Forgot Password?</button></div>
                 <button id="mainBtn" class="btn-brand w-full py-4 text-lg mt-2">Authenticate</button>
@@ -298,7 +298,7 @@
             <p class="text-gray-400 mb-6 text-sm">Reach more customers instantly.</p>
             <div class="space-y-3 mb-6">
                 <label class="flex items-center justify-between p-4 border border-[#27272a] rounded-xl hover:border-[#f97316] cursor-pointer"><div class="flex items-center gap-3"><input type="radio" name="boostPlan" value="99" class="w-4 h-4 accent-[#f97316]"><div><p class="font-bold">Daily Boost</p><p class="text-xs text-gray-500">24 Hours Visibility</p></div></div><span class="font-black text-[#f97316]">₹99</span></label>
-                <label class="flex items-center justify-between p-4 border border-[#f97316] bg-[#f97316]/5 rounded-xl cursor-pointer"><div class="flex items-center gap-3"><input type="radio" name="boostPlan" value="499" checked class="w-4 h-4 accent-[#f97316]"><div><p class="font-bold">Weekly Pro</p><p class="text-xs text-[#f97316]">7 Days (Best Value)</p></div></div><span class="font-black text-[#f97316]">₹499</span></label>
+                <label class="flex items-center justify-between p-4 border border-[#f97316] bg-[#f97316]/5 rounded-xl cursor-pointer shadow-[0_0_15px_rgba(249,115,22,0.1)]"><div class="flex items-center gap-3"><input type="radio" name="boostPlan" value="499" checked class="w-4 h-4 accent-[#f97316]"><div><p class="font-bold">Weekly Pro</p><p class="text-xs text-[#f97316]">7 Days (Best Value)</p></div></div><span class="font-black text-[#f97316]">₹499</span></label>
                 <label class="flex items-center justify-between p-4 border border-[#27272a] rounded-xl hover:border-[#f97316] cursor-pointer"><div class="flex items-center gap-3"><input type="radio" name="boostPlan" value="1699" class="w-4 h-4 accent-[#f97316]"><div><p class="font-bold">Monthly Enterprise</p><p class="text-xs text-gray-500">30 Days Visibility</p></div></div><span class="font-black text-[#f97316]">₹1699</span></label>
             </div>
             <button id="proceedBoostBtn" class="btn-brand w-full py-4 text-lg">Proceed to Checkout</button>
@@ -353,7 +353,7 @@
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <input type="text" id="bizCity" class="modern-input border-orange-500/30" placeholder="City (Mandatory)">
-                    <input type="text" id="bizAddress" class="modern-input" placeholder="Full Address (Mandatory)">
+                    <input type="text" id="bizAddress" class="modern-input pr-12" placeholder="Full Address (Mandatory)">
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -436,6 +436,7 @@
         window.showToast = (msg) => { const t = document.getElementById('toast'); t.innerText = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3000); }
         window.openModal = (id) => document.getElementById(id).classList.add('active');
         window.closeModal = (id) => document.querySelectorAll('.modal-bg').forEach(m => m.classList.remove('active'));
+        
         window.switchTab = (t) => { window.location.hash = t; }
 
         function handleRouting() {
@@ -462,7 +463,7 @@
             }
         });
 
-        // IMAGE COMPRESSION (No query string bugs)
+        // IMAGE COMPRESSION (WEBP Ultra Fast)
         async function compress(file) {
             return new Promise(res => {
                 const r = new FileReader(); r.readAsDataURL(file);
@@ -471,10 +472,10 @@
                     img.onload = () => {
                         const canvas = document.createElement('canvas');
                         let w = img.width, h = img.height;
-                        if(w > 800) { h *= 800/w; w = 800; }
+                        if(w > 600) { h *= 600/w; w = 600; }
                         canvas.width = w; canvas.height = h;
                         canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-                        res(canvas.toDataURL('image/jpeg', 0.6));
+                        res(canvas.toDataURL('image/webp', 0.5)); // Ultra compression
                     }
                 }
             });
@@ -503,7 +504,7 @@
             const html = `<div class="p-4 bg-[#111] rounded-xl border border-[#27272a] relative item-entry" id="box_${id}">
                 <button type="button" onclick="document.getElementById('box_${id}').remove()" class="absolute top-3 right-3 text-red-500"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3 pr-6">
-                    <input type="text" class="modern-input py-2 text-sm it-name bg-[#050505]" placeholder="Item Name" value="${data?data.name:''}">
+                    <input type="text" class="modern-input py-2 text-sm it-name bg-[#050505]" placeholder="Item Name (Mandatory)" value="${data?data.name:''}">
                     <select class="modern-input py-2 text-sm it-type bg-[#050505]">
                         <option value="None" ${data?.type==='None'?'selected':''}>None</option>
                         <option value="Veg" ${data?.type==='Veg'?'selected':''}>🟢 Veg</option>
@@ -511,11 +512,11 @@
                     </select>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
-                    <input type="text" class="modern-input py-2 text-sm it-full bg-[#050505]" placeholder="Full Price" value="${data?data.priceFull:''}">
-                    <input type="text" class="modern-input py-2 text-sm it-half bg-[#050505]" placeholder="Half (Opt)" value="${data?data.priceHalf:''}">
+                    <input type="text" class="modern-input py-2 text-sm it-full bg-[#050505]" placeholder="Full Price (Mandatory)" value="${data?data.priceFull:''}">
+                    <input type="text" class="modern-input py-2 text-sm it-half bg-[#050505]" placeholder="Half Price (Optional)" value="${data?data.priceHalf:''}">
                 </div>
                 <div class="flex items-center gap-3">
-                    <button type="button" onclick="document.getElementById('imgInp_${id}').click()" class="bg-[#27272a] text-white text-xs font-bold px-3 py-2 rounded hover:text-[#f97316]" id="imgLbl_${id}">+ Photos (Max 2)</button>
+                    <button type="button" onclick="document.getElementById('imgInp_${id}').click()" class="bg-[#27272a] text-xs font-bold px-3 py-2 rounded-lg" id="imgLbl_${id}">+ Photos (2)</button>
                     <input type="file" id="imgInp_${id}" accept="image/*" multiple class="hidden" onchange="handleMultipleImages(event, 'preview_${id}', 'imgLbl_${id}', 2, '${id}')">
                     <div id="preview_${id}" class="flex gap-2">${data?.images?data.images.map(img => `<img src="${img}" class="w-16 h-16 object-cover rounded-lg border border-[#27272a]">`).join(''):''}</div>
                 </div>
@@ -523,7 +524,43 @@
             document.getElementById('itemsContainer').insertAdjacentHTML('beforeend', html); lucide.createIcons();
         }
 
-        // --- SUBMIT BIZ (ADD & EDIT) ---
+        // --- AUTH ---
+        let authMode = 'LOGIN';
+        document.getElementById('togglePasswordBtn').onclick = () => { const p = document.getElementById('password'); p.type = p.type === 'password' ? 'text' : 'password'; document.getElementById('eyeIcon').setAttribute('data-lucide', p.type === 'password' ? 'eye' : 'eye-off'); lucide.createIcons(); };
+        document.getElementById('toggleAuthBtn').onclick = () => { authMode = authMode === 'LOGIN' ? 'REGISTER' : 'LOGIN'; updateAuthUI(); };
+        document.getElementById('forgotBtn').onclick = () => { authMode = 'FORGOT'; updateAuthUI(); };
+
+        function updateAuthUI() {
+            const t = document.getElementById('authTitle'), b = document.getElementById('mainBtn'), p = document.getElementById('passContainer'), f = document.getElementById('forgotBtn'), tb = document.getElementById('toggleAuthBtn');
+            if(authMode === 'LOGIN') { t.innerText = "Sign In"; b.innerText = "Authenticate"; p.style.display = 'block'; f.style.display = 'block'; tb.innerText = "Need an account? Register"; } 
+            else if (authMode === 'REGISTER') { t.innerText = "Register"; b.innerText = "Create Account"; p.style.display = 'block'; f.style.display = 'none'; tb.innerText = "Already registered? Sign In"; } 
+            else if (authMode === 'FORGOT') { t.innerText = "Reset Password"; b.innerText = "Send Reset Link"; p.style.display = 'none'; f.style.display = 'none'; tb.innerText = "Back to Sign In"; }
+        }
+
+        document.getElementById('mainBtn').onclick = async () => {
+            const e = document.getElementById('email').value.trim(), p = document.getElementById('password').value;
+            if(!e) return showToast("Email required");
+            try {
+                if(authMode === 'LOGIN') { if(!p) return showToast("Password required"); await signInWithEmailAndPassword(auth, e, p); closeModal(); switchTab('profile'); } 
+                else if(authMode === 'REGISTER') { if(!p) return showToast("Password required"); await createUserWithEmailAndPassword(auth, e, p); closeModal(); switchTab('profile'); } 
+                else if(authMode === 'FORGOT') { await sendPasswordResetEmail(auth, e); showToast("Reset link sent! Please check Spam folder."); authMode = 'LOGIN'; updateAuthUI(); }
+            } catch(err) { showToast(err.message.split('auth/')[1] || "Error"); }
+        };
+
+        document.getElementById('logoutBtn').onclick = () => { signOut(auth); switchTab('home'); };
+
+        onAuthStateChanged(auth, (u) => {
+            if(u) {
+                document.getElementById('userEmailDisplay').innerText = u.email; document.getElementById('navProfileText').innerText = "Portal";
+                document.getElementById('supportLoginPrompt').classList.add('hidden'); document.getElementById('supportDashboard').classList.remove('hidden');
+                loadUserPortal(u.email);
+            } else {
+                document.getElementById('navProfileText').innerText = "Sign In";
+                document.getElementById('supportLoginPrompt').classList.remove('hidden'); document.getElementById('supportDashboard').classList.add('hidden');
+            }
+        });
+
+        // --- BIZ LOGIC (ADD & EDIT) ---
         let editingBizId = null;
         window.openAddBizModal = () => {
             editingBizId = null; document.getElementById('bizModalTitle').innerText = "Register Business"; document.getElementById('submitBizBtn').innerText = "Submit for Peer Review";
@@ -562,132 +599,23 @@
             };
             
             if(!d.name || !d.cat || !d.city || !d.addr || !d.phone || !d.mail || !d.desc) return showToast("All main fields are Mandatory!");
-            
+            let validItems = true;
+            if(document.getElementById('wantListItems').checked) {
+                d.items.forEach(i => { if(!i.name || !i.priceFull) validItems = false; });
+            }
+            if(!validItems) return showToast("Item Name & Full Price are mandatory!");
+
             const btn = document.getElementById('submitBizBtn'); btn.innerText = "Saving...";
             try {
-                if(editingBizId) { await updateDoc(doc(db, "businesses", editingBizId), d); showToast("Updated!"); } 
+                if(editingBizId) { await updateDoc(doc(db, "businesses", editingBizId), d); showToast("Updated successfully!"); } 
                 else {
                     d.owner = auth.currentUser.email; d.status = 'Pending'; d.timestamp = Date.now();
-                    await addDoc(collection(db, "businesses"), { name:d.name, category:d.cat, city:d.city, address:d.addr, phone:d.phone, mail:d.mail, desc:d.desc, showPhone:d.showPhone, showMail:d.showMail, images:d.images, items:d.items, owner:d.owner, status:d.status, timestamp:d.timestamp });
+                    await addDoc(collection(db, "businesses"), d);
                     showToast("Submitted for Peer Review!");
                 }
                 closeModal(); editingBizId = null;
             } catch(e) { showToast("Error"); btn.innerText = "Error"; }
         }
-
-        // --- AUTH ---
-        let authMode = 'LOGIN';
-        document.getElementById('togglePasswordBtn').onclick = () => { const p = document.getElementById('password'); p.type = p.type === 'password' ? 'text' : 'password'; document.getElementById('eyeIcon').setAttribute('data-lucide', p.type === 'password' ? 'eye' : 'eye-off'); lucide.createIcons(); };
-        document.getElementById('toggleAuthBtn').onclick = () => { authMode = authMode === 'LOGIN' ? 'REGISTER' : 'LOGIN'; updateAuthUI(); };
-        document.getElementById('forgotBtn').onclick = () => { authMode = 'FORGOT'; updateAuthUI(); };
-
-        function updateAuthUI() {
-            const t = document.getElementById('authTitle'), b = document.getElementById('mainBtn'), p = document.getElementById('passContainer'), f = document.getElementById('forgotBtn'), tb = document.getElementById('toggleAuthBtn');
-            if(authMode === 'LOGIN') { t.innerText = "Sign In"; b.innerText = "Authenticate"; p.style.display = 'block'; f.style.display = 'block'; tb.innerText = "Need an account? Register"; } 
-            else if (authMode === 'REGISTER') { t.innerText = "Register"; b.innerText = "Create Account"; p.style.display = 'block'; f.style.display = 'none'; tb.innerText = "Already registered? Sign In"; } 
-            else if (authMode === 'FORGOT') { t.innerText = "Reset Password"; b.innerText = "Send Reset Link"; p.style.display = 'none'; f.style.display = 'none'; tb.innerText = "Back to Sign In"; }
-        }
-
-        document.getElementById('mainBtn').onclick = async () => {
-            const e = document.getElementById('email').value.trim(), p = document.getElementById('password').value;
-            if(!e) return showToast("Email required");
-            try {
-                if(authMode === 'LOGIN') { if(!p) return showToast("Password required"); await signInWithEmailAndPassword(auth, e, p); closeModal(); switchTab('profile'); } 
-                else if(authMode === 'REGISTER') { if(!p) return showToast("Password required"); await createUserWithEmailAndPassword(auth, e, p); closeModal(); switchTab('profile'); } 
-                else if(authMode === 'FORGOT') { await sendPasswordResetEmail(auth, e); showToast("Reset link sent! Check Spam/Inbox."); authMode = 'LOGIN'; updateAuthUI(); }
-            } catch(err) { showToast(err.message.split('auth/')[1] || "Error"); }
-        };
-
-        document.getElementById('logoutBtn').onclick = () => { signOut(auth); switchTab('home'); };
-
-        onAuthStateChanged(auth, (u) => {
-            if(u) {
-                document.getElementById('userEmailDisplay').innerText = u.email; document.getElementById('navProfileText').innerText = "Portal";
-                document.getElementById('supportLoginPrompt').classList.add('hidden'); document.getElementById('supportDashboard').classList.remove('hidden');
-                loadUserPortal(u.email);
-            } else {
-                document.getElementById('navProfileText').innerText = "Sign In";
-                document.getElementById('supportLoginPrompt').classList.remove('hidden'); document.getElementById('supportDashboard').classList.add('hidden');
-            }
-        });
-
-        // --- LOAD PORTAL ---
-        function loadUserPortal(email) {
-            onSnapshot(query(collection(db, "businesses"), where("owner", "==", email)), snap => {
-                const div = document.getElementById('userBusinesses');
-                div.innerHTML = snap.empty ? `<p class="text-gray-500">No entities.</p>` : '';
-                snap.forEach(d => {
-                    const b = d.data(), clr = b.status === 'Approved' ? 'text-green-500 bg-green-500/10' : 'text-yellow-500 bg-yellow-500/10';
-                    const boostBtn = b.status === 'Approved' ? `<button onclick="openBoostModal('${d.id}')" class="text-xs bg-[#f97316] text-black font-bold px-3 py-1.5 rounded"><i data-lucide="rocket" class="w-3 h-3 inline"></i> Boost</button>` : '';
-                    const strData = encodeURIComponent(JSON.stringify({id: d.id, ...b}));
-                    div.innerHTML += `<div class="p-5 bg-[#111] border border-[#27272a] rounded-xl flex flex-col md:flex-row justify-between gap-4">
-                        <div><h4 class="font-bold text-lg">${b.name}</h4><span class="text-[10px] font-bold ${clr} px-2 py-0.5 rounded uppercase">${b.status}</span></div>
-                        <div class="flex flex-wrap gap-2">${boostBtn}<button onclick='openEditBizModal("${strData}")' class="text-xs bg-white text-black font-bold px-3 py-1.5 rounded"><i data-lucide="edit" class="w-3 h-3 inline"></i> Edit</button><button onclick="delBiz('${d.id}')" class="text-xs border border-red-500/30 text-red-500 font-bold px-3 py-1.5 rounded"><i data-lucide="trash" class="w-3 h-3 inline"></i></button></div>
-                    </div>`;
-                });
-                lucide.createIcons();
-            });
-
-            onSnapshot(query(collection(db, "support_tickets"), where("owner", "==", email)), snap => {
-                const div = document.getElementById('supportTicketsList');
-                div.innerHTML = snap.empty ? `<p class="text-gray-500">No tickets.</p>` : '';
-                snap.forEach(d => {
-                    const t = d.data(), clr = t.status === 'Open' ? 'text-red-500' : 'text-green-500';
-                    div.innerHTML += `<div class="p-4 bg-[#111] border border-[#27272a] rounded-xl cursor-pointer hover:border-[#f97316]" onclick="openChat('${d.id}', '${t.subject.replace(/'/g, "\\'")}')"><div class="flex justify-between items-center"><h4 class="font-bold">${t.subject}</h4><span class="text-[10px] font-bold ${clr}">${t.status}</span></div><p class="text-xs text-[#f97316] mt-2">Open Chat →</p></div>`;
-                });
-            });
-
-            if(email === 'kt.deore@hotmail.com') { document.getElementById('adminPanel').classList.remove('hidden'); loadAdminQueue(); }
-        }
-
-        window.delBiz = async (id) => { if(confirm("Permanently delete?")) await deleteDoc(doc(db, "businesses", id)); }
-
-        function loadAdminQueue() {
-            window.verify = async (c, id, s) => await updateDoc(doc(db, c, id), { status: s });
-            onSnapshot(query(collection(db, "businesses"), where("status", "==", "Pending")), snap => {
-                const q = document.getElementById('adminQueueGrid'); q.innerHTML = snap.empty ? '<p class="text-xs text-gray-500">Queue clear.</p>' : '';
-                snap.forEach(d => { const b = d.data(); q.innerHTML += `<div class="p-4 bg-[#000] border border-[#f97316]/30 rounded-xl"><p class="font-bold text-sm">${b.name}</p><div class="flex gap-2 mt-3"><button onclick="verify('businesses','${d.id}','Approved')" class="bg-[#f97316] text-black px-3 py-1 rounded text-xs font-bold">Approve</button><button onclick="verify('businesses','${d.id}','Rejected')" class="border border-red-500 text-red-500 px-3 py-1 rounded text-xs font-bold">Reject</button></div></div>`; });
-            });
-            onSnapshot(query(collection(db, "peer_reviews"), where("status", "==", "Pending")), snap => {
-                const q = document.getElementById('adminReviewQueue'); q.innerHTML = snap.empty ? '<p class="text-xs text-gray-500">No pending reviews.</p>' : '';
-                snap.forEach(d => { const r = d.data(); q.innerHTML += `<div class="p-4 bg-[#000] border border-[#27272a] rounded-xl"><div class="text-yellow-500 text-xs mb-1">⭐ ${r.rating}</div><p class="text-sm mb-2">"${r.text}"</p><div class="flex gap-2"><button onclick="verify('peer_reviews','${d.id}','Approved')" class="bg-white text-black px-3 py-1 rounded text-xs font-bold">Approve</button><button onclick="verify('peer_reviews','${d.id}','Rejected')" class="border border-red-500 text-red-500 px-3 py-1 rounded text-xs font-bold">Reject</button></div></div>`; });
-            });
-        }
-
-        // --- TICKETS, CHAT & BOOST ---
-        let currentTicketId = null;
-        document.getElementById('submitTicketBtn').onclick = async () => {
-            const sub = document.getElementById('ticketSubject').value, desc = document.getElementById('ticketDesc').value;
-            if(!sub || !desc) return showToast("Required");
-            await addDoc(collection(db, "support_tickets"), { subject:sub, owner: auth.currentUser.email, status: 'Open', timestamp: Date.now(), messages: [{ sender: auth.currentUser.email, text: desc, time: Date.now() }] });
-            closeModal(); showToast("Ticket Opened");
-        };
-
-        window.openChat = (tid, sub) => {
-            currentTicketId = tid; document.getElementById('chatSubject').innerText = sub; openModal('chatModal');
-            onSnapshot(doc(db, "support_tickets", tid), (d) => {
-                const history = document.getElementById('chatHistory'); history.innerHTML = "";
-                d.data().messages.forEach(m => {
-                    const isMe = m.sender === auth.currentUser.email, bCls = isMe ? 'bg-[#27272a] self-end' : 'bg-[#f97316] text-black self-start';
-                    history.innerHTML += `<div class="${bCls} p-3 rounded-2xl max-w-[80%]"><span class="text-[10px] opacity-60 mb-1 block">${m.sender === 'kt.deore@hotmail.com'?'Admin':m.sender.split('@')[0]}</span><span class="text-sm">${m.text}</span></div>`;
-                });
-                history.scrollTop = history.scrollHeight;
-            });
-        };
-
-        document.getElementById('sendChatBtn').onclick = async () => {
-            const input = document.getElementById('chatInput'), txt = input.value.trim();
-            if(!txt || !currentTicketId) return; input.value = ""; 
-            await updateDoc(doc(db, "support_tickets", currentTicketId), { messages: arrayUnion({ sender: auth.currentUser.email, text: txt, time: Date.now() }) });
-        };
-
-        let pendingBoostId = null;
-        window.openBoostModal = (id) => { pendingBoostId = id; openModal('boostModal'); }
-        document.getElementById('proceedBoostBtn').onclick = async () => {
-            const plan = document.querySelector('input[name="boostPlan"]:checked').value;
-            await addDoc(collection(db, "support_tickets"), { subject: `Boost Request: BizID-${pendingBoostId}`, owner: auth.currentUser.email, status: 'Open', timestamp: Date.now(), messages: [{ sender: auth.currentUser.email, text: `Boost plan: ₹${plan}.`, time: Date.now() }] });
-            closeModal(); showToast("Boost Request Sent!"); switchTab('support'); 
-        };
 
         // --- SUBMIT REVIEW ---
         let currentRevBizId = null;
@@ -707,18 +635,99 @@
             } catch(e) { showToast("Error"); }
         }
 
-        // --- FEED ---
+        // --- TICKETS, CHAT & BOOST ---
+        let currentTicketId = null;
+        document.getElementById('submitTicketBtn').onclick = async () => {
+            const sub = document.getElementById('ticketSubject').value, desc = document.getElementById('ticketDesc').value;
+            if(!sub || !desc) return showToast("Required");
+            await addDoc(collection(db, "support_tickets"), { subject:sub, owner: auth.currentUser.email, status: 'Open', timestamp: Date.now(), messages: [{ sender: auth.currentUser.email, text: desc, time: Date.now() }] });
+            closeModal(); showToast("Ticket Opened"); document.getElementById('ticketSubject').value = ''; document.getElementById('ticketDesc').value = '';
+        };
+
+        window.openChat = (tid, sub) => {
+            currentTicketId = tid; document.getElementById('chatSubject').innerText = sub; openModal('chatModal');
+            onSnapshot(doc(db, "support_tickets", tid), (d) => {
+                const history = document.getElementById('chatHistory'); history.innerHTML = "";
+                d.data().messages.forEach(m => {
+                    const isMe = m.sender === auth.currentUser.email, bCls = isMe ? 'bg-[#27272a] self-end' : 'bg-[#f97316] text-black self-start';
+                    history.innerHTML += `<div class="${bCls} p-3 rounded-2xl max-w-[80%]"><span class="text-[10px] font-bold opacity-60 mb-1 block">${m.sender === 'kt.deore@hotmail.com'?'Admin':m.sender.split('@')[0]}</span><span class="text-sm">${m.text}</span></div>`;
+                });
+                history.scrollTop = history.scrollHeight;
+            });
+        };
+
+        document.getElementById('sendChatBtn').onclick = async () => {
+            const input = document.getElementById('chatInput'), txt = input.value.trim();
+            if(!txt || !currentTicketId) return; input.value = ""; 
+            await updateDoc(doc(db, "support_tickets", currentTicketId), { messages: arrayUnion({ sender: auth.currentUser.email, text: txt, time: Date.now() }) });
+        };
+
+        let pendingBoostId = null;
+        window.openBoostModal = (id) => { pendingBoostId = id; openModal('boostModal'); }
+        document.getElementById('proceedBoostBtn').onclick = async () => {
+            const plan = document.querySelector('input[name="boostPlan"]:checked').value;
+            await addDoc(collection(db, "support_tickets"), { subject: `Boost Request: BizID-${pendingBoostId}`, owner: auth.currentUser.email, status: 'Open', timestamp: Date.now(), messages: [{ sender: auth.currentUser.email, text: `Boost plan: ₹${plan}.`, time: Date.now() }] });
+            closeModal(); showToast("Boost Request Sent!"); switchTab('support'); 
+        };
+
+        // --- PORTAL DATA ---
+        function loadUserPortal(email) {
+            onSnapshot(query(collection(db, "businesses"), where("owner", "==", email)), snap => {
+                const div = document.getElementById('userBusinesses');
+                div.innerHTML = snap.empty ? `<p class="text-gray-500">No entities.</p>` : '';
+                snap.forEach(d => {
+                    const b = d.data(), clr = b.status === 'Approved' ? 'text-green-500 bg-green-500/10' : 'text-yellow-500 bg-yellow-500/10';
+                    const boostBtn = b.status === 'Approved' ? `<button onclick="openBoostModal('${d.id}')" class="text-xs bg-[#f97316] text-black font-bold px-3 py-1.5 rounded"><i data-lucide="rocket" class="w-3 h-3 inline"></i> Boost</button>` : '';
+                    const strData = encodeURIComponent(JSON.stringify({id: d.id, ...b}));
+                    div.innerHTML += `<div class="p-5 bg-[#111] border border-[#27272a] rounded-xl flex flex-col md:flex-row justify-between gap-4">
+                        <div><h4 class="font-bold text-lg">${b.name}</h4><span class="text-[10px] font-bold ${clr} px-2 py-0.5 rounded uppercase">${b.status}</span></div>
+                        <div class="flex flex-wrap gap-2 items-center">${boostBtn}<button onclick='openEditBizModal("${strData}")' class="text-xs bg-white text-black font-bold px-3 py-1.5 rounded"><i data-lucide="edit" class="w-3 h-3 inline"></i> Edit</button><button onclick="delBiz('${d.id}')" class="text-xs border border-red-500/30 text-red-500 font-bold px-3 py-1.5 rounded"><i data-lucide="trash" class="w-3 h-3 inline"></i></button></div>
+                    </div>`;
+                });
+                lucide.createIcons();
+            });
+
+            onSnapshot(query(collection(db, "support_tickets"), where("owner", "==", email)), snap => {
+                const div = document.getElementById('supportTicketsList');
+                div.innerHTML = snap.empty ? `<p class="text-gray-500">No tickets.</p>` : '';
+                snap.forEach(d => {
+                    const t = d.data(), clr = t.status === 'Open' ? 'text-red-500' : 'text-green-500';
+                    div.innerHTML += `<div class="p-4 bg-[#111] border border-[#27272a] rounded-xl cursor-pointer hover:border-[#f97316]" onclick="openChat('${d.id}', '${t.subject.replace(/'/g, "\\'")}')">
+                        <div class="flex justify-between items-center"><h4 class="font-bold">${t.subject}</h4><span class="text-[10px] font-bold ${clr}">${t.status}</span></div>
+                        <p class="text-xs text-[#f97316] mt-2">Open Chat →</p>
+                    </div>`;
+                });
+            });
+            if(email === 'kt.deore@hotmail.com') { document.getElementById('adminPanel').classList.remove('hidden'); loadAdminQueue(); }
+        }
+
+        window.delBiz = async (id) => { if(confirm("Permanently delete?")) await deleteDoc(doc(db, "businesses", id)); }
+
+        function loadAdminQueue() {
+            window.verify = async (c, id, s) => await updateDoc(doc(db, c, id), { status: s });
+            onSnapshot(query(collection(db, "businesses"), where("status", "==", "Pending")), snap => {
+                const q = document.getElementById('adminQueueGrid'); q.innerHTML = snap.empty ? '<p class="text-xs text-gray-500">Queue clear.</p>' : '';
+                snap.forEach(d => { const b = d.data(); q.innerHTML += `<div class="p-4 bg-[#000] border border-[#f97316]/30 rounded-xl"><p class="font-bold text-sm">${b.name}</p><div class="flex gap-2 mt-3"><button onclick="verify('businesses','${d.id}','Approved')" class="bg-[#f97316] text-black px-3 py-1 rounded text-xs font-bold">Approve</button><button onclick="verify('businesses','${d.id}','Rejected')" class="border border-red-500 text-red-500 px-3 py-1 rounded text-xs font-bold">Reject</button></div></div>`; });
+            });
+            onSnapshot(query(collection(db, "peer_reviews"), where("status", "==", "Pending")), snap => {
+                const q = document.getElementById('adminReviewQueue'); q.innerHTML = snap.empty ? '<p class="text-xs text-gray-500">No pending reviews.</p>' : '';
+                snap.forEach(d => { const r = d.data(); q.innerHTML += `<div class="p-4 bg-[#000] border border-[#27272a] rounded-xl"><div class="text-yellow-500 text-xs mb-1">⭐ ${r.rating}</div><p class="text-sm mb-2">"${r.text}"</p><div class="flex gap-2"><button onclick="verify('peer_reviews','${d.id}','Approved')" class="bg-white text-black px-3 py-1 rounded text-xs font-bold">Approve</button><button onclick="verify('peer_reviews','${d.id}','Rejected')" class="border border-red-500 text-red-500 px-3 py-1 rounded text-xs font-bold">Reject</button></div></div>`; });
+            });
+        }
+
+        // --- PUBLIC FEED ---
         let allVerifiedBiz = [];
         function renderFeed(arr, id, limit=null) {
             const feed = document.getElementById(id);
-            feed.innerHTML = arr.length === 0 ? `<div class="col-span-full text-center py-10"><p class="text-gray-500">No listings.</p></div>` : "";
+            feed.innerHTML = arr.length === 0 ? `<div class="col-span-full text-center py-10"><i data-lucide="search-x" class="w-10 h-10 text-gray-600 mx-auto mb-2"></i><p class="text-gray-500">No listings.</p></div>` : "";
             let count = 0;
             arr.forEach(b => {
                 if(limit && count>=limit) return;
-                const imgHtml = (b.images && b.images.length>0) ? `<img src="${b.images[0]}" class="absolute inset-0 w-full h-full object-cover">` : `<div class="absolute inset-0 bg-[#111] flex items-center justify-center"><i data-lucide="image" class="w-8 h-8 text-gray-600"></i></div>`;
-                feed.innerHTML += `<div class="stagger-card glass-card overflow-hidden cursor-pointer group" style="animation-delay:${count*0.1}s" onclick='openD("${encodeURIComponent(JSON.stringify(b))}")'>
+                const cover = (b.images && b.images.length>0) ? b.images[0] : null;
+                const imgHtml = cover ? `<img src="${cover}" class="absolute inset-0 w-full h-full object-cover">` : `<div class="absolute inset-0 bg-[#111] flex items-center justify-center"><i data-lucide="image" class="w-8 h-8 text-gray-600"></i></div>`;
+                feed.innerHTML += `<div class="stagger-card glass-card overflow-hidden cursor-pointer group border-white/5" style="animation-delay:${count*0.1}s" onclick='openD("${encodeURIComponent(JSON.stringify(b))}")'>
                     <div class="h-48 relative w-full">${imgHtml}<span class="absolute top-3 left-3 bg-black/80 text-white text-[10px] font-bold px-2 py-1 rounded uppercase">${b.category}</span></div>
-                    <div class="p-5"><h3 class="text-xl font-black mb-1 group-hover:text-[#f97316] transition">${b.name}</h3><p class="text-sm text-[#f97316] font-bold"><i data-lucide="map-pin" class="inline w-3 h-3"></i> ${b.city.toUpperCase()}</p></div>
+                    <div class="p-5"><h3 class="text-xl font-black mb-1 group-hover:text-[#f97316] transition">${b.name}</h3><p class="text-sm text-[#f97316] font-bold mb-3"><i data-lucide="map-pin" class="inline w-3 h-3"></i> ${b.city.toUpperCase()}</p><p class="text-xs text-gray-500 font-bold">Tap to view details →</p></div>
                 </div>`;
                 count++;
             });
@@ -741,11 +750,13 @@
         // --- DETAIL VIEW ---
         window.openD = (str) => {
             const b = JSON.parse(decodeURIComponent(str)); switchTab('detail');
+            const cont = document.getElementById('detailContent');
+            
             let car = '';
             if(b.images && b.images.length>0) {
                 let sl = ''; b.images.forEach(img => { sl += `<div class="min-w-full snap-center"><img src="${img}" class="w-full h-64 md:h-96 object-cover"></div>`; });
-                car = `<div class="w-full flex overflow-x-auto snap-x snap-mandatory hide-scrollbar">${sl}</div>`;
-            } else car = `<div class="w-full h-48 bg-[#111] flex items-center justify-center"><i data-lucide="image" class="w-10 h-10 text-gray-600"></i></div>`;
+                car = `<div class="w-full flex overflow-x-auto snap-x snap-mandatory hide-scrollbar rounded-t-[19px]">${sl}</div><p class="text-center text-xs text-gray-500 py-2 bg-[#111]">Swipe photos →</p>`;
+            } else car = `<div class="w-full h-48 bg-[#111] flex items-center justify-center rounded-t-[19px]"><i data-lucide="image" class="w-10 h-10 text-gray-600"></i></div>`;
 
             let itm = '';
             if(b.items && b.items.length>0) {
@@ -757,13 +768,12 @@
                 itm = `<div class="mt-10 pt-10 border-t border-[#1F1F1F]"><h3 class="text-2xl font-black mb-6">Catalog / Menu</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${list}</div></div>`;
             }
 
-            document.getElementById('detailContent').innerHTML = `${car}<div class="p-6 md:p-10"><div class="flex justify-between items-start mb-4"><span class="text-[10px] bg-[#f97316] text-black px-3 py-1.5 rounded uppercase font-black">${b.category}</span><button onclick="openReviewModal('${b.id}')" class="text-xs font-bold bg-[#111] border border-[#27272a] px-3 py-2 rounded-lg hover:border-[#f97316]"><i data-lucide="star" class="w-3.5 h-3.5 inline"></i> Write Review</button></div><h2 class="text-4xl md:text-5xl font-black mb-6">${b.name}</h2><p class="text-gray-300 leading-relaxed mb-8 border-l-4 border-white/10 pl-4">${b.desc}</p><div class="space-y-3 p-4 bg-[#050505] border border-[#27272a] rounded-xl"><p class="text-[#f97316] font-bold"><i data-lucide="map-pin" class="w-4 h-4 inline"></i> ${b.city.toUpperCase()}</p><p class="text-gray-400"><i data-lucide="building" class="w-4 h-4 inline"></i> ${b.address}</p>${b.showPhone ? `<p class="text-gray-400"><i data-lucide="phone" class="w-4 h-4 inline"></i> ${b.phone}</p>` : ''}${b.showMail ? `<p class="text-gray-400"><i data-lucide="mail" class="w-4 h-4 inline"></i> ${b.mail}</p>` : ''}</div>${itm}<div id="approvedReviewsList" class="mt-10 space-y-4 border-t border-[#1F1F1F] pt-8"><h3 class="text-2xl font-black mb-6">Peer Reviews</h3></div></div>`;
+            cont.innerHTML = `${car}<div class="p-6 md:p-10"><div class="flex justify-between items-start mb-4"><span class="text-[10px] bg-[#f97316] text-black px-3 py-1.5 rounded uppercase font-black">${b.category}</span><button onclick="openReviewModal('${b.id}')" class="text-xs font-bold bg-[#111] border border-[#27272a] px-3 py-2 rounded-lg hover:border-[#f97316] transition"><i data-lucide="star" class="w-3.5 h-3.5 inline"></i> Write Review</button></div><h2 class="text-4xl md:text-5xl font-black mb-6">${b.name}</h2><p class="text-gray-300 leading-relaxed mb-8 border-l-4 border-[#f97316] pl-4 bg-[#f97316]/5 p-4 rounded-r-xl">${b.desc}</p><div class="space-y-3 p-4 bg-[#050505] border border-[#27272a] rounded-xl"><p class="text-[#f97316] font-bold"><i data-lucide="map-pin" class="w-4 h-4 inline"></i> ${b.city.toUpperCase()}</p><p class="text-gray-400"><i data-lucide="building" class="w-4 h-4 inline"></i> ${b.addr}</p>${b.showPhone ? `<p class="text-gray-400"><i data-lucide="phone" class="w-4 h-4 inline"></i> ${b.phone}</p>` : ''}${b.showMail ? `<p class="text-gray-400"><i data-lucide="mail" class="w-4 h-4 inline"></i> ${b.mail}</p>` : ''}</div>${itm}<div id="approvedReviewsList" class="mt-10 space-y-4 border-t border-[#1F1F1F] pt-8"><h3 class="text-2xl font-black mb-6">Peer Reviews</h3></div></div>`;
             lucide.createIcons(); window.scrollTo(0,0);
 
-            // Fetch Reviews
             onSnapshot(query(collection(db, "peer_reviews"), where("bizId", "==", b.id), where("status", "==", "Approved")), snap => {
                 const rList = document.getElementById('approvedReviewsList');
-                if(snap.empty) { rList.innerHTML += `<p class="text-gray-500">No reviews yet.</p>`; return; }
+                if(snap.empty) { rList.innerHTML = `<h3 class="text-2xl font-black mb-6">Peer Reviews</h3><p class="text-gray-500">No reviews yet.</p>`; return; }
                 let html = '<h3 class="text-2xl font-black mb-6">Peer Reviews</h3>';
                 snap.forEach(rDoc => {
                     const rv = rDoc.data();
@@ -772,8 +782,6 @@
                 rList.innerHTML = html;
             });
         }
-
-        window.onclick = (e) => { if(e.target.classList.contains('modal-bg')) closeModal(); }
     </script>
 </body>
 </html>
