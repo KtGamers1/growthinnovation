@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Growth Innovation | Official</title>
+    <title>Growth Innovation | Pro Marketplace</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -276,7 +276,7 @@
 
     <div id="authModal" class="modal-bg">
         <div class="modal-box relative">
-            <button onclick="closeModal('authModal')" class="absolute top-6 right-6 text-gray-500 hover:text-white"><i data-lucide="x" class="w-6 h-6"></i></button>
+            <button onclick="closeModal('authModal')" class="absolute top-6 right-6 text-gray-500 hover:text-white transition"><i data-lucide="x" class="w-6 h-6"></i></button>
             <h2 id="authTitle" class="text-3xl font-black mb-8 text-center">Sign In</h2>
             <div class="space-y-5">
                 <input type="email" id="email" class="modern-input" placeholder="Email Address">
@@ -284,9 +284,9 @@
                     <input type="password" id="password" class="modern-input pr-12" placeholder="Password">
                     <button type="button" id="togglePasswordBtn" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500"><i data-lucide="eye" id="eyeIcon" class="w-5 h-5"></i></button>
                 </div>
-                <div class="flex justify-end"><button id="forgotBtn" class="text-sm font-bold text-gray-400 hover:text-[#f97316]">Forgot Password?</button></div>
+                <div class="flex justify-end"><button id="forgotBtn" class="text-sm font-bold text-gray-400 hover:text-[#f97316] transition">Forgot Password?</button></div>
                 <button id="mainBtn" class="btn-brand w-full py-4 text-lg mt-2">Authenticate</button>
-                <div class="text-center mt-6 pt-4 border-t border-[#1F1F1F]"><button id="toggleAuthBtn" class="font-bold text-gray-400 hover:text-white">Need an account? Register</button></div>
+                <div class="text-center mt-6 pt-4 border-t border-[#1F1F1F]"><button id="toggleAuthBtn" class="font-bold text-gray-400 hover:text-white transition">Need an account? Register</button></div>
             </div>
         </div>
     </div>
@@ -352,7 +352,7 @@
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input type="text" id="bizCity" class="modern-input" placeholder="City (Mandatory)">
+                    <input type="text" id="bizCity" class="modern-input border-orange-500/30" placeholder="City (Mandatory)">
                     <input type="text" id="bizAddress" class="modern-input" placeholder="Full Address (Mandatory)">
                 </div>
                 
@@ -379,7 +379,7 @@
                         <button type="button" onclick="addNewItemBox()" class="btn-outline w-full py-2 text-sm border-dashed">+ Add Item</button>
                     </div>
                 </div>
-                <button id="submitBizBtn" class="btn-brand w-full py-4 text-lg mt-4">Submit for Peer Review</button>
+                <button id="submitBizBtn" class="btn-brand w-full py-4 text-lg mt-4">Submit</button>
             </div>
         </div>
     </div>
@@ -399,7 +399,7 @@
 
     <div id="ticketModal" class="modal-bg">
         <div class="modal-box">
-            <button onclick="closeModal('ticketModal')" class="absolute top-6 right-6 text-gray-500"><i data-lucide="x" class="w-6 h-6"></i></button>
+            <button onclick="closeModal('ticketModal')" class="absolute top-6 right-6 text-gray-500 hover:text-white"><i data-lucide="x" class="w-6 h-6"></i></button>
             <h2 class="text-2xl font-black mb-6 border-l-4 border-white pl-3">Raise Ticket</h2>
             <div class="space-y-4">
                 <input type="text" id="ticketSubject" class="modern-input" placeholder="Issue Subject">
@@ -413,7 +413,7 @@
         <div class="modal-box flex flex-col h-[85vh] p-0 overflow-hidden">
             <div class="p-6 border-b border-[#27272a] flex justify-between items-center bg-[#0A0A0A]">
                 <div><h2 class="text-xl font-black" id="chatSubject">Ticket Chat</h2><p class="text-xs text-gray-500 mt-1">Chatting with Admin</p></div>
-                <button onclick="closeModal('chatModal')" class="text-gray-500 hover:text-white"><i data-lucide="x" class="w-6 h-6"></i></button>
+                <button onclick="closeModal('chatModal')" class="text-gray-500 hover:text-white transition"><i data-lucide="x" class="w-6 h-6"></i></button>
             </div>
             <div id="chatHistory" class="flex-grow overflow-y-auto p-4 md:p-6 space-y-4 bg-[#050505] flex flex-col"></div>
             <div class="p-3 md:p-4 border-t border-[#27272a] bg-[#0A0A0A] flex gap-3">
@@ -462,7 +462,7 @@
             }
         });
 
-        // IMAGE COMPRESSION
+        // IMAGE COMPRESSION (No query string bugs)
         async function compress(file) {
             return new Promise(res => {
                 const r = new FileReader(); r.readAsDataURL(file);
@@ -487,7 +487,7 @@
             document.getElementById(prevId).innerHTML = '<p class="text-xs text-orange-500">Compressing...</p>';
             for(let f of files) { const b64 = await compress(f); if(itemId) tempItemImgs[itemId].push(b64); else mainImgs.push(b64); }
             const arr = itemId ? tempItemImgs[itemId] : mainImgs;
-            document.getElementById(prevId).innerHTML = arr.map(b => `<img src="${b}?t=${Date.now()}" class="w-16 h-16 rounded-lg object-cover border border-[#27272a]">`).join('');
+            document.getElementById(prevId).innerHTML = arr.map(b => `<img src="${b}" class="w-16 h-16 rounded-lg object-cover border border-[#27272a]">`).join('');
             document.getElementById(lblId).innerText = `${arr.length} Image(s) Added ✅`; document.getElementById(lblId).classList.add('text-green-500');
         }
 
@@ -505,15 +505,17 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3 pr-6">
                     <input type="text" class="modern-input py-2 text-sm it-name bg-[#050505]" placeholder="Item Name" value="${data?data.name:''}">
                     <select class="modern-input py-2 text-sm it-type bg-[#050505]">
-                        <option value="None" ${data?.type==='None'?'selected':''}>None</option><option value="Veg" ${data?.type==='Veg'?'selected':''}>🟢 Veg</option><option value="Non-Veg" ${data?.type==='Non-Veg'?'selected':''}>🔴 Non-Veg</option>
+                        <option value="None" ${data?.type==='None'?'selected':''}>None</option>
+                        <option value="Veg" ${data?.type==='Veg'?'selected':''}>🟢 Veg</option>
+                        <option value="Non-Veg" ${data?.type==='Non-Veg'?'selected':''}>🔴 Non-Veg</option>
                     </select>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
                     <input type="text" class="modern-input py-2 text-sm it-full bg-[#050505]" placeholder="Full Price" value="${data?data.priceFull:''}">
-                    <input type="text" class="modern-input py-2 text-sm it-half bg-[#050505]" placeholder="Half Price (Opt)" value="${data?data.priceHalf:''}">
+                    <input type="text" class="modern-input py-2 text-sm it-half bg-[#050505]" placeholder="Half (Opt)" value="${data?data.priceHalf:''}">
                 </div>
                 <div class="flex items-center gap-3">
-                    <button type="button" onclick="document.getElementById('imgInp_${id}').click()" class="bg-[#27272a] text-xs font-bold px-3 py-2 rounded-lg" id="imgLbl_${id}">+ Photos (2)</button>
+                    <button type="button" onclick="document.getElementById('imgInp_${id}').click()" class="bg-[#27272a] text-white text-xs font-bold px-3 py-2 rounded hover:text-[#f97316]" id="imgLbl_${id}">+ Photos (Max 2)</button>
                     <input type="file" id="imgInp_${id}" accept="image/*" multiple class="hidden" onchange="handleMultipleImages(event, 'preview_${id}', 'imgLbl_${id}', 2, '${id}')">
                     <div id="preview_${id}" class="flex gap-2">${data?.images?data.images.map(img => `<img src="${img}" class="w-16 h-16 object-cover rounded-lg border border-[#27272a]">`).join(''):''}</div>
                 </div>
@@ -521,43 +523,7 @@
             document.getElementById('itemsContainer').insertAdjacentHTML('beforeend', html); lucide.createIcons();
         }
 
-        // --- AUTH ---
-        let authMode = 'LOGIN';
-        document.getElementById('togglePasswordBtn').onclick = () => { const p = document.getElementById('password'); p.type = p.type === 'password' ? 'text' : 'password'; document.getElementById('eyeIcon').setAttribute('data-lucide', p.type === 'password' ? 'eye' : 'eye-off'); lucide.createIcons(); };
-        document.getElementById('toggleAuthBtn').onclick = () => { authMode = authMode === 'LOGIN' ? 'REGISTER' : 'LOGIN'; updateAuthUI(); };
-        document.getElementById('forgotBtn').onclick = () => { authMode = 'FORGOT'; updateAuthUI(); };
-
-        function updateAuthUI() {
-            const t = document.getElementById('authTitle'), b = document.getElementById('mainBtn'), p = document.getElementById('passContainer'), f = document.getElementById('forgotBtn'), tb = document.getElementById('toggleAuthBtn');
-            if(authMode === 'LOGIN') { t.innerText = "Sign In"; b.innerText = "Authenticate"; p.style.display = 'block'; f.style.display = 'flex'; tb.innerText = "Need an account? Register"; } 
-            else if (authMode === 'REGISTER') { t.innerText = "Register"; b.innerText = "Create Account"; p.style.display = 'block'; f.style.display = 'none'; tb.innerText = "Already registered? Sign In"; } 
-            else if (authMode === 'FORGOT') { t.innerText = "Reset Password"; b.innerText = "Send Reset Link"; p.style.display = 'none'; f.style.display = 'none'; tb.innerText = "Back to Sign In"; }
-        }
-
-        document.getElementById('mainBtn').onclick = async () => {
-            const e = document.getElementById('email').value.trim(), p = document.getElementById('password').value;
-            if(!e) return showToast("Email required");
-            try {
-                if(authMode === 'LOGIN') { if(!p) return showToast("Password required"); await signInWithEmailAndPassword(auth, e, p); closeModal(); switchTab('profile'); } 
-                else if(authMode === 'REGISTER') { if(!p) return showToast("Password required"); await createUserWithEmailAndPassword(auth, e, p); closeModal(); switchTab('profile'); } 
-                else if(authMode === 'FORGOT') { await sendPasswordResetEmail(auth, e); showToast("Reset link sent to Inbox/Spam!"); authMode = 'LOGIN'; updateAuthUI(); }
-            } catch(err) { showToast(err.message.split('auth/')[1] || "Error"); }
-        };
-
-        document.getElementById('logoutBtn').onclick = () => { signOut(auth); switchTab('home'); };
-
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                document.getElementById('userEmailDisplay').innerText = user.email; document.getElementById('navProfileText').innerText = "Portal";
-                document.getElementById('supportLoginPrompt').classList.add('hidden'); document.getElementById('supportDashboard').classList.remove('hidden');
-                loadUserPortal(user.email); loadUserTickets(user.email);
-            } else {
-                document.getElementById('navProfileText').innerText = "Sign In";
-                document.getElementById('supportLoginPrompt').classList.remove('hidden'); document.getElementById('supportDashboard').classList.add('hidden');
-            }
-        });
-
-        // --- BIZ LOGIC (ADD & EDIT) ---
+        // --- SUBMIT BIZ (ADD & EDIT) ---
         let editingBizId = null;
         window.openAddBizModal = () => {
             editingBizId = null; document.getElementById('bizModalTitle').innerText = "Register Business"; document.getElementById('submitBizBtn').innerText = "Submit for Peer Review";
@@ -587,47 +553,105 @@
         document.getElementById('submitBizBtn').onclick = async () => {
             const d = {
                 name: document.getElementById('bizName').value, cat: document.getElementById('bizCategory').value, city: document.getElementById('bizCity').value.trim().toLowerCase(),
-                address: document.getElementById('bizAddress').value, phone: document.getElementById('bizPhone').value, mail: document.getElementById('bizMail').value, desc: document.getElementById('bizDesc').value,
+                addr: document.getElementById('bizAddress').value, phone: document.getElementById('bizPhone').value, mail: document.getElementById('bizMail').value, desc: document.getElementById('bizDesc').value,
                 showPhone: document.getElementById('checkShowPhone').checked, showMail: document.getElementById('checkShowMail').checked,
                 images: mainImgs,
-                items: Array.from(document.querySelectorAll('.item-entry')).map(el => {
-                    const id = el.id.replace('box_','');
-                    return { name: el.querySelector('.it-name').value, type: el.querySelector('.it-type').value, priceFull: el.querySelector('.it-full').value, priceHalf: el.querySelector('.it-half').value, images: tempItemImgs[id]||[] };
-                })
+                items: Array.from(document.querySelectorAll('.item-entry')).map(el => ({
+                    name: el.querySelector('.it-name').value, type: el.querySelector('.it-type').value, priceFull: el.querySelector('.it-full').value, priceHalf: el.querySelector('.it-half').value, images: tempItemImgs[el.id.replace('box_','')]||[]
+                }))
             };
             
-            if(!d.name || !d.cat || !d.city || !d.address || !d.phone || !d.mail || !d.desc) return showToast("All main fields are Mandatory!");
+            if(!d.name || !d.cat || !d.city || !d.addr || !d.phone || !d.mail || !d.desc) return showToast("All main fields are Mandatory!");
             
             const btn = document.getElementById('submitBizBtn'); btn.innerText = "Saving...";
             try {
                 if(editingBizId) { await updateDoc(doc(db, "businesses", editingBizId), d); showToast("Updated!"); } 
                 else {
                     d.owner = auth.currentUser.email; d.status = 'Pending'; d.timestamp = Date.now();
-                    await addDoc(collection(db, "businesses"), { name:d.name, category:d.cat, city:d.city, address:d.address, phone:d.phone, mail:d.mail, desc:d.desc, showPhone:d.showPhone, showMail:d.showMail, images:d.images, items:d.items, owner:d.owner, status:d.status, timestamp:d.timestamp });
+                    await addDoc(collection(db, "businesses"), { name:d.name, category:d.cat, city:d.city, address:d.addr, phone:d.phone, mail:d.mail, desc:d.desc, showPhone:d.showPhone, showMail:d.showMail, images:d.images, items:d.items, owner:d.owner, status:d.status, timestamp:d.timestamp });
                     showToast("Submitted for Peer Review!");
                 }
                 closeModal(); editingBizId = null;
             } catch(e) { showToast("Error"); btn.innerText = "Error"; }
         }
 
-        window.deleteBiz = async (id) => { if(confirm("Permanently delete?")) await deleteDoc(doc(db, "businesses", id)); }
+        // --- AUTH ---
+        let authMode = 'LOGIN';
+        document.getElementById('togglePasswordBtn').onclick = () => { const p = document.getElementById('password'); p.type = p.type === 'password' ? 'text' : 'password'; document.getElementById('eyeIcon').setAttribute('data-lucide', p.type === 'password' ? 'eye' : 'eye-off'); lucide.createIcons(); };
+        document.getElementById('toggleAuthBtn').onclick = () => { authMode = authMode === 'LOGIN' ? 'REGISTER' : 'LOGIN'; updateAuthUI(); };
+        document.getElementById('forgotBtn').onclick = () => { authMode = 'FORGOT'; updateAuthUI(); };
 
-        // --- SUBMIT REVIEW ---
-        let currentRevBizId = null;
-        window.openReviewModal = (id) => {
-            if(!auth.currentUser) return showToast("Sign in required.");
-            currentRevBizId = id; currentRating = 0; document.getElementById('reviewText').value = '';
-            document.querySelectorAll('#reviewStars i').forEach(s => s.classList.remove('active'));
-            openModal('reviewModal');
+        function updateAuthUI() {
+            const t = document.getElementById('authTitle'), b = document.getElementById('mainBtn'), p = document.getElementById('passContainer'), f = document.getElementById('forgotBtn'), tb = document.getElementById('toggleAuthBtn');
+            if(authMode === 'LOGIN') { t.innerText = "Sign In"; b.innerText = "Authenticate"; p.style.display = 'block'; f.style.display = 'block'; tb.innerText = "Need an account? Register"; } 
+            else if (authMode === 'REGISTER') { t.innerText = "Register"; b.innerText = "Create Account"; p.style.display = 'block'; f.style.display = 'none'; tb.innerText = "Already registered? Sign In"; } 
+            else if (authMode === 'FORGOT') { t.innerText = "Reset Password"; b.innerText = "Send Reset Link"; p.style.display = 'none'; f.style.display = 'none'; tb.innerText = "Back to Sign In"; }
         }
 
-        document.getElementById('submitReviewBtn').onclick = async () => {
-            const txt = document.getElementById('reviewText').value.trim();
-            if(currentRating == 0 || !txt) return showToast("Rating & Text required!");
+        document.getElementById('mainBtn').onclick = async () => {
+            const e = document.getElementById('email').value.trim(), p = document.getElementById('password').value;
+            if(!e) return showToast("Email required");
             try {
-                await addDoc(collection(db, "peer_reviews"), { bizId: currentRevBizId, user: auth.currentUser.email, rating: parseInt(currentRating), text: txt, status: 'Pending', timestamp: Date.now() });
-                closeModal(); showToast("Review sent for Peer Review.");
-            } catch(e) { showToast("Error"); }
+                if(authMode === 'LOGIN') { if(!p) return showToast("Password required"); await signInWithEmailAndPassword(auth, e, p); closeModal(); switchTab('profile'); } 
+                else if(authMode === 'REGISTER') { if(!p) return showToast("Password required"); await createUserWithEmailAndPassword(auth, e, p); closeModal(); switchTab('profile'); } 
+                else if(authMode === 'FORGOT') { await sendPasswordResetEmail(auth, e); showToast("Reset link sent! Check Spam/Inbox."); authMode = 'LOGIN'; updateAuthUI(); }
+            } catch(err) { showToast(err.message.split('auth/')[1] || "Error"); }
+        };
+
+        document.getElementById('logoutBtn').onclick = () => { signOut(auth); switchTab('home'); };
+
+        onAuthStateChanged(auth, (u) => {
+            if(u) {
+                document.getElementById('userEmailDisplay').innerText = u.email; document.getElementById('navProfileText').innerText = "Portal";
+                document.getElementById('supportLoginPrompt').classList.add('hidden'); document.getElementById('supportDashboard').classList.remove('hidden');
+                loadUserPortal(u.email);
+            } else {
+                document.getElementById('navProfileText').innerText = "Sign In";
+                document.getElementById('supportLoginPrompt').classList.remove('hidden'); document.getElementById('supportDashboard').classList.add('hidden');
+            }
+        });
+
+        // --- LOAD PORTAL ---
+        function loadUserPortal(email) {
+            onSnapshot(query(collection(db, "businesses"), where("owner", "==", email)), snap => {
+                const div = document.getElementById('userBusinesses');
+                div.innerHTML = snap.empty ? `<p class="text-gray-500">No entities.</p>` : '';
+                snap.forEach(d => {
+                    const b = d.data(), clr = b.status === 'Approved' ? 'text-green-500 bg-green-500/10' : 'text-yellow-500 bg-yellow-500/10';
+                    const boostBtn = b.status === 'Approved' ? `<button onclick="openBoostModal('${d.id}')" class="text-xs bg-[#f97316] text-black font-bold px-3 py-1.5 rounded"><i data-lucide="rocket" class="w-3 h-3 inline"></i> Boost</button>` : '';
+                    const strData = encodeURIComponent(JSON.stringify({id: d.id, ...b}));
+                    div.innerHTML += `<div class="p-5 bg-[#111] border border-[#27272a] rounded-xl flex flex-col md:flex-row justify-between gap-4">
+                        <div><h4 class="font-bold text-lg">${b.name}</h4><span class="text-[10px] font-bold ${clr} px-2 py-0.5 rounded uppercase">${b.status}</span></div>
+                        <div class="flex flex-wrap gap-2">${boostBtn}<button onclick='openEditBizModal("${strData}")' class="text-xs bg-white text-black font-bold px-3 py-1.5 rounded"><i data-lucide="edit" class="w-3 h-3 inline"></i> Edit</button><button onclick="delBiz('${d.id}')" class="text-xs border border-red-500/30 text-red-500 font-bold px-3 py-1.5 rounded"><i data-lucide="trash" class="w-3 h-3 inline"></i></button></div>
+                    </div>`;
+                });
+                lucide.createIcons();
+            });
+
+            onSnapshot(query(collection(db, "support_tickets"), where("owner", "==", email)), snap => {
+                const div = document.getElementById('supportTicketsList');
+                div.innerHTML = snap.empty ? `<p class="text-gray-500">No tickets.</p>` : '';
+                snap.forEach(d => {
+                    const t = d.data(), clr = t.status === 'Open' ? 'text-red-500' : 'text-green-500';
+                    div.innerHTML += `<div class="p-4 bg-[#111] border border-[#27272a] rounded-xl cursor-pointer hover:border-[#f97316]" onclick="openChat('${d.id}', '${t.subject.replace(/'/g, "\\'")}')"><div class="flex justify-between items-center"><h4 class="font-bold">${t.subject}</h4><span class="text-[10px] font-bold ${clr}">${t.status}</span></div><p class="text-xs text-[#f97316] mt-2">Open Chat →</p></div>`;
+                });
+            });
+
+            if(email === 'kt.deore@hotmail.com') { document.getElementById('adminPanel').classList.remove('hidden'); loadAdminQueue(); }
+        }
+
+        window.delBiz = async (id) => { if(confirm("Permanently delete?")) await deleteDoc(doc(db, "businesses", id)); }
+
+        function loadAdminQueue() {
+            window.verify = async (c, id, s) => await updateDoc(doc(db, c, id), { status: s });
+            onSnapshot(query(collection(db, "businesses"), where("status", "==", "Pending")), snap => {
+                const q = document.getElementById('adminQueueGrid'); q.innerHTML = snap.empty ? '<p class="text-xs text-gray-500">Queue clear.</p>' : '';
+                snap.forEach(d => { const b = d.data(); q.innerHTML += `<div class="p-4 bg-[#000] border border-[#f97316]/30 rounded-xl"><p class="font-bold text-sm">${b.name}</p><div class="flex gap-2 mt-3"><button onclick="verify('businesses','${d.id}','Approved')" class="bg-[#f97316] text-black px-3 py-1 rounded text-xs font-bold">Approve</button><button onclick="verify('businesses','${d.id}','Rejected')" class="border border-red-500 text-red-500 px-3 py-1 rounded text-xs font-bold">Reject</button></div></div>`; });
+            });
+            onSnapshot(query(collection(db, "peer_reviews"), where("status", "==", "Pending")), snap => {
+                const q = document.getElementById('adminReviewQueue'); q.innerHTML = snap.empty ? '<p class="text-xs text-gray-500">No pending reviews.</p>' : '';
+                snap.forEach(d => { const r = d.data(); q.innerHTML += `<div class="p-4 bg-[#000] border border-[#27272a] rounded-xl"><div class="text-yellow-500 text-xs mb-1">⭐ ${r.rating}</div><p class="text-sm mb-2">"${r.text}"</p><div class="flex gap-2"><button onclick="verify('peer_reviews','${d.id}','Approved')" class="bg-white text-black px-3 py-1 rounded text-xs font-bold">Approve</button><button onclick="verify('peer_reviews','${d.id}','Rejected')" class="border border-red-500 text-red-500 px-3 py-1 rounded text-xs font-bold">Reject</button></div></div>`; });
+            });
         }
 
         // --- TICKETS, CHAT & BOOST ---
@@ -645,7 +669,7 @@
                 const history = document.getElementById('chatHistory'); history.innerHTML = "";
                 d.data().messages.forEach(m => {
                     const isMe = m.sender === auth.currentUser.email, bCls = isMe ? 'bg-[#27272a] self-end' : 'bg-[#f97316] text-black self-start';
-                    history.innerHTML += `<div class="${bCls} p-3 rounded-2xl max-w-[80%]"><span class="text-[10px] font-bold opacity-60 mb-1 block">${m.sender === 'kt.deore@hotmail.com'?'Admin':m.sender.split('@')[0]}</span><span class="text-sm">${m.text}</span></div>`;
+                    history.innerHTML += `<div class="${bCls} p-3 rounded-2xl max-w-[80%]"><span class="text-[10px] opacity-60 mb-1 block">${m.sender === 'kt.deore@hotmail.com'?'Admin':m.sender.split('@')[0]}</span><span class="text-sm">${m.text}</span></div>`;
                 });
                 history.scrollTop = history.scrollHeight;
             });
@@ -665,65 +689,36 @@
             closeModal(); showToast("Boost Request Sent!"); switchTab('support'); 
         };
 
-        // --- PORTAL DATA ---
-        function loadUserPortal(email) {
-            onSnapshot(query(collection(db, "businesses"), where("owner", "==", email)), snap => {
-                const div = document.getElementById('userBusinesses');
-                div.innerHTML = snap.empty ? `<p class="text-gray-500">No entities.</p>` : '';
-                snap.forEach(d => {
-                    const b = d.data(), clr = b.status === 'Approved' ? 'text-green-500 bg-green-500/10' : 'text-yellow-500 bg-yellow-500/10';
-                    const boostBtn = b.status === 'Approved' ? `<button onclick="openBoostModal('${d.id}')" class="text-xs bg-[#f97316] text-black font-bold px-3 py-1.5 rounded"><i data-lucide="rocket" class="w-3 h-3 inline"></i> Boost</button>` : '';
-                    const strData = encodeURIComponent(JSON.stringify({id: d.id, ...b}));
-                    div.innerHTML += `<div class="p-5 bg-[#111] border border-[#27272a] rounded-xl flex flex-col md:flex-row justify-between gap-4">
-                        <div><h4 class="font-bold text-lg">${b.name}</h4><span class="text-[10px] font-bold ${clr} px-2 py-0.5 rounded uppercase">${b.status}</span></div>
-                        <div class="flex flex-wrap gap-2">${boostBtn}<button onclick='openEditBizModal("${strData}")' class="text-xs bg-white text-black font-bold px-3 py-1.5 rounded"><i data-lucide="edit" class="w-3 h-3 inline"></i> Edit</button><button onclick="deleteBiz('${d.id}')" class="text-xs border border-red-500/30 text-red-500 font-bold px-3 py-1.5 rounded"><i data-lucide="trash" class="w-3 h-3 inline"></i></button></div>
-                    </div>`;
-                });
-                lucide.createIcons();
-            });
-            if(email === 'kt.deore@hotmail.com') { document.getElementById('adminPanel').classList.remove('hidden'); loadAdminQueue(); }
+        // --- SUBMIT REVIEW ---
+        let currentRevBizId = null;
+        window.openReviewModal = (id) => {
+            if(!auth.currentUser) return showToast("Sign in required.");
+            currentRevBizId = id; currentRating = 0; document.getElementById('reviewText').value = '';
+            document.querySelectorAll('#reviewStars i').forEach(s => s.classList.remove('active'));
+            openModal('reviewModal');
         }
 
-        function loadUserTickets(email) {
-            const q = email === 'kt.deore@hotmail.com' ? query(collection(db, "support_tickets")) : query(collection(db, "support_tickets"), where("owner", "==", email));
-            onSnapshot(q, snap => {
-                const div = document.getElementById('supportTicketsList');
-                div.innerHTML = snap.empty ? `<p class="text-gray-500">No tickets.</p>` : '';
-                snap.forEach(d => {
-                    const t = d.data(), clr = t.status === 'Open' ? 'text-red-500' : 'text-green-500';
-                    div.innerHTML += `<div class="p-4 bg-[#111] border border-[#27272a] rounded-xl cursor-pointer hover:border-[#f97316]" onclick="openChat('${d.id}', '${t.subject.replace(/'/g, "\\'")}')">
-                        <div class="flex justify-between items-center"><h4 class="font-bold">${t.subject}</h4><span class="text-[10px] font-bold ${clr}">${t.status}</span></div>
-                        <p class="text-xs text-[#f97316] mt-2">Open Chat →</p>
-                    </div>`;
-                });
-            });
+        document.getElementById('submitReviewBtn').onclick = async () => {
+            const txt = document.getElementById('reviewText').value.trim();
+            if(currentRating == 0 || !txt) return showToast("Rating & Text required!");
+            try {
+                await addDoc(collection(db, "peer_reviews"), { bizId: currentRevBizId, user: auth.currentUser.email, rating: parseInt(currentRating), text: txt, status: 'Pending', timestamp: Date.now() });
+                closeModal(); showToast("Sent for Peer Review.");
+            } catch(e) { showToast("Error"); }
         }
 
-        function loadAdminQueue() {
-            window.verify = async (c, id, s) => await updateDoc(doc(db, c, id), { status: s });
-            onSnapshot(query(collection(db, "businesses"), where("status", "==", "Pending")), snap => {
-                const q = document.getElementById('adminQueueGrid'); q.innerHTML = snap.empty ? '<p class="text-xs text-gray-500">Queue clear.</p>' : '';
-                snap.forEach(d => { const b = d.data(); q.innerHTML += `<div class="p-4 bg-[#000] border border-[#f97316]/30 rounded-xl"><p class="font-bold text-sm">${b.name}</p><div class="flex gap-2 mt-3"><button onclick="verify('businesses','${d.id}','Approved')" class="bg-[#f97316] text-black px-3 py-1 rounded text-xs font-bold">Approve</button><button onclick="verify('businesses','${d.id}','Rejected')" class="border border-red-500 text-red-500 px-3 py-1 rounded text-xs font-bold">Reject</button></div></div>`; });
-            });
-            onSnapshot(query(collection(db, "peer_reviews"), where("status", "==", "Pending")), snap => {
-                const q = document.getElementById('adminReviewQueue'); q.innerHTML = snap.empty ? '<p class="text-xs text-gray-500">No pending reviews.</p>' : '';
-                snap.forEach(d => { const r = d.data(); q.innerHTML += `<div class="p-4 bg-[#000] border border-[#27272a] rounded-xl"><div class="text-yellow-500 text-xs mb-1">⭐ ${r.rating}</div><p class="text-sm mb-2">"${r.text}"</p><div class="flex gap-2"><button onclick="verify('peer_reviews','${d.id}','Approved')" class="bg-white text-black px-3 py-1 rounded text-xs font-bold">Approve</button><button onclick="verify('peer_reviews','${d.id}','Rejected')" class="border border-red-500 text-red-500 px-3 py-1 rounded text-xs font-bold">Reject</button></div></div>`; });
-            });
-        }
-
-        // --- PUBLIC FEED ---
+        // --- FEED ---
         let allVerifiedBiz = [];
         function renderFeed(arr, id, limit=null) {
             const feed = document.getElementById(id);
-            feed.innerHTML = arr.length === 0 ? `<div class="col-span-full text-center py-10"><i data-lucide="search-x" class="w-10 h-10 text-gray-600 mx-auto mb-2"></i><p class="text-gray-500">No listings.</p></div>` : "";
+            feed.innerHTML = arr.length === 0 ? `<div class="col-span-full text-center py-10"><p class="text-gray-500">No listings.</p></div>` : "";
             let count = 0;
             arr.forEach(b => {
                 if(limit && count>=limit) return;
-                const cover = (b.images && b.images.length>0) ? b.images[0] : null;
-                const imgHtml = cover ? `<img src="${cover}?t=${Date.now()}" class="absolute inset-0 w-full h-full object-cover">` : `<div class="absolute inset-0 bg-[#111] flex items-center justify-center"><i data-lucide="image" class="w-8 h-8 text-gray-600"></i></div>`;
-                feed.innerHTML += `<div class="stagger-card glass-card overflow-hidden cursor-pointer group border-white/5" style="animation-delay:${count*0.1}s" onclick='openD("${encodeURIComponent(JSON.stringify(b))}")'>
+                const imgHtml = (b.images && b.images.length>0) ? `<img src="${b.images[0]}" class="absolute inset-0 w-full h-full object-cover">` : `<div class="absolute inset-0 bg-[#111] flex items-center justify-center"><i data-lucide="image" class="w-8 h-8 text-gray-600"></i></div>`;
+                feed.innerHTML += `<div class="stagger-card glass-card overflow-hidden cursor-pointer group" style="animation-delay:${count*0.1}s" onclick='openD("${encodeURIComponent(JSON.stringify(b))}")'>
                     <div class="h-48 relative w-full">${imgHtml}<span class="absolute top-3 left-3 bg-black/80 text-white text-[10px] font-bold px-2 py-1 rounded uppercase">${b.category}</span></div>
-                    <div class="p-5"><h3 class="text-xl font-black mb-1 group-hover:text-[#f97316] transition">${b.name}</h3><p class="text-sm text-[#f97316] font-bold mb-3"><i data-lucide="map-pin" class="w-3.5 h-3.5 inline"></i> ${b.city.toUpperCase()}</p><p class="text-xs text-gray-500 font-bold">Tap to view details →</p></div>
+                    <div class="p-5"><h3 class="text-xl font-black mb-1 group-hover:text-[#f97316] transition">${b.name}</h3><p class="text-sm text-[#f97316] font-bold"><i data-lucide="map-pin" class="inline w-3 h-3"></i> ${b.city.toUpperCase()}</p></div>
                 </div>`;
                 count++;
             });
@@ -746,8 +741,6 @@
         // --- DETAIL VIEW ---
         window.openD = (str) => {
             const b = JSON.parse(decodeURIComponent(str)); switchTab('detail');
-            const cont = document.getElementById('detailContent');
-            
             let car = '';
             if(b.images && b.images.length>0) {
                 let sl = ''; b.images.forEach(img => { sl += `<div class="min-w-full snap-center"><img src="${img}" class="w-full h-64 md:h-96 object-cover"></div>`; });
@@ -764,13 +757,13 @@
                 itm = `<div class="mt-10 pt-10 border-t border-[#1F1F1F]"><h3 class="text-2xl font-black mb-6">Catalog / Menu</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${list}</div></div>`;
             }
 
-            cont.innerHTML = `${car}<div class="p-6 md:p-10"><div class="flex justify-between items-start mb-4"><span class="text-[10px] bg-[#f97316] text-black px-3 py-1.5 rounded uppercase font-black">${b.category}</span><button onclick="openReviewModal('${b.id}')" class="text-xs font-bold bg-[#111] border border-[#27272a] px-3 py-2 rounded-lg hover:border-[#f97316] transition"><i data-lucide="star" class="w-3.5 h-3.5 inline"></i> Write Review</button></div><h2 class="text-4xl md:text-5xl font-black mb-6">${b.name}</h2><p class="text-gray-300 leading-relaxed mb-8 border-l-4 border-white/10 pl-4">${b.desc}</p><div class="space-y-3 p-4 bg-[#050505] border border-[#27272a] rounded-xl"><p class="text-[#f97316] font-bold"><i data-lucide="map-pin" class="w-4 h-4 inline"></i> ${b.city.toUpperCase()}</p><p class="text-gray-400"><i data-lucide="building" class="w-4 h-4 inline"></i> ${b.address}</p>${b.showPhone ? `<p class="text-gray-400"><i data-lucide="phone" class="w-4 h-4 inline"></i> ${b.phone}</p>` : ''}${b.showMail ? `<p class="text-gray-400"><i data-lucide="mail" class="w-4 h-4 inline"></i> ${b.mail}</p>` : ''}</div>${itm}<div id="approvedReviewsList" class="mt-10 space-y-4 border-t border-[#1F1F1F] pt-8"><h3 class="text-2xl font-black mb-6">Peer Reviews</h3></div></div>`;
+            document.getElementById('detailContent').innerHTML = `${car}<div class="p-6 md:p-10"><div class="flex justify-between items-start mb-4"><span class="text-[10px] bg-[#f97316] text-black px-3 py-1.5 rounded uppercase font-black">${b.category}</span><button onclick="openReviewModal('${b.id}')" class="text-xs font-bold bg-[#111] border border-[#27272a] px-3 py-2 rounded-lg hover:border-[#f97316]"><i data-lucide="star" class="w-3.5 h-3.5 inline"></i> Write Review</button></div><h2 class="text-4xl md:text-5xl font-black mb-6">${b.name}</h2><p class="text-gray-300 leading-relaxed mb-8 border-l-4 border-white/10 pl-4">${b.desc}</p><div class="space-y-3 p-4 bg-[#050505] border border-[#27272a] rounded-xl"><p class="text-[#f97316] font-bold"><i data-lucide="map-pin" class="w-4 h-4 inline"></i> ${b.city.toUpperCase()}</p><p class="text-gray-400"><i data-lucide="building" class="w-4 h-4 inline"></i> ${b.address}</p>${b.showPhone ? `<p class="text-gray-400"><i data-lucide="phone" class="w-4 h-4 inline"></i> ${b.phone}</p>` : ''}${b.showMail ? `<p class="text-gray-400"><i data-lucide="mail" class="w-4 h-4 inline"></i> ${b.mail}</p>` : ''}</div>${itm}<div id="approvedReviewsList" class="mt-10 space-y-4 border-t border-[#1F1F1F] pt-8"><h3 class="text-2xl font-black mb-6">Peer Reviews</h3></div></div>`;
             lucide.createIcons(); window.scrollTo(0,0);
 
-            // Fetch Approved Reviews
+            // Fetch Reviews
             onSnapshot(query(collection(db, "peer_reviews"), where("bizId", "==", b.id), where("status", "==", "Approved")), snap => {
                 const rList = document.getElementById('approvedReviewsList');
-                if(snap.empty) { rList.innerHTML += `<p class="text-gray-500">No reviews yet. Be the first!</p>`; return; }
+                if(snap.empty) { rList.innerHTML += `<p class="text-gray-500">No reviews yet.</p>`; return; }
                 let html = '<h3 class="text-2xl font-black mb-6">Peer Reviews</h3>';
                 snap.forEach(rDoc => {
                     const rv = rDoc.data();
@@ -779,6 +772,8 @@
                 rList.innerHTML = html;
             });
         }
+
+        window.onclick = (e) => { if(e.target.classList.contains('modal-bg')) closeModal(); }
     </script>
 </body>
 </html>
