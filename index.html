@@ -1,663 +1,925 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Growth Innovation | Epic Editions</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <title>Growth Innovation | Official</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        :root { --primary: #00ffcc; --secondary: #7b2cbf; --bg-dark: #050505; --card-glass: rgba(20, 20, 20, 0.7); --text: #e0e0e0; --danger: #ff3333; --star: #ffd700; --cancel: #ff5555;}
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Space Grotesk', sans-serif; scroll-behavior: smooth; }
-        body { background-color: var(--bg-dark); color: var(--text); overflow-x: hidden; background-image: radial-gradient(circle at 15% 50%, rgba(123, 44, 191, 0.15), transparent 25%), radial-gradient(circle at 85% 30%, rgba(0, 255, 204, 0.15), transparent 25%); }
-        ::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background: var(--bg-dark); } ::-webkit-scrollbar-thumb { background: var(--secondary); border-radius: 10px; }
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;900&display=swap');
         
-        /* Navbar */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 50px; background: rgba(5, 5, 5, 0.9); backdrop-filter: blur(15px); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.05); flex-wrap: wrap; gap: 15px;}
-        .logo-container { display: flex; align-items: center; gap: 10px; cursor: pointer; }
-        .epic-logo { width: 35px; height: 35px; background: linear-gradient(45deg, var(--primary), var(--secondary)); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: black; font-size: 18px; box-shadow: 0 0 10px var(--primary); }
-        .logo-text { font-size: 20px; font-weight: 700; background: linear-gradient(90deg, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .nav-links { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; justify-content: center;}
-        .nav-links a { color: var(--text); text-decoration: none; transition: 0.3s; cursor: pointer; font-weight: 500; font-size: 0.9rem;}
-        .nav-links a:hover, .nav-links a.active { color: var(--primary); text-shadow: 0 0 10px rgba(0,255,204,0.3); }
-
-        /* Buttons & Inputs */
-        .btn-glow, .btn-solid, .btn-disabled, .btn-outline { padding: 10px 20px; border-radius: 5px; font-weight: bold; cursor: pointer; transition: 0.3s; text-align: center; border: none; display: inline-block;}
-        .btn-glow { border: 2px solid var(--primary); background: transparent; color: var(--primary); text-transform: uppercase; letter-spacing: 1px;}
-        .btn-glow:hover { background: var(--primary); color: #000; box-shadow: 0 0 15px var(--primary); transform: translateY(-2px); }
-        .btn-solid { background: linear-gradient(45deg, var(--secondary), var(--primary)); color: white; width: 100%; margin-top: 10px; }
-        .btn-solid:hover { transform: scale(1.02); box-shadow: 0 5px 15px rgba(0, 255, 204, 0.4); }
-        .btn-disabled { background: #222; color: #666; cursor: not-allowed; width: 100%; margin-top: 10px;}
-        .btn-outline { border: 2px solid var(--secondary); background: transparent; color: var(--secondary); }
-        .btn-outline:hover { background: var(--secondary); color: white; }
+        body { font-family: 'Outfit', sans-serif; background-color: #050505; color: #fafafa; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; -webkit-tap-highlight-color: transparent; }
         
-        input, textarea, select { width: 100%; padding: 12px; margin: 8px 0; background: rgba(0,0,0,0.5); border: 1px solid #333; color: white; border-radius: 5px; outline: none; transition: 0.3s; font-family: 'Space Grotesk', sans-serif;}
-        input:focus, textarea:focus { border-color: var(--primary); }
-        .pwd-wrapper { position: relative; width: 100%; }
-        .eye-icon { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 1.2rem; }
+        /* 🔥 EPIC AMBIENT BACKGROUND 🔥 */
+        .ambient-blob { position: fixed; border-radius: 50%; filter: blur(120px); z-index: -1; opacity: 0.35; animation: floatBlob 20s infinite alternate ease-in-out; pointer-events: none; }
+        .blob-1 { top: -10%; left: -10%; width: 500px; height: 500px; background: #ea580c; }
+        .blob-2 { bottom: -10%; right: -10%; width: 500px; height: 500px; background: #9a3412; animation-delay: -10s; }
+        @keyframes floatBlob { 0% { transform: translate(0, 0) scale(1); } 50% { transform: translate(50px, 50px) scale(1.2); } 100% { transform: translate(-50px, -20px) scale(0.8); } }
 
-        /* SPA Pages & Grid */
-        .page-section { display: none; padding-top: 120px; padding-bottom: 50px; min-height: 80vh; animation: fadeIn 0.4s ease-out; }
-        .page-section.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        /* Modern UI Elements */
+        .glass-card { background: rgba(15, 15, 15, 0.7); backdrop-filter: blur(24px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 20px; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); overflow: hidden; }
+        .glass-card:hover { border-color: rgba(249, 115, 22, 0.4); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(249, 115, 22, 0.1); }
         
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; max-width: 1200px; margin: 20px auto; padding: 0 20px; }
-        .glass-box { background: var(--card-glass); padding: 25px; border-radius: 15px; border: 1px solid rgba(255,255,255,0.05); }
-        .address-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .modern-input { background: rgba(0,0,0,0.6); border: 1px solid #27272a; color: white; border-radius: 12px; padding: 14px 16px; width: 100%; transition: 0.3s; outline: none; font-size: 15px; }
+        .modern-input:focus { border-color: #f97316; box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.2); background: rgba(0,0,0,0.9); }
+        
+        .btn-brand { background: linear-gradient(135deg, #f97316, #ea580c); color: #000; font-weight: 800; padding: 14px 24px; border-radius: 12px; transition: 0.3s; display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3); }
+        .btn-brand:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 25px rgba(249, 115, 22, 0.4); }
+        
+        /* Smooth View Router */
+        .view-section { display: none; }
+        .view-section.active { display: block; animation: scaleFadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes scaleFadeUp { 0% { opacity: 0; transform: translateY(20px) scale(0.97); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
 
-        /* Product Card & Titles */
-        .hero-title { font-size: 4rem; color: var(--primary); text-shadow: 0 0 20px rgba(0,255,204,0.4); font-weight: 700; margin-bottom: 10px;}
-        .product-card { background: var(--card-glass); border-radius: 15px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; display: flex; flex-direction: column; }
-        .product-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 10px 20px rgba(0,255,204,0.1); }
-        .p-img { width: 100%; height: 250px; background-size: cover; background-position: center; border-bottom: 1px solid #333; }
-        .p-info { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+        /* Modals & Toasts */
+        .modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(12px); z-index: 100; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
+        .modal-bg.active { display: flex; opacity: 1; }
+        .modal-box { background: #0A0A0A; border: 1px solid #27272a; border-radius: 24px; width: 95%; max-width: 650px; padding: 32px; max-height: 90vh; overflow-y: auto; transform: scale(0.9); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
+        .modal-bg.active .modal-box { transform: scale(1); }
+        
+        #toast { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background: #111; border: 1px solid #333; color: #fff; padding: 14px 24px; border-radius: 50px; font-weight: 700; transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1); z-index: 9999; display: flex; align-items: center; gap: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        #toast.show { bottom: 90px; }
+        
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* Toasts & Modals */
-        #toast-box { position: fixed; top: 90px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; }
-        .toast { background: rgba(10, 10, 10, 0.95); border-left: 4px solid var(--primary); padding: 15px; border-radius: 5px; color: white; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.5); animation: slideIn 0.3s forwards; font-size: 0.9rem;}
-        .toast.error { border-left-color: var(--danger); } .toast.upi { border-left-color: #ff9900; }
-        @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
-
-        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; z-index: 5000; padding: 15px;}
-        .modal-content { background: var(--card-glass); border: 1px solid var(--primary); padding: 30px; border-radius: 15px; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; position: relative; }
-        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; color: var(--danger); }
-
-        /* Epic Truck Animation */
-        #truck-screen { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        .truck-container { position: relative; width: 100%; height: 120px; overflow: hidden; margin-top: 20px; border-bottom: 2px dashed #444; }
-        .truck-icon { font-size: 5rem; position: absolute; left: -100px; bottom: 5px; animation: driveTruck 4s linear forwards; }
-        @keyframes driveTruck { 0% { left: -100px; } 20% { left: 40%; } 70% { left: 40%; } 100% { left: 120%; } }
-        .box-icon { font-size: 2.5rem; position: absolute; left: 45%; bottom: 5px; opacity: 0; animation: loadBox 4s linear forwards; }
-        @keyframes loadBox { 0% { opacity:0; bottom: 100px; } 20% { opacity:1; bottom: 5px; } 25% { opacity:0; } 100% { opacity:0; } }
-
-        /* Contact Details Hover FX */
-        .copy-item { cursor: pointer; transition: 0.3s; padding: 10px; border-radius: 5px; border: 1px solid transparent;}
-        .copy-item:hover { background: rgba(255,255,255,0.05); border-color: var(--primary); }
-
-        /* Mobile CSS */
-        @media (max-width: 850px) { 
-            nav { flex-direction: column; padding: 15px; gap: 15px; } 
-            .nav-links { width: 100%; justify-content: center; gap: 15px; }
-            .hero-title { font-size: 2.8rem; }
-            .page-section { padding-top: 150px; }
-            .address-group { grid-template-columns: 1fr; gap: 0; } 
-            .modal-content { padding: 20px; }
-        }
+        /* Review Stars */
+        .star-rating i { cursor: pointer; color: #3f3f46; transition: 0.2s; }
+        .star-rating i.active { color: #f97316; fill: #f97316; }
     </style>
 </head>
 <body>
 
-    <div id="toast-box"></div>
+    <div class="ambient-blob blob-1"></div>
+    <div class="ambient-blob blob-2"></div>
 
-    <div id="truck-screen">
-        <h1 style="color: var(--primary); font-size: 2.5rem; text-transform: uppercase;">Packing Order...</h1>
-        <div class="truck-container"><div class="box-icon">📦</div><div class="truck-icon">🚚</div></div>
-        <p style="color: #aaa; margin-top: 15px; font-size: 1.1rem;">Securely dispatching to your address...</p>
-    </div>
-
-    <nav>
-        <div class="logo-container" onclick="switchPage('home')">
-            <div class="epic-logo">GI</div>
-            <div class="logo-text">Growth Innovation</div>
+    <header class="border-b border-white/5 bg-[#000000]/70 backdrop-blur-xl sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-5 md:px-6 h-20 flex items-center justify-between">
+            <button onclick="switchTab('home')" class="flex items-center gap-3 cursor-pointer group bg-transparent border-none outline-none">
+                <img src="letter-g-gg-hexagonal-modern-600nw-2661904643.png" alt="Growth Innovation Logo" class="w-10 h-10 object-contain group-hover:scale-110 transition duration-300 drop-shadow-[0_0_12px_rgba(249,115,22,0.6)]">
+                <h1 class="text-xl md:text-2xl font-black tracking-tight hidden sm:block">Growth Innovation</h1>
+            </button>
+            <nav class="hidden md:flex gap-8 items-center">
+                <button onclick="switchTab('home')" data-target="home" class="nav-link text-gray-400 hover:text-white font-medium transition">Home</button>
+                <button onclick="switchTab('marketplace')" data-target="marketplace" class="nav-link text-gray-400 hover:text-white font-medium transition">Marketplace</button>
+                <button onclick="switchTab('updates')" data-target="updates" class="nav-link text-gray-400 hover:text-white font-medium transition">Updates</button>
+                <button onclick="switchTab('about')" data-target="about" class="nav-link text-gray-400 hover:text-white font-medium transition">About</button>
+                <button onclick="switchTab('support')" data-target="support" class="nav-link text-gray-400 hover:text-white font-medium transition">Support</button>
+            </nav>
+            <button onclick="openAuthOrProfile()" class="bg-[#111] border border-[#27272a] hover:border-[#f97316] hover:bg-[#1a1a1a] px-5 py-2.5 rounded-full font-bold text-sm flex items-center gap-2 transition duration-300">
+                <i data-lucide="user-circle" class="w-5 h-5 text-[#f97316]"></i> <span id="navProfileText">Sign In</span>
+            </button>
         </div>
-        <div class="nav-links" id="nav-links"></div>
+    </header>
+
+    <main class="flex-grow w-full max-w-7xl mx-auto pt-8 px-4 sm:px-6 pb-32 md:pb-24">
+        
+        <section id="view-home" class="view-section">
+            <div class="pt-8 md:pt-20 pb-16 text-center max-w-4xl mx-auto border-b border-white/5">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#111] text-xs font-bold text-[#f97316] mb-8 border border-orange-500/20 shadow-[0_0_15px_rgba(249,115,22,0.15)]">
+                    <span class="w-2 h-2 rounded-full bg-[#f97316] animate-ping"></span> Live & Verified Network
+                </div>
+                <h2 class="text-5xl md:text-7xl font-black mb-6 tracking-tight leading-[1.1]">
+                    The Modern Directory for <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500">Local Commerce.</span>
+                </h2>
+                <p class="text-gray-400 text-lg md:text-xl mb-10 max-w-2xl mx-auto">A premium, 100% free ecosystem to list your enterprise and connect with your city or village. Zero algorithms.</p>
+                <div class="flex justify-center gap-4">
+                    <button onclick="switchTab('marketplace')" class="btn-brand">Explore Marketplace <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+                </div>
+            </div>
+            <div class="pt-16">
+                <div class="flex justify-between items-center mb-8">
+                    <h3 class="text-2xl md:text-3xl font-black flex items-center gap-2"><i data-lucide="sparkles" class="text-[#f97316]"></i> Featured Near You</h3>
+                    <button onclick="switchTab('marketplace')" class="text-[#f97316] font-bold hover:underline cursor-pointer text-sm">View All →</button>
+                </div>
+                <div id="homeFeed" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+            </div>
+        </section>
+
+        <section id="view-marketplace" class="view-section pt-4 md:pt-8">
+            <h2 class="text-3xl md:text-4xl font-black mb-2">Marketplace</h2>
+            <p class="text-gray-400 mb-8 text-base md:text-lg">Search businesses by category or your specific Location.</p>
+            
+            <div class="flex flex-col md:flex-row gap-4 mb-10 bg-[#0A0A0A]/50 backdrop-blur-md p-4 rounded-2xl border border-white/5">
+                <div class="relative flex-grow">
+                    <input type="text" id="searchInput" class="modern-input pl-10 border-transparent bg-[#111]" placeholder="Search business name...">
+                    <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500"></i>
+                </div>
+                <div class="relative w-full md:w-64">
+                    <input type="text" id="filterLocation" class="modern-input pl-10 border-transparent bg-[#111]" placeholder="Location (e.g. Ozar)">
+                    <i data-lucide="map-pin" class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#f97316]"></i>
+                </div>
+                <select id="filterCategory" class="modern-input w-full md:w-64 text-gray-300 border-transparent bg-[#111]">
+                    <option value="All">All Categories</option>
+                    <option value="Agriculture & Farming">Agriculture & Farming</option>
+                    <option value="Automotive">Automotive & Garage</option>
+                    <option value="Barber Shop & Salon">Barber Shop & Salon</option>
+                    <option value="Beauty & Spa">Beauty & Spa</option>
+                    <option value="Clothing & Apparel">Clothing & Apparel</option>
+                    <option value="Education">Education & Tutors</option>
+                    <option value="Entertainment & Theatres">Entertainment & Theatres</option>
+                    <option value="Events & Planners">Events & Planners</option>
+                    <option value="Food & Dining">Food & Restaurants</option>
+                    <option value="Gym & Fitness">Gym & Fitness</option>
+                    <option value="Health & Medical">Health & Medical</option>
+                    <option value="Home Services">Home Services</option>
+                    <option value="Hotels & Lodging">Hotels & Lodging</option>
+                    <option value="IT & Tech">IT & Tech</option>
+                    <option value="Legal & Financial">Legal & Financial</option>
+                    <option value="Manufacturing">Manufacturing</option>
+                    <option value="Photography & Studios">Photography & Studios</option>
+                    <option value="Plumbing & Electrical">Plumbing & Electrical</option>
+                    <option value="Real Estate">Real Estate</option>
+                    <option value="Retail & Shopping">Retail & Shopping</option>
+                    <option value="Shopping Mall">Shopping Mall</option>
+                    <option value="Supermarket & Groceries">Supermarket & Groceries</option>
+                    <option value="Travel & Transport">Travel & Transport</option>
+                    <option value="Others">Others</option>
+                </select>
+            </div>
+
+            <div id="fullFeed" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+        </section>
+
+        <section id="view-detail" class="view-section pt-4 md:pt-8">
+            <button onclick="switchTab('marketplace')" class="text-gray-400 hover:text-white mb-6 flex items-center gap-2 font-bold transition"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Marketplace</button>
+            <div id="detailContent" class="glass-card p-0 overflow-hidden border-white/5 shadow-2xl">
+                </div>
+        </section>
+
+        <section id="view-updates" class="view-section pt-4 md:pt-8">
+            <h2 class="text-3xl md:text-4xl font-black mb-10">Platform Updates</h2>
+            <div class="max-w-3xl space-y-6">
+                <div class="glass-card p-8 border-l-4 border-l-[#f97316]">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl md:text-2xl font-bold flex items-center gap-2"><i data-lucide="rocket" class="w-6 h-6 text-[#f97316]"></i> Boost Engine v1.0</h3>
+                        <span class="bg-[#f97316]/10 text-[#f97316] text-[10px] font-black px-3 py-1 rounded border border-orange-500/20">NEW</span>
+                    </div>
+                    <p class="text-gray-400 leading-relaxed text-base md:text-lg">Creators can now boost their posts to reach a wider audience using our new tiered monetization system directly from their Portal.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="view-about" class="view-section pt-4 md:pt-8 text-center max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-black mb-8">About Us</h2>
+            <div class="glass-card p-8 md:p-12 text-left border-white/5">
+                <h3 class="text-2xl md:text-3xl font-black mb-6">The Vision</h3>
+                <p class="text-gray-300 text-base md:text-lg leading-relaxed mb-10">
+                    Growth Innovation was created to solve a massive problem: Small businesses are forced to pay heavy commissions to be visible online. Here, everything is <strong class="text-white font-bold">100% Free</strong>. No hidden charges. No algorithmic bias.
+                </p>
+                <div class="border-t border-[#1F1F1F] pt-8 flex flex-col md:flex-row items-center gap-6 justify-center md:justify-start">
+                    <div class="relative group">
+                        <div class="absolute inset-0 bg-[#f97316] rounded-2xl blur-lg opacity-20 group-hover:opacity-50 transition duration-500"></div>
+                        <img src="WhatsApp Image 2026-03-10 at 13.56.54 (3).jpeg" alt="KtDev" class="relative w-24 h-24 md:w-32 md:h-32 rounded-2xl object-cover border border-[#333] z-10 shadow-2xl">
+                    </div>
+                    <div class="text-center md:text-left">
+                        <p class="text-[#f97316] text-xs font-black uppercase tracking-widest mb-1">Founder & Developer</p>
+                        <h4 class="text-2xl md:text-3xl font-black mb-2">Kaustubh Deore</h4>
+                        <p class="text-gray-400 font-medium text-sm md:text-base">Building scalable architecture for the community. (KtDev)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="view-support" class="view-section pt-4 md:pt-8">
+            <div class="flex justify-between items-center mb-8">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-black mb-2">Support Center</h2>
+                    <p class="text-gray-400 text-base md:text-lg">Need help? Read FAQs or raise a ticket.</p>
+                </div>
+            </div>
+
+            <div class="mb-12 space-y-4 max-w-4xl">
+                <h3 class="text-2xl font-bold mb-4">Frequently Asked Questions</h3>
+                <div class="glass-card p-6 border-white/5">
+                    <h4 class="font-bold text-lg text-white mb-2 flex items-start gap-2"><i data-lucide="help-circle" class="w-5 h-5 text-[#f97316] shrink-0 mt-0.5"></i> Are you responsible for business quality?</h4>
+                    <p class="text-gray-400 text-sm md:text-base pl-7">No. We are a free and open source directory. We verify listings for spam, but we are <strong>not responsible</strong> for any bad experiences, quality of service, or transactions you make with any listed business.</p>
+                </div>
+                <div class="glass-card p-6 border-white/5">
+                    <h4 class="font-bold text-lg text-white mb-2 flex items-start gap-2"><i data-lucide="help-circle" class="w-5 h-5 text-[#f97316] shrink-0 mt-0.5"></i> Is refund applicable on Post Boosts?</h4>
+                    <p class="text-gray-400 text-sm md:text-base pl-7">No. Once a post is boosted using our monetization plans, the <strong>Refund is strictly NOT applicable</strong>. Please read the T&C before proceeding.</p>
+                </div>
+                <div class="glass-card p-6 border-white/5">
+                    <h4 class="font-bold text-lg text-white mb-2 flex items-start gap-2"><i data-lucide="help-circle" class="w-5 h-5 text-[#f97316] shrink-0 mt-0.5"></i> How does the Review System work?</h4>
+                    <p class="text-gray-400 text-sm md:text-base pl-7">To maintain quality and prevent fake hate-speech, all submitted reviews go through a <strong>24-Hour Peer Review</strong> process by our Admin team before going Live on the platform.</p>
+                </div>
+            </div>
+            
+            <div id="supportLoginPrompt" class="glass-card p-10 text-center max-w-2xl mx-auto border-white/5">
+                <div class="w-20 h-20 bg-[#111] rounded-full flex items-center justify-center mx-auto mb-6 border border-[#222]">
+                    <i data-lucide="lock" class="w-8 h-8 text-[#f97316]"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-4">Authentication Required</h3>
+                <p class="text-gray-400 mb-8 text-base">Please sign in to raise direct support tickets with Admin.</p>
+                <button onclick="openModal('authModal')" class="btn-brand">Sign In to Continue</button>
+            </div>
+
+            <div id="supportDashboard" class="hidden">
+                <div class="flex justify-between items-center mb-6 border-b border-[#1F1F1F] pb-4">
+                    <h3 class="text-xl md:text-2xl font-bold">My Active Tickets</h3>
+                    <button onclick="openModal('ticketModal')" class="btn-brand py-2 px-4 text-sm md:text-base"><i data-lucide="plus" class="w-4 h-4"></i> Raise Ticket</button>
+                </div>
+                <div id="supportTicketsList" class="space-y-4"></div>
+            </div>
+        </section>
+
+        <section id="view-profile" class="view-section pt-4 md:pt-8">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 pb-6 border-b border-[#1F1F1F] gap-4">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-black mb-2">Business Portal</h2>
+                    <p id="userEmailDisplay" class="text-[#f97316] font-bold tracking-widest text-sm"></p>
+                </div>
+                <button id="logoutBtn" class="text-red-500 font-bold hover:bg-red-500/10 px-6 py-3 rounded-lg border border-red-500/20 transition w-full md:w-auto">Logout</button>
+            </div>
+
+            <div id="adminPanel" class="hidden mb-10 glass-card border-[#f97316]/30 bg-gradient-to-r from-[#f97316]/10 to-transparent p-6 md:p-8">
+                <h3 class="font-black text-[#f97316] mb-6 text-xl md:text-2xl flex items-center gap-2"><i data-lucide="shield-check" class="w-6 h-6 md:w-8 md:h-8"></i> Admin Queue</h3>
+                
+                <div class="mb-6">
+                    <h4 class="font-bold text-white mb-3">Pending Businesses</h4>
+                    <div id="adminQueueGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+                </div>
+                
+                <div class="border-t border-[#f97316]/20 pt-6">
+                    <h4 class="font-bold text-white mb-3 flex items-center gap-2"><i data-lucide="star" class="w-4 h-4"></i> Pending Reviews (Peer Review)</h4>
+                    <div id="adminReviewQueue" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+                </div>
+            </div>
+
+            <div class="glass-card p-6 md:p-8 border-white/5">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="font-black text-xl md:text-2xl">My Registered Entities</h3>
+                    <button onclick="openAddBizModal()" class="btn-brand py-2 px-4 text-sm md:text-base"><i data-lucide="plus" class="w-4 h-4"></i> Register New</button>
+                </div>
+                <div id="userBusinesses" class="flex flex-col gap-4"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="mt-auto border-t border-[#1F1F1F] bg-[#000] py-10 text-center pb-24 md:pb-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-center items-center gap-2 mb-4">
+                <img src="letter-g-gg-hexagonal-modern-600nw-2661904643.png" alt="Logo" class="w-6 h-6 object-contain">
+                <h2 class="text-lg font-black text-gray-300">Growth Innovation</h2>
+            </div>
+            <p class="text-gray-500 text-xs mb-6 max-w-sm mx-auto">Providing a zero-commission digital ecosystem for modern local commerce.</p>
+            <p class="text-xs text-gray-600">© 2026 Growth Innovation. All rights reserved. Engineered by <span class="text-[#f97316] font-bold">KtDev</span></p>
+        </div>
+    </footer>
+
+    <nav class="md:hidden fixed bottom-0 w-full bg-[#000000]/80 backdrop-blur-xl border-t border-[#27272a] flex justify-around p-2 pb-safe z-50">
+        <button onclick="switchTab('home')" data-target="home" class="nav-link flex flex-col items-center justify-center p-2 w-16 text-gray-500 hover:text-white transition"><i data-lucide="home" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Home</span></button>
+        <button onclick="switchTab('marketplace')" data-target="marketplace" class="nav-link flex flex-col items-center justify-center p-2 w-16 text-gray-500 hover:text-white transition"><i data-lucide="layout-grid" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Market</span></button>
+        <button onclick="switchTab('support')" data-target="support" class="nav-link flex flex-col items-center justify-center p-2 w-16 text-gray-500 hover:text-white transition"><i data-lucide="life-buoy" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Support</span></button>
     </nav>
 
-    <main id="page-home" class="page-section active">
-        <div style="text-align: center; padding: 0 20px 20px 20px;">
-            <h1 class="hero-title">Create Your Legacy.</h1>
-            <p style="color: #aaa; font-size: 1.1rem; max-width: 600px; margin: 10px auto;">The ultimate 178-page companion for founders and visionaries. Write the future with precision.</p>
-            <button class="btn-glow" style="margin-top: 20px; padding: 12px 30px; font-size: 1rem;" onclick="window.scrollTo(0, 500);">Explore Edition</button>
-        </div>
-        
-        <div class="grid-container" id="store-products-display"></div>
+    <div id="toast"><i data-lucide="info" class="w-5 h-5 text-[#f97316]"></i> <span id="toastMsg"></span></div>
 
-        <div class="grid-container">
-            <div class="glass-box" style="border-top: 4px solid var(--primary);">
-                <h3 style="color: var(--primary); font-size: 1.5rem;">The Masterminds</h3>
-                <p style="color: #ccc; margin-top: 10px; font-style: italic; border-left: 3px solid var(--secondary); padding-left: 10px;">"Ideas are fragile. We build the armor they need to survive and thrive in the real world."</p>
-                <div style="display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap;">
-                    <span style="background: rgba(0,255,204,0.1); padding: 8px 15px; border-radius: 5px; border: 1px solid var(--primary); color: var(--primary); font-weight: bold;">Kaustubh Deore</span>
-                    <span style="background: rgba(0,255,204,0.1); padding: 8px 15px; border-radius: 5px; border: 1px solid var(--primary); color: var(--primary); font-weight: bold;">Aditya Palhal</span>
+    <div id="authModal" class="modal-bg">
+        <div class="modal-box relative">
+            <button onclick="closeModal('authModal')" class="absolute top-6 right-6 text-gray-500 hover:text-white transition"><i data-lucide="x" class="w-6 h-6"></i></button>
+            <h2 id="authTitle" class="text-3xl font-black mb-8 text-center">Sign In</h2>
+            <div class="space-y-5">
+                <input type="email" id="email" class="modern-input" placeholder="Email Address">
+                <div id="passContainer" class="relative">
+                    <input type="password" id="password" class="modern-input pr-12" placeholder="Password">
+                    <button type="button" id="togglePasswordBtn" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white transition"><i data-lucide="eye" id="eyeIcon" class="w-5 h-5"></i></button>
                 </div>
+                <div class="flex justify-end"><button id="forgotBtn" class="text-sm font-bold text-gray-400 hover:text-[#f97316] transition">Forgot Password?</button></div>
+                <button id="mainBtn" class="btn-brand w-full py-4 text-lg mt-2">Authenticate</button>
+                <div class="text-center mt-6 pt-4 border-t border-[#1F1F1F]"><button id="toggleAuthBtn" class="font-bold text-gray-400 hover:text-white transition">Need an account? Register</button></div>
             </div>
         </div>
+    </div>
 
-        <h2 style="text-align: center; color: var(--primary); font-size: 2.5rem; margin-top: 50px;">F.A.Q</h2>
-        <div class="grid-container" style="max-width: 1000px; margin-top: 20px;">
-            <div class="glass-box">
-                <h4 style="color: var(--primary); font-size: 1.1rem;">📦 Can I cancel my order?</h4>
-                <p style="color: #ccc; font-size: 0.9rem; margin-top: 8px;">Yes, you can cancel the order within 12 hours of placing it by creating a ticket in the Support section.</p>
+    <div id="boostModal" class="modal-bg">
+        <div class="modal-box relative border-t-4 border-[#f97316]">
+            <button onclick="closeModal('boostModal')" class="absolute top-4 right-4 text-gray-500 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+            <h2 class="text-2xl font-black mb-2 flex items-center gap-2"><i data-lucide="rocket" class="w-6 h-6 text-[#f97316]"></i> Boost Your Listing</h2>
+            <p class="text-gray-400 mb-6 text-sm">Reach more customers instantly. Select a plan below.</p>
+            <div class="space-y-3 mb-6">
+                <label class="flex items-center justify-between p-4 border border-[#27272a] rounded-xl hover:border-[#f97316] cursor-pointer transition"><div class="flex items-center gap-3"><input type="radio" name="boostPlan" value="99" class="w-4 h-4 accent-[#f97316]"><div><p class="font-bold">Daily Boost</p><p class="text-xs text-gray-500">24 Hours Visibility</p></div></div><span class="font-black text-[#f97316]">₹99</span></label>
+                <label class="flex items-center justify-between p-4 border border-[#f97316] bg-[#f97316]/5 rounded-xl cursor-pointer transition shadow-[0_0_15px_rgba(249,115,22,0.1)]"><div class="flex items-center gap-3"><input type="radio" name="boostPlan" value="499" checked class="w-4 h-4 accent-[#f97316]"><div><p class="font-bold">Weekly Pro</p><p class="text-xs text-[#f97316]">7 Days (Best Value)</p></div></div><span class="font-black text-[#f97316]">₹499</span></label>
+                <label class="flex items-center justify-between p-4 border border-[#27272a] rounded-xl hover:border-[#f97316] cursor-pointer transition"><div class="flex items-center gap-3"><input type="radio" name="boostPlan" value="1699" class="w-4 h-4 accent-[#f97316]"><div><p class="font-bold">Monthly Enterprise</p><p class="text-xs text-gray-500">30 Days Visibility</p></div></div><span class="font-black text-[#f97316]">₹1699</span></label>
             </div>
-            <div class="glass-box">
-                <h4 style="color: var(--primary); font-size: 1.1rem;">🚚 How much time to deliver?</h4>
-                <p style="color: #ccc; font-size: 0.9rem; margin-top: 8px;">Usually it takes 4-7 days maximum to securely deliver your epic edition directly to your address.</p>
-            </div>
-            <div class="glass-box">
-                <h4 style="color: var(--primary); font-size: 1.1rem;">💸 UPI cancellation refund time?</h4>
-                <p style="color: #ccc; font-size: 0.9rem; margin-top: 8px;">If you cancel after paying via UPI, the refund will be automatically processed to your account within 12-24 hours.</p>
-            </div>
+            <div class="p-3 bg-red-500/10 border border-red-500/20 rounded-lg mb-6"><p class="text-xs text-red-400 font-bold flex items-center gap-1"><i data-lucide="alert-triangle" class="w-3 h-3"></i> Refunds are not possible once activated.</p></div>
+            <button id="proceedBoostBtn" class="btn-brand w-full py-4 text-lg">Proceed to Checkout</button>
         </div>
-    </main>
+    </div>
 
-    <main id="page-contact" class="page-section">
-        <h2 style="text-align: center; color: var(--primary); font-size: 2.5rem;">Get In Touch</h2>
-        <p style="text-align: center; color: #aaa; margin-bottom: 30px;">We are always here for our visionaries.</p>
-        
-        <div class="grid-container" style="max-width: 900px;">
-            <div class="glass-box" style="text-align: center; border-top-color: var(--secondary);">
-                <div style="font-size: 3rem; margin-bottom: 10px;">📍</div>
-                <h3 style="color: var(--secondary);">Headquarters</h3>
-                <p style="color: #ccc; margin-top: 10px; font-size: 1.1rem;">Ozar, Maharashtra - 422206<br>India</p>
-            </div>
+    <div id="bizModal" class="modal-bg">
+        <div class="modal-box max-w-2xl">
+            <button onclick="closeModal('bizModal')" class="absolute top-6 right-6 text-gray-500 hover:text-white"><i data-lucide="x" class="w-6 h-6"></i></button>
+            <h2 id="bizModalTitle" class="text-2xl font-black mb-6 border-l-4 border-[#f97316] pl-3">Register Business</h2>
             
-            <div class="glass-box" style="text-align: center; border-top-color: var(--star);">
-                <div style="font-size: 3rem; margin-bottom: 10px;">📞</div>
-                <h3 style="color: var(--star);">Direct Line</h3>
-                <div class="copy-item" onclick="copyToClipboard('+91 9834927422', 'Phone Number')">
-                    <p style="color: #ccc; font-size: 1.2rem; font-weight: bold;">+91 9834927422</p>
-                    <p style="font-size: 0.8rem; color: #888; margin-top: 5px;">(Click to copy)</p>
-                </div>
-            </div>
-
-            <div class="glass-box" style="text-align: center; border-top-color: var(--primary);">
-                <div style="font-size: 3rem; margin-bottom: 10px;">✉️</div>
-                <h3 style="color: var(--primary);">Encrypted Mail</h3>
-                <div class="copy-item" onclick="copyToClipboard('kt.deore@hotmail.com', 'Email Address')">
-                    <p style="color: #ccc; font-size: 1.1rem; font-weight: bold;">kt.deore@hotmail.com</p>
-                    <p style="font-size: 0.8rem; color: #888; margin-top: 5px;">(Click to copy)</p>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <main id="page-reviews" class="page-section">
-        <h2 style="text-align: center; color: var(--star); font-size: 2.5rem;">Community Reviews</h2>
-        <p style="text-align: center; color: #aaa; margin-bottom: 30px;">See what visionaries are saying.</p>
-        <div class="glass-box" style="max-width: 600px; margin: 0 auto;">
-            <h3 style="margin-bottom: 10px;">Post a Review</h3>
-            <select id="rev-rating"><option value="5">⭐⭐⭐⭐⭐ Epic</option><option value="4">⭐⭐⭐⭐ Great</option><option value="3">⭐⭐⭐ Good</option><option value="2">⭐⭐ Bad</option><option value="1">⭐ Terrible</option></select>
-            <textarea id="rev-text" placeholder="Share your experience..."></textarea>
-            <button class="btn-solid" style="background: var(--star); color: black;" onclick="addReview()">Submit Review</button>
-        </div>
-        <div class="grid-container" id="review-display"></div>
-    </main>
-
-    <main id="page-notices" class="page-section">
-        <h2 style="text-align: center; color: var(--primary); font-size: 2.5rem; margin-bottom: 30px;">Latest Updates</h2>
-        <div id="notice-display" style="max-width: 800px; margin: 0 auto; padding: 0 20px;"></div>
-    </main>
-
-    <main id="page-cart" class="page-section">
-        <h2 style="text-align: center; color: var(--primary); font-size: 2.5rem;">Your Cart</h2>
-        <div class="glass-box" style="max-width: 800px; margin: 20px auto;">
-            <div id="cart-items-display"></div>
-            <div id="cart-summary" style="display: none; border-top: 1px solid #333; margin-top: 20px; padding-top: 20px;">
-                <h3 style="text-align: right; margin-bottom: 15px;">Total: <span id="cart-total-price" style="color: var(--primary);">₹0</span></h3>
-                <button class="btn-solid" onclick="openCheckout('cart')">Proceed to Checkout</button>
-            </div>
-        </div>
-    </main>
-
-    <main id="page-orders" class="page-section">
-        <h2 style="text-align: center; color: var(--secondary); font-size: 2.5rem;">Support & Orders</h2>
-        <div class="grid-container">
-            <div class="glass-box" style="border-top-color: var(--primary);">
-                <h3 style="color: var(--primary); margin-bottom: 15px;">Order History</h3>
-                <div id="user-orders-display" style="max-height: 400px; overflow-y: auto;"></div>
-            </div>
-            <div class="glass-box" style="border-top-color: var(--secondary);">
-                <h3 style="color: var(--secondary); margin-bottom: 15px;">Support Tickets</h3>
-                <div id="user-ticket-display" style="background:rgba(0,0,0,0.5); padding:10px; border-radius:5px; max-height:250px; overflow-y:auto; margin-bottom:15px;"></div>
-                <input type="text" id="sup-sub" placeholder="Subject (e.g., Cancel Order)">
-                <textarea id="sup-msg" rows="2" placeholder="Message Admin..."></textarea>
-                <button class="btn-solid" style="background: var(--secondary);" onclick="submitSupportTicket()">Raise Ticket</button>
-            </div>
-        </div>
-    </main>
-
-    <main id="page-admin" class="page-section">
-        <h2 style="text-align: center; color: var(--danger); font-size: 2.5rem; margin-bottom: 20px;">Command Center</h2>
-        <div class="grid-container">
-            <div class="glass-box" style="border-top-color: var(--primary);">
-                <h3 style="color: var(--primary); margin-bottom: 10px;">Add New Product</h3>
-                <input type="text" id="p-name" placeholder="Name">
-                <textarea id="p-desc" placeholder="Desc" rows="2"></textarea>
-                <div class="address-group">
-                    <input type="number" id="p-price" placeholder="Price ₹">
-                    <input type="number" id="p-stock" placeholder="Stock Qty">
-                </div>
-                <input type="text" id="p-img" placeholder="Image URL">
-                <button class="btn-solid" onclick="adminAddProduct()">Save Product</button>
-
-                <h3 style="color: var(--primary); margin-top: 30px; margin-bottom: 10px; border-top: 1px solid #333; padding-top: 15px;">Update Existing Inventory</h3>
-                <div id="admin-inventory-box" style="max-height: 150px; overflow-y: auto;"></div>
-            </div>
-            
-            <div style="display:flex; flex-direction:column; gap:20px;">
-                <div class="glass-box" style="border-top-color: var(--secondary);">
-                    <h3 style="color: var(--secondary); margin-bottom: 10px;">Post Notice</h3>
-                    <input type="text" id="not-title" placeholder="Title">
-                    <textarea id="not-desc" rows="2" placeholder="Update detail..."></textarea>
-                    <button class="btn-solid" style="background: var(--secondary);" onclick="adminAddNotice()">Broadcast</button>
-                </div>
-                <div class="glass-box" style="border-top-color: var(--star);">
-                    <h3 style="color: var(--star); margin-bottom: 10px;">Create Coupon</h3>
-                    <input type="text" id="c-code" placeholder="Code (e.g. EPIC20)" style="text-transform: uppercase;">
-                    <div class="address-group">
-                        <select id="c-type"><option value="flat">Flat ₹ Off</option><option value="percent">% Off</option></select>
-                        <input type="number" id="c-val" placeholder="Value">
+            <div class="space-y-5">
+                <div>
+                    <label class="block text-sm font-bold text-gray-400 mb-2">Upload Images (Auto-Compressed, Max 10)</label>
+                    <div class="border-2 border-dashed border-[#27272a] bg-[#111] rounded-xl p-6 text-center hover:border-[#f97316] transition cursor-pointer" onclick="document.getElementById('bizImages').click()">
+                        <i data-lucide="image-plus" class="w-8 h-8 mx-auto mb-2 text-gray-400"></i>
+                        <p class="text-sm font-bold text-gray-400" id="mainImagesLabel">Click to Upload</p>
+                        <input type="file" id="bizImages" accept="image/*" multiple class="hidden" onchange="handleMultipleImages(event, 'mainImagesPreview', 'mainImagesLabel')">
                     </div>
-                    <button class="btn-solid" style="background: var(--star); color: black;" onclick="adminAddCoupon()">Generate</button>
+                    <div id="mainImagesPreview" class="flex gap-2 overflow-x-auto mt-3 pb-2 hide-scrollbar"></div>
                 </div>
-            </div>
-        </div>
 
-        <div class="grid-container">
-            <div class="glass-box" style="border-top-color: #ff9900;">
-                <h3 style="color: #ff9900; margin-bottom: 10px;">🛒 Active Carts</h3>
-                <div id="admin-carts-box" style="max-height: 200px; overflow-y: auto;"></div>
-            </div>
-        </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input type="text" id="bizName" class="modern-input" placeholder="Business Name">
+                    <select id="bizCategory" class="modern-input text-gray-400">
+                        <option value="">Select Category</option>
+                        <option value="Agriculture & Farming">Agriculture & Farming</option>
+                        <option value="Automotive">Automotive & Garage</option>
+                        <option value="Barber Shop & Salon">Barber Shop & Salon</option>
+                        <option value="Beauty & Spa">Beauty & Spa</option>
+                        <option value="Clothing & Apparel">Clothing & Apparel</option>
+                        <option value="Education">Education & Tutors</option>
+                        <option value="Entertainment & Theatres">Entertainment & Theatres</option>
+                        <option value="Events & Planners">Events & Planners</option>
+                        <option value="Food & Dining">Food & Restaurants</option>
+                        <option value="Gym & Fitness">Gym & Fitness</option>
+                        <option value="Health & Medical">Health & Medical</option>
+                        <option value="Home Services">Home Services</option>
+                        <option value="Hotels & Lodging">Hotels & Lodging</option>
+                        <option value="IT & Tech">IT & Tech</option>
+                        <option value="Legal & Financial">Legal & Financial</option>
+                        <option value="Manufacturing">Manufacturing</option>
+                        <option value="Photography & Studios">Photography & Studios</option>
+                        <option value="Plumbing & Electrical">Plumbing & Electrical</option>
+                        <option value="Real Estate">Real Estate</option>
+                        <option value="Retail & Shopping">Retail & Shopping</option>
+                        <option value="Shopping Mall">Shopping Mall</option>
+                        <option value="Supermarket & Groceries">Supermarket & Groceries</option>
+                        <option value="Travel & Transport">Travel & Transport</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input type="text" id="bizCity" class="modern-input border-orange-500/30" placeholder="City or Gaav (e.g. Ozar)">
+                    <div class="relative">
+                        <input type="text" id="bizAddress" class="modern-input pr-12" placeholder="Detailed Address">
+                    </div>
+                </div>
+                <input type="text" id="bizContact" class="modern-input" placeholder="Contact Email / Phone">
 
-        <h3 style="text-align: center; color: var(--primary); margin: 30px 0 10px 0;">Order Logs & Support</h3>
-        <div id="admin-orders-box" style="max-width: 1000px; margin: 0 auto; padding: 0 20px;"></div>
-    </main>
-
-    <div id="authModal" class="modal">
-        <div class="modal-content" id="login-section">
-            <span class="close-btn" onclick="hideModal('authModal')">&times;</span>
-            <h2 style="color: var(--primary); margin-bottom: 15px; text-align: center;">Login</h2>
-            <input type="text" id="auth-id" placeholder="User ID (e.g. KtDev)">
-            <div class="pwd-wrapper">
-                <input type="password" id="auth-pass" placeholder="Password">
-                <span class="eye-icon" onclick="togglePwd('auth-pass', this)">👁️</span>
+                <div class="border border-[#27272a] p-4 rounded-xl bg-[#0a0a0a]">
+                    <label class="flex items-center gap-3 cursor-pointer">
+                        <input type="checkbox" id="wantListItems" class="w-5 h-5 accent-[#f97316]" onchange="toggleItemSection()">
+                        <span class="font-bold text-lg">Want to List Items/Menu?</span>
+                    </label>
+                    <div id="itemsSection" class="hidden mt-4 pt-4 border-t border-[#27272a] space-y-4">
+                        <p class="text-xs text-gray-400">Add unlimited items. Select Veg/Non-Veg. Full price mandatory, Half price optional.</p>
+                        <div id="itemsContainer" class="space-y-4"></div>
+                        <button type="button" onclick="addNewItemBox()" class="btn-outline w-full py-2 text-sm border-dashed">+ Add Item</button>
+                    </div>
+                </div>
+                <button id="submitBizBtn" class="btn-brand w-full py-4 text-lg mt-4">Submit for Admin Review</button>
             </div>
-            <button class="btn-solid" onclick="loginUser()">Login</button>
-            <p onclick="toggleAuthMode('register')" style="text-align: center; margin-top: 15px; color: var(--primary); cursor: pointer; font-size:0.9rem;">New User? Create ID</p>
-        </div>
-        <div class="modal-content" id="register-section" style="display: none;">
-            <span class="close-btn" onclick="hideModal('authModal')">&times;</span>
-            <h2 style="color: var(--secondary); margin-bottom: 15px; text-align: center;">Create ID</h2>
-            <input type="text" id="reg-name" placeholder="Display Name">
-            <input type="text" id="reg-id" placeholder="Create User ID (No Spaces)">
-            <div class="pwd-wrapper">
-                <input type="password" id="reg-pass" placeholder="Create Password">
-                <span class="eye-icon" onclick="togglePwd('reg-pass', this)">👁️</span>
-            </div>
-            <button class="btn-solid" style="background: var(--secondary);" onclick="registerUser()">Register</button>
-            <p onclick="toggleAuthMode('login')" style="text-align: center; margin-top: 15px; color: var(--secondary); cursor: pointer; font-size:0.9rem;">Already have ID? Login</p>
         </div>
     </div>
 
-    <div id="checkoutModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="hideModal('checkoutModal')">&times;</span>
-            <h2 style="color: var(--primary); border-bottom: 1px solid #333; padding-bottom: 10px;">Checkout</h2>
+    <div id="reviewModal" class="modal-bg">
+        <div class="modal-box max-w-lg">
+            <button onclick="closeModal('reviewModal')" class="absolute top-6 right-6 text-gray-500"><i data-lucide="x" class="w-6 h-6"></i></button>
+            <h2 class="text-2xl font-black mb-2 border-l-4 border-[#f97316] pl-3">Write a Review</h2>
+            <p class="text-xs text-gray-400 mb-6 pl-4">Reviews undergo 24-Hour Peer Review by Admin before going live.</p>
             
-            <input type="email" id="chk-email" placeholder="Email Address (For Invoices)" style="margin-top:15px;">
-            <input type="tel" id="chk-phone" placeholder="Phone Number">
-
-            <h4 style="margin: 10px 0 5px 0; color: #aaa;">Delivery Address</h4>
-            <input type="text" id="chk-street" placeholder="Street / Building / Village">
-            <div class="address-group">
-                <input type="number" id="chk-pin" placeholder="Pincode (India)" onkeyup="fetchPincodeData()">
-                <input type="text" id="chk-city" placeholder="City" readonly>
+            <div class="space-y-4">
+                <div class="flex items-center gap-2 star-rating text-3xl justify-center mb-4" id="reviewStars">
+                    <i data-lucide="star" data-val="1"></i><i data-lucide="star" data-val="2"></i><i data-lucide="star" data-val="3"></i><i data-lucide="star" data-val="4"></i><i data-lucide="star" data-val="5"></i>
+                </div>
+                <input type="hidden" id="reviewRating" value="0">
+                <textarea id="reviewText" class="modern-input resize-none" rows="4" placeholder="Describe your experience..."></textarea>
+                <button id="submitReviewBtn" class="btn-brand w-full py-4 text-lg">Submit for Peer Review</button>
             </div>
-            <div class="address-group">
-                <input type="text" id="chk-state" placeholder="State" readonly>
-                <input type="text" id="chk-country" value="India" readonly>
-            </div>
-            <label style="font-size: 0.8rem; color: #888; display: flex; align-items: center; gap: 5px; margin-top: 5px;">
-                <input type="checkbox" id="chk-manual" onchange="toggleManualAddress()" style="width:auto; margin:0;"> Auto-fill wrong? Edit manually
-            </label>
-
-            <h4 style="margin: 10px 0 5px 0; color: #aaa;">Payment & Coupon</h4>
-            <select id="chk-payment"><option value="UPI">UPI (kt.deore@fam)</option><option value="COD">Cash on Delivery</option></select>
-            <div style="display: flex; gap: 10px;">
-                <input type="text" id="chk-coupon" placeholder="Coupon Code" style="text-transform: uppercase;">
-                <button class="btn-solid" style="width: auto; background: var(--secondary); margin-top: 8px;" onclick="applyCoupon()">Apply</button>
-            </div>
-            <p id="coupon-msg" style="font-size: 0.8rem; margin: 2px 0;"></p>
-
-            <div style="display: flex; justify-content: space-between; font-weight: bold; margin: 15px 0; font-size: 1.3rem; border-top: 1px solid #333; padding-top: 10px;">
-                <span>Total:</span> <span id="final-price">₹0</span>
-            </div>
-            <button class="btn-solid" onclick="triggerDeliveryAnimation()">Confirm & Pay</button>
         </div>
     </div>
 
-    <script>
-        // Database Init (Clean Keys)
-        const DB = {
-            U: 'gi_final_users', P: 'gi_final_prods', C: 'gi_final_coups', 
-            CART: 'gi_final_cart', O: 'gi_final_orders', T: 'gi_final_tickets', 
-            R: 'gi_final_reviews', N: 'gi_final_notices', AUTH: 'gi_final_auth'
+    <div id="ticketModal" class="modal-bg">
+        <div class="modal-box">
+            <button onclick="closeModal('ticketModal')" class="absolute top-6 right-6 text-gray-500 hover:text-white"><i data-lucide="x" class="w-6 h-6"></i></button>
+            <h2 class="text-2xl font-black mb-6 border-l-4 border-white pl-3">Raise Ticket</h2>
+            <div class="space-y-4">
+                <input type="text" id="ticketSubject" class="modern-input" placeholder="Issue Subject">
+                <textarea id="ticketDesc" class="modern-input resize-none" rows="4" placeholder="Describe your issue..."></textarea>
+                <button id="submitTicketBtn" class="btn-brand w-full py-4 text-lg">Submit to Helpdesk</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="chatModal" class="modal-bg">
+        <div class="modal-box flex flex-col h-[85vh] p-0 overflow-hidden">
+            <div class="p-6 border-b border-[#27272a] flex justify-between items-center bg-[#0A0A0A]">
+                <div><h2 class="text-xl font-black" id="chatSubject">Ticket Chat</h2><p class="text-xs text-gray-500 mt-1">Chatting with Admin</p></div>
+                <button onclick="closeModal('chatModal')" class="text-gray-500 hover:text-white transition"><i data-lucide="x" class="w-6 h-6"></i></button>
+            </div>
+            <div id="chatHistory" class="flex-grow overflow-y-auto p-4 md:p-6 space-y-4 bg-[#050505] flex flex-col"></div>
+            <div class="p-3 md:p-4 border-t border-[#27272a] bg-[#0A0A0A] flex gap-3">
+                <input type="text" id="chatInput" class="modern-input flex-grow" placeholder="Type message...">
+                <button id="sendChatBtn" class="btn-brand px-4 md:px-6"><i data-lucide="send" class="w-5 h-5"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, query, onSnapshot, orderBy, where, doc, updateDoc, arrayUnion, deleteDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA5q7835OdhVNGhSzshtXF8vxoq8yTgb7Q",
+            authDomain: "growth-innovation.firebaseapp.com",
+            projectId: "growth-innovation",
+            storageBucket: "growth-innovation.firebasestorage.app",
+            messagingSenderId: "421919943414",
+            appId: "1:421919943414:web:fee6155d4030afd54e1ad7"
         };
 
-        if(!localStorage.getItem(DB.U)) localStorage.setItem(DB.U, JSON.stringify([])); 
-        if(!localStorage.getItem(DB.P)) localStorage.setItem(DB.P, JSON.stringify([{ id: 1, name: "The 178-Page Notebook", desc: "Premium acid-free pages. Built for visionaries.", price: 80, stock: 50, img: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&w=800" }]));
-        if(!localStorage.getItem(DB.C)) localStorage.setItem(DB.C, JSON.stringify([{code: "EPIC20", type: "percent", val: 20}, {code: "FLAT10", type: "flat", val: 10}]));
-        if(!localStorage.getItem(DB.CART)) localStorage.setItem(DB.CART, JSON.stringify({})); 
-        if(!localStorage.getItem(DB.O)) localStorage.setItem(DB.O, JSON.stringify([]));
-        if(!localStorage.getItem(DB.T)) localStorage.setItem(DB.T, JSON.stringify({}));
-        if(!localStorage.getItem(DB.R)) localStorage.setItem(DB.R, JSON.stringify([]));
-        if(!localStorage.getItem(DB.N)) localStorage.setItem(DB.N, JSON.stringify([{title: "Store is Live!", desc: "Grab your epic notebooks now.", date: new Date().toLocaleDateString()}]));
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
 
-        let currentUser = JSON.parse(localStorage.getItem(DB.AUTH)) || null;
-        let checkoutMode = 'direct', directCheckoutItem = null, finalAmt = 0;
+        lucide.createIcons();
 
-        // Base Functions
-        function getDB(k) { return JSON.parse(localStorage.getItem(k)); }
-        function setDB(k, v) { localStorage.setItem(k, JSON.stringify(v)); }
-        function notify(msg, type='success') {
-            const b = document.getElementById('toast-box'), t = document.createElement('div');
-            t.className = `toast ${type}`; t.innerHTML = `${type==='error'?'❌':(type==='upi'?'💸':'✅')} ${msg}`;
-            b.appendChild(t); setTimeout(() => { t.style.animation = 'fadeOut 0.3s forwards'; setTimeout(() => t.remove(), 300); }, 4000);
+        window.showToast = (msg) => {
+            const toast = document.getElementById('toast');
+            toast.innerText = msg; toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
         }
-        function showModal(id) { document.getElementById(id).style.display = 'flex'; }
-        function hideModal(id) { document.getElementById(id).style.display = 'none'; }
-        function toggleAuthMode(m) { document.getElementById('login-section').style.display = m==='login'?'block':'none'; document.getElementById('register-section').style.display = m==='register'?'block':'none'; }
-        function togglePwd(id, el) { const i = document.getElementById(id); i.type = i.type==='password'?'text':'password'; el.innerText = i.type==='password'?'👁️':'🙈'; }
+        window.openModal = (id) => document.getElementById(id).classList.add('active');
+        window.closeModal = (id) => document.getElementById(id).classList.remove('active');
+        
+        window.switchTab = (tab) => { window.location.hash = tab; }
 
-        // Copy to Clipboard Fallback for Local Files
-        function copyToClipboard(text, label) {
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(text).then(() => notify(`${label} copied!`, 'success'));
-            } else {
-                let ta = document.createElement("textarea"); ta.value = text;
-                ta.style.position = "fixed"; ta.style.left = "-999999px"; document.body.appendChild(ta);
-                ta.focus(); ta.select();
-                try { document.execCommand('copy'); notify(`${label} copied!`, 'success'); } 
-                catch (err) { notify('Failed to copy', 'error'); } ta.remove();
-            }
-        }
+        function handleRouting() {
+            let hash = window.location.hash.replace('#', '');
+            if(!hash) hash = 'home'; 
+            const validTabs = ['home', 'marketplace', 'updates', 'about', 'support', 'profile', 'detail'];
+            if (!validTabs.includes(hash)) hash = 'home';
+            if (hash === 'profile' && !auth.currentUser) { openModal('authModal'); window.location.hash = 'home'; return; }
 
-        // SPA Router
-        function switchPage(page) {
-            document.querySelectorAll('.page-section').forEach(e => e.classList.remove('active'));
-            document.querySelectorAll('.nav-links a').forEach(e => e.classList.remove('active'));
-            document.getElementById('page-' + page).classList.add('active');
-            const navL = document.getElementById('nav-' + page); if(navL) navL.classList.add('active');
+            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('text-white'));
+            document.getElementById(`view-${hash}`).classList.add('active');
+            document.querySelectorAll(`.nav-link[data-target="${hash}"]`).forEach(el => el.classList.add('text-white'));
             window.scrollTo(0,0);
-            
-            if(page === 'home') renderStore();
-            if(page === 'cart') loadCart();
-            if(page === 'reviews') loadReviews();
-            if(page === 'notices') loadNotices();
-            if(page === 'orders') { loadUserOrders(); loadUserTickets(); }
-            if(page === 'admin') loadAdminDashboard();
         }
 
-        // Auth
-        function registerUser() {
-            const n = document.getElementById('reg-name').value.trim(), id = document.getElementById('reg-id').value.trim(), p = document.getElementById('reg-pass').value;
-            if(!n || !id || !p) return notify("Fill all fields", "error");
-            if(id.includes(" ")) return notify("ID cannot have spaces", "error");
-            const db = getDB(DB.U);
-            if(db.find(u => u.id.toLowerCase() === id.toLowerCase())) return notify("ID taken!", "error");
-            db.push({name: n, id: id, pass: p}); setDB(DB.U, db);
-            notify("Registered! Login now."); toggleAuthMode('login');
-        }
-        function loginUser() {
-            const id = document.getElementById('auth-id').value.trim(), p = document.getElementById('auth-pass').value;
-            if(id.toLowerCase() === 'admin' && p === 'KtGamers138@Kt') {
-                currentUser = {id: 'Admin', name: 'Kaustubh Deore', isAdmin: true}; setDB(DB.AUTH, currentUser);
-                notify("Commander Logged In"); hideModal('authModal'); updateNavbar(); switchPage('admin'); return;
-            }
-            const user = getDB(DB.U).find(u => u.id.toLowerCase() === id.toLowerCase() && u.pass === p);
-            if(user) { currentUser = {id: user.id, name: user.name, isAdmin: false}; setDB(DB.AUTH, currentUser); notify(`Welcome ${user.name}`); hideModal('authModal'); updateNavbar(); switchPage('home'); }
-            else notify("Invalid ID or Password", "error");
-        }
-        function logout() { currentUser = null; localStorage.removeItem(DB.AUTH); updateNavbar(); switchPage('home'); notify("Logged Out"); }
+        window.addEventListener('hashchange', handleRouting);
+        window.addEventListener('DOMContentLoaded', handleRouting); 
+        window.openAuthOrProfile = () => auth.currentUser ? switchTab('profile') : openModal('authModal');
 
-        function updateNavbar() {
-            const nav = document.getElementById('nav-links');
-            let l = `<a id="nav-home" onclick="switchPage('home')">Home</a>
-                     <a id="nav-reviews" onclick="switchPage('reviews')">Reviews</a>
-                     <a id="nav-notices" onclick="switchPage('notices')">Updates</a>
-                     <a id="nav-contact" onclick="switchPage('contact')">Contact</a>`;
-            
-            if(currentUser) {
-                if(currentUser.isAdmin) {
-                    l += `<a id="nav-admin" onclick="switchPage('admin')" style="color:var(--danger); margin-left:10px;">Admin</a>`;
-                } else {
-                    const c = getDB(DB.CART)[currentUser.id] || [];
-                    l += `<a id="nav-cart" onclick="switchPage('cart')" style="margin-left:10px;">🛒 Cart(${c.length})</a>
-                          <a id="nav-orders" onclick="switchPage('orders')">📦 Orders & Support</a>`;
-                }
-                l += `<a onclick="logout()" class="btn-glow" style="padding: 8px 18px; font-size: 0.9rem; margin-left: 15px; border-color: var(--danger); color: var(--danger);">Logout (${currentUser.id})</a>`;
-            } else {
-                l += `<a onclick="showModal('authModal')" class="btn-glow" style="padding: 8px 18px; font-size: 0.9rem; margin-left: 15px;">Login / Sign Up</a>`;
-            }
-            nav.innerHTML = l;
-            if(document.getElementById('page-home').classList.contains('active')) document.getElementById('nav-home')?.classList.add('active');
-        }
-
-        // Store & Cart
-        function renderStore() {
-            const db = getDB(DB.P), box = document.getElementById('store-products-display'); box.innerHTML = '';
-            db.forEach((p, i) => {
-                let act = p.stock > 0 ? `<div style="display:flex; gap:10px; margin-top:15px; align-items:center;">
-                    <input type="number" id="qty-${i}" value="1" min="1" max="${p.stock}" style="width:60px; margin:0; text-align:center;">
-                    <button class="btn-outline" style="flex:1; padding:10px;" onclick="addToCart(${i})">Cart</button>
-                    <button class="btn-solid" style="flex:1; margin:0; padding:10px;" onclick="directBuy(${i})">Buy</button>
-                </div>` : `<button class="btn-disabled">Out of Stock</button>`;
-                box.innerHTML += `<div class="product-card"><div class="p-img" style="background-image:url('${p.img}')"></div><div class="p-info">
-                    <h3 style="color:var(--primary); font-size:1.5rem;">${p.name}</h3><p style="color:#888; font-size:0.9rem; margin:10px 0; flex:1;">${p.desc}</p>
-                    <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <span style="font-size:1.8rem; font-weight:bold;">₹${p.price}</span><span style="font-size:0.8rem; color:${p.stock>5?'var(--primary)':'var(--danger)'};">Stock: ${p.stock}</span>
-                    </div>${act}</div></div>`;
+        // ==========================================
+        // 🔥 AUTO IMAGE COMPRESSOR 🔥
+        // ==========================================
+        function compressImage(file, maxWidth = 800) {
+            return new Promise((resolve) => {
+                const reader = new FileReader(); reader.readAsDataURL(file);
+                reader.onload = (event) => {
+                    const img = new Image(); img.src = event.target.result;
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        let width = img.width; let height = img.height;
+                        if (width > height && width > maxWidth) { height *= maxWidth / width; width = maxWidth; } 
+                        else if (height > maxWidth) { width *= maxWidth / height; height = maxWidth; }
+                        canvas.width = width; canvas.height = height;
+                        const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0, width, height);
+                        resolve(canvas.toDataURL('image/jpeg', 0.6));
+                    };
+                };
             });
         }
 
-        function addToCart(idx) {
-            if(!currentUser || currentUser.isAdmin) return notify(currentUser?"Admins don't buy!":"Login first!", "error");
-            const db = getDB(DB.P), qty = parseInt(document.getElementById(`qty-${idx}`).value);
-            if(qty > db[idx].stock || qty < 1) return notify("Invalid Quantity", "error");
-            const cartDb = getDB(DB.CART); if(!cartDb[currentUser.id]) cartDb[currentUser.id] = [];
-            cartDb[currentUser.id].push({pId: idx, name: db[idx].name, price: db[idx].price, qty: qty, total: db[idx].price * qty});
-            setDB(DB.CART, cartDb); updateNavbar(); notify("Added to Cart!");
-        }
+        let mainImagesBase64 = []; 
+        let tempItemImages = {}; 
 
-        function loadCart() {
-            if(!currentUser) { document.getElementById('cart-items-display').innerHTML = `<p style="text-align:center; color:#aaa;">Please login to view cart.</p>`; return; }
-            const cart = getDB(DB.CART)[currentUser.id] || [], box = document.getElementById('cart-items-display'), sum = document.getElementById('cart-summary');
-            if(cart.length === 0) { box.innerHTML = `<p style="text-align:center; color:#888;">Cart is empty.</p>`; sum.style.display='none'; return; }
-            let h = '', t = 0;
-            cart.forEach((c, i) => { t += c.total; h += `<div class="cart-item"><div><h4 style="color:var(--primary);">${c.name}</h4><span style="font-size:0.8rem; color:#aaa;">Qty: ${c.qty} | ₹${c.price} each</span></div><div style="text-align:right;"><div style="font-weight:bold; margin-bottom:5px;">₹${c.total}</div><button style="background:none; border:none; color:var(--danger); cursor:pointer; font-size:0.8rem;" onclick="rmCart(${i})">Remove</button></div></div>`; });
-            box.innerHTML = h; document.getElementById('cart-total-price').innerText = `₹${t}`; finalAmt = t; sum.style.display='block';
-        }
-        function rmCart(i) { const db = getDB(DB.CART); db[currentUser.id].splice(i,1); setDB(DB.CART, db); loadCart(); updateNavbar(); }
-
-        // Checkout & Pincode API
-        function directBuy(idx) {
-            if(!currentUser) return showModal('authModal');
-            const p = getDB(DB.P)[idx], qty = parseInt(document.getElementById(`qty-${idx}`).value);
-            if(qty > p.stock || qty < 1) return notify("Invalid Quantity", "error");
-            checkoutMode = 'direct'; directCheckoutItem = {idx: idx, name: p.name, qty: qty, total: p.price*qty}; finalAmt = p.price*qty;
-            document.getElementById('final-price').innerText = `₹${finalAmt}`; document.getElementById('coupon-msg').innerHTML = ''; showModal('checkoutModal');
-        }
-        function openCheckout(mode) { checkoutMode = mode; document.getElementById('final-price').innerText = `₹${finalAmt}`; document.getElementById('coupon-msg').innerHTML = ''; showModal('checkoutModal'); }
-
-        async function fetchPincodeData() {
-            const pin = document.getElementById('chk-pin').value;
-            if(pin.length === 6) {
-                try {
-                    const res = await fetch(`https://api.postalpincode.in/pincode/${pin}`);
-                    const data = await res.json();
-                    if(data[0].Status === "Success") {
-                        document.getElementById('chk-city').value = data[0].PostOffice[0].District; document.getElementById('chk-state').value = data[0].PostOffice[0].State; notify("Location auto-filled!", "success");
-                    } else notify("Invalid Pincode", "error");
-                } catch(e) { notify("API Error. Fill manually.", "error"); }
+        window.handleMultipleImages = async (e, previewId, labelId, max = 10, itemId = null) => {
+            const files = Array.from(e.target.files).slice(0, max);
+            const previewContainer = document.getElementById(previewId);
+            
+            if(itemId) tempItemImages[itemId] = []; else mainImagesBase64 = [];
+            previewContainer.innerHTML = '<p class="text-xs text-[#f97316] font-bold">Compressing...</p>';
+            
+            for(let file of files) {
+                const compressedB64 = await compressImage(file);
+                if(itemId) tempItemImages[itemId].push(compressedB64); else mainImagesBase64.push(compressedB64);
             }
-        }
-        function toggleManualAddress() { const m = document.getElementById('chk-manual').checked; document.getElementById('chk-city').readOnly = !m; document.getElementById('chk-state').readOnly = !m; }
-
-        function applyCoupon() {
-            const c = document.getElementById('chk-coupon').value.toUpperCase(), db = getDB(DB.C), msg = document.getElementById('coupon-msg');
-            const coup = db.find(x => x.code === c);
-            if(coup) {
-                let base = checkoutMode === 'cart' ? getDB(DB.CART)[currentUser.id].reduce((s,i)=>s+i.total,0) : directCheckoutItem.total;
-                finalAmt = coup.type === 'percent' ? base - (base * (coup.val/100)) : base - coup.val;
-                if(finalAmt < 0) finalAmt = 0; document.getElementById('final-price').innerText = `₹${finalAmt}`; msg.innerHTML = `<span style="color:var(--primary)">Coupon Applied!</span>`;
-            } else { msg.innerHTML = `<span style="color:var(--danger)">Invalid Code</span>`; }
-        }
-
-        // Animation & Finalize
-        function triggerDeliveryAnimation() {
-            const em = document.getElementById('chk-email').value, ph = document.getElementById('chk-phone').value, st = document.getElementById('chk-street').value, pin = document.getElementById('chk-pin').value, city = document.getElementById('chk-city').value;
-            if(!em || !ph || !st || !pin || !city) return notify("Address & Contact missing!", "error");
-            hideModal('checkoutModal');
-            const screen = document.getElementById('truck-screen'); screen.style.display = 'flex';
-            setTimeout(() => { screen.style.display = 'none'; finalizeOrder(em, ph, `${st}, ${city} - ${pin}`, document.getElementById('chk-payment').value); }, 4000); 
-        }
-
-        function finalizeOrder(em, ph, ad, pm) {
-            const oDb = getDB(DB.O), tDb = getDB(DB.T), pDb = getDB(DB.P);
-            let itemsText = ""; let pIdList = []; 
             
-            if(checkoutMode === 'cart') {
-                const cart = getDB(DB.CART)[currentUser.id];
-                itemsText = cart.map(c => `${c.qty}x ${c.name}`).join(', ');
-                cart.forEach(c => { pDb[c.pId].stock -= c.qty; pIdList.push({id: c.pId, qty: c.qty}); }); 
-                const cDb = getDB(DB.CART); cDb[currentUser.id] = []; setDB(DB.CART, cDb); updateNavbar();
-            } else {
-                itemsText = `${directCheckoutItem.qty}x ${directCheckoutItem.name}`; 
-                pDb[directCheckoutItem.idx].stock -= directCheckoutItem.qty; pIdList.push({id: directCheckoutItem.idx, qty: directCheckoutItem.qty});
-            }
-            setDB(DB.P, pDb); 
-            
-            const orderId = Date.now().toString();
-            oDb.push({oId: orderId, id: currentUser.id, email: em, phone: ph, address: ad, payment: pm, total: finalAmt, items: itemsText, productIds: pIdList, date: new Date().toLocaleString(), status: 'Active'});
-            setDB(DB.O, oDb);
+            previewContainer.innerHTML = '';
+            const arr = itemId ? tempItemImages[itemId] : mainImagesBase64;
+            arr.forEach(b64 => previewContainer.innerHTML += `<img src="${b64}" class="w-16 h-16 object-cover rounded-lg border border-[#27272a] shrink-0">`);
+            document.getElementById(labelId).innerText = `${arr.length} Image(s) Added ✅`;
+            document.getElementById(labelId).classList.add('text-green-500');
+        };
 
-            if(!tDb[currentUser.id]) tDb[currentUser.id] = [];
-            tDb[currentUser.id].push({sender: 'System', text: `Order Placed (${itemsText}). Mode: ${pm}. ETA: 4-7 Days`, date: new Date().toLocaleString()});
-            if(pm === 'UPI') tDb[currentUser.id].push({sender: 'System', text: `ACTION REQUIRED: Pay ₹${finalAmt} to kt.deore@fam.`, date: new Date().toLocaleString()});
-            setDB(DB.T, tDb);
+        window.toggleItemSection = () => {
+            const sec = document.getElementById('itemsSection');
+            sec.classList.toggle('hidden');
+            if(!sec.classList.contains('hidden') && document.getElementById('itemsContainer').children.length === 0) addNewItemBox();
+        };
 
-            if(pm === 'UPI') notify(`Order Saved! Pay ₹${finalAmt} to UPI`, 'upi'); else notify("Order Dispatched Successfully!", 'success');
-            switchPage('orders');
-        }
+        let itemCount = 0;
+        window.addNewItemBox = (data = null) => {
+            itemCount++;
+            const id = `item_${itemCount}`;
+            if(data && data.images) tempItemImages[id] = data.images; // Load existing images
 
-        // Reviews & Notices
-        function loadReviews() {
-            const db = getDB(DB.R), box = document.getElementById('review-display'); box.innerHTML = '';
-            if(db.length === 0) return box.innerHTML = `<p style="color:#aaa; text-align:center; grid-column:1/-1;">No reviews yet.</p>`;
-            [...db].reverse().forEach(r => box.innerHTML += `<div class="glass-box"><div style="color:var(--star)">${'⭐'.repeat(r.rating)}</div><p style="color:#ccc; margin:10px 0;">"${r.text}"</p><p style="color:var(--primary); font-size:0.8rem;">- ID: ${r.name} (${r.date})</p></div>`);
-        }
-        function addReview() {
-            if(!currentUser) return showModal('authModal');
-            const t = document.getElementById('rev-text').value; if(!t) return notify("Write something!","error");
-            const db = getDB(DB.R); db.push({name: currentUser.id, rating: document.getElementById('rev-rating').value, text: t, date: new Date().toLocaleDateString()});
-            setDB(DB.R, db); document.getElementById('rev-text').value=''; notify("Posted!"); loadReviews();
-        }
-
-        function loadNotices() {
-            const db = getDB(DB.N), box = document.getElementById('notice-display'); box.innerHTML = '';
-            if(db.length === 0) return box.innerHTML = `<p style="color:#aaa; text-align:center;">No updates.</p>`;
-            [...db].reverse().forEach((n, i) => box.innerHTML += `<div class="glass-box" style="margin-bottom:15px; border-left:4px solid var(--primary); padding:20px; position:relative;">${currentUser?.isAdmin?`<button style="position:absolute; right:15px; top:15px; background:var(--danger); color:white; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;" onclick="delNotice(${db.length-1-i})">X</button>`:''}<h3 style="color:var(--primary);">${n.title}</h3><p style="color:#ccc; margin-top:5px;">${n.desc}</p><p style="font-size:0.8rem; color:#888; margin-top:5px;">${n.date}</p></div>`);
-        }
-        function adminAddNotice() {
-            const t = document.getElementById('not-title').value, d = document.getElementById('not-desc').value; if(!t||!d) return notify("Empty!","error");
-            const db = getDB(DB.N); db.push({title:t, desc:d, date:new Date().toLocaleDateString()}); setDB(DB.N, db); notify("Broadcasted!"); document.getElementById('not-title').value=''; document.getElementById('not-desc').value='';
-        }
-        function delNotice(i) { const db = getDB(DB.N); db.splice(i,1); setDB(DB.N, db); loadNotices(); }
-
-        // User Portal
-        function loadUserOrders() {
-            if(!currentUser) { document.getElementById('user-orders-display').innerHTML = `<p style="color:#aaa;">Please login to view orders.</p>`; return; }
-            const db = getDB(DB.O).filter(o => o.id === currentUser.id), box = document.getElementById('user-orders-display'); box.innerHTML='';
-            if(db.length===0) return box.innerHTML=`<p style="color:#aaa;">No orders yet.</p>`;
-            db.reverse().forEach(o => {
-                let stStyle = o.status === 'Cancelled' ? 'color: var(--danger); text-decoration: line-through;' : 'color: var(--primary);';
-                box.innerHTML += `<div style="border-bottom:1px solid #333; padding:10px 0;"><div style="display:flex;justify-content:space-between; ${stStyle}"><b>${o.items}</b><b>₹${o.total}</b></div><div style="font-size:0.8rem; color:#888;">${o.date} | Mode: ${o.payment} | Status: <span style="color:${o.status==='Cancelled'?'var(--danger)':'#00ffcc'}">${o.status}</span></div></div>`;
-            });
-        }
-        function loadUserTickets() {
-            if(!currentUser) { document.getElementById('user-ticket-display').innerHTML = `<p style="color:#aaa;">Please login to view messages.</p>`; return; }
-            const t = getDB(DB.T)[currentUser.id] || [], box = document.getElementById('user-ticket-display'); box.innerHTML='';
-            if(t.length===0) return box.innerHTML=`<p style="color:#888;">No messages.</p>`;
-            t.forEach(m => box.innerHTML += `<div style="margin-bottom:8px; padding:8px; border-left:3px solid ${m.sender==='Admin'?'var(--secondary)':(m.sender==='You'?'var(--primary)':'#666')}; background:rgba(255,255,255,0.05); font-size:0.9rem;"><b>${m.sender}:</b> ${m.text} <div style="font-size:0.7rem; color:#888;">${m.date}</div></div>`);
-        }
-        function submitSupportTicket() {
-            if(!currentUser) return showModal('authModal');
-            const s = document.getElementById('sup-sub').value, m = document.getElementById('sup-msg').value; if(!s||!m) return notify("Empty!","error");
-            const db = getDB(DB.T); if(!db[currentUser.id]) db[currentUser.id]=[];
-            db[currentUser.id].push({sender:'You', text:`[${s}] ${m}`, date:new Date().toLocaleString()}); setDB(DB.T, db);
-            document.getElementById('sup-sub').value=''; document.getElementById('sup-msg').value=''; notify("Ticket Raised!"); loadUserTickets();
-        }
-
-        // Admin Panel
-        function adminAddProduct() {
-            const n=document.getElementById('p-name').value, d=document.getElementById('p-desc').value, p=document.getElementById('p-price').value, s=document.getElementById('p-stock').value, i=document.getElementById('p-img').value;
-            if(!n||!p||!s) return notify("Name, Price, Stock required!","error");
-            const db = getDB(DB.P); db.push({name:n, desc:d||'Epic Edition', price:parseInt(p), stock:parseInt(s), img:i||'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800'});
-            setDB(DB.P, db); notify("Product Saved!"); loadAdminDashboard();
-        }
-        function adminUpdateStock(idx) {
-            const nv = document.getElementById(`inv-qty-${idx}`).value;
-            const db = getDB(DB.P); db[idx].stock = parseInt(nv); setDB(DB.P, db); notify("Stock Updated!"); renderStore();
-        }
-        function adminAddCoupon() {
-            const c=document.getElementById('c-code').value.toUpperCase(), t=document.getElementById('c-type').value, v=document.getElementById('c-val').value;
-            if(!c||!v) return notify("Fill details","error");
-            const db = getDB(DB.C); db.push({code:c, type:t, val:parseInt(v)}); setDB(DB.C, db); notify("Coupon Generated!");
-        }
-
-        function loadAdminDashboard() {
-            const oDb = getDB(DB.O), tDb = getDB(DB.T), cDb = getDB(DB.CART), pDb = getDB(DB.P);
-            
-            // Render Inventory
-            const invBox = document.getElementById('admin-inventory-box'); invBox.innerHTML = '';
-            pDb.forEach((p, i) => {
-                invBox.innerHTML += `<div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #333; padding:5px 0;">
-                    <span style="color:#ccc; font-size:0.9rem;">${p.name}</span>
-                    <div style="display:flex; gap:5px;"><input type="number" id="inv-qty-${i}" value="${p.stock}" style="width:60px; margin:0; padding:5px;"><button class="btn-outline" style="padding:5px 10px;" onclick="adminUpdateStock(${i})">Save</button></div>
+            const html = `
+                <div class="p-4 bg-[#111] border border-[#27272a] rounded-xl relative item-box" id="box_${id}">
+                    <button type="button" onclick="document.getElementById('box_${id}').remove()" class="absolute top-3 right-3 text-red-500 hover:text-red-400 transition"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3 pr-6">
+                        <input type="text" class="modern-input py-2 item-name bg-[#050505]" placeholder="Item Name (e.g. Veg Momos)" value="${data ? data.name : ''}">
+                        <select class="modern-input py-2 item-type bg-[#050505]">
+                            <option value="Veg" ${data && data.type === 'Veg' ? 'selected' : ''}>🟢 Veg</option>
+                            <option value="Non-Veg" ${data && data.type === 'Non-Veg' ? 'selected' : ''}>🔴 Non-Veg</option>
+                        </select>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+                        <input type="text" class="modern-input py-2 item-price-full bg-[#050505]" placeholder="Full Price (e.g. ₹100)" value="${data ? data.priceFull : ''}">
+                        <input type="text" class="modern-input py-2 item-price-half bg-[#050505]" placeholder="Half Price (Optional)" value="${data && data.priceHalf ? data.priceHalf : ''}">
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <button type="button" onclick="document.getElementById('imgInp_${id}').click()" class="bg-[#27272a] text-white text-xs font-bold px-3 py-2 rounded-lg hover:text-[#f97316] transition" id="imgLbl_${id}">+ Photos (Max 2)</button>
+                        <input type="file" id="imgInp_${id}" accept="image/*" multiple class="hidden" onchange="handleMultipleImages(event, 'preview_${id}', 'imgLbl_${id}', 2, '${id}')">
+                        <div id="preview_${id}" class="flex gap-2">
+                            ${data && data.images ? data.images.map(img => `<img src="${img}" class="w-16 h-16 object-cover rounded-lg border border-[#27272a] shrink-0">`).join('') : ''}
+                        </div>
+                    </div>
                 </div>`;
-            });
+            document.getElementById('itemsContainer').insertAdjacentHTML('beforeend', html);
+            lucide.createIcons();
+        };
 
-            // Render Carts
-            const cBox = document.getElementById('admin-carts-box'); cBox.innerHTML='';
-            for(let id in cDb) { if(cDb[id].length>0) cBox.innerHTML += `<div style="padding:10px; border-bottom:1px solid #333;"><b>ID: ${id}</b> <span style="color:var(--primary);">(${cDb[id].length} items)</span></div>`; }
-            if(!cBox.innerHTML) cBox.innerHTML = '<p style="color:#666;">No active carts.</p>';
+        // --- AUTH ---
+        let authMode = 'LOGIN';
+        document.getElementById('togglePasswordBtn').onclick = () => {
+            const p = document.getElementById('password'); p.type = p.type === 'password' ? 'text' : 'password';
+            document.getElementById('eyeIcon').setAttribute('data-lucide', p.type === 'password' ? 'eye' : 'eye-off'); lucide.createIcons();
+        };
+        document.getElementById('toggleAuthBtn').onclick = () => { authMode = authMode === 'LOGIN' ? 'REGISTER' : 'LOGIN'; updateAuthUI(); };
+        document.getElementById('forgotBtn').onclick = () => { authMode = 'FORGOT'; updateAuthUI(); };
 
-            // Render Orders
-            const oBox = document.getElementById('admin-orders-box'); oBox.innerHTML='';
-            if(oDb.length===0) return oBox.innerHTML=`<p style="text-align:center;color:#888;">No orders.</p>`;
-            [...oDb].reverse().forEach((o) => {
-                let th=''; if(tDb[o.id]) tDb[o.id].forEach(m => th+=`<div style="font-size:0.8rem; padding:2px;"><b>${m.sender}:</b> ${m.text}</div>`);
-                let cancelBtn = o.status !== 'Cancelled' ? `<button class="btn-solid" style="margin:0; width:auto; background:var(--danger);" onclick="adminCancelOrder('${o.oId}')">Cancel Order</button>` : `<span style="color:var(--danger); font-weight:bold;">CANCELLED</span>`;
-                
-                oBox.innerHTML += `<div class="glass-box" style="margin-bottom:15px; border-left:4px solid var(--primary); opacity:${o.status==='Cancelled'?'0.5':'1'};"><div style="display:flex; justify-content:space-between;"><h3 style="color:var(--primary);">${o.id}</h3><span style="font-size:0.8rem;color:#888;">${o.date}</span></div><p style="font-size:0.9rem; color:#ccc;">${o.items} | Total: ₹${o.total} | ${o.payment}</p><p style="font-size:0.8rem; color:#aaa;">Email: ${o.email} | Addr: ${o.address}</p><div style="background:rgba(0,0,0,0.5); padding:5px; margin:10px 0; max-height:80px; overflow-y:auto;">${th||'<span style="color:#666;">No logs</span>'}</div><div style="display:flex; gap:10px;"><input type="text" id="adm-msg-${o.oId}" placeholder="Reply to ${o.id}..." style="margin:0;"><button class="btn-solid" style="margin:0; width:auto; background:var(--secondary);" onclick="admReply('${o.id}', '${o.oId}')">Reply</button> ${cancelBtn}</div></div>`;
-            });
+        function updateAuthUI() {
+            const t = document.getElementById('authTitle'), b = document.getElementById('mainBtn'), p = document.getElementById('passContainer'), fBtn = document.getElementById('forgotBtn'), tBtn = document.getElementById('toggleAuthBtn');
+            if(authMode === 'LOGIN') { t.innerText = "Sign In"; b.innerText = "Authenticate"; p.style.display = 'block'; fBtn.style.display = 'flex'; tBtn.innerText = "Need an account? Register"; } 
+            else if (authMode === 'REGISTER') { t.innerText = "Register"; b.innerText = "Create Account"; p.style.display = 'block'; fBtn.style.display = 'none'; tBtn.innerText = "Already registered? Sign In"; } 
+            else if (authMode === 'FORGOT') { t.innerText = "Reset Password"; b.innerText = "Send Reset Link"; p.style.display = 'none'; fBtn.style.display = 'none'; tBtn.innerText = "Back to Sign In"; }
         }
 
-        function adminCancelOrder(oId) {
-            if(!confirm("Are you sure you want to cancel this order?")) return;
-            const oDb = getDB(DB.O), tDb = getDB(DB.T), pDb = getDB(DB.P);
-            const orderIdx = oDb.findIndex(o => o.oId === oId);
-            if(orderIdx === -1) return;
+        document.getElementById('mainBtn').onclick = async () => {
+            const e = document.getElementById('email').value.trim(), p = document.getElementById('password').value;
+            if(!e) return showToast("Email required");
+            try {
+                if(authMode === 'LOGIN') { if(!p) return showToast("Password required"); await signInWithEmailAndPassword(auth, e, p); closeModal('authModal'); switchTab('profile'); } 
+                else if(authMode === 'REGISTER') { if(!p) return showToast("Password required"); await createUserWithEmailAndPassword(auth, e, p); closeModal('authModal'); switchTab('profile'); } 
+                else if(authMode === 'FORGOT') { await sendPasswordResetEmail(auth, e); showToast("Reset link sent! Please check your spam folder."); authMode = 'LOGIN'; updateAuthUI(); }
+            } catch(err) { showToast(err.message.split('auth/')[1] || "Error occurred"); }
+        };
+
+        document.getElementById('logoutBtn').onclick = () => { signOut(auth); switchTab('home'); };
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                document.getElementById('userEmailDisplay').innerText = user.email;
+                document.getElementById('navProfileText').innerText = "Portal";
+                document.getElementById('supportLoginPrompt').classList.add('hidden');
+                document.getElementById('supportDashboard').classList.remove('hidden');
+                loadUserBusinesses(user.email); loadUserTickets(user.email);
+                if(user.email === 'kt.deore@hotmail.com') { document.getElementById('adminPanel').classList.remove('hidden'); loadAdminQueue(); }
+            } else {
+                document.getElementById('navProfileText').innerText = "Sign In";
+                document.getElementById('supportLoginPrompt').classList.remove('hidden');
+                document.getElementById('supportDashboard').classList.add('hidden');
+            }
+        });
+
+        // --- SUBMIT OR EDIT BUSINESS ---
+        let editingBizId = null;
+
+        window.openAddBizModal = () => {
+            editingBizId = null;
+            document.getElementById('bizModalTitle').innerText = "Register Business";
+            document.getElementById('submitBizBtn').innerText = "Submit for Admin Review";
+            // Reset fields
+            document.getElementById('bizName').value = ''; document.getElementById('bizCategory').value = ''; document.getElementById('bizCity').value = ''; document.getElementById('bizAddress').value = ''; document.getElementById('bizContact').value = '';
+            document.getElementById('wantListItems').checked = false; document.getElementById('itemsSection').classList.add('hidden'); document.getElementById('itemsContainer').innerHTML = '';
+            mainImagesBase64 = []; tempItemImages = {};
+            document.getElementById('mainImagesPreview').innerHTML = ''; document.getElementById('mainImagesLabel').innerText = "Click to Upload Cover Image"; document.getElementById('mainImagesLabel').classList.remove('text-green-500');
+            openModal('bizModal');
+        };
+
+        window.openEditBizModal = (bizString) => {
+            const b = JSON.parse(decodeURIComponent(bizString));
+            editingBizId = b.id;
+            document.getElementById('bizModalTitle').innerText = "Update Business Details";
+            document.getElementById('submitBizBtn').innerText = "Save Changes";
             
-            oDb[orderIdx].status = 'Cancelled';
-            if(oDb[orderIdx].productIds) { oDb[orderIdx].productIds.forEach(pData => { pDb[pData.id].stock += pData.qty; }); setDB(DB.P, pDb); }
-            setDB(DB.O, oDb);
+            document.getElementById('bizName').value = b.name; document.getElementById('bizCategory').value = b.category; document.getElementById('bizCity').value = b.city; document.getElementById('bizAddress').value = b.address; document.getElementById('bizContact').value = b.contact;
+            
+            mainImagesBase64 = b.images || [];
+            tempItemImages = {};
+            
+            const prev = document.getElementById('mainImagesPreview');
+            prev.innerHTML = '';
+            mainImagesBase64.forEach(img => prev.innerHTML += `<img src="${img}" class="w-16 h-16 object-cover rounded-lg border border-[#27272a] shrink-0">`);
+            if(mainImagesBase64.length > 0) { document.getElementById('mainImagesLabel').innerText = `${mainImagesBase64.length} Image(s) Loaded`; document.getElementById('mainImagesLabel').classList.add('text-green-500'); }
 
-            const uId = oDb[orderIdx].id; if(!tDb[uId]) tDb[uId] = [];
-            let rText = oDb[orderIdx].payment === 'UPI' ? "Refund of ₹"+oDb[orderIdx].total+" will be processed in 12-24 hours." : "";
-            tDb[uId].push({sender: 'Admin', text: `SYSTEM: Your order (${oDb[orderIdx].items}) has been CANCELLED by admin. ${rText}`, date: new Date().toLocaleString()});
-            setDB(DB.T, tDb);
+            document.getElementById('itemsContainer').innerHTML = '';
+            if(b.items && b.items.length > 0) {
+                document.getElementById('wantListItems').checked = true;
+                document.getElementById('itemsSection').classList.remove('hidden');
+                b.items.forEach(item => addNewItemBox(item));
+            } else {
+                document.getElementById('wantListItems').checked = false;
+                document.getElementById('itemsSection').classList.add('hidden');
+            }
+            openModal('bizModal');
+        };
 
-            notify("Order Cancelled & Stock Restored!", "error"); loadAdminDashboard(); renderStore();
+        document.getElementById('submitBizBtn').onclick = async () => {
+            const name = document.getElementById('bizName').value, category = document.getElementById('bizCategory').value, city = document.getElementById('bizCity').value.trim().toLowerCase(), addr = document.getElementById('bizAddress').value;
+            if(!name || !category || !city) return showToast("Name, Category & City are mandatory");
+            
+            let finalItems = [];
+            if(document.getElementById('wantListItems').checked) {
+                document.querySelectorAll('.item-box').forEach(box => {
+                    const id = box.id.replace('box_', '');
+                    finalItems.push({ 
+                        name: box.querySelector('.item-name').value, 
+                        type: box.querySelector('.item-type').value,
+                        priceFull: box.querySelector('.item-price-full').value, 
+                        priceHalf: box.querySelector('.item-price-half').value, 
+                        images: tempItemImages[id] || [] 
+                    });
+                });
+            }
+            
+            const btn = document.getElementById('submitBizBtn');
+            btn.innerText = "Saving...";
+            const payload = { name, category, city, address: addr, contact: document.getElementById('bizContact').value, images: mainImagesBase64, items: finalItems };
+            
+            try {
+                if(editingBizId) {
+                    await updateDoc(doc(db, "businesses", editingBizId), payload);
+                    showToast("Business Updated Successfully!");
+                } else {
+                    payload.owner = auth.currentUser.email; payload.status = 'Pending'; payload.timestamp = Date.now();
+                    await addDoc(collection(db, "businesses"), payload);
+                    showToast("Submitted for Review");
+                }
+                closeModal('bizModal'); 
+            } catch(e) { showToast("Error saving data"); }
+            btn.innerText = editingBizId ? "Save Changes" : "Submit for Admin Review";
+        };
+
+        // --- DELETE BUSINESS LOGIC ---
+        window.deleteBiz = async (id) => {
+            if(confirm("Permanently delete this listing?")) {
+                try { await deleteDoc(doc(db, "businesses", id)); showToast("Listing deleted!"); } catch(e) { showToast("Error deleting."); }
+            }
+        };
+
+        // --- TICKETS, CHAT & BOOST ---
+        let currentTicketId = null;
+        document.getElementById('submitTicketBtn').onclick = async () => {
+            const subject = document.getElementById('ticketSubject').value, desc = document.getElementById('ticketDesc').value;
+            if(!subject || !desc) return showToast("All fields required");
+            try {
+                await addDoc(collection(db, "support_tickets"), { subject, owner: auth.currentUser.email, status: 'Open', timestamp: Date.now(), messages: [{ sender: auth.currentUser.email, text: desc, time: Date.now() }] });
+                closeModal('ticketModal'); showToast("Ticket Opened"); document.getElementById('ticketSubject').value = ''; document.getElementById('ticketDesc').value = '';
+            } catch(e) { showToast("Error"); }
+        };
+
+        window.openChat = (ticketId, subject) => {
+            currentTicketId = ticketId; document.getElementById('chatSubject').innerText = subject; openModal('chatModal');
+            onSnapshot(doc(db, "support_tickets", ticketId), (docSnap) => {
+                const data = docSnap.data(), history = document.getElementById('chatHistory'); history.innerHTML = "";
+                data.messages.forEach(m => {
+                    const isMe = m.sender === auth.currentUser.email;
+                    const bubbleClass = isMe ? 'bg-[#27272a] self-end' : 'bg-[#f97316] text-black self-start';
+                    history.innerHTML += `<div class="${bubbleClass} p-3 rounded-2xl max-w-[80%]"><span class="text-[10px] font-bold opacity-60 mb-1 block">${m.sender === 'kt.deore@hotmail.com' ? 'Admin' : m.sender.split('@')[0]}</span><span class="text-sm font-medium">${m.text}</span></div>`;
+                });
+                history.scrollTop = history.scrollHeight;
+            });
+        };
+
+        document.getElementById('sendChatBtn').onclick = async () => {
+            const input = document.getElementById('chatInput'), text = input.value.trim();
+            if(!text || !currentTicketId) return; input.value = ""; 
+            await updateDoc(doc(db, "support_tickets", currentTicketId), { messages: arrayUnion({ sender: auth.currentUser.email, text: text, time: Date.now() }) });
+        };
+
+        let pendingBoostId = null;
+        window.openBoostModal = (bizId) => { pendingBoostId = bizId; openModal('boostModal'); }
+        document.getElementById('proceedBoostBtn').onclick = async () => {
+            const plan = document.querySelector('input[name="boostPlan"]:checked').value;
+            document.getElementById('proceedBoostBtn').innerText = "Processing...";
+            try {
+                await addDoc(collection(db, "support_tickets"), { subject: `Boost Request: BizID-${pendingBoostId}`, owner: auth.currentUser.email, status: 'Open', timestamp: Date.now(), messages: [{ sender: auth.currentUser.email, text: `I want to Boost my post! Plan: ₹${plan}.`, time: Date.now() }] });
+                closeModal('boostModal'); showToast("Boost Request Sent!"); switchTab('support'); 
+            } catch(e) { showToast("Error"); }
+            document.getElementById('proceedBoostBtn').innerText = "Proceed to Checkout";
+        };
+
+        // --- RENDER DIRECTORY (GRID STYLE) ---
+        let allVerifiedBiz = [];
+
+        function renderListFeed(businesses, containerId, limit = null) {
+            const feed = document.getElementById(containerId);
+            feed.innerHTML = businesses.length === 0 ? `<div class="col-span-full text-center py-10"><i data-lucide="search-x" class="w-12 h-12 text-gray-600 mx-auto mb-3"></i><p class="text-gray-500">No listings found in this area/category.</p></div>` : "";
+            
+            let count = 0;
+            businesses.forEach((b) => {
+                if(limit && count >= limit) return;
+                
+                const coverImg = (b.images && b.images.length > 0 && b.images[0].startsWith('data:image')) ? b.images[0] : null;
+                const imgHtml = coverImg 
+                    ? `<img src="${coverImg}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">` 
+                    : `<div class="w-full h-full bg-[#111] flex items-center justify-center text-gray-600"><i data-lucide="image" class="w-8 h-8"></i></div>`;
+                
+                // Fetch Approved Reviews Logic (Calculate Avg) - Simplified for sync render
+                // In a real prod, you'd calc this serverside, here we just show a static star or "No Reviews" placeholder.
+                
+                const strData = encodeURIComponent(JSON.stringify(b));
+                
+                feed.innerHTML += `
+                    <div class="stagger-card glass-card overflow-hidden flex flex-col group cursor-pointer hover:border-[#f97316] border-white/5" style="animation-delay: ${count * 0.1}s" onclick='openDetailView("${strData}")'>
+                        <div class="h-48 w-full relative bg-[#111] overflow-hidden">
+                            ${imgHtml}
+                            <span class="absolute top-3 left-3 bg-black/80 text-white text-[10px] font-bold px-2 py-1 rounded backdrop-blur-md uppercase tracking-widest">${b.category}</span>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition duration-300"></div>
+                        </div>
+                        <div class="p-5 flex-grow flex flex-col">
+                            <h3 class="text-xl font-black mb-1 truncate">${b.name}</h3>
+                            <p class="text-sm text-[#f97316] font-bold mb-3"><i data-lucide="map-pin" class="w-3.5 h-3.5 inline"></i> ${b.city ? b.city.toUpperCase() : 'INDIA'}</p>
+                            <p class="text-xs text-gray-500 font-bold mt-auto group-hover:text-white transition">View Full Catalog →</p>
+                        </div>
+                    </div>`;
+                count++;
+            });
+            lucide.createIcons();
         }
 
-        function admReply(id, oId) {
-            const t = document.getElementById(`adm-msg-${oId}`).value; if(!t) return notify("Empty!","error");
-            const db = getDB(DB.T); if(!db[id]) db[id]=[]; db[id].push({sender:'Admin', text:t, date:new Date().toLocaleString()}); setDB(DB.T, db); notify("Sent!"); loadAdminDashboard();
+        onSnapshot(query(collection(db, "businesses"), where("status", "==", "Approved")), (snapshot) => {
+            allVerifiedBiz = []; snapshot.forEach(doc => allVerifiedBiz.push({ id: doc.id, ...doc.data() }));
+            renderListFeed(allVerifiedBiz, 'fullFeed'); renderListFeed(allVerifiedBiz, 'homeFeed', 4); 
+        });
+
+        function runFilters() {
+            const sVal = document.getElementById('searchInput').value.toLowerCase(), lVal = document.getElementById('filterLocation').value.toLowerCase(), cVal = document.getElementById('filterCategory').value;
+            const filtered = allVerifiedBiz.filter(b => b.name.toLowerCase().includes(sVal) && (lVal === '' || (b.city && b.city.toLowerCase().includes(lVal))) && (cVal === 'All' || b.category === cVal));
+            renderListFeed(filtered, 'fullFeed');
+        }
+        document.getElementById('searchInput').addEventListener('input', runFilters); document.getElementById('filterLocation').addEventListener('input', runFilters); document.getElementById('filterCategory').addEventListener('change', runFilters);
+
+        // --- DETAIL VIEW ---
+        window.openDetailView = (bString) => {
+            const b = JSON.parse(decodeURIComponent(bString));
+            switchTab('detail');
+            const container = document.getElementById('detailContent');
+            
+            let carouselHtml = '';
+            if(b.images && b.images.length > 0) {
+                let slides = ''; 
+                b.images.forEach(img => { if(img.startsWith('data:image')) { slides += `<div class="min-w-full snap-center relative"><img src="${img}" class="w-full h-64 md:h-96 object-cover"><div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div></div>`; } });
+                carouselHtml = slides ? `<div class="w-full flex overflow-x-auto snap-x snap-mandatory hide-scrollbar rounded-t-[19px] relative">${slides}</div><p class="text-center text-xs text-gray-400 font-bold py-3 bg-[#0A0A0A] border-b border-[#1F1F1F]">← Swipe to see ${b.images.length} photos →</p>` : `<div class="w-full h-48 bg-[#111] flex items-center justify-center text-gray-600 rounded-t-[19px]"><i data-lucide="image-off" class="w-12 h-12"></i></div>`;
+            } else { carouselHtml = `<div class="w-full h-48 bg-[#111] flex items-center justify-center text-gray-600 rounded-t-[19px]"><i data-lucide="image" class="w-12 h-12"></i></div>`; }
+
+            let itemsHtml = '';
+            if(b.items && b.items.length > 0) {
+                let iList = '';
+                b.items.forEach(item => {
+                    let iImgs = ''; if(item.images) item.images.forEach(img => { if(img.startsWith('data:image')) { iImgs += `<img src="${img}" class="w-16 h-16 object-cover rounded-lg border border-[#27272a]">`; } });
+                    const icon = item.type === 'Non-Veg' ? '🔴' : '🟢';
+                    const halfStr = item.priceHalf ? `<span class="text-gray-400 text-sm font-medium ml-2">Half: ${item.priceHalf}</span>` : '';
+                    iList += `<div class="p-4 border border-[#27272a] rounded-xl flex justify-between items-center bg-[#050505] hover:border-[#f97316] transition"><div class="flex gap-4">${iImgs}<div><h4 class="font-bold text-lg flex items-center gap-2">${item.name} <span class="text-xs">${icon}</span></h4><p class="text-[#f97316] font-black">Full: ${item.priceFull} ${halfStr}</p></div></div></div>`;
+                });
+                itemsHtml = `<div class="mt-10 pt-10 border-t border-[#1F1F1F]"><h3 class="text-2xl font-black mb-6 flex items-center gap-2"><i data-lucide="list" class="text-[#f97316]"></i> Catalog / Menu</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${iList}</div></div>`;
+            }
+
+            container.innerHTML = `
+                ${carouselHtml}
+                <div class="p-6 md:p-10 bg-[#0A0A0A] rounded-b-[19px]">
+                    <div class="flex justify-between items-start">
+                        <span class="text-[10px] bg-[#f97316] text-black px-3 py-1.5 rounded uppercase tracking-widest font-black mb-4 inline-block">${b.category}</span>
+                        <button onclick="openReviewModal('${b.id}')" class="text-xs font-bold text-white bg-[#111] border border-[#27272a] px-3 py-2 rounded-lg hover:border-[#f97316] transition"><i data-lucide="star" class="w-3.5 h-3.5 inline"></i> Write Review</button>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-black mb-4">${b.name}</h2>
+                    <div class="space-y-3">
+                        <p class="text-xl text-[#f97316] font-bold flex items-center gap-2"><i data-lucide="map-pin" class="w-5 h-5"></i> ${b.city ? b.city.toUpperCase() : 'INDIA'}</p>
+                        <p class="text-base md:text-lg text-gray-400 flex items-start gap-2"><i data-lucide="building" class="w-5 h-5 mt-1 shrink-0"></i> ${b.address}</p>
+                        <p class="text-base md:text-lg text-gray-400 flex items-center gap-2"><i data-lucide="phone" class="w-5 h-5 shrink-0"></i> ${b.contact}</p>
+                    </div>
+                    ${itemsHtml}
+                </div>
+            `;
+            lucide.createIcons(); window.scrollTo(0,0);
         }
 
-        // Initialize App
-        updateNavbar(); switchPage('home');
+        // --- PEER REVIEW SYSTEM ---
+        let currentReviewBizId = null;
+        window.openReviewModal = (bizId) => {
+            if(!auth.currentUser) return showToast("Please Sign In to write a review.");
+            currentReviewBizId = bizId;
+            document.getElementById('reviewRating').value = 0;
+            document.getElementById('reviewText').value = '';
+            document.querySelectorAll('#reviewStars i').forEach(s => s.classList.remove('active'));
+            openModal('reviewModal');
+        };
+
+        document.querySelectorAll('#reviewStars i').forEach(star => {
+            star.onclick = function() {
+                const val = parseInt(this.getAttribute('data-val'));
+                document.getElementById('reviewRating').value = val;
+                document.querySelectorAll('#reviewStars i').forEach(s => {
+                    if(parseInt(s.getAttribute('data-val')) <= val) s.classList.add('active');
+                    else s.classList.remove('active');
+                });
+            };
+        });
+
+        document.getElementById('submitReviewBtn').onclick = async () => {
+            const rating = document.getElementById('reviewRating').value;
+            const text = document.getElementById('reviewText').value;
+            if(rating == 0 || !text) return showToast("Rating and description required.");
+            try {
+                await addDoc(collection(db, "peer_reviews"), {
+                    bizId: currentReviewBizId, user: auth.currentUser.email, rating: parseInt(rating), text, status: 'Pending', timestamp: Date.now()
+                });
+                closeModal('reviewModal'); showToast("Review submitted for 24-Hour Peer Review.");
+            } catch(e) { showToast("Failed to submit review."); }
+        };
+
+        // --- USER PORTAL ---
+        function loadUserBusinesses(email) {
+            onSnapshot(query(collection(db, "businesses"), where("owner", "==", email)), (snapshot) => {
+                const div = document.getElementById('userBusinesses');
+                div.innerHTML = snapshot.empty ? `<div class="text-center py-6"><i data-lucide="store" class="w-10 h-10 text-gray-600 mx-auto mb-2"></i><p class="text-gray-500 text-sm">No outlets registered.</p></div>` : "";
+                snapshot.forEach((d) => {
+                    const b = d.data();
+                    const clr = b.status === 'Approved' ? 'text-green-500 bg-green-500/10 border-green-500/20' : 'text-yellow-500 bg-yellow-500/10 border-yellow-500/20';
+                    const boostBtn = b.status === 'Approved' ? `<button onclick="openBoostModal('${d.id}')" class="text-xs bg-[#f97316] text-black font-bold px-3 py-2 rounded-lg flex items-center gap-1.5 hover:scale-105 transition"><i data-lucide="rocket" class="w-3.5 h-3.5"></i> Boost</button>` : '';
+                    
+                    const strData = encodeURIComponent(JSON.stringify({id: d.id, ...b}));
+                    
+                    div.innerHTML += `
+                        <div class="p-5 bg-[#050505] border border-[#27272a] rounded-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                            <div class="flex-grow">
+                                <h4 class="font-bold text-lg mb-1">${b.name}</h4>
+                                <span class="text-[10px] font-bold ${clr} border px-2 py-1 rounded uppercase tracking-wider">${b.status}</span>
+                            </div>
+                            <div class="flex flex-wrap items-center gap-2 w-full md:w-auto mt-2 md:mt-0">
+                                ${boostBtn}
+                                <button onclick='openEditBizModal("${strData}")' class="text-xs bg-transparent border border-gray-500/50 text-gray-300 font-bold px-3 py-2 rounded-lg flex items-center gap-1.5 hover:bg-white/10 transition"><i data-lucide="edit-3" class="w-3.5 h-3.5"></i> Edit</button>
+                                <button onclick="deleteBiz('${d.id}')" class="text-xs bg-transparent border border-red-500/30 text-red-500 font-bold px-3 py-2 rounded-lg flex items-center gap-1.5 hover:bg-red-500/10 transition"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button>
+                            </div>
+                        </div>`;
+                });
+                lucide.createIcons();
+            });
+        }
+
+        function loadUserTickets(email) {
+            const q = email === 'kt.deore@hotmail.com' ? query(collection(db, "support_tickets")) : query(collection(db, "support_tickets"), where("owner", "==", email));
+            onSnapshot(q, (snapshot) => {
+                const divSupport = document.getElementById('supportTicketsList'), divProfile = document.getElementById('userTickets');
+                const html = snapshot.empty ? `<div class="text-center py-6"><i data-lucide="ticket" class="w-10 h-10 text-gray-600 mx-auto mb-2"></i><p class="text-gray-500 text-sm">No active tickets.</p></div>` : "";
+                divSupport.innerHTML = html; if(divProfile) divProfile.innerHTML = html;
+                snapshot.forEach((d) => {
+                    const t = d.data(), clr = t.status === 'Open' ? 'text-red-500 border-red-500/30 bg-red-500/5' : 'text-green-500 border-green-500/30 bg-green-500/5';
+                    const card = `<div class="p-5 bg-[#050505] border border-[#27272a] rounded-xl cursor-pointer hover:border-[#f97316] transition group" onclick="openChat('${d.id}', '${t.subject.replace(/'/g, "\\'")}')"><div class="flex justify-between items-center mb-2"><h4 class="font-bold pr-4">${t.subject}</h4><span class="text-[10px] font-bold ${clr} border px-2 py-1 rounded uppercase shrink-0">${t.status}</span></div><div class="flex justify-between items-center mt-3"><p class="text-xs text-gray-500">Last updated: Just now</p><p class="text-xs text-[#f97316] font-bold flex items-center gap-1 group-hover:gap-2 transition-all">Open Chat <i data-lucide="arrow-right" class="w-3 h-3"></i></p></div></div>`;
+                    divSupport.innerHTML += card; if(divProfile) divProfile.innerHTML += card;
+                });
+                lucide.createIcons();
+            });
+        }
+
+        function loadAdminQueue() {
+            window.approveBiz = async (id) => { await updateDoc(doc(db, "businesses", id), { status: "Approved" }); showToast("Approved!"); };
+            window.rejectBiz = async (id) => { await updateDoc(doc(db, "businesses", id), { status: "Rejected" }); showToast("Rejected."); };
+            onSnapshot(query(collection(db, "businesses"), where("status", "==", "Pending")), (snapshot) => {
+                const q = document.getElementById('adminQueueGrid');
+                q.innerHTML = snapshot.empty ? `<p class="text-gray-500 text-sm py-2">Queue is clear.</p>` : "";
+                snapshot.forEach((d) => {
+                    const b = d.data();
+                    q.innerHTML += `<div class="p-4 bg-black rounded-xl border border-[#f97316]/40 shadow-[0_0_15px_rgba(249,115,22,0.1)]"><h4 class="font-bold text-white mb-1">${b.name}</h4><p class="text-xs text-gray-500 mb-4">${b.owner} | City: ${b.city}</p><div class="flex gap-2"><button onclick="approveBiz('${d.id}')" class="flex-1 bg-[#f97316] text-black text-xs font-bold py-2.5 rounded-lg">Approve</button><button onclick="rejectBiz('${d.id}')" class="flex-1 border border-red-500/50 text-red-500 text-xs font-bold py-2.5 rounded-lg hover:bg-red-500/10 transition">Reject</button></div></div>`;
+                });
+            });
+
+            // Review Queue
+            window.approveRev = async (id) => { await updateDoc(doc(db, "peer_reviews", id), { status: "Approved" }); showToast("Review Approved"); };
+            window.rejectRev = async (id) => { await updateDoc(doc(db, "peer_reviews", id), { status: "Rejected" }); showToast("Review Rejected"); };
+            onSnapshot(query(collection(db, "peer_reviews"), where("status", "==", "Pending")), (snapshot) => {
+                const q = document.getElementById('adminReviewQueue');
+                q.innerHTML = snapshot.empty ? `<p class="text-gray-500 text-sm py-2">No pending reviews.</p>` : "";
+                snapshot.forEach((d) => {
+                    const r = d.data();
+                    q.innerHTML += `<div class="p-4 bg-black rounded-xl border border-gray-700"><div class="text-yellow-500 text-xs mb-1">⭐ ${r.rating}/5</div><p class="text-sm text-white mb-2">"${r.text}"</p><p class="text-[10px] text-gray-500 mb-3">${r.user}</p><div class="flex gap-2"><button onclick="approveRev('${d.id}')" class="flex-1 bg-white text-black text-xs font-bold py-1.5 rounded">Approve</button><button onclick="rejectRev('${d.id}')" class="flex-1 border border-red-500 text-red-500 text-xs font-bold py-1.5 rounded">Reject</button></div></div>`;
+                });
+            });
+        }
     </script>
 </body>
 </html>
