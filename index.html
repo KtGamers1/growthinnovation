@@ -14,6 +14,9 @@
         /* 🔥 PROGRESS BAR LOADER 🔥 */
         #topLoader { position: fixed; top: 0; left: 0; height: 4px; background: #f97316; z-index: 99999; width: 0%; transition: width 0.4s ease, opacity 0.4s ease; box-shadow: 0 0 10px #f97316; }
         
+        /* 🔥 FULL SCREEN INITIAL LOADER 🔥 */
+        @keyframes loadingBar { 0% { transform: translateX(-100%); } 100% { transform: translateX(200%); } }
+
         .ambient-blob { position: fixed; border-radius: 50%; filter: blur(120px); z-index: -1; opacity: 0.35; animation: floatBlob 20s infinite alternate ease-in-out; pointer-events: none; }
         .blob-1 { top: -10%; left: -10%; width: 500px; height: 500px; background: #ea580c; }
         .blob-2 { bottom: -10%; right: -10%; width: 500px; height: 500px; background: #9a3412; animation-delay: -10s; }
@@ -72,6 +75,18 @@
     </style>
 </head>
 <body>
+
+    <div id="fullScreenLoader" class="fixed inset-0 bg-[#050505] z-[999999] flex flex-col items-center justify-center transition-opacity duration-700">
+        <div class="relative mb-8">
+            <img src="logo.png" alt="Logo" class="w-28 h-28 object-contain animate-bounce relative z-10" onerror="this.style.display='none'; document.getElementById('loaderFallbackIcon').style.display='block';">
+            <i id="loaderFallbackIcon" data-lucide="zap" class="w-16 h-16 text-[#f97316] hidden animate-bounce relative z-10"></i>
+            <div class="absolute inset-0 bg-[#f97316] blur-[50px] opacity-30 rounded-full animate-pulse"></div>
+        </div>
+        <div class="w-56 h-1.5 bg-[#27272a] rounded-full overflow-hidden">
+            <div class="h-full bg-[#f97316] w-1/2 rounded-full animate-[loadingBar_1s_ease-in-out_infinite]"></div>
+        </div>
+        <p class="text-gray-500 text-xs font-bold mt-5 tracking-[0.2em] uppercase animate-pulse">Connecting Network...</p>
+    </div>
 
     <div id="topLoader"></div>
 
@@ -476,7 +491,6 @@
     <nav class="md:hidden fixed bottom-0 w-full bg-[#000000]/90 backdrop-blur-xl border-t border-[#27272a] flex justify-around p-2 pb-safe z-50">
         <button type="button" onclick="window.location.hash='home'" class="nav-link flex flex-col items-center justify-center p-2 flex-1 text-gray-500 hover:text-white transition outline-none"><i data-lucide="home" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Home</span></button>
         <button type="button" onclick="window.location.hash='marketplace'" class="nav-link flex flex-col items-center justify-center p-2 flex-1 text-gray-500 hover:text-white transition outline-none"><i data-lucide="layout-grid" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Market</span></button>
-        
         <button type="button" onclick="window.location.hash='updates'" class="nav-link flex flex-col items-center justify-center p-2 flex-1 text-gray-500 hover:text-white transition outline-none"><i data-lucide="zap" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Updates</span></button>
         
         <button type="button" onclick="window.toggleNotifPanel()" class="nav-link flex flex-col items-center justify-center p-2 flex-1 text-gray-500 hover:text-white transition relative outline-none">
@@ -614,7 +628,34 @@
                     <div class="space-y-1"><label class="text-xs text-gray-400 font-bold ml-1">Phone Number <span class="text-red-500">*</span></label><input type="text" id="bizPhone" class="modern-input" placeholder="e.g. 9876543210"><label class="flex items-center gap-2 text-xs text-gray-400 pl-1 mt-1 cursor-pointer"><input type="checkbox" id="checkShowPhone" checked class="accent-[#f97316] cursor-pointer"> Show Phone to Public</label></div>
                     <div class="space-y-1 pt-2"><label class="text-xs text-gray-400 font-bold ml-1">Email Address <span class="text-red-500">*</span></label><input type="email" id="bizMail" class="modern-input" placeholder="e.g. shop@example.com"><label class="flex items-center gap-2 text-xs text-gray-400 pl-1 mt-1 cursor-pointer"><input type="checkbox" id="checkShowMail" checked class="accent-[#f97316] cursor-pointer"> Show Email to Public</label></div>
                     <div class="space-y-1 pt-4"><label class="text-xs text-gray-400 font-bold ml-1">Website URL (Optional)</label><input type="url" id="bizWebsite" class="modern-input" placeholder="https://yourwebsite.com"></div>
-                    <div class="pt-2"><label class="text-xs text-gray-400 font-bold ml-1 block mb-2">Social Media Links (Optional)</label><div class="grid grid-cols-1 md:grid-cols-2 gap-3"><div class="relative"><i data-lucide="instagram" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-pink-500"></i><input type="text" id="bizInsta" class="modern-input pl-10 text-sm py-2" placeholder="Instagram URL"></div><div class="relative"><i data-lucide="facebook" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-blue-500"></i><input type="text" id="bizFb" class="modern-input pl-10 text-sm py-2" placeholder="Facebook URL"></div><div class="relative"><i data-lucide="twitter" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300"></i><input type="text" id="bizX" class="modern-input pl-10 text-sm py-2" placeholder="Twitter/X URL"></div><div class="relative"><i data-lucide="youtube" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-red-500"></i><input type="text" id="bizYt" class="modern-input pl-10 text-sm py-2" placeholder="YouTube URL"></div></div></div>
+                    
+                    <div class="pt-2">
+                        <label class="text-xs text-gray-400 font-bold ml-1 block mb-3">Platform & Media Links (Optional)</label>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="relative"><i data-lucide="instagram" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-pink-500"></i><input type="text" id="bizInsta" class="modern-input pl-10 text-sm py-2" placeholder="Instagram URL"></div>
+                            <div class="relative"><i data-lucide="facebook" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-blue-500"></i><input type="text" id="bizFb" class="modern-input pl-10 text-sm py-2" placeholder="Facebook URL"></div>
+                            <div class="relative"><i data-lucide="twitter" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300"></i><input type="text" id="bizX" class="modern-input pl-10 text-sm py-2" placeholder="Twitter/X URL"></div>
+                            <div class="relative"><i data-lucide="youtube" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-red-500"></i><input type="text" id="bizYt" class="modern-input pl-10 text-sm py-2" placeholder="YouTube URL"></div>
+                            
+                            <div class="flex flex-col justify-start">
+                                <div class="relative w-full">
+                                    <i data-lucide="map-pin" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-emerald-500 pointer-events-none"></i>
+                                    <input type="text" id="bizMap" class="modern-input pl-10 text-sm py-2" placeholder="Location / Map URL">
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-col">
+                                <div class="relative rounded-xl p-[2px] bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-pulse shadow-[0_0_15px_rgba(59,130,246,0.3)]">
+                                    <div class="relative bg-[#050505] rounded-[10px] h-full overflow-hidden flex items-center">
+                                        <i data-lucide="shopping-cart" class="absolute left-3 w-4 h-4 text-blue-400 z-10"></i>
+                                        <span class="absolute left-9 text-sm font-bold text-white z-10 pointer-events-none">Buy Now</span>
+                                        <input type="text" id="bizBuyNow" class="modern-input pl-28 text-sm py-2 bg-transparent border-none w-full focus:ring-0 focus:outline-none" style="box-shadow:none;" placeholder="eCommerce Product URL">
+                                    </div>
+                                </div>
+                                <p class="text-[10px] text-gray-500 mt-1 ml-1 leading-tight">* Here you can enter url of amazon, flipkart, or any other ecommerce website</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="bg-[#111] p-5 md:p-6 rounded-2xl border border-[#27272a]">
@@ -704,6 +745,17 @@
         // Init Icons safely
         window.initIcons = () => { try { lucide.createIcons(); } catch(e){} };
         window.initIcons();
+
+        // 🔥 HIDE LOADER AFTER EVERYTHING IS READY 🔥
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const loader = document.getElementById('fullScreenLoader');
+                if(loader) {
+                    loader.style.opacity = '0';
+                    setTimeout(() => loader.remove(), 700);
+                }
+            }, 1000); // 1s visual buffer
+        });
 
         // ==========================================
         // 🔥 UTILS & SAFE GLOBAL FUNCTIONS 🔥
@@ -900,7 +952,7 @@
         window.openAuthOrProfile = () => auth.currentUser ? window.switchTab('profile') : window.openModal('authModal');
 
         // ==========================================
-        // 🔥 REVIEW RATING SYSTEM (100% FIXED) 🔥
+        // 🔥 REVIEW RATING SYSTEM 🔥
         // ==========================================
         window.currentRating = 0;
         window.setRating = (val) => {
@@ -1039,6 +1091,12 @@
                         <input type="text" class="modern-input py-2 text-sm item-price-full bg-[#050505]" placeholder="Full Price (Optional)" value="${data && data.priceFull ? data.priceFull : ''}">
                         <input type="text" class="modern-input py-2 text-sm item-price-half bg-[#050505]" placeholder="Half Price (Optional)" value="${data && data.priceHalf ? data.priceHalf : ''}">
                     </div>
+                    <div class="grid grid-cols-1 gap-3 mb-3 pr-6">
+                        <div class="relative">
+                            <i data-lucide="link" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-blue-400"></i>
+                            <input type="url" class="modern-input pl-10 py-2 text-sm item-url bg-[#050505]" placeholder="Product / Buy Now Link (Optional)" value="${data && data.url ? data.url : ''}">
+                        </div>
+                    </div>
                     <div class="flex items-center gap-3">
                         <button type="button" onclick="document.getElementById('imgInp_${id}').click()" class="bg-[#27272a] text-white text-xs font-bold px-3 py-2 rounded-lg hover:text-[#f97316] transition" id="imgLbl_${id}">+ Photos (Max 2)</button>
                         <input type="file" id="imgInp_${id}" accept="image/*" multiple class="hidden" onchange="window.handleMultipleImages(event, 'preview_${id}', 'imgLbl_${id}', 2, '${id}')">
@@ -1150,6 +1208,9 @@
             document.getElementById('bizName').value = ''; document.getElementById('bizCategory').value = ''; document.getElementById('bizCity').value = ''; document.getElementById('bizAddress').value = ''; document.getElementById('bizPhone').value = ''; document.getElementById('bizMail').value = ''; document.getElementById('bizDesc').value = '';
             document.getElementById('bizHours').value = ''; document.getElementById('bizWebsite').value = '';
             document.getElementById('bizInsta').value = ''; document.getElementById('bizFb').value = ''; document.getElementById('bizX').value = ''; document.getElementById('bizYt').value = '';
+            
+            document.getElementById('bizMap').value = ''; document.getElementById('bizBuyNow').value = '';
+
             document.getElementById('checkShowPhone').checked = true; document.getElementById('checkShowMail').checked = true;
             document.getElementById('isOnlineBiz').checked = false; document.getElementById('isClosedToday').checked = false; window.toggleAddressField();
             
@@ -1183,6 +1244,9 @@
                 document.getElementById('bizInsta').value = ''; document.getElementById('bizFb').value = ''; document.getElementById('bizX').value = ''; document.getElementById('bizYt').value = '';
             }
 
+            document.getElementById('bizMap').value = b.mapUrl || ''; 
+            document.getElementById('bizBuyNow').value = b.buyNowUrl || '';
+
             document.getElementById('checkShowPhone').checked = b.showPhone !== false; 
             document.getElementById('checkShowMail').checked = b.showMail !== false;
             document.getElementById('isOnlineBiz').checked = b.isOnline || false; 
@@ -1205,6 +1269,9 @@
 
         window.submitBiz = async () => {
             const name = document.getElementById('bizName').value.trim(), category = document.getElementById('bizCategory').value, city = document.getElementById('bizCity').value.trim().toLowerCase(), addr = document.getElementById('bizAddress').value, phone = document.getElementById('bizPhone').value, mail = document.getElementById('bizMail').value, desc = document.getElementById('bizDesc').value, hours = document.getElementById('bizHours').value, website = document.getElementById('bizWebsite').value;
+            
+            const mapUrl = document.getElementById('bizMap').value.trim();
+            const buyNowUrl = document.getElementById('bizBuyNow').value.trim();
 
             if(!name || !category || !city || !addr || !phone || !mail || !desc) return window.showToast("All main fields are Mandatory!");
             
@@ -1214,7 +1281,14 @@
                 document.querySelectorAll('.item-box').forEach(box => {
                     const id = box.id.replace('box_', ''); const iName = box.querySelector('.item-name').value;
                     if(!iName) { allItemsValid = false; return; }
-                    finalItems.push({ name: iName, type: box.querySelector('.item-type').value, priceFull: box.querySelector('.item-price-full').value, priceHalf: box.querySelector('.item-price-half').value, images: window.tempItemImgs[id] || [] });
+                    finalItems.push({ 
+                        name: iName, 
+                        type: box.querySelector('.item-type').value, 
+                        priceFull: box.querySelector('.item-price-full').value, 
+                        priceHalf: box.querySelector('.item-price-half').value, 
+                        url: box.querySelector('.item-url').value.trim(), // 🔥 URL SAVED HERE
+                        images: window.tempItemImgs[id] || [] 
+                    });
                 });
                 if(!allItemsValid) return window.showToast("Item Name is Mandatory for each item.");
             }
@@ -1229,6 +1303,7 @@
 
             const payload = { 
                 name, category, city, address: addr, phone, mail, desc, hours, website, socials, 
+                mapUrl, buyNowUrl, 
                 showPhone: document.getElementById('checkShowPhone').checked, showMail: document.getElementById('checkShowMail').checked, 
                 isOnline: document.getElementById('isOnlineBiz').checked, isClosedToday: document.getElementById('isClosedToday').checked,
                 images: window.mainImgs, items: finalItems, 
@@ -1294,7 +1369,46 @@
         window.submitTicket = async () => {
             const subject = document.getElementById('ticketSubject').value, desc = document.getElementById('ticketDesc').value;
             if(!subject || !desc) return window.showToast("All fields required");
-            try { await addDoc(collection(db, "support_tickets"), { subject, owner: auth.currentUser.email, status: 'Open', images: window.ticketImgs, timestamp: Date.now(), messages: [{ sender: auth.currentUser.email, text: desc, time: Date.now() }] }); window.closeModal('ticketModal'); window.showToast("Ticket Opened"); document.getElementById('ticketSubject').value = ''; document.getElementById('ticketDesc').value = ''; window.ticketImgs = []; document.getElementById('ticketImgPrev').innerHTML = ''; document.getElementById('ticketImgLbl').innerText = ''; } catch(e) { window.showToast("Error"); }
+            const btn = document.getElementById('submitTicketBtn'); btn.innerText = "Submitting...";
+            
+            try { 
+                // GET COUNT FOR TICKET ID
+                const snap = await getDocs(collection(db, "support_tickets"));
+                const tktId = `#${snap.size + 1}`;
+
+                await addDoc(collection(db, "support_tickets"), { 
+                    ticketId: tktId,
+                    subject, 
+                    owner: auth.currentUser.email, 
+                    status: 'Open', 
+                    images: window.ticketImgs, 
+                    timestamp: Date.now(), 
+                    messages: [{ sender: auth.currentUser.email, text: desc, time: Date.now() }] 
+                }); 
+
+                // WEBHOOK NOTIFICATION
+                try {
+                    const webhookUrl = "https://discordapp.com/api/webhooks/1485529570764652614/0k66BLilC2AvepZJW9hID1XW86OrbMoLMIMi8KHW391crZn-I-Us8pjVk1-BsgHvvKsS";
+                    const discordPayload = {
+                        embeds: [{
+                            title: "🎫 New Support Ticket Created",
+                            color: 3447003,
+                            fields: [
+                                { name: "Ticket ID", value: tktId, inline: true },
+                                { name: "User Email", value: auth.currentUser.email, inline: true },
+                                { name: "Subject", value: subject, inline: false },
+                                { name: "Description", value: desc, inline: false }
+                            ]
+                        }]
+                    };
+                    fetch(webhookUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(discordPayload) });
+                } catch(e) {}
+
+                window.closeModal('ticketModal'); window.showToast("Ticket Opened"); 
+                document.getElementById('ticketSubject').value = ''; document.getElementById('ticketDesc').value = ''; 
+                window.ticketImgs = []; document.getElementById('ticketImgPrev').innerHTML = ''; document.getElementById('ticketImgLbl').innerText = ''; 
+            } catch(e) { window.showToast("Error"); }
+            btn.innerText = "Submit to Helpdesk";
         };
 
         window.openChat = (ticketId, subject) => {
@@ -1340,8 +1454,44 @@
         window.pendingBoostId = null;
         window.openBoostModal = (bizId) => { window.pendingBoostId = bizId; window.openModal('boostModal'); }
         window.submitBoost = async () => {
-            const plan = document.querySelector('input[name="boostPlan"]:checked').value; document.getElementById('proceedBoostBtn').innerText = "Processing...";
-            try { await addDoc(collection(db, "support_tickets"), { subject: `Boost Request: BizID-${window.pendingBoostId}`, owner: auth.currentUser.email, status: 'Open', timestamp: Date.now(), messages: [{ sender: auth.currentUser.email, text: `I want to Boost my post! Plan: ₹${plan}.`, time: Date.now() }] }); window.closeModal('boostModal'); window.showToast("Boost Request Sent!"); window.location.hash = 'support'; } catch(e) { window.showToast("Error"); }
+            const plan = document.querySelector('input[name="boostPlan"]:checked').value; 
+            document.getElementById('proceedBoostBtn').innerText = "Processing...";
+            
+            try { 
+                // GET COUNT FOR TICKET ID
+                const snap = await getDocs(collection(db, "support_tickets"));
+                const tktId = `#${snap.size + 1}`;
+                const subjectText = `Boost Request: BizID-${window.pendingBoostId}`;
+
+                await addDoc(collection(db, "support_tickets"), { 
+                    ticketId: tktId,
+                    subject: subjectText, 
+                    owner: auth.currentUser.email, 
+                    status: 'Open', 
+                    timestamp: Date.now(), 
+                    messages: [{ sender: auth.currentUser.email, text: `I want to Boost my post! Plan: ₹${plan}.`, time: Date.now() }] 
+                }); 
+
+                // WEBHOOK NOTIFICATION
+                try {
+                    const webhookUrl = "https://discordapp.com/api/webhooks/1485529570764652614/0k66BLilC2AvepZJW9hID1XW86OrbMoLMIMi8KHW391crZn-I-Us8pjVk1-BsgHvvKsS";
+                    const discordPayload = {
+                        embeds: [{
+                            title: "🚀 New Boost Request",
+                            color: 15158332,
+                            fields: [
+                                { name: "Ticket ID", value: tktId, inline: true },
+                                { name: "User Email", value: auth.currentUser.email, inline: true },
+                                { name: "Plan selected", value: `₹${plan}`, inline: true },
+                                { name: "Biz ID", value: window.pendingBoostId, inline: false }
+                            ]
+                        }]
+                    };
+                    fetch(webhookUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(discordPayload) });
+                } catch(e) {}
+
+                window.closeModal('boostModal'); window.showToast("Boost Request Sent!"); window.location.hash = 'support'; 
+            } catch(e) { window.showToast("Error"); }
             document.getElementById('proceedBoostBtn').innerText = "Proceed to Checkout";
         };
 
@@ -1490,7 +1640,21 @@
                     if(item.priceFull && item.priceHalf) priceHtml = `<p class="text-[#f97316] font-black mt-1">${item.priceFull} | Half: ${item.priceHalf}</p>`;
                     else if(item.priceFull) priceHtml = `<p class="text-[#f97316] font-black mt-1">${item.priceFull}</p>`;
                     else if(item.priceHalf) priceHtml = `<p class="text-[#f97316] font-black mt-1">Half: ${item.priceHalf}</p>`;
-                    iList += `<div class="p-4 border border-[#27272a] rounded-xl flex justify-between items-center bg-[#050505] hover:border-[#f97316] transition"><div class="flex gap-4">${iImgs}<div><h4 class="font-bold text-lg flex items-center gap-2">${item.name} <span class="text-xs text-gray-500">${icon}</span></h4>${priceHtml}</div></div></div>`;
+                    
+                    // 🔥 PRODUCT URL BUTTON 🔥
+                    let itemBtn = item.url ? `<a href="${item.url}" target="_blank" class="bg-[#27272a] hover:bg-blue-600 text-white transition px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-wider flex items-center justify-center gap-1.5 shrink-0 mt-3 sm:mt-0"><i data-lucide="shopping-cart" class="w-3 h-3"></i> Buy Product</a>` : '';
+
+                    iList += `
+                    <div class="p-4 border border-[#27272a] rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center bg-[#050505] hover:border-[#f97316] transition gap-4">
+                        <div class="flex gap-4 w-full">
+                            ${iImgs}
+                            <div class="flex-grow">
+                                <h4 class="font-bold text-lg flex items-center gap-2">${item.name} <span class="text-xs text-gray-500">${icon}</span></h4>
+                                ${priceHtml}
+                            </div>
+                        </div>
+                        ${itemBtn}
+                    </div>`;
                 });
                 itemsHtml = `<div class="mt-10 pt-10 border-t border-[#1F1F1F]"><h3 class="text-2xl font-black mb-6 flex items-center gap-2"><i data-lucide="list" class="text-[#f97316]"></i> Catalog / Menu</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${iList}</div></div>`;
             }
@@ -1554,6 +1718,16 @@
                         ${b.website ? `
                         <a href="${b.website}" target="_blank" class="flex items-center gap-3 bg-[#050505] p-3 rounded-xl border border-[#27272a] sm:col-span-2 hover:border-[#f97316] transition outline-none">
                             <i data-lucide="external-link" class="w-5 h-5 text-blue-400 shrink-0"></i><span class="text-sm font-bold text-blue-400">Visit Official Website</span>
+                        </a>` : ''}
+                        
+                        ${b.mapUrl ? `
+                        <a href="${b.mapUrl}" target="_blank" class="flex items-center gap-3 bg-[#050505] p-3 rounded-xl border border-emerald-500/30 sm:col-span-2 hover:border-emerald-500 transition outline-none">
+                            <i data-lucide="map" class="w-5 h-5 text-emerald-400 shrink-0"></i><span class="text-sm font-bold text-emerald-400">View on Google Maps</span>
+                        </a>` : ''}
+                        
+                        ${b.buyNowUrl ? `
+                        <a href="${b.buyNowUrl}" target="_blank" class="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 p-3 rounded-xl shadow-[0_0_15px_rgba(59,130,246,0.3)] sm:col-span-2 hover:scale-[1.02] transition outline-none mt-2">
+                            <i data-lucide="shopping-cart" class="w-5 h-5 text-white shrink-0"></i><span class="text-sm font-black text-white uppercase tracking-wider">Buy Now / Store</span>
                         </a>` : ''}
                     </div>
                     
@@ -1732,12 +1906,22 @@
                 if(!divSupport) return;
                 divSupport.innerHTML = snapshot.empty ? `<div class="text-center py-6"><i data-lucide="ticket" class="w-10 h-10 text-gray-600 mx-auto mb-2"></i><p class="text-gray-500 text-sm">No active tickets.</p></div>` : "";
                 snapshot.forEach((d) => {
-                    const t = d.data(), clr = t.status === 'Open' ? 'text-red-500 border-red-500/30 bg-red-500/5' : 'text-green-500 border-green-500/30 bg-green-500/5';
+                    const t = d.data();
+                    const clr = t.status === 'Open' ? 'text-red-500 border-red-500/30 bg-red-500/5' : 'text-green-500 border-green-500/30 bg-green-500/5';
+                    const tIdDisplay = t.ticketId || 'N/A';
+                    
                     divSupport.innerHTML += `
                         <div class="p-5 bg-[#050505] border border-[#27272a] rounded-xl flex justify-between items-center group hover:border-[#f97316] transition">
                             <div class="cursor-pointer flex-grow outline-none" onclick="window.openChat('${d.id}', '${(t.subject||'').replace(/'/g, "\\'")}')">
-                                <div class="flex justify-between items-center mb-2"><h4 class="font-bold pr-4">${t.subject}</h4><span class="text-[10px] font-bold ${clr} border px-2 py-1 rounded uppercase shrink-0">${t.status}</span></div>
-                                <div class="flex justify-between items-center mt-3"><p class="text-xs text-gray-500">View discussion</p><p class="text-xs text-[#f97316] font-bold flex items-center gap-1 group-hover:gap-2 transition-all">Open Chat <i data-lucide="arrow-right" class="w-3 h-3"></i></p></div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <h4 class="font-bold pr-4"><span class="text-[#f97316] mr-1">${tIdDisplay}</span> ${t.subject}</h4>
+                                    <span class="text-[10px] font-bold ${clr} border px-2 py-1 rounded uppercase shrink-0">${t.status}</span>
+                                </div>
+                                <p class="text-xs text-gray-500 mb-2">By: ${t.owner}</p>
+                                <div class="flex justify-between items-center mt-3">
+                                    <p class="text-xs text-gray-500">View discussion</p>
+                                    <p class="text-xs text-[#f97316] font-bold flex items-center gap-1 group-hover:gap-2 transition-all">Open Chat <i data-lucide="arrow-right" class="w-3 h-3"></i></p>
+                                </div>
                             </div>
                             <button type="button" onclick="window.deleteTicket('${d.id}')" class="ml-4 p-2 text-gray-500 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition outline-none"><i data-lucide="trash" class="w-4 h-4"></i></button>
                         </div>`;
