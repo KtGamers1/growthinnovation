@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Growth Innovation | Pro Marketplace</title>
+    <title>Growth Innovation | Marketplace</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -11,35 +11,37 @@
         
         body { font-family: 'Outfit', sans-serif; background-color: #050505; color: #fafafa; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; -webkit-tap-highlight-color: transparent; }
         
-        /* 🔥 EPIC AMBIENT BACKGROUND 🔥 */
+        /* 🔥 PROGRESS BAR LOADER 🔥 */
+        #topLoader { position: fixed; top: 0; left: 0; height: 4px; background: #f97316; z-index: 99999; width: 0%; transition: width 0.4s ease, opacity 0.4s ease; box-shadow: 0 0 10px #f97316; }
+        
         .ambient-blob { position: fixed; border-radius: 50%; filter: blur(120px); z-index: -1; opacity: 0.35; animation: floatBlob 20s infinite alternate ease-in-out; pointer-events: none; }
         .blob-1 { top: -10%; left: -10%; width: 500px; height: 500px; background: #ea580c; }
         .blob-2 { bottom: -10%; right: -10%; width: 500px; height: 500px; background: #9a3412; animation-delay: -10s; }
         @keyframes floatBlob { 0% { transform: translate(0, 0) scale(1); } 50% { transform: translate(50px, 50px) scale(1.2); } 100% { transform: translate(-50px, -20px) scale(0.8); } }
 
-        /* Modern UI Elements */
         .glass-card { background: rgba(15, 15, 15, 0.7); backdrop-filter: blur(24px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 20px; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
         .glass-card:hover { border-color: rgba(249, 115, 22, 0.4); transform: translateY(-4px); box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 20px rgba(249, 115, 22, 0.1); }
         
-        .modern-input { background: rgba(0,0,0,0.5); border: 1px solid #27272a; color: white; border-radius: 12px; padding: 14px 16px; width: 100%; transition: 0.3s; outline: none; }
+        .boosted-card { border: 1px solid rgba(220, 38, 38, 0.8) !important; box-shadow: 0 0 30px rgba(220, 38, 38, 0.15) !important; background: linear-gradient(180deg, rgba(220,38,38,0.05) 0%, rgba(15,15,15,0.9) 100%) !important; }
+        .boosted-card:hover { box-shadow: 0 15px 40px rgba(220, 38, 38, 0.3), 0 0 30px rgba(220, 38, 38, 0.2) !important; border-color: #ef4444 !important; transform: translateY(-6px); }
+
+        .modern-input { background: rgba(0,0,0,0.5); border: 1px solid #27272a; color: white; border-radius: 12px; padding: 14px 16px; width: 100%; transition: 0.3s; outline: none; font-size: 0.95rem; }
         .modern-input:focus { border-color: #f97316; box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.2); background: rgba(0,0,0,0.8); }
         
-        .btn-brand { background: linear-gradient(135deg, #f97316, #ea580c); color: #000; font-weight: 800; padding: 14px 24px; border-radius: 12px; transition: 0.3s; display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3); text-decoration: none; }
-        .btn-brand:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 25px rgba(249, 115, 22, 0.4); }
+        .btn-brand { background: linear-gradient(135deg, #f97316, #ea580c); color: #000; font-weight: 800; padding: 14px 24px; border-radius: 12px; transition: 0.3s; display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3); text-decoration: none; border: none; }
+        .btn-brand:hover:not(:disabled) { transform: translateY(-2px) scale(1.02); box-shadow: 0 8px 25px rgba(249, 115, 22, 0.4); }
+        .btn-brand:disabled { opacity: 0.5; cursor: not-allowed; background: #27272a; color: #71717a; box-shadow: none; transform: none; }
         
-        /* 🔥 SMOOTH VIEW ROUTER ANIMATIONS 🔥 */
         .view-section { display: none; }
         .view-section.active { display: block; animation: scaleFadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         @keyframes scaleFadeUp { 0% { opacity: 0; transform: translateY(30px) scale(0.95); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
 
-        /* Staggered Feed Animation */
         .stagger-card { opacity: 0; animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 
-        /* Modals & Toasts */
-        .modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 100; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
+        .modal-bg { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 1000; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s; }
         .modal-bg.active { display: flex; opacity: 1; }
-        .modal-box { background: #0A0A0A; border: 1px solid #27272a; border-radius: 24px; width: 95%; max-width: 600px; padding: 32px; max-height: 90vh; overflow-y: auto; transform: scale(0.9); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
+        .modal-box { background: #0A0A0A; border: 1px solid #27272a; border-radius: 24px; width: 95%; max-width: 650px; padding: 32px; max-height: 90vh; overflow-y: auto; transform: scale(0.9); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
         .modal-bg.active .modal-box { transform: scale(1); }
         
         #toast { position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%); background: #111; border: 1px solid #333; color: #fff; padding: 14px 24px; border-radius: 50px; font-weight: 700; transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1); z-index: 9999; display: flex; align-items: center; gap: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
@@ -47,17 +49,31 @@
         
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-        /* Review Stars */
-        .star-rating i { cursor: pointer; color: #27272a; transition: 0.2s; }
-        .star-rating i.active { color: #f97316; fill: #f97316; }
         
-        /* Legal Pages Text Styling */
+        /* 🔥 FIXED STAR UI 🔥 */
+        .star-btn { background: transparent; border: none; outline: none; cursor: pointer; transition: 0.2s; color: #27272a; padding: 0; display: inline-flex; }
+        .star-btn.active { color: #f97316; }
+        .star-btn svg { fill: transparent; transition: 0.2s; pointer-events: none; }
+        .star-btn.active svg { fill: #f97316; }
+
         .legal-text h3 { color: #f97316; font-weight: 800; font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
         .legal-text p { color: #9ca3af; margin-bottom: 1rem; line-height: 1.6; }
+        
+        #notifPanel { position: absolute; top: 60px; right: 0; width: 320px; max-height: 400px; overflow-y: auto; background: #0A0A0A; border: 1px solid #27272a; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); display: none; z-index: 1000; flex-direction: column; }
+        #notifPanel.active { display: flex; animation: scaleFadeUp 0.3s ease forwards; }
+        
+        .pb-safe { padding-bottom: calc(0.5rem + env(safe-area-inset-bottom)); }
+
+        /* 🔥 PREMIUM ABSTRACT BACKGROUNDS 🔥 */
+        .pattern-bg-1 { background: linear-gradient(135deg, #1f1108, #050505); background-image: linear-gradient(rgba(249,115,22,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(249,115,22,0.05) 1px, transparent 1px); background-size: 20px 20px; }
+        .pattern-bg-2 { background: linear-gradient(135deg, #0f172a, #050505); background-image: linear-gradient(rgba(59,130,246,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.05) 1px, transparent 1px); background-size: 20px 20px; }
+        .pattern-bg-3 { background: linear-gradient(135deg, #064e3b, #050505); background-image: linear-gradient(rgba(16,185,129,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(16,185,129,0.05) 1px, transparent 1px); background-size: 20px 20px; }
+        .pattern-bg-4 { background: linear-gradient(135deg, #2e1065, #050505); background-image: linear-gradient(rgba(139,92,246,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.05) 1px, transparent 1px); background-size: 20px 20px; }
     </style>
 </head>
 <body>
+
+    <div id="topLoader"></div>
 
     <div class="ambient-blob blob-1"></div>
     <div class="ambient-blob blob-2"></div>
@@ -65,7 +81,8 @@
     <header class="border-b border-white/5 bg-[#000000]/70 backdrop-blur-xl sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-5 md:px-6 h-20 flex items-center justify-between">
             <a href="#home" class="flex items-center gap-3 cursor-pointer group outline-none">
-                <img src="letter-g-gg-hexagonal-modern-600nw-2661904643.png" alt="Growth Innovation Logo" class="w-10 h-10 object-contain group-hover:scale-110 transition duration-300 drop-shadow-[0_0_10px_rgba(249,115,22,0.5)]">
+                <img src="logo.png" alt="Growth Innovation Logo" class="w-10 h-10 object-contain group-hover:scale-110 transition duration-300 drop-shadow-[0_0_10px_rgba(249,115,22,0.5)]" onerror="this.style.display='none'; document.getElementById('fallbackLogo').style.display='block';">
+                <i id="fallbackLogo" data-lucide="zap" class="w-8 h-8 text-[#f97316] hidden"></i>
                 <h1 class="text-xl md:text-2xl font-black tracking-tight hidden sm:block">Growth Innovation</h1>
             </a>
             
@@ -77,9 +94,30 @@
                 <a href="#support" data-target="support" class="nav-link text-gray-400 hover:text-white font-bold transition">Support</a>
             </nav>
             
-            <button onclick="openAuthOrProfile()" class="bg-[#111] border border-[#27272a] hover:border-[#f97316] hover:bg-[#1a1a1a] px-5 py-2.5 rounded-full font-bold text-sm flex items-center gap-2 transition duration-300">
-                <i data-lucide="user-circle" class="w-5 h-5 text-[#f97316]"></i> <span id="navProfileText">Sign In</span>
-            </button>
+            <div class="flex items-center gap-4 relative">
+                <button type="button" onclick="window.toggleNotifPanel()" class="text-gray-400 hover:text-[#f97316] transition relative cursor-pointer group outline-none" title="Notifications">
+                    <i data-lucide="bell" class="w-6 h-6"></i>
+                    <span id="notifBadge" class="absolute -top-1 -right-1 bg-red-600 text-white text-[10px] font-black px-1.5 py-0.5 rounded-full hidden border-2 border-black">0</span>
+                </button>
+                
+                <div id="notifPanel">
+                    <div class="p-4 border-b border-[#27272a] flex justify-between items-center bg-[#111]">
+                        <h4 class="font-black text-white text-sm">Notifications</h4>
+                        <button type="button" onclick="window.clearNotifs()" class="text-xs text-[#f97316] font-bold hover:underline outline-none">Clear</button>
+                    </div>
+                    <div id="notifList" class="p-0 overflow-y-auto max-h-[300px]">
+                        <p class="text-center py-6 text-xs text-gray-500">No new alerts.</p>
+                    </div>
+                </div>
+
+                <a href="#wishlists" class="text-gray-400 hover:text-red-500 transition relative cursor-pointer group flex items-center justify-center w-10 h-10" title="Saved Wishlists">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:stroke-red-500 transition"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                    <span id="wishCountBadge" class="absolute -top-1 -right-1 bg-red-600 text-white text-[10px] font-black px-1.5 py-0.5 rounded-full hidden border-2 border-black shadow-[0_0_8px_rgba(220,38,38,0.8)]">0</span>
+                </a>
+                <button type="button" onclick="window.openAuthOrProfile()" class="bg-[#111] border border-[#27272a] hover:border-[#f97316] hover:bg-[#1a1a1a] px-5 py-2.5 rounded-full font-bold text-sm flex items-center gap-2 transition duration-300">
+                    <i data-lucide="user-circle" class="w-5 h-5 text-[#f97316]"></i> <span id="navProfileText">Sign In</span>
+                </button>
+            </div>
         </div>
     </header>
 
@@ -95,13 +133,13 @@
                 </h2>
                 <p class="text-gray-400 text-lg md:text-xl mb-10 max-w-2xl mx-auto">A premium, 100% free ecosystem to list your enterprise and connect with your city or village. Zero algorithms.</p>
                 <div class="flex justify-center gap-4">
-                    <a href="#marketplace" class="btn-brand">Explore Marketplace <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                    <button type="button" onclick="window.location.hash='marketplace'" class="btn-brand">Explore Marketplace <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
                 </div>
             </div>
             <div class="pt-16">
                 <div class="flex justify-between items-center mb-8">
                     <h3 class="text-2xl md:text-3xl font-black flex items-center gap-2"><i data-lucide="sparkles" class="text-[#f97316]"></i> Featured Near You</h3>
-                    <a href="#marketplace" class="text-[#f97316] font-bold hover:underline text-sm">View All →</a>
+                    <button type="button" onclick="window.location.hash='marketplace'" class="text-[#f97316] font-bold hover:underline text-sm outline-none">View All →</button>
                 </div>
                 <div id="homeFeed" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
             </div>
@@ -134,27 +172,27 @@
                     <option value="Gym & Fitness">Gym & Fitness</option>
                     <option value="Health & Medical">Health & Medical</option>
                     <option value="Home Services">Home Services</option>
-                    <option value="Hotels & Lodging">Hotels & Lodging</option>
                     <option value="IT & Tech">IT & Tech</option>
-                    <option value="Legal & Financial">Legal & Financial</option>
-                    <option value="Manufacturing">Manufacturing</option>
-                    <option value="Photography & Studios">Photography & Studios</option>
-                    <option value="Plumbing & Electrical">Plumbing & Electrical</option>
-                    <option value="Real Estate">Real Estate</option>
-                    <option value="Retail & Shopping">Retail & Shopping</option>
                     <option value="Shopping Mall">Shopping Mall</option>
-                    <option value="Supermarket & Groceries">Supermarket & Groceries</option>
-                    <option value="Travel & Transport">Travel & Transport</option>
                     <option value="Others">Others</option>
                 </select>
             </div>
 
-            <div id="fullFeed" class="flex flex-col gap-6"></div>
+            <div id="fullFeed" class="flex flex-col gap-6 max-w-5xl mx-auto"></div>
+        </section>
+
+        <section id="view-wishlists" class="view-section pt-4 md:pt-8">
+            <h2 class="text-3xl md:text-4xl font-black mb-2 flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="#ef4444" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> 
+                Saved Wishlists
+            </h2>
+            <p class="text-gray-400 mb-10 text-base md:text-lg">Businesses you loved and saved for later.</p>
+            <div id="wishlistFeed" class="flex flex-col gap-6 max-w-5xl mx-auto"></div>
         </section>
 
         <section id="view-detail" class="view-section pt-4 md:pt-8">
-            <a href="#marketplace" class="text-gray-400 hover:text-white mb-6 inline-flex items-center gap-2 font-bold transition"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back to Marketplace</a>
-            <div id="detailContent" class="glass-card p-0 overflow-hidden border-white/5 shadow-2xl">
+            <button type="button" onclick="window.history.back()" class="text-gray-400 hover:text-white mb-6 inline-flex items-center gap-2 font-bold transition outline-none"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back</button>
+            <div id="detailContent" class="glass-card p-0 overflow-hidden border-white/5 shadow-2xl relative z-10">
                 </div>
         </section>
 
@@ -163,10 +201,69 @@
             <div class="max-w-3xl space-y-6">
                 <div class="glass-card p-8 border-l-4 border-l-[#f97316]">
                     <div class="flex justify-between items-center mb-4">
-                        <h3 class="text-xl md:text-2xl font-bold flex items-center gap-2"><i data-lucide="rocket" class="w-6 h-6 text-[#f97316]"></i> Boost Engine v1.0</h3>
-                        <span class="bg-[#f97316]/10 text-[#f97316] text-[10px] font-black px-3 py-1 rounded border border-orange-500/20">NEW</span>
+                        <h3 class="text-xl md:text-2xl font-bold flex items-center gap-2"><i data-lucide="message-circle" class="w-6 h-6 text-[#f97316]"></i> KtDev Says</h3>
+                        <span class="bg-[#f97316]/10 text-[#f97316] text-[10px] font-black px-3 py-1 rounded border border-orange-500/20">LATEST</span>
+                    </div>
+                    <p class="text-white text-3xl font-black mb-2">Start, Promote, Earn 🚀</p>
+                    <p class="text-gray-400 leading-relaxed text-base md:text-lg">Grow your local business rapidly with our zero-commission digital ecosystem. Build your community today!</p>
+                </div>
+
+                <div class="glass-card p-8 border-l-4 border-l-red-600">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl md:text-2xl font-bold flex items-center gap-2"><i data-lucide="rocket" class="w-6 h-6 text-red-500"></i> Boost Engine v1.0</h3>
                     </div>
                     <p class="text-gray-400 leading-relaxed text-base md:text-lg">Creators can now boost their posts to reach a wider audience using our new tiered monetization system directly from their Portal.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="view-tutorial" class="view-section pt-4 md:pt-8 max-w-4xl mx-auto">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl md:text-4xl font-black">Platform Tutorial</h2>
+                <button type="button" onclick="window.toggleTutorialLang()" class="btn-brand py-2 px-4 text-xs outline-none">Switch to Simple Hindi</button>
+            </div>
+            
+            <div class="glass-card p-8 md:p-12 border-white/5 space-y-8" id="tutorial-en">
+                <h3 class="text-2xl font-black text-[#f97316]">How to Set Up Your Business</h3>
+                <div class="space-y-6 text-gray-300">
+                    <div>
+                        <h4 class="font-bold text-white text-lg flex items-center gap-2"><span class="bg-[#27272a] w-6 h-6 rounded-full flex items-center justify-center text-xs">1</span> Create an Account</h4>
+                        <p class="mt-2">First, you need an account. Click the <strong>Sign In</strong> button on the top right, switch to 'Register', and create your account securely. <button type="button" onclick="window.openModal('authModal')" class="text-[#f97316] hover:underline bg-transparent border-none p-0 inline outline-none">Click here to Sign In</button>.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white text-lg flex items-center gap-2"><span class="bg-[#27272a] w-6 h-6 rounded-full flex items-center justify-center text-xs">2</span> Go to Business Portal</h4>
+                        <p class="mt-2">Once logged in, click on "Portal" at the top right. This is your personal dashboard. <button type="button" onclick="window.location.hash='profile'" class="text-[#f97316] hover:underline bg-transparent border-none p-0 inline outline-none">Click here to go to Portal</button>.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white text-lg flex items-center gap-2"><span class="bg-[#27272a] w-6 h-6 rounded-full flex items-center justify-center text-xs">3</span> Register Your Business</h4>
+                        <p class="mt-2">Click on the "+ Register New" button. Fill in all details carefully. Upload good images (max 10), set your category, and optionally add your social media links like Instagram/WhatsApp. Don't forget to list your Menu/Items with prices!</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white text-lg flex items-center gap-2"><span class="bg-[#27272a] w-6 h-6 rounded-full flex items-center justify-center text-xs">4</span> Add Offers / Posts</h4>
+                        <p class="mt-2">Once your business is approved by Admin, you will see an "Add Offer/Post" button in your Portal. Click it to create timed offers (e.g., 20% off today) that will appear directly on your business profile!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card p-8 md:p-12 border-white/5 space-y-8 hidden" id="tutorial-hi">
+                <h3 class="text-2xl font-black text-[#f97316]">Apna Business Kaise Setup Karein</h3>
+                <div class="space-y-6 text-gray-300">
+                    <div>
+                        <h4 class="font-bold text-white text-lg flex items-center gap-2"><span class="bg-[#27272a] w-6 h-6 rounded-full flex items-center justify-center text-xs">1</span> Account Banayein</h4>
+                        <p class="mt-2">Sabse pehle, upar right side pe <strong>Sign In</strong> dabayein, 'Register' par click karein aur apna account banayein. <button type="button" onclick="window.openModal('authModal')" class="text-[#f97316] hover:underline bg-transparent border-none p-0 inline outline-none">Yahan click karein</button>.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white text-lg flex items-center gap-2"><span class="bg-[#27272a] w-6 h-6 rounded-full flex items-center justify-center text-xs">2</span> Business Portal Par Jayein</h4>
+                        <p class="mt-2">Login karne ke baad, upar "Portal" par click karein. Ye aapka dashboard hai. <button type="button" onclick="window.location.hash='profile'" class="text-[#f97316] hover:underline bg-transparent border-none p-0 inline outline-none">Portal par jaane ke liye yahan dabayein</button>.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white text-lg flex items-center gap-2"><span class="bg-[#27272a] w-6 h-6 rounded-full flex items-center justify-center text-xs">3</span> Business Register Karein</h4>
+                        <p class="mt-2">Portal mein "+ Register New" dabayein. Apni details sahi se bharein. Achhi photos daalein, apni category select karein aur Instagram wagera ke link daalein. Apna Menu/Catalogue daalna mat bhoolna!</p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white text-lg flex items-center gap-2"><span class="bg-[#27272a] w-6 h-6 rounded-full flex items-center justify-center text-xs">4</span> Offers / Post Daalein</h4>
+                        <p class="mt-2">Jab Admin aapka business Approve kar dega, tab aapko Portal mein "Add Offer/Post" ka button dikhega. Usse aap naye offers (jaise 20% discount) daal sakte hain jo seedha aapki profile par dikhenge!</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -175,18 +272,53 @@
             <h2 class="text-3xl md:text-4xl font-black mb-8">About Us</h2>
             <div class="glass-card p-8 md:p-12 text-left border-white/5">
                 <h3 class="text-2xl md:text-3xl font-black mb-6">The Vision</h3>
-                <p class="text-gray-300 text-base md:text-lg leading-relaxed mb-10">
+                <p class="text-gray-300 text-base md:text-lg leading-relaxed mb-8">
                     Growth Innovation was created to solve a massive problem: Small businesses are forced to pay heavy commissions to be visible online. Here, everything is <strong class="text-white font-bold">100% Free</strong>. No hidden charges. No algorithmic bias.
                 </p>
-                <div class="border-t border-[#1F1F1F] pt-8 flex flex-col md:flex-row items-center gap-6 justify-center md:justify-start">
-                    <div class="relative group">
+                
+                <div class="mb-10 p-6 bg-[#0a0a0a] border border-[#27272a] rounded-xl flex flex-col md:flex-row items-center gap-5 justify-between shadow-inner hover:border-[#f97316] transition">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-yellow-400 via-pink-500 to-purple-600 flex items-center justify-center shrink-0">
+                            <i data-lucide="instagram" class="w-7 h-7 text-white"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-white">Official Instagram Channel</h4>
+                            <p class="text-sm text-gray-400">Follow us for platform updates.</p>
+                        </div>
+                    </div>
+                    <a href="https://www.instagram.com/info.growthinnovation.in?igsh=MXc5b2Y1d2M3dWltNg==" target="_blank" class="btn-brand bg-gradient-to-r from-pink-500 to-purple-600 text-white w-full md:w-auto px-5 py-3 hover:scale-105 transition text-center outline-none">
+                        Follow @info.growthinnovation.in
+                    </a>
+                </div>
+                
+                <div class="border-t border-[#1F1F1F] pt-8 flex flex-col md:flex-row items-center gap-8 justify-center md:justify-start">
+                    <div class="relative group shrink-0">
                         <div class="absolute inset-0 bg-[#f97316] rounded-2xl blur-lg opacity-20 group-hover:opacity-50 transition duration-500"></div>
-                        <img src="WhatsApp Image 2026-03-10 at 13.56.54 (3).jpeg" alt="KtDev" class="relative w-24 h-24 md:w-32 md:h-32 rounded-2xl object-cover border border-[#333] z-10 shadow-2xl">
+                        <img src="founder.jpeg" alt="KtDev" class="relative w-28 h-28 md:w-36 md:h-36 rounded-2xl object-cover border border-[#333] z-10 shadow-2xl" onerror="this.src='https://api.dicebear.com/7.x/avataaars/svg?seed=KtDev&backgroundColor=f97316'">
                     </div>
                     <div class="text-center md:text-left">
                         <p class="text-[#f97316] text-xs font-black uppercase tracking-widest mb-1">Founder & Developer</p>
                         <h4 class="text-2xl md:text-3xl font-black mb-2">Kaustubh Deore</h4>
-                        <p class="text-gray-400 font-medium text-sm md:text-base">Building scalable architecture for the community. (KtDev)</p>
+                        <p class="text-gray-400 font-medium text-sm md:text-base mb-2">Building scalable architecture for the community. (KtDev)</p>
+                        <div class="flex items-center justify-center md:justify-start gap-2 bg-[#111] border border-[#27272a] rounded-lg px-4 py-2 w-max mx-auto md:mx-0 group hover:border-[#f97316] transition cursor-pointer" onclick="window.copyToClip('kt.deore@hotmail.com')">
+                            <i data-lucide="mail" class="w-4 h-4 text-[#f97316]"></i> 
+                            <span class="text-sm font-bold text-gray-300">kt.deore@hotmail.com</span>
+                            <i data-lucide="copy" class="w-3 h-3 text-gray-600 group-hover:text-white transition ml-2"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-10 p-6 md:p-8 bg-[#0a0a0a] border border-[#27272a] rounded-2xl flex flex-col items-center text-center shadow-lg">
+                    <h4 class="text-[#f97316] font-black mb-4 text-2xl flex items-center gap-2"><i data-lucide="wallet" class="w-7 h-7"></i> Support the Developer</h4>
+                    <p class="text-gray-400 text-sm mb-8 max-w-md mx-auto">Running a 100% free platform requires server costs. If this platform helped you, consider supporting the development.</p>
+                    
+                    <div class="bg-white p-4 rounded-2xl shadow-[0_0_30px_rgba(249,115,22,0.15)] mb-8 inline-block border-4 border-white">
+                        <img src="radaar.png" alt="UPI QR Code" class="w-56 h-56 md:w-72 md:h-72 object-contain">
+                    </div>
+                    
+                    <div class="flex items-center gap-4 bg-[#111] border border-[#333] px-6 py-4 rounded-xl hover:border-[#f97316] transition cursor-pointer group" onclick="window.copyToClip('kt.deore@fam')">
+                        <span class="font-black text-xl tracking-wider text-white">kt.deore@fam</span>
+                        <div class="bg-[#27272a] p-2 rounded-lg group-hover:bg-[#f97316] transition"><i data-lucide="copy" class="w-5 h-5 text-white"></i></div>
                     </div>
                 </div>
             </div>
@@ -200,15 +332,31 @@
                 </div>
             </div>
 
+            <div class="mb-12 max-w-4xl">
+                <div class="glass-card p-6 md:p-8 border-white/5 flex flex-col md:flex-row gap-8 items-center justify-between">
+                    <div>
+                        <h3 class="text-2xl font-black mb-2 flex items-center gap-2"><i data-lucide="headset" class="w-6 h-6 text-[#f97316]"></i> Direct Support</h3>
+                        <p class="text-gray-400 text-sm">Reach out to the founder directly for urgent queries.</p>
+                    </div>
+                    <div class="flex flex-col gap-3 w-full md:w-auto">
+                        <div class="flex items-center justify-between bg-[#111] border border-[#27272a] pl-4 pr-2 py-2 rounded-xl group hover:border-[#f97316] transition">
+                            <div class="flex items-center gap-3"><i data-lucide="mail" class="w-4 h-4 text-[#f97316]"></i><span class="text-sm font-bold text-white">kt.deore@hotmail.com</span></div>
+                            <button type="button" onclick="window.copyToClip('kt.deore@hotmail.com')" class="p-2 bg-[#27272a] text-gray-400 rounded-lg hover:bg-[#f97316] hover:text-black transition outline-none"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                        </div>
+                        
+                        <a href="https://wa.link/59fy24" target="_blank" class="flex items-center justify-between bg-[#111] border border-[#27272a] pl-4 pr-2 py-2 rounded-xl group hover:border-[#25D366] transition cursor-pointer outline-none">
+                            <div class="flex items-center gap-3"><i data-lucide="message-circle" class="w-4 h-4 text-[#25D366]"></i><span class="text-sm font-bold text-white">WhatsApp Support <span class="text-[10px] text-gray-500 uppercase ml-1">(WA Only)</span></span></div>
+                            <button type="button" class="p-2 bg-[#27272a] text-gray-400 rounded-lg group-hover:bg-[#25D366] group-hover:text-black transition outline-none"><i data-lucide="external-link" class="w-4 h-4"></i></button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
             <div class="mb-12 space-y-4 max-w-4xl">
                 <h3 class="text-2xl font-bold mb-4">Frequently Asked Questions</h3>
                 <div class="glass-card p-6 border-white/5">
                     <h4 class="font-bold text-lg text-white mb-2 flex items-start gap-2"><i data-lucide="help-circle" class="w-5 h-5 text-[#f97316] shrink-0 mt-0.5"></i> Are you responsible for business quality?</h4>
                     <p class="text-gray-400 text-sm md:text-base pl-7">No. We are a free directory. We are <strong>not responsible</strong> for any bad experiences, quality of service, or transactions you make with any listed business.</p>
-                </div>
-                <div class="glass-card p-6 border-white/5">
-                    <h4 class="font-bold text-lg text-white mb-2 flex items-start gap-2"><i data-lucide="help-circle" class="w-5 h-5 text-[#f97316] shrink-0 mt-0.5"></i> Is refund applicable on Boosts?</h4>
-                    <p class="text-gray-400 text-sm md:text-base pl-7">No. <strong>Refunds are strictly NOT applicable</strong>. Please read T&C before proceeding.</p>
                 </div>
             </div>
             
@@ -218,13 +366,13 @@
                 </div>
                 <h3 class="text-2xl font-bold mb-4">Authentication Required</h3>
                 <p class="text-gray-400 mb-8 text-base">Please sign in to raise support tickets.</p>
-                <button onclick="openModal('authModal')" class="btn-brand">Sign In to Continue</button>
+                <button type="button" onclick="window.openModal('authModal')" class="btn-brand outline-none">Sign In to Continue</button>
             </div>
 
             <div id="supportDashboard" class="hidden">
                 <div class="flex justify-between items-center mb-6 border-b border-[#1F1F1F] pb-4">
                     <h3 class="text-xl md:text-2xl font-bold">My Active Tickets</h3>
-                    <button onclick="openModal('ticketModal')" class="btn-brand py-2 px-4 text-sm md:text-base"><i data-lucide="plus" class="w-4 h-4"></i> Raise Ticket</button>
+                    <button type="button" onclick="window.openModal('ticketModal')" class="btn-brand py-2 px-4 text-sm md:text-base outline-none"><i data-lucide="plus" class="w-4 h-4"></i> Raise Ticket</button>
                 </div>
                 <div id="supportTicketsList" class="space-y-4"></div>
             </div>
@@ -240,19 +388,30 @@
                 <p>By default, business contact details are public. However, we provide "Show to Public" toggles for your Phone and Email during registration. If unchecked, this data remains hidden from public view and is only accessible by the platform administrators.</p>
                 <h3>3. Third-Party Services</h3>
                 <p>We use Google Firebase for database management and secure authentication. We do not sell your data to any third-party marketing agencies.</p>
+                <h3>4. Your Rights</h3>
+                <p>You have full control over your data. You can edit your business details or permanently delete your listing and associated images at any time through your Business Portal.</p>
             </div>
         </section>
 
         <section id="view-terms" class="view-section pt-8 max-w-4xl mx-auto legal-text">
             <h2 class="text-4xl font-black mb-8 border-b border-[#1F1F1F] pb-6">Terms & Conditions</h2>
             <div class="glass-card p-8 md:p-12 border-white/5">
-                <p>By using Growth Innovation, you agree to the following terms:</p>
-                <h3>1. Platform Nature & Liability</h3>
-                <p>Growth Innovation is an open-source, free directory. We manually approve listings to prevent spam, but <strong>we are strictly NOT responsible</strong> for the quality of products, services, or any fraudulent activities conducted by businesses listed on our platform. Users must exercise their own discretion.</p>
-                <h3>2. Peer Review Policy</h3>
-                <p>To maintain platform integrity, all business registrations and user reviews go through a 24-Hour Peer Review process by our administrative team. We reserve the right to reject or delete any listing or review that contains hate speech, fake information, or violates community guidelines.</p>
-                <h3>3. Monetization & Refunds</h3>
-                <p>We offer optional "Boost" features to increase listing visibility. Payments made for Boost plans are final. <strong>Refunds are strictly NOT applicable</strong> under any circumstances once a plan is activated.</p>
+                <p>By registering or using Growth Innovation, you strictly agree to the following terms and conditions:</p>
+                
+                <h3>1. Accuracy of Information</h3>
+                <p>You guarantee that all business details, including name, address, contact information, and catalogue items provided by you are 100% accurate, genuine, and legally owned by you. You are solely responsible for the authenticity of the information published.</p>
+
+                <h3>2. Copyright & Intellectual Property</h3>
+                <p>You must own the rights or have explicit permission to use any logos, photos, or text you upload to our platform. <strong>Growth Innovation is not liable for any copyright infringement</strong> caused by user-uploaded content. Any reported stolen or copyrighted material will be immediately removed without prior notice.</p>
+
+                <h3>3. Zero Liability & Exemption</h3>
+                <p>Growth Innovation operates strictly as a free digital bridge connecting local businesses with customers. We do not process transactions between buyers and sellers. Therefore, <strong>we hold Zero Liability</strong> for any fraud, miscommunication, loss of funds, physical harm, or poor quality of service that occurs outside our platform. Users transact entirely at their own risk.</p>
+
+                <h3>4. Moderation & Peer Review Policy</h3>
+                <p>To maintain platform integrity, all business registrations and user reviews go through a mandatory 24-Hour Peer Review process by our administrative team. We reserve the absolute right to reject, modify, or permanently delete any listing or review that contains hate speech, fake information, illegal services, or violates community guidelines, without any prior warning.</p>
+                
+                <h3>5. Monetization, Boosts & Refunds</h3>
+                <p>We offer optional "Boost" features to increase your listing's visibility. Payments made for these Boost plans are final and non-reversible. <strong>Refunds are strictly NOT applicable</strong> under any circumstances once a premium plan is activated.</p>
             </div>
         </section>
 
@@ -262,19 +421,24 @@
                     <h2 class="text-3xl md:text-4xl font-black mb-2">Business Portal</h2>
                     <p id="userEmailDisplay" class="text-[#f97316] font-bold tracking-widest text-sm"></p>
                 </div>
-                <button id="logoutBtn" class="text-red-500 font-bold hover:bg-red-500/10 px-6 py-3 rounded-lg border border-red-500/20 transition w-full md:w-auto">Logout</button>
+                <button type="button" id="logoutBtn" class="text-red-500 font-bold hover:bg-red-500/10 px-6 py-3 rounded-lg border border-red-500/20 transition w-full md:w-auto outline-none">Logout</button>
             </div>
 
             <div id="adminPanel" class="hidden mb-10 glass-card border-[#f97316]/30 bg-gradient-to-r from-[#f97316]/10 to-transparent p-6 md:p-8">
-                <h3 class="font-black text-[#f97316] mb-6 text-xl md:text-2xl flex items-center gap-2"><i data-lucide="shield-check" class="w-6 h-6 md:w-8 md:h-8"></i> Admin Queue</h3>
+                <h3 class="font-black text-[#f97316] mb-8 text-xl md:text-2xl flex items-center gap-2"><i data-lucide="shield-check" class="w-8 h-8"></i> Admin Command Center</h3>
                 
-                <div class="mb-6">
-                    <h4 class="font-bold text-white mb-3">Pending Businesses</h4>
-                    <div id="adminQueueGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+                <div class="mb-10">
+                    <h4 class="text-white font-bold mb-4 text-xl border-b border-[#f97316]/20 pb-2">Pending Businesses</h4>
+                    <div id="adminPendingGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+                </div>
+
+                <div class="mb-10">
+                    <h4 class="text-white font-bold mb-4 text-xl border-b border-[#f97316]/20 pb-2">Live Businesses (Delete & Boost Control)</h4>
+                    <div id="adminBoostGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
                 </div>
                 
-                <div class="border-t border-[#f97316]/20 pt-6">
-                    <h4 class="font-bold text-white mb-3 flex items-center gap-2"><i data-lucide="star" class="w-4 h-4"></i> Pending Reviews (Peer Review)</h4>
+                <div class="border-t border-[#f97316]/20 pt-8">
+                    <h4 class="text-white font-bold mb-4 text-xl flex items-center gap-2 border-b border-[#f97316]/20 pb-2"><i data-lucide="star" class="w-5 h-5 text-[#f97316]"></i> Pending Reviews (Peer Review)</h4>
                     <div id="adminReviewQueue" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
                 </div>
             </div>
@@ -282,59 +446,116 @@
             <div class="glass-card p-6 md:p-8 border-white/5">
                 <div class="flex justify-between items-center mb-6">
                     <h3 class="font-black text-xl md:text-2xl">My Registered Entities</h3>
-                    <button onclick="openAddBizModal()" class="btn-brand py-2 px-4 text-sm md:text-base"><i data-lucide="plus" class="w-4 h-4"></i> Register New</button>
+                    <button type="button" onclick="window.openAddBizModal()" class="btn-brand py-2 px-4 text-sm md:text-base outline-none"><i data-lucide="plus" class="w-4 h-4"></i> Register New</button>
                 </div>
-                <div id="userBusinesses" class="flex flex-col gap-4"></div>
+                <div id="userBusinesses" class="flex flex-col gap-6"></div>
             </div>
         </section>
 
     </main>
 
-    <footer class="mt-auto border-t border-[#1F1F1F] bg-[#000] py-10 text-center pb-24 md:pb-10">
+    <footer class="mt-auto border-t border-[#1F1F1F] bg-[#000] py-10 text-center pb-24 md:pb-10 relative">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex justify-center items-center gap-2 mb-4">
-                <img src="letter-g-gg-hexagonal-modern-600nw-2661904643.png" alt="Logo" class="w-6 h-6 object-contain">
+                <img src="logo.png" alt="Logo" class="w-6 h-6 object-contain" onerror="this.style.display='none'">
                 <h2 class="text-lg font-black text-gray-300">Growth Innovation</h2>
             </div>
             <p class="text-gray-500 text-xs mb-6 max-w-sm mx-auto">Providing a zero-commission digital ecosystem for modern local commerce.</p>
-            
             <div class="flex flex-wrap justify-center gap-6 mb-6 border-b border-[#1F1F1F] pb-8">
-                <a href="#privacy" data-target="privacy" class="nav-link text-xs font-bold text-gray-500 hover:text-[#f97316] transition">Privacy Policy</a>
-                <a href="#terms" data-target="terms" class="nav-link text-xs font-bold text-gray-500 hover:text-[#f97316] transition">Terms & Conditions</a>
+                <button type="button" onclick="window.switchTab('privacy')" class="text-xs font-bold text-gray-500 hover:text-[#f97316] transition bg-transparent border-none outline-none cursor-pointer">Privacy Policy</button>
+                <button type="button" onclick="window.switchTab('terms')" class="text-xs font-bold text-gray-500 hover:text-[#f97316] transition bg-transparent border-none outline-none cursor-pointer">Terms & Conditions</button>
+                <button type="button" onclick="window.switchTab('tutorial')" class="text-xs font-bold text-[#f97316] hover:text-white transition bg-transparent border-none outline-none cursor-pointer">Tutorial for Business</button>
             </div>
-            
             <p class="text-xs text-gray-600">© 2026 Growth Innovation. All rights reserved. Engineered by <span class="text-[#f97316] font-bold">KtDev</span></p>
         </div>
+        <p class="absolute bottom-2 right-4 text-[10px] text-gray-700 font-bold tracking-widest">Beta Version 1.0</p>
     </footer>
 
-    <nav class="md:hidden fixed bottom-0 w-full bg-[#000000]/80 backdrop-blur-xl border-t border-[#27272a] flex justify-around p-2 pb-safe z-50">
-        <a href="#home" data-target="home" class="nav-link flex flex-col items-center justify-center p-2 w-16 text-gray-500 hover:text-white transition"><i data-lucide="home" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Home</span></a>
-        <a href="#marketplace" data-target="marketplace" class="nav-link flex flex-col items-center justify-center p-2 w-16 text-gray-500 hover:text-white transition"><i data-lucide="layout-grid" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Market</span></a>
-        <a href="#support" data-target="support" class="nav-link flex flex-col items-center justify-center p-2 w-16 text-gray-500 hover:text-white transition"><i data-lucide="life-buoy" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Support</span></a>
+    <nav class="md:hidden fixed bottom-0 w-full bg-[#000000]/90 backdrop-blur-xl border-t border-[#27272a] flex justify-around p-2 pb-safe z-50">
+        <button type="button" onclick="window.location.hash='home'" class="nav-link flex flex-col items-center justify-center p-2 w-[20%] text-gray-500 hover:text-white transition outline-none"><i data-lucide="home" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Home</span></button>
+        <button type="button" onclick="window.location.hash='marketplace'" class="nav-link flex flex-col items-center justify-center p-2 w-[20%] text-gray-500 hover:text-white transition outline-none"><i data-lucide="layout-grid" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Market</span></button>
+        
+        <button type="button" onclick="window.toggleNotifPanel()" class="nav-link flex flex-col items-center justify-center p-2 w-[20%] text-gray-500 hover:text-white transition relative outline-none">
+            <i data-lucide="bell" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Alerts</span>
+            <span id="mobileNotifBadge" class="absolute top-1 right-2 bg-red-600 text-white text-[8px] font-black px-1.5 py-0.5 rounded-full hidden border border-black">0</span>
+        </button>
+        
+        <a href="#wishlists" data-target="wishlists" class="nav-link flex flex-col items-center justify-center p-2 w-[20%] text-gray-500 hover:text-white transition relative outline-none">
+            <i data-lucide="heart" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Saved</span>
+            <span id="mobileWishCountBadge" class="absolute top-1 right-2 bg-red-600 text-white text-[8px] font-black px-1.5 py-0.5 rounded-full hidden border border-black">0</span>
+        </a>
+        <button type="button" onclick="window.location.hash='support'" class="nav-link flex flex-col items-center justify-center p-2 w-[20%] text-gray-500 hover:text-white transition outline-none"><i data-lucide="life-buoy" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Support</span></button>
     </nav>
 
     <div id="toast"><i data-lucide="info" class="w-5 h-5 text-[#f97316]"></i> <span id="toastMsg"></span></div>
 
-    <div id="authModal" class="modal-bg">
+    <div id="authModal" class="modal-bg z-[110]">
         <div class="modal-box relative">
-            <button onclick="closeModal('authModal')" class="absolute top-6 right-6 text-gray-500 hover:text-white transition"><i data-lucide="x" class="w-6 h-6"></i></button>
+            <button type="button" onclick="window.closeModal('authModal')" class="absolute top-6 right-6 text-gray-500 hover:text-white transition outline-none"><i data-lucide="x" class="w-6 h-6"></i></button>
             <h2 id="authTitle" class="text-3xl font-black mb-8 text-center">Sign In</h2>
             <div class="space-y-5">
                 <input type="email" id="email" class="modern-input" placeholder="Email Address">
                 <div id="passContainer" class="relative">
                     <input type="password" id="password" class="modern-input pr-12" placeholder="Password">
-                    <button type="button" id="togglePasswordBtn" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white transition"><i data-lucide="eye" id="eyeIcon" class="w-5 h-5"></i></button>
+                    <button type="button" id="togglePasswordBtn" class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white transition outline-none"><i data-lucide="eye" id="eyeIcon" class="w-5 h-5"></i></button>
                 </div>
-                <div class="flex justify-end"><button id="forgotBtn" class="text-sm font-bold text-gray-400 hover:text-[#f97316] transition">Forgot Password?</button></div>
-                <button id="mainBtn" class="btn-brand w-full py-4 text-lg mt-2">Authenticate</button>
-                <div class="text-center mt-6 pt-4 border-t border-[#1F1F1F]"><button id="toggleAuthBtn" class="font-bold text-gray-400 hover:text-white transition">Need an account? Register</button></div>
+                
+                <div id="registerTerms" class="hidden mt-4 flex items-start gap-3 bg-[#111] p-3 rounded-lg border border-[#27272a]">
+                    <input type="checkbox" id="regAcceptTerms" class="mt-1 accent-[#f97316] w-4 h-4 cursor-pointer" onchange="document.getElementById('mainBtn').disabled = !this.checked;">
+                    <label for="regAcceptTerms" class="text-xs text-gray-400 cursor-pointer leading-relaxed">
+                        I accept the <button type="button" onclick="window.closeModal('authModal'); window.switchTab('privacy');" class="text-blue-500 hover:underline bg-transparent border-none p-0 inline outline-none">Privacy Policy</button>.
+                    </label>
+                </div>
+
+                <div class="flex justify-end" id="forgotBtnWrapper"><button type="button" id="forgotBtn" class="text-sm font-bold text-gray-400 hover:text-[#f97316] transition outline-none">Forgot Password?</button></div>
+                <button type="button" id="mainBtn" onclick="window.submitAuth()" class="btn-brand w-full py-4 text-lg mt-2 outline-none">Authenticate</button>
+                <div class="text-center mt-6 pt-4 border-t border-[#1F1F1F]"><button type="button" id="toggleAuthBtn" class="font-bold text-gray-400 hover:text-white transition outline-none">Need an account? Register</button></div>
             </div>
         </div>
     </div>
 
-    <div id="boostModal" class="modal-bg">
+    <div id="postModal" class="modal-bg z-[110]">
+        <div class="modal-box max-w-2xl relative border-t-4 border-[#f97316]">
+            <button type="button" onclick="window.closeModal('postModal')" class="absolute top-4 right-4 text-gray-500 hover:text-white outline-none"><i data-lucide="x" class="w-5 h-5"></i></button>
+            <h2 class="text-2xl font-black mb-2"><i data-lucide="megaphone" class="w-6 h-6 text-[#f97316] inline mb-1 mr-1"></i> Add Offer / Post</h2>
+            <p class="text-gray-400 mb-6 text-sm">Post an offer directly on your business page.</p>
+            
+            <div class="space-y-5">
+                <input type="text" id="postTitle" class="modern-input font-bold" placeholder="Offer Heading (e.g. 50% Off Diwali Sale!)">
+                <textarea id="postText" class="modern-input resize-none" rows="3" placeholder="Describe your offer... e.g. Get flat 50% off on all services today!"></textarea>
+                
+                <div class="flex items-center gap-3">
+                    <button type="button" onclick="document.getElementById('postImgs').click()" class="bg-[#27272a] text-xs font-bold px-4 py-2.5 rounded-xl hover:text-[#f97316] outline-none">+ Add Image (Max 2)</button>
+                    <input type="file" id="postImgs" accept="image/*" multiple class="hidden" onchange="window.handleMultipleImages(event, 'postImgPrev', 'postImgLbl', 2, 'post')">
+                    <span id="postImgLbl" class="text-xs text-gray-500"></span>
+                </div>
+                <div id="postImgPrev" class="flex gap-2"></div>
+
+                <div class="mt-4 bg-[#111] p-4 rounded-xl border border-[#27272a]">
+                    <label class="flex items-center gap-2 text-sm text-gray-300 font-bold cursor-pointer">
+                        <input type="checkbox" id="wantSchedulePost" class="accent-[#f97316] w-4 h-4 cursor-pointer" onchange="window.togglePostSchedule()">
+                        Do you want to schedule this offer?
+                    </label>
+                    <div id="postScheduleBox" class="hidden grid-cols-1 md:grid-cols-2 gap-4 mt-3 pt-3 border-t border-[#27272a]">
+                        <div>
+                            <label class="text-xs font-bold text-gray-400 mb-1 block">Start Time</label>
+                            <input type="datetime-local" id="postStart" class="modern-input py-2 text-sm text-gray-300">
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-gray-400 mb-1 block">End Time (Auto-delete)</label>
+                            <input type="datetime-local" id="postEnd" class="modern-input py-2 text-sm text-gray-300">
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" id="submitPostBtn" onclick="window.submitPost()" class="btn-brand w-full py-4 text-lg outline-none">Publish Post</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="boostModal" class="modal-bg z-[110]">
         <div class="modal-box relative border-t-4 border-[#f97316]">
-            <button onclick="closeModal('boostModal')" class="absolute top-4 right-4 text-gray-500 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+            <button type="button" onclick="window.closeModal('boostModal')" class="absolute top-4 right-4 text-gray-500 hover:text-white outline-none"><i data-lucide="x" class="w-5 h-5"></i></button>
             <h2 class="text-2xl font-black mb-2 flex items-center gap-2"><i data-lucide="rocket" class="w-6 h-6 text-[#f97316]"></i> Boost Your Listing</h2>
             <p class="text-gray-400 mb-6 text-sm">Reach more customers instantly. Select a plan below.</p>
             
@@ -350,124 +571,121 @@
                 </label>
             </div>
             <div class="p-3 bg-red-500/10 border border-red-500/20 rounded-lg mb-6"><p class="text-xs text-red-400 font-bold flex items-center gap-1"><i data-lucide="alert-triangle" class="w-3 h-3"></i> Refunds are not possible once activated.</p></div>
-            <button id="proceedBoostBtn" class="btn-brand w-full py-4 text-lg">Proceed to Checkout</button>
+            <button type="button" id="proceedBoostBtn" onclick="window.submitBoost()" class="btn-brand w-full py-4 text-lg outline-none">Proceed to Checkout</button>
         </div>
     </div>
 
-    <div id="bizModal" class="modal-bg">
-        <div class="modal-box max-w-2xl">
-            <button onclick="closeModal('bizModal')" class="absolute top-6 right-6 text-gray-500 hover:text-white"><i data-lucide="x" class="w-6 h-6"></i></button>
+    <div id="bizModal" class="modal-bg z-[110]">
+        <div class="modal-box max-w-3xl">
+            <button type="button" onclick="window.closeModal('bizModal')" class="absolute top-6 right-6 text-gray-500 hover:text-white outline-none"><i data-lucide="x" class="w-6 h-6"></i></button>
             <h2 id="bizModalTitle" class="text-2xl font-black mb-6 border-l-4 border-[#f97316] pl-3">Register Business</h2>
             
-            <div class="space-y-5">
+            <div class="space-y-6">
                 <div>
                     <div class="border-2 border-dashed border-[#27272a] bg-[#111] rounded-xl p-6 text-center hover:border-[#f97316] transition cursor-pointer" onclick="document.getElementById('bizImages').click()">
                         <i data-lucide="image-plus" class="w-8 h-8 mx-auto mb-2 text-gray-400"></i>
                         <p class="text-sm font-bold text-gray-400" id="mainImagesLabel">Click to Upload Cover Image</p>
-                        <input type="file" id="bizImages" accept="image/*" multiple class="hidden" onchange="handleMultipleImages(event, 'mainImagesPreview', 'mainImagesLabel')">
+                        <input type="file" id="bizImages" accept="image/*" multiple class="hidden" onchange="window.handleMultipleImages(event, 'mainImagesPreview', 'mainImagesLabel')">
                     </div>
                     <div id="mainImagesPreview" class="flex gap-2 overflow-x-auto mt-3 pb-2 hide-scrollbar"></div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input type="text" id="bizName" class="modern-input" placeholder="Business Name (Mandatory)">
-                    <select id="bizCategory" class="modern-input text-gray-400">
-                        <option value="">Select Category (Mandatory)</option>
-                        <option value="Agriculture & Farming">Agriculture & Farming</option>
-                        <option value="Automotive">Automotive & Garage</option>
-                        <option value="Barber Shop & Salon">Barber Shop & Salon</option>
-                        <option value="Beauty & Spa">Beauty & Spa</option>
-                        <option value="Clothing & Apparel">Clothing & Apparel</option>
-                        <option value="Education">Education & Tutors</option>
-                        <option value="Entertainment & Theatres">Entertainment & Theatres</option>
-                        <option value="Events & Planners">Events & Planners</option>
-                        <option value="Food & Dining">Food & Restaurants</option>
-                        <option value="Gym & Fitness">Gym & Fitness</option>
-                        <option value="Health & Medical">Health & Medical</option>
-                        <option value="Home Services">Home Services</option>
-                        <option value="Hotels & Lodging">Hotels & Lodging</option>
-                        <option value="IT & Tech">IT & Tech</option>
-                        <option value="Legal & Financial">Legal & Financial</option>
-                        <option value="Manufacturing">Manufacturing</option>
-                        <option value="Photography & Studios">Photography & Studios</option>
-                        <option value="Plumbing & Electrical">Plumbing & Electrical</option>
-                        <option value="Real Estate">Real Estate</option>
-                        <option value="Retail & Shopping">Retail & Shopping</option>
-                        <option value="Shopping Mall">Shopping Mall</option>
-                        <option value="Supermarket & Groceries">Supermarket & Groceries</option>
-                        <option value="Travel & Transport">Travel & Transport</option>
-                        <option value="Others">Others</option>
-                    </select>
+                <div class="bg-[#111] p-5 md:p-6 rounded-2xl border border-[#27272a] space-y-4">
+                    <h4 class="text-[#f97316] font-bold text-xs uppercase tracking-widest mb-2 border-b border-[#27272a] pb-2">1. Basic Details</h4>
+                    <div class="space-y-1"><label class="text-xs text-gray-400 font-bold ml-1">Business Name <span class="text-red-500">*</span></label><input type="text" id="bizName" class="modern-input" placeholder="e.g. Assassin's Cafe"></div>
+                    <div class="space-y-1"><label class="text-xs text-gray-400 font-bold ml-1">Category <span class="text-red-500">*</span></label>
+                        <select id="bizCategory" class="modern-input text-gray-400"><option value="">Select Category</option><option value="Agriculture & Farming">Agriculture & Farming</option><option value="Automotive">Automotive & Garage</option><option value="Barber Shop & Salon">Barber Shop & Salon</option><option value="Beauty & Spa">Beauty & Spa</option><option value="Clothing & Apparel">Clothing & Apparel</option><option value="Education">Education & Tutors</option><option value="Entertainment & Theatres">Entertainment & Theatres</option><option value="Events & Planners">Events & Planners</option><option value="Food & Dining">Food & Restaurants</option><option value="Gym & Fitness">Gym & Fitness</option><option value="Health & Medical">Health & Medical</option><option value="Home Services">Home Services</option><option value="Hotels & Lodging">Hotels & Lodging</option><option value="IT & Tech">IT & Tech</option><option value="Legal & Financial">Legal & Financial</option><option value="Manufacturing">Manufacturing</option><option value="Photography & Studios">Photography & Studios</option><option value="Plumbing & Electrical">Plumbing & Electrical</option><option value="Real Estate">Real Estate</option><option value="Retail & Shopping">Retail & Shopping</option><option value="Shopping Mall">Shopping Mall</option><option value="Supermarket & Groceries">Supermarket & Groceries</option><option value="Travel & Transport">Travel & Transport</option><option value="Others">Others</option></select>
+                    </div>
+                    <div class="space-y-1"><label class="text-xs text-gray-400 font-bold ml-1">Business Description <span class="text-red-500">*</span></label><textarea id="bizDesc" class="modern-input resize-none" rows="3" placeholder="Describe your products/services..."></textarea></div>
                 </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <input type="text" id="bizCity" class="modern-input" placeholder="City (Mandatory)">
-                    <input type="text" id="bizAddress" class="modern-input" placeholder="Full Address (Mandatory)">
+                <div class="bg-[#111] p-5 md:p-6 rounded-2xl border border-[#27272a] space-y-4">
+                    <div class="flex justify-between items-center mb-2 border-b border-[#27272a] pb-2"><h4 class="text-[#f97316] font-bold text-xs uppercase tracking-widest">2. Location & Timing</h4><label class="flex items-center gap-2 text-xs text-gray-400 cursor-pointer"><input type="checkbox" id="isOnlineBiz" class="accent-[#f97316] w-4 h-4 cursor-pointer" onchange="window.toggleAddressField()">Online Business (No physical address)</label></div>
+                    <div class="space-y-1"><label class="text-xs text-gray-400 font-bold ml-1">City/Area <span class="text-red-500">*</span></label><input type="text" id="bizCity" class="modern-input" placeholder="e.g. Ozar"></div>
+                    <div class="space-y-1" id="addressContainer"><label class="text-xs text-gray-400 font-bold ml-1">Full Address <span class="text-red-500">*</span></label><input type="text" id="bizAddress" class="modern-input" placeholder="Shop No, Street, Landmark"></div>
+                    <div class="space-y-1 pt-2"><div class="flex justify-between items-center"><label class="text-xs text-gray-400 font-bold ml-1">Operating Hours (Optional)</label><label class="flex items-center gap-2 text-xs text-red-500 cursor-pointer font-bold bg-red-500/10 px-2 py-1 rounded"><input type="checkbox" id="isClosedToday" class="accent-red-500 cursor-pointer">Mark as Closed Today</label></div><input type="text" id="bizHours" class="modern-input" placeholder="e.g. Mon-Sat: 10:00 AM - 9:00 PM"></div>
                 </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <input type="text" id="bizPhone" class="modern-input mb-1" placeholder="Phone (Mandatory)">
-                        <label class="flex items-center gap-2 text-xs text-gray-400 pl-2"><input type="checkbox" id="checkShowPhone" checked class="accent-[#f97316]"> Show Phone to Public</label>
-                    </div>
-                    <div>
-                        <input type="email" id="bizMail" class="modern-input mb-1" placeholder="Email (Mandatory)">
-                        <label class="flex items-center gap-2 text-xs text-gray-400 pl-2"><input type="checkbox" id="checkShowMail" checked class="accent-[#f97316]"> Show Email to Public</label>
-                    </div>
+                <div class="bg-[#111] p-5 md:p-6 rounded-2xl border border-[#27272a] space-y-4">
+                    <h4 class="text-[#f97316] font-bold text-xs uppercase tracking-widest mb-2 border-b border-[#27272a] pb-2">3. Contact & Online Presence</h4>
+                    <div class="space-y-1"><label class="text-xs text-gray-400 font-bold ml-1">Phone Number <span class="text-red-500">*</span></label><input type="text" id="bizPhone" class="modern-input" placeholder="e.g. 9876543210"><label class="flex items-center gap-2 text-xs text-gray-400 pl-1 mt-1 cursor-pointer"><input type="checkbox" id="checkShowPhone" checked class="accent-[#f97316] cursor-pointer"> Show Phone to Public</label></div>
+                    <div class="space-y-1 pt-2"><label class="text-xs text-gray-400 font-bold ml-1">Email Address <span class="text-red-500">*</span></label><input type="email" id="bizMail" class="modern-input" placeholder="e.g. shop@example.com"><label class="flex items-center gap-2 text-xs text-gray-400 pl-1 mt-1 cursor-pointer"><input type="checkbox" id="checkShowMail" checked class="accent-[#f97316] cursor-pointer"> Show Email to Public</label></div>
+                    <div class="space-y-1 pt-4"><label class="text-xs text-gray-400 font-bold ml-1">Website URL (Optional)</label><input type="url" id="bizWebsite" class="modern-input" placeholder="https://yourwebsite.com"></div>
+                    <div class="pt-2"><label class="text-xs text-gray-400 font-bold ml-1 block mb-2">Social Media Links (Optional)</label><div class="grid grid-cols-1 md:grid-cols-2 gap-3"><div class="relative"><i data-lucide="instagram" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-pink-500"></i><input type="text" id="bizInsta" class="modern-input pl-10 text-sm py-2" placeholder="Instagram URL"></div><div class="relative"><i data-lucide="facebook" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-blue-500"></i><input type="text" id="bizFb" class="modern-input pl-10 text-sm py-2" placeholder="Facebook URL"></div><div class="relative"><i data-lucide="twitter" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300"></i><input type="text" id="bizX" class="modern-input pl-10 text-sm py-2" placeholder="Twitter/X URL"></div><div class="relative"><i data-lucide="youtube" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-red-500"></i><input type="text" id="bizYt" class="modern-input pl-10 text-sm py-2" placeholder="YouTube URL"></div></div></div>
                 </div>
 
-                <textarea id="bizDesc" class="modern-input resize-none" rows="3" placeholder="Business Description (Mandatory)"></textarea>
-
-                <div class="border border-[#27272a] p-4 rounded-xl bg-[#0a0a0a]">
+                <div class="bg-[#111] p-5 md:p-6 rounded-2xl border border-[#27272a]">
                     <label class="flex items-center gap-3 cursor-pointer">
-                        <input type="checkbox" id="wantListItems" class="w-5 h-5 accent-[#f97316]" onchange="toggleItemSection()">
+                        <input type="checkbox" id="wantListItems" class="w-5 h-5 accent-[#f97316]" onchange="window.toggleItemSection()">
                         <span class="font-bold text-lg">Want to List Items/Menu?</span>
                     </label>
                     <div id="itemsSection" class="hidden mt-4 pt-4 border-t border-[#27272a] space-y-4">
                         <div id="itemsContainer" class="space-y-4"></div>
-                        <button type="button" onclick="addNewItemBox()" class="btn-outline w-full py-2 text-sm border-dashed">+ Add Item</button>
+                        <button type="button" onclick="window.addNewItemBox()" class="btn-outline w-full py-2 text-sm border-dashed">+ Add Item</button>
                     </div>
                 </div>
-                <button id="submitBizBtn" class="btn-brand w-full py-4 text-lg mt-4">Submit for Peer Review</button>
+
+                <div class="mt-4 flex items-start gap-3 bg-[#111] p-4 rounded-xl border border-[#27272a]">
+                    <input type="checkbox" id="acceptTerms" class="mt-1 accent-[#f97316] w-5 h-5 cursor-pointer" onchange="document.getElementById('submitBizBtn').disabled = !this.checked;">
+                    <label for="acceptTerms" class="text-sm text-gray-400 cursor-pointer leading-relaxed">
+                        By checking this box, you guarantee that all provided details are 100% correct, and you accept our <button type="button" onclick="window.closeModal('bizModal'); window.switchTab('privacy');" class="text-blue-500 hover:underline bg-transparent border-none p-0 inline">Privacy Policy</button> & <button type="button" onclick="window.closeModal('bizModal'); window.switchTab('terms');" class="text-blue-500 hover:underline bg-transparent border-none p-0 inline">Terms & Conditions</button>.
+                    </label>
+                </div>
+
+                <button type="button" id="submitBizBtn" onclick="window.submitBiz()" class="btn-brand w-full py-4 text-lg mt-2 outline-none" disabled>Submit for Peer Review (Max 24 Hrs)</button>
             </div>
         </div>
     </div>
 
-    <div id="reviewModal" class="modal-bg">
-        <div class="modal-box">
-            <button onclick="closeModal('reviewModal')" class="absolute top-6 right-6 text-gray-500"><i data-lucide="x" class="w-6 h-6"></i></button>
+    <div id="reviewModal" class="modal-bg z-[110]">
+        <div class="modal-box relative z-50">
+            <button type="button" onclick="window.closeModal('reviewModal')" class="absolute top-6 right-6 text-gray-500 hover:text-white transition outline-none"><i data-lucide="x" class="w-6 h-6"></i></button>
             <h2 class="text-2xl font-black mb-2 border-l-4 border-[#f97316] pl-3">Write a Review</h2>
-            <p class="text-xs text-gray-400 mb-6 pl-4">Undergoes 24-Hour Peer Review.</p>
-            <div class="star-rating flex gap-2 text-4xl justify-center mb-6" id="reviewStars">
-                <i data-lucide="star" data-v="1"></i><i data-lucide="star" data-v="2"></i><i data-lucide="star" data-v="3"></i><i data-lucide="star" data-v="4"></i><i data-lucide="star" data-v="5"></i>
+            <p class="text-xs text-gray-400 mb-6 pl-4">Undergoes 24-Hour Peer Review. Max 1 review per business.</p>
+            
+            <div class="flex gap-2 justify-center mb-6" id="reviewStars">
+                <button type="button" id="starBtn1" class="star-btn" data-v="1" onclick="window.setRating(1)"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+                <button type="button" id="starBtn2" class="star-btn" data-v="2" onclick="window.setRating(2)"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+                <button type="button" id="starBtn3" class="star-btn" data-v="3" onclick="window.setRating(3)"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+                <button type="button" id="starBtn4" class="star-btn" data-v="4" onclick="window.setRating(4)"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
+                <button type="button" id="starBtn5" class="star-btn" data-v="5" onclick="window.setRating(5)"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></button>
             </div>
-            <textarea id="reviewText" class="modern-input resize-none mb-4" rows="4" placeholder="Your experience..."></textarea>
-            <button id="submitReviewBtn" class="btn-brand w-full py-4">Submit Review</button>
+            
+            <textarea id="reviewText" class="modern-input resize-none mb-4" rows="4" placeholder="Your experience... (Mandatory)"></textarea>
+            <button type="button" id="submitReviewBtn" onclick="window.submitReview()" class="btn-brand w-full py-4 outline-none">Submit Review</button>
         </div>
     </div>
 
-    <div id="ticketModal" class="modal-bg">
+    <div id="ticketModal" class="modal-bg z-[110]">
         <div class="modal-box">
-            <button onclick="closeModal('ticketModal')" class="absolute top-6 right-6 text-gray-500 hover:text-white"><i data-lucide="x" class="w-6 h-6"></i></button>
+            <button type="button" onclick="window.closeModal('ticketModal')" class="absolute top-6 right-6 text-gray-500 hover:text-white transition"><i data-lucide="x" class="w-6 h-6"></i></button>
             <h2 class="text-2xl font-black mb-6 border-l-4 border-white pl-3">Raise Ticket</h2>
             <div class="space-y-4">
                 <input type="text" id="ticketSubject" class="modern-input" placeholder="Issue Subject">
                 <textarea id="ticketDesc" class="modern-input resize-none" rows="4" placeholder="Describe your issue..."></textarea>
-                <button id="submitTicketBtn" class="btn-brand w-full py-4 text-lg">Submit to Helpdesk</button>
+                
+                <div class="flex items-center gap-3 mt-2">
+                    <button type="button" onclick="document.getElementById('ticketImgs').click()" class="bg-[#27272a] text-xs font-bold px-3 py-2 rounded-lg hover:text-[#f97316] transition outline-none">+ Add Photos (Max 2)</button>
+                    <input type="file" id="ticketImgs" accept="image/*" multiple class="hidden" onchange="window.handleMultipleImages(event, 'ticketImgPrev', 'ticketImgLbl', 2, 'ticket')">
+                    <span id="ticketImgLbl" class="text-xs text-gray-500"></span>
+                </div>
+                <div id="ticketImgPrev" class="flex gap-2"></div>
+
+                <button type="button" id="submitTicketBtn" onclick="window.submitTicket()" class="btn-brand w-full py-4 text-lg mt-4 outline-none">Submit to Helpdesk</button>
             </div>
         </div>
     </div>
 
-    <div id="chatModal" class="modal-bg">
+    <div id="chatModal" class="modal-bg z-[110]">
         <div class="modal-box flex flex-col h-[85vh] p-0 overflow-hidden">
             <div class="p-6 border-b border-[#27272a] flex justify-between items-center bg-[#0A0A0A]">
                 <div><h2 class="text-xl font-black" id="chatSubject">Ticket Chat</h2><p class="text-xs text-gray-500 mt-1">Chatting with Admin</p></div>
-                <button onclick="closeModal('chatModal')" class="text-gray-500 hover:text-white transition"><i data-lucide="x" class="w-6 h-6"></i></button>
+                <button type="button" onclick="window.closeModal('chatModal')" class="text-gray-500 hover:text-white transition outline-none"><i data-lucide="x" class="w-6 h-6"></i></button>
             </div>
             <div id="chatHistory" class="flex-grow overflow-y-auto p-4 md:p-6 space-y-4 bg-[#050505] flex flex-col"></div>
             <div class="p-3 md:p-4 border-t border-[#27272a] bg-[#0A0A0A] flex gap-3">
                 <input type="text" id="chatInput" class="modern-input flex-grow" placeholder="Type message...">
-                <button id="sendChatBtn" class="btn-brand px-4 md:px-6"><i data-lucide="send" class="w-5 h-5"></i></button>
+                <button type="button" id="sendChatBtn" onclick="window.sendChatReply()" class="btn-brand px-4 md:px-6 outline-none"><i data-lucide="send" class="w-5 h-5"></i></button>
             </div>
         </div>
     </div>
@@ -475,54 +693,278 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, query, onSnapshot, where, doc, updateDoc, deleteDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, query, onSnapshot, where, doc, updateDoc, deleteDoc, arrayUnion, getDoc, getDocs, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
         const firebaseConfig = { apiKey: "AIzaSyA5q7835OdhVNGhSzshtXF8vxoq8yTgb7Q", authDomain: "growth-innovation.firebaseapp.com", projectId: "growth-innovation", storageBucket: "growth-innovation.firebasestorage.app", messagingSenderId: "421919943414", appId: "1:421919943414:web:fee6155d4030afd54e1ad7" };
         const app = initializeApp(firebaseConfig); const auth = getAuth(app); const db = getFirestore(app);
-        lucide.createIcons();
+        
+        // Init Icons safely
+        window.initIcons = () => { try { lucide.createIcons(); } catch(e){} };
+        window.initIcons();
 
-        // UTILS
+        // ==========================================
+        // 🔥 UTILS & SAFE GLOBAL FUNCTIONS 🔥
+        // ==========================================
         window.showToast = (msg) => { const t = document.getElementById('toast'); t.innerText = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3000); }
         window.openModal = (id) => document.getElementById(id).classList.add('active');
         window.closeModal = (id) => document.querySelectorAll('.modal-bg').forEach(m => m.classList.remove('active'));
-        
+        window.copyToClip = (text) => { navigator.clipboard.writeText(text); window.showToast("Copied to clipboard!"); }
+
+        window.toggleAddressField = () => {
+            const isOnline = document.getElementById('isOnlineBiz').checked;
+            const container = document.getElementById('addressContainer');
+            if(isOnline) { container.style.display = 'none'; document.getElementById('bizAddress').value = 'Online Business'; } 
+            else { container.style.display = 'block'; document.getElementById('bizAddress').value = ''; }
+        };
+
+        window.showLoader = () => {
+            const loader = document.getElementById('topLoader');
+            loader.style.opacity = '1'; loader.style.width = '30%';
+            setTimeout(() => loader.style.width = '70%', 200);
+        };
+        window.hideLoader = () => {
+            const loader = document.getElementById('topLoader');
+            loader.style.width = '100%';
+            setTimeout(() => { loader.style.opacity = '0'; setTimeout(() => loader.style.width = '0%', 300); }, 300);
+        };
+
+        window.downloadQR = async (url, filename) => {
+            window.showToast("Generating High Quality QR...");
+            try {
+                const response = await fetch(url); const blob = await response.blob();
+                const link = document.createElement("a"); link.href = URL.createObjectURL(blob); link.download = filename;
+                document.body.appendChild(link); link.click(); document.body.removeChild(link);
+            } catch(e) { window.showToast("Failed to download QR."); }
+        };
+
+        window.getGradientStyle = (name) => {
+            const num = (name || 'A').charCodeAt(0) % 4;
+            const gradients = ['from-orange-900 to-black', 'from-blue-900 to-black', 'from-emerald-900 to-black', 'from-purple-900 to-black'];
+            return `bg-gradient-to-br ${gradients[num]} bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:20px_20px]`;
+        };
+
         // ==========================================
-        // 🔥 SEO & GOOGLE FRIENDLY ROUTING 🔥
+        // 🔥 POSTS (OFFERS) LOGIC 🔥
+        // ==========================================
+        window.togglePostSchedule = () => {
+            const isChecked = document.getElementById('wantSchedulePost').checked;
+            document.getElementById('postScheduleBox').style.display = isChecked ? 'grid' : 'none';
+        };
+
+        window.currentPostBizId = null;
+        window.openPostModal = (bizId) => {
+            window.currentPostBizId = bizId;
+            document.getElementById('postTitle').value = '';
+            document.getElementById('postText').value = '';
+            document.getElementById('postStart').value = '';
+            document.getElementById('postEnd').value = '';
+            document.getElementById('wantSchedulePost').checked = false;
+            window.togglePostSchedule();
+            window.tempItemImgs['post'] = []; document.getElementById('postImgPrev').innerHTML = ''; document.getElementById('postImgLbl').innerText = '';
+            window.openModal('postModal');
+        };
+
+        window.submitPost = async () => {
+            const title = document.getElementById('postTitle').value.trim();
+            const text = document.getElementById('postText').value.trim();
+            const wantSchedule = document.getElementById('wantSchedulePost').checked;
+            let start = null, end = null;
+
+            if(wantSchedule) {
+                const sVal = document.getElementById('postStart').value;
+                const eVal = document.getElementById('postEnd').value;
+                start = sVal ? new Date(sVal).getTime() : null;
+                end = eVal ? new Date(eVal).getTime() : null;
+            }
+            
+            if(!title || !text) return window.showToast("Heading and text are mandatory.");
+            
+            const btn = document.getElementById('submitPostBtn'); btn.innerText = 'Publishing...';
+            try {
+                await addDoc(collection(db, "business_posts"), { 
+                    bizId: window.currentPostBizId, owner: auth.currentUser.email, title, text, 
+                    images: window.tempItemImgs['post'] || [], startTime: start, endTime: end, timestamp: Date.now() 
+                });
+                window.closeModal('postModal'); window.showToast("Offer Published!");
+            } catch(e) { window.showToast("Error"); }
+            btn.innerText = 'Publish Post';
+        };
+
+        window.deletePost = async (id) => { if(confirm("Delete this post?")) { await deleteDoc(doc(db, "business_posts", id)); window.showToast("Post Deleted."); } };
+
+        // ==========================================
+        // 🔥 NOTIFICATIONS 🔥
+        // ==========================================
+        window.toggleNotifPanel = () => {
+            const panel = document.getElementById('notifPanel');
+            if(panel.style.display === 'flex') panel.style.display = 'none';
+            else { panel.style.display = 'flex'; if(auth.currentUser) window.markNotifsRead(); }
+        };
+        
+        window.clearNotifs = async () => {
+            if(!auth.currentUser) return;
+            const q = query(collection(db, "notifications"), where("userId", "==", auth.currentUser.email));
+            const snap = await getDocs(q);
+            snap.forEach(async (d) => await deleteDoc(d.ref));
+            window.showToast("Cleared all alerts");
+        };
+
+        window.markNotifsRead = async () => {
+            const q = query(collection(db, "notifications"), where("userId", "==", auth.currentUser.email), where("read", "==", false));
+            const snap = await getDocs(q);
+            snap.forEach(async (d) => await updateDoc(d.ref, { read: true }));
+        };
+
+        window.checkBoostReminder = () => {
+            if(!auth.currentUser) return;
+            const lastPrompt = localStorage.getItem('kt_lastBoostPrompt');
+            const now = Date.now();
+            if(!lastPrompt || (now - parseInt(lastPrompt)) > (30 * 60 * 60 * 1000)) {
+                addDoc(collection(db, "notifications"), { userId: auth.currentUser.email, text: "Boost Your Business to Get Better reach 🚀", time: now, read: false });
+                localStorage.setItem('kt_lastBoostPrompt', now.toString());
+            }
+        };
+
+        // ==========================================
+        // 🔥 ROUTING 🔥
         // ==========================================
         window.switchTab = (tab) => { window.location.hash = tab; }
+        window.userWishlists = JSON.parse(localStorage.getItem('kt_wishlists')) || [];
+
+        window.toggleTutorialLang = () => {
+            const en = document.getElementById('tutorial-en'); const hi = document.getElementById('tutorial-hi');
+            if(en.classList.contains('hidden')) { en.classList.remove('hidden'); hi.classList.add('hidden'); document.querySelector('#view-tutorial button').innerText = "Switch to Simple Hindi"; }
+            else { en.classList.add('hidden'); hi.classList.remove('hidden'); document.querySelector('#view-tutorial button').innerText = "Switch to English"; }
+        };
+
+        window.updateWishlistBadge = () => {
+            const badge = document.getElementById('wishCountBadge');
+            const mobBadge = document.getElementById('mobileWishCountBadge');
+            if(window.userWishlists.length > 0) {
+                if(badge) { badge.innerText = window.userWishlists.length; badge.classList.remove('hidden'); }
+                if(mobBadge) { mobBadge.innerText = window.userWishlists.length; mobBadge.classList.remove('hidden'); }
+            } else {
+                if(badge) badge.classList.add('hidden');
+                if(mobBadge) mobBadge.classList.add('hidden');
+            }
+        }
 
         function handleRouting() {
+            window.showLoader();
             let hash = window.location.hash.replace('#', '') || 'home';
-            const validTabs = ['home', 'marketplace', 'updates', 'about', 'support', 'profile', 'detail', 'privacy', 'terms'];
             
+            if (hash.startsWith('marketplace/')) {
+                const slug = hash.split('/')[1];
+                getDocs(query(collection(db, "businesses"), where("slug", "==", slug))).then(snap => {
+                    if(!snap.empty) {
+                        const bData = { id: snap.docs[0].id, ...snap.docs[0].data() };
+                        window.renderBusinessProfile(bData);
+                        document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+                        document.getElementById('view-detail').classList.add('active');
+                        window.hideLoader();
+                    } else {
+                        window.location.hash = 'marketplace';
+                        window.hideLoader();
+                    }
+                }).catch(e => window.hideLoader());
+                return;
+            }
+
+            const validTabs = ['home', 'marketplace', 'wishlists', 'updates', 'about', 'support', 'profile', 'detail', 'privacy', 'terms', 'tutorial'];
             if (!validTabs.includes(hash)) hash = 'home';
-            if (hash === 'profile' && !auth.currentUser) { openModal('authModal'); window.location.hash = 'home'; return; }
+            
+            if (hash === 'profile' && !auth.currentUser) {
+                window.openModal('authModal'); window.location.hash = 'home'; window.hideLoader(); return; 
+            }
 
             document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('text-white'));
             
-            document.getElementById(`view-${hash}`).classList.add('active');
+            const activeSec = document.getElementById(`view-${hash}`);
+            if(activeSec) activeSec.classList.add('active');
+            
             document.querySelectorAll(`.nav-link[data-target="${hash}"]`).forEach(el => el.classList.add('text-white'));
+            
+            if(hash === 'wishlists') window.loadWishlistFeed();
+            window.updateWishlistBadge();
+            
             window.scrollTo(0,0);
+            window.hideLoader();
         }
 
         window.addEventListener('hashchange', handleRouting);
         window.addEventListener('DOMContentLoaded', handleRouting); 
-        window.openAuthOrProfile = () => auth.currentUser ? switchTab('profile') : openModal('authModal');
+        window.openAuthOrProfile = () => auth.currentUser ? window.switchTab('profile') : window.openModal('authModal');
 
         // ==========================================
-        // 🔥 RATING SYSTEM 🔥
+        // 🔥 REVIEW RATING SYSTEM (100% FIXED) 🔥
         // ==========================================
-        let currentRating = 0;
-        document.querySelectorAll('#reviewStars i').forEach(star => {
-            star.onclick = () => {
-                currentRating = star.dataset.v;
-                document.querySelectorAll('#reviewStars i').forEach(s => s.classList.toggle('active', s.dataset.v <= currentRating));
+        window.currentRating = 0;
+        window.setRating = (val) => {
+            window.currentRating = val;
+            for(let i=1; i<=5; i++) {
+                const btn = document.getElementById('starBtn'+i);
+                if(btn) {
+                    if(i <= val) { btn.classList.add('active'); } 
+                    else { btn.classList.remove('active'); }
+                }
             }
-        });
+        };
+
+        window.openReviewModal = (id) => {
+            if(!auth.currentUser) return window.showToast("Please sign in to write a review.");
+            window.currentDetailBizId = id; 
+            window.setRating(0); 
+            document.getElementById('reviewText').value = '';
+            window.openModal('reviewModal');
+        }
+        
+        window.submitReview = async () => {
+            const text = document.getElementById('reviewText').value.trim();
+            if(window.currentRating === 0) return window.showToast("Please select 1 to 5 stars!");
+            if(!text) return window.showToast("Review description is mandatory.");
+            
+            const btn = document.getElementById('submitReviewBtn'); 
+            btn.innerText = 'Submitting...';
+            try {
+                await addDoc(collection(db, "peer_reviews"), { 
+                    bizId: window.currentDetailBizId, 
+                    user: auth.currentUser.email, 
+                    rating: parseInt(window.currentRating), 
+                    text, 
+                    status: 'Pending', 
+                    timestamp: Date.now() 
+                });
+                const bRef = doc(db, "businesses", window.currentDetailBizId); 
+                const bDoc = await getDoc(bRef);
+                if(bDoc.exists()) {
+                    await updateDoc(bRef, { reviewCount: (bDoc.data().reviewCount || 0) + 1 });
+                }
+                window.closeModal('reviewModal'); 
+                window.showToast("Review submitted for 24-Hour Peer Review.");
+                window.currentRating = 0; 
+                document.getElementById('reviewText').value = ''; 
+                document.querySelectorAll('#reviewStars button').forEach(b => b.classList.remove('active'));
+            } catch(e) { window.showToast("Error submitting review"); }
+            btn.innerText = 'Submit Review';
+        };
+
+        window.deleteReview = async (reviewId, bizId) => {
+            if(confirm("Delete your review? You can write a new one after this.")) {
+                try {
+                    await deleteDoc(doc(db, "peer_reviews", reviewId));
+                    const bRef = doc(db, "businesses", bizId);
+                    const bDoc = await getDoc(bRef);
+                    if(bDoc.exists() && (bDoc.data().reviewCount || 0) > 0) {
+                        await updateDoc(bRef, { reviewCount: bDoc.data().reviewCount - 1 });
+                    }
+                    window.showToast("Review deleted. You can now write a new one.");
+                } catch(e) { window.showToast("Error deleting review."); }
+            }
+        };
 
         // ==========================================
-        // 🔥 AUTO IMAGE COMPRESSOR 🔥
+        // 🔥 IMAGE COMPRESSOR 🔥
         // ==========================================
         function compressImage(file, maxWidth = 800) {
             return new Promise((resolve) => {
@@ -536,42 +978,48 @@
                         else if (height > maxWidth) { width *= maxWidth / height; height = maxWidth; }
                         canvas.width = width; canvas.height = height;
                         const ctx = canvas.getContext('2d'); ctx.drawImage(img, 0, 0, width, height);
-                        resolve(canvas.toDataURL('image/jpeg', 0.6));
+                        resolve(canvas.toDataURL('image/webp', 0.5));
                     };
                 };
             });
         }
 
-        let mainImgs = []; let tempItemImgs = {}; 
+        window.mainImgs = []; window.tempItemImgs = {}; window.ticketImgs = [];
 
-        window.handleMultipleImages = async (e, prevId, lblId, max = 10, itemId = null) => {
+        window.handleMultipleImages = async (e, prevId, lblId, max = 10, contextId = null) => {
             const files = Array.from(e.target.files).slice(0, max);
             const prev = document.getElementById(prevId);
             
-            if(itemId) tempItemImgs[itemId] = []; else mainImgs = [];
-            prev.innerHTML = '<p class="text-xs text-[#f97316] font-bold">Compressing...</p>';
+            if(contextId === 'ticket') window.ticketImgs = [];
+            else if(contextId === 'post') window.tempItemImgs['post'] = []; 
+            else if(contextId) window.tempItemImgs[contextId] = []; 
+            else window.mainImgs = [];
+
+            if(lblId) { document.getElementById(lblId).innerText = 'Compressing...'; document.getElementById(lblId).classList.remove('text-green-500'); }
+            prev.innerHTML = '';
             
             for(let file of files) {
                 const compressedB64 = await compressImage(file);
-                if(itemId) tempItemImgs[itemId].push(compressedB64); else mainImgs.push(compressedB64);
+                if(contextId === 'ticket') window.ticketImgs.push(compressedB64);
+                else if(contextId === 'post') window.tempItemImgs['post'].push(compressedB64); 
+                else if(contextId) window.tempItemImgs[contextId].push(compressedB64); 
+                else window.mainImgs.push(compressedB64);
             }
             
-            prev.innerHTML = '';
-            const arr = itemId ? tempItemImgs[itemId] : mainImgs;
+            const arr = contextId === 'ticket' ? window.ticketImgs : (contextId === 'post' ? window.tempItemImgs['post'] : (contextId ? window.tempItemImgs[contextId] : window.mainImgs));
             arr.forEach(b64 => prev.innerHTML += `<img src="${b64}?t=${Date.now()}" class="w-16 h-16 object-cover rounded-lg border border-[#27272a] shrink-0">`);
-            document.getElementById(lblId).innerText = `${arr.length} Image(s) Added ✅`;
-            document.getElementById(lblId).classList.add('text-green-500');
+            if(lblId) { document.getElementById(lblId).innerText = `${arr.length} Image(s) Added ✅`; document.getElementById(lblId).classList.add('text-green-500'); }
         };
 
         window.toggleItemSection = () => {
             const sec = document.getElementById('itemsSection'); sec.classList.toggle('hidden');
-            if(!sec.classList.contains('hidden') && document.getElementById('itemsContainer').children.length === 0) addNewItemBox();
+            if(!sec.classList.contains('hidden') && document.getElementById('itemsContainer').children.length === 0) window.addNewItemBox();
         };
 
         let itemCount = 0;
         window.addNewItemBox = (data = null) => {
             itemCount++; const id = `item_${itemCount}`;
-            if(data && data.images) tempItemImgs[id] = data.images;
+            if(data && data.images) window.tempItemImgs[id] = data.images;
 
             const html = `
                 <div class="p-4 bg-[#111] border border-[#27272a] rounded-xl relative item-box" id="box_${id}">
@@ -585,327 +1033,784 @@
                         </select>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3 pr-6">
-                        <input type="text" class="modern-input py-2 text-sm item-price-full bg-[#050505]" placeholder="Full Price (Mandatory)" value="${data ? data.priceFull : ''}">
+                        <input type="text" class="modern-input py-2 text-sm item-price-full bg-[#050505]" placeholder="Full Price (Optional)" value="${data && data.priceFull ? data.priceFull : ''}">
                         <input type="text" class="modern-input py-2 text-sm item-price-half bg-[#050505]" placeholder="Half Price (Optional)" value="${data && data.priceHalf ? data.priceHalf : ''}">
                     </div>
                     <div class="flex items-center gap-3">
                         <button type="button" onclick="document.getElementById('imgInp_${id}').click()" class="bg-[#27272a] text-white text-xs font-bold px-3 py-2 rounded-lg hover:text-[#f97316] transition" id="imgLbl_${id}">+ Photos (Max 2)</button>
-                        <input type="file" id="imgInp_${id}" accept="image/*" multiple class="hidden" onchange="handleMultipleImages(event, 'preview_${id}', 'imgLbl_${id}', 2, '${id}')">
+                        <input type="file" id="imgInp_${id}" accept="image/*" multiple class="hidden" onchange="window.handleMultipleImages(event, 'preview_${id}', 'imgLbl_${id}', 2, '${id}')">
                         <div id="preview_${id}" class="flex gap-2">
-                            ${data && data.images ? data.images.map(img => `<img src="${img}" class="w-16 h-16 object-cover rounded-lg border border-[#27272a] shrink-0">`).join('') : ''}
+                            ${data && data.images ? data.images.map(img => `<img src="${img}?t=${Date.now()}" class="w-16 h-16 object-cover rounded-lg border border-[#27272a] shrink-0">`).join('') : ''}
                         </div>
                     </div>
                 </div>`;
-            document.getElementById('itemsContainer').insertAdjacentHTML('beforeend', html); lucide.createIcons();
+            document.getElementById('itemsContainer').insertAdjacentHTML('beforeend', html); window.initIcons();
         };
 
         // ==========================================
         // 🔥 AUTH LOGIC 🔥
         // ==========================================
-        let authMode = 'LOGIN';
+        window.authMode = 'LOGIN';
         document.getElementById('togglePasswordBtn').onclick = () => {
             const p = document.getElementById('password'); p.type = p.type === 'password' ? 'text' : 'password';
-            document.getElementById('eyeIcon').setAttribute('data-lucide', p.type === 'password' ? 'eye' : 'eye-off'); lucide.createIcons();
+            document.getElementById('eyeIcon').setAttribute('data-lucide', p.type === 'password' ? 'eye' : 'eye-off'); window.initIcons();
         };
-        document.getElementById('toggleAuthBtn').onclick = () => { authMode = authMode === 'LOGIN' ? 'REGISTER' : 'LOGIN'; updateAuthUI(); };
-        document.getElementById('forgotBtn').onclick = () => { authMode = 'FORGOT'; updateAuthUI(); };
+        
+        document.getElementById('toggleAuthBtn').onclick = () => { 
+            window.authMode = window.authMode === 'LOGIN' ? 'REGISTER' : 'LOGIN'; 
+            window.updateAuthUI(); 
+        };
+        document.getElementById('forgotBtn').onclick = () => { window.authMode = 'FORGOT'; window.updateAuthUI(); };
 
-        function updateAuthUI() {
-            const t = document.getElementById('authTitle'), b = document.getElementById('mainBtn'), p = document.getElementById('passContainer'), fBtn = document.getElementById('forgotBtn'), tBtn = document.getElementById('toggleAuthBtn');
-            if(authMode === 'LOGIN') { t.innerText = "Sign In"; b.innerText = "Authenticate"; p.style.display = 'block'; fBtn.style.display = 'block'; tBtn.innerText = "Need an account? Register"; } 
-            else if (authMode === 'REGISTER') { t.innerText = "Register"; b.innerText = "Create Account"; p.style.display = 'block'; fBtn.style.display = 'none'; tBtn.innerText = "Already registered? Sign In"; } 
-            else if (authMode === 'FORGOT') { t.innerText = "Reset Password"; b.innerText = "Send Reset Link"; p.style.display = 'none'; fBtn.style.display = 'none'; tBtn.innerText = "Back to Sign In"; }
+        window.updateAuthUI = () => {
+            const t = document.getElementById('authTitle'), b = document.getElementById('mainBtn'), p = document.getElementById('passContainer'), fBtn = document.getElementById('forgotBtnWrapper'), tBtn = document.getElementById('toggleAuthBtn'), terms = document.getElementById('registerTerms');
+            if(window.authMode === 'LOGIN') { 
+                t.innerText = "Sign In"; b.innerText = "Authenticate"; p.style.display = 'block'; fBtn.style.display = 'flex'; tBtn.innerText = "Need an account? Register"; 
+                terms.classList.add('hidden'); b.disabled = false;
+            } 
+            else if (window.authMode === 'REGISTER') { 
+                t.innerText = "Register"; b.innerText = "Create Account"; p.style.display = 'block'; fBtn.style.display = 'none'; tBtn.innerText = "Already registered? Sign In"; 
+                terms.classList.remove('hidden'); b.disabled = !document.getElementById('regAcceptTerms').checked;
+            } 
+            else if (window.authMode === 'FORGOT') { 
+                t.innerText = "Reset Password"; b.innerText = "Send Reset Link"; p.style.display = 'none'; fBtn.style.display = 'none'; tBtn.innerText = "Back to Sign In"; 
+                terms.classList.add('hidden'); b.disabled = false;
+            }
         }
+        
+        document.getElementById('regAcceptTerms').addEventListener('change', function() {
+            if(window.authMode === 'REGISTER') document.getElementById('mainBtn').disabled = !this.checked;
+        });
 
-        document.getElementById('mainBtn').onclick = async () => {
+        window.submitAuth = async () => {
             const e = document.getElementById('email').value.trim(), p = document.getElementById('password').value;
-            if(!e) return showToast("Email required");
+            if(!e) return window.showToast("Email required");
             try {
-                if(authMode === 'LOGIN') { if(!p) return showToast("Password required"); await signInWithEmailAndPassword(auth, e, p); closeModal(); switchTab('profile'); } 
-                else if(authMode === 'REGISTER') { if(!p) return showToast("Password required"); await createUserWithEmailAndPassword(auth, e, p); closeModal(); switchTab('profile'); } 
-                else if(authMode === 'FORGOT') { await sendPasswordResetEmail(auth, e); showToast("Reset link sent! Please check your spam folder."); authMode = 'LOGIN'; updateAuthUI(); }
-            } catch(err) { showToast(err.message.split('auth/')[1] || "Error occurred"); }
+                if(window.authMode === 'LOGIN') { if(!p) return window.showToast("Password required"); await signInWithEmailAndPassword(auth, e, p); window.closeModal('authModal'); window.location.hash = 'profile'; } 
+                else if(window.authMode === 'REGISTER') { if(!p) return window.showToast("Password required"); await createUserWithEmailAndPassword(auth, e, p); window.closeModal('authModal'); window.location.hash = 'profile'; } 
+                else if(window.authMode === 'FORGOT') { await sendPasswordResetEmail(auth, e); window.showToast("Reset link sent! Please check your spam folder."); window.authMode = 'LOGIN'; window.updateAuthUI(); }
+            } catch(err) { window.showToast(err.message.split('auth/')[1] || "Error occurred"); }
         };
-
-        document.getElementById('logoutBtn').onclick = () => { signOut(auth); switchTab('home'); };
+        document.getElementById('logoutBtn').onclick = () => { signOut(auth); window.location.hash = 'home'; };
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 document.getElementById('userEmailDisplay').innerText = user.email; document.getElementById('navProfileText').innerText = "Portal";
                 document.getElementById('supportLoginPrompt').classList.add('hidden'); document.getElementById('supportDashboard').classList.remove('hidden');
-                loadUserBusinesses(user.email); loadUserTickets(user.email);
-                if(user.email === 'kt.deore@hotmail.com') { document.getElementById('adminPanel').classList.remove('hidden'); loadAdminQueue(); }
+                
+                onSnapshot(query(collection(db, "notifications"), where("userId", "==", user.email), orderBy("time", "desc")), (snap) => {
+                    const list = document.getElementById('notifList');
+                    let unreadCount = 0;
+                    list.innerHTML = snap.empty ? `<p class="text-center py-6 text-xs text-gray-500">No new alerts.</p>` : "";
+                    snap.forEach((d) => {
+                        const n = d.data();
+                        if(!n.read) unreadCount++;
+                        const bg = n.read ? 'bg-[#050505]' : 'bg-[#27272a] border-[#f97316]';
+                        list.innerHTML += `<div class="p-3 ${bg} border border-[#27272a] rounded-xl mb-2 mx-2"><p class="text-xs text-white font-bold">${n.text}</p><p class="text-[9px] text-gray-500 mt-1">${new Date(n.time).toLocaleString()}</p></div>`;
+                    });
+                    const badge = document.getElementById('notifBadge'), mobBadge = document.getElementById('mobileNotifBadge');
+                    if(unreadCount > 0) {
+                        if(badge) { badge.innerText = unreadCount; badge.classList.remove('hidden'); }
+                        if(mobBadge) { mobBadge.innerText = unreadCount; mobBadge.classList.remove('hidden'); }
+                    } else {
+                        if(badge) badge.classList.add('hidden'); if(mobBadge) mobBadge.classList.add('hidden');
+                    }
+                });
+
+                window.checkBoostReminder();
+                
+                onSnapshot(query(collection(db, "wishlists"), where("userId", "==", user.email)), (snap) => {
+                    window.userWishlists = snap.docs.map(doc => doc.data().bizId);
+                    window.updateWishlistBadge();
+                    if(window.location.hash === '#wishlists') window.loadWishlistFeed();
+                });
+
+                window.loadUserBusinesses(user.email); window.loadUserTickets(user.email);
+                if(user.email.toLowerCase() === 'kt.deore@hotmail.com') { document.getElementById('adminPanel').classList.remove('hidden'); window.loadAdminQueue(); }
+                else { document.getElementById('adminPanel').classList.add('hidden'); }
             } else {
                 document.getElementById('navProfileText').innerText = "Sign In";
                 document.getElementById('supportLoginPrompt').classList.remove('hidden'); document.getElementById('supportDashboard').classList.add('hidden');
+                window.userWishlists = []; window.updateWishlistBadge();
             }
         });
 
         // ==========================================
-        // 🔥 BIZ ADD / EDIT / DELETE LOGIC 🔥
+        // 🔥 BIZ ADD / EDIT LOGIC 🔥
         // ==========================================
-        let editingBizId = null;
+        window.editingBizId = null;
 
         window.openAddBizModal = () => {
-            editingBizId = null; 
-            document.getElementById('bizModalTitle').innerText = "Register Business"; document.getElementById('submitBizBtn').innerText = "Submit for Peer Review";
+            window.editingBizId = null; 
+            document.getElementById('bizModalTitle').innerText = "Register Business"; 
+            document.getElementById('submitBizBtn').innerText = "Submit for Peer Review (Max 24 Hrs)";
             document.getElementById('bizName').value = ''; document.getElementById('bizCategory').value = ''; document.getElementById('bizCity').value = ''; document.getElementById('bizAddress').value = ''; document.getElementById('bizPhone').value = ''; document.getElementById('bizMail').value = ''; document.getElementById('bizDesc').value = '';
+            document.getElementById('bizHours').value = ''; document.getElementById('bizWebsite').value = '';
+            document.getElementById('bizInsta').value = ''; document.getElementById('bizFb').value = ''; document.getElementById('bizX').value = ''; document.getElementById('bizYt').value = '';
             document.getElementById('checkShowPhone').checked = true; document.getElementById('checkShowMail').checked = true;
+            document.getElementById('isOnlineBiz').checked = false; document.getElementById('isClosedToday').checked = false; window.toggleAddressField();
+            
             document.getElementById('wantListItems').checked = false; document.getElementById('itemsSection').classList.add('hidden'); document.getElementById('itemsContainer').innerHTML = '';
-            mainImgs = []; tempItemImgs = {}; document.getElementById('mainImagesPreview').innerHTML = ''; document.getElementById('mainImagesLabel').innerText = "Click to Upload Cover Image"; document.getElementById('mainImagesLabel').classList.remove('text-green-500');
-            openModal('bizModal');
+            
+            document.getElementById('acceptTerms').checked = false;
+            document.getElementById('submitBizBtn').disabled = true;
+
+            window.mainImgs = []; window.tempItemImgs = {}; document.getElementById('mainImagesPreview').innerHTML = ''; document.getElementById('mainImagesLabel').innerText = "Click to Upload Cover Image"; document.getElementById('mainImagesLabel').classList.remove('text-green-500');
+            window.openModal('bizModal');
         };
 
         window.openEditBizModal = (bizString) => {
-            const b = JSON.parse(decodeURIComponent(bizString)); editingBizId = b.id; 
-            document.getElementById('bizModalTitle').innerText = "Update Business Details"; document.getElementById('submitBizBtn').innerText = "Save Changes";
-            document.getElementById('bizName').value = b.name; document.getElementById('bizCategory').value = b.category; document.getElementById('bizCity').value = b.city; document.getElementById('bizAddress').value = b.address; document.getElementById('bizPhone').value = b.phone; document.getElementById('bizMail').value = b.mail; document.getElementById('bizDesc').value = b.desc;
-            document.getElementById('checkShowPhone').checked = b.showPhone; document.getElementById('checkShowMail').checked = b.showMail;
+            const b = JSON.parse(decodeURIComponent(bizString)); window.editingBizId = b.id; 
+            document.getElementById('bizModalTitle').innerText = "Update Business Details"; 
+            document.getElementById('submitBizBtn').innerText = "Save Changes";
             
-            mainImgs = b.images || []; tempItemImgs = {}; 
+            document.getElementById('bizName').value = b.name || ''; 
+            document.getElementById('bizCategory').value = b.category || ''; 
+            document.getElementById('bizCity').value = b.city || ''; 
+            document.getElementById('bizAddress').value = b.address || ''; 
+            document.getElementById('bizPhone').value = b.phone || ''; 
+            document.getElementById('bizMail').value = b.mail || ''; 
+            document.getElementById('bizDesc').value = b.desc || '';
+            document.getElementById('bizHours').value = b.hours || ''; 
+            document.getElementById('bizWebsite').value = b.website || '';
+            
+            if(b.socials) {
+                document.getElementById('bizInsta').value = b.socials.insta || ''; document.getElementById('bizFb').value = b.socials.fb || ''; document.getElementById('bizX').value = b.socials.x || ''; document.getElementById('bizYt').value = b.socials.yt || '';
+            } else {
+                document.getElementById('bizInsta').value = ''; document.getElementById('bizFb').value = ''; document.getElementById('bizX').value = ''; document.getElementById('bizYt').value = '';
+            }
+
+            document.getElementById('checkShowPhone').checked = b.showPhone !== false; 
+            document.getElementById('checkShowMail').checked = b.showMail !== false;
+            document.getElementById('isOnlineBiz').checked = b.isOnline || false; 
+            document.getElementById('isClosedToday').checked = b.isClosedToday || false;
+            window.toggleAddressField();
+            
+            document.getElementById('acceptTerms').checked = true;
+            document.getElementById('submitBizBtn').disabled = false;
+
+            window.mainImgs = b.images || []; window.tempItemImgs = {}; 
             const prev = document.getElementById('mainImagesPreview'); prev.innerHTML = '';
-            mainImgs.forEach(img => prev.innerHTML += `<img src="${img}" class="w-16 h-16 object-cover rounded-lg border border-[#27272a] shrink-0">`);
-            if(mainImgs.length > 0) { document.getElementById('mainImagesLabel').innerText = `${mainImgs.length} Image(s) Loaded`; document.getElementById('mainImagesLabel').classList.add('text-green-500'); }
+            window.mainImgs.forEach(img => prev.innerHTML += `<img src="${img}?t=${Date.now()}" class="w-16 h-16 object-cover rounded-lg border border-[#27272a] shrink-0">`);
+            if(window.mainImgs.length > 0) { document.getElementById('mainImagesLabel').innerText = `${window.mainImgs.length} Image(s) Loaded`; document.getElementById('mainImagesLabel').classList.add('text-green-500'); }
 
             document.getElementById('itemsContainer').innerHTML = ''; 
-            if(b.items && b.items.length > 0) { document.getElementById('wantListItems').checked = true; document.getElementById('itemsSection').classList.remove('hidden'); b.items.forEach(item => addNewItemBox(item)); } 
+            if(b.items && b.items.length > 0) { document.getElementById('wantListItems').checked = true; document.getElementById('itemsSection').classList.remove('hidden'); b.items.forEach(item => window.addNewItemBox(item)); } 
             else { document.getElementById('wantListItems').checked = false; document.getElementById('itemsSection').classList.add('hidden'); }
-            openModal('bizModal');
+            window.openModal('bizModal');
         };
 
-        document.getElementById('submitBizBtn').onclick = async () => {
-            const name = document.getElementById('bizName').value, category = document.getElementById('bizCategory').value, city = document.getElementById('bizCity').value.trim().toLowerCase(), addr = document.getElementById('bizAddress').value, phone = document.getElementById('bizPhone').value, mail = document.getElementById('bizMail').value, desc = document.getElementById('bizDesc').value;
+        window.submitBiz = async () => {
+            const name = document.getElementById('bizName').value.trim(), category = document.getElementById('bizCategory').value, city = document.getElementById('bizCity').value.trim().toLowerCase(), addr = document.getElementById('bizAddress').value, phone = document.getElementById('bizPhone').value, mail = document.getElementById('bizMail').value, desc = document.getElementById('bizDesc').value, hours = document.getElementById('bizHours').value, website = document.getElementById('bizWebsite').value;
 
-            if(!name || !category || !city || !addr || !phone || !mail || !desc) return showToast("All main fields are Mandatory!");
+            if(!name || !category || !city || !addr || !phone || !mail || !desc) return window.showToast("All main fields are Mandatory!");
             
             let finalItems = [];
             if(document.getElementById('wantListItems').checked) {
                 let allItemsValid = true;
                 document.querySelectorAll('.item-box').forEach(box => {
-                    const id = box.id.replace('box_', ''); const iName = box.querySelector('.item-name').value, iFull = box.querySelector('.item-price-full').value;
-                    if(!iName || !iFull) { allItemsValid = false; return; }
-                    finalItems.push({ name: iName, type: box.querySelector('.item-type').value, priceFull: iFull, priceHalf: box.querySelector('.item-price-half').value, images: tempItemImgs[id] || [] });
+                    const id = box.id.replace('box_', ''); const iName = box.querySelector('.item-name').value;
+                    if(!iName) { allItemsValid = false; return; }
+                    finalItems.push({ name: iName, type: box.querySelector('.item-type').value, priceFull: box.querySelector('.item-price-full').value, priceHalf: box.querySelector('.item-price-half').value, images: window.tempItemImgs[id] || [] });
                 });
-                if(!allItemsValid) return showToast("Item Name & Full Price are Mandatory for each item.");
+                if(!allItemsValid) return window.showToast("Item Name is Mandatory for each item.");
             }
             
-            const btn = document.getElementById('submitBizBtn'); btn.innerText = "Saving...";
-            const payload = { name, category, city, address: addr, phone, mail, desc, showPhone: document.getElementById('checkShowPhone').checked, showMail: document.getElementById('checkShowMail').checked, images: mainImgs, items: finalItems, status: editingBizId ? 'Approved' : 'Pending' };
+            const socials = { insta: document.getElementById('bizInsta').value, fb: document.getElementById('bizFb').value, x: document.getElementById('bizX').value, yt: document.getElementById('bizYt').value };
+
+            const btn = document.getElementById('submitBizBtn'); btn.innerText = "Processing...";
+            
+            let baseSlug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+            const slugQuery = await getDocs(query(collection(db, "businesses"), where("slug", "==", baseSlug)));
+            let finalSlug = slugQuery.empty ? baseSlug : baseSlug + '-' + Math.floor(Math.random() * 10000);
+
+            const payload = { 
+                name, category, city, address: addr, phone, mail, desc, hours, website, socials, 
+                showPhone: document.getElementById('checkShowPhone').checked, showMail: document.getElementById('checkShowMail').checked, 
+                isOnline: document.getElementById('isOnlineBiz').checked, isClosedToday: document.getElementById('isClosedToday').checked,
+                images: window.mainImgs, items: finalItems, 
+                status: window.editingBizId ? 'Approved' : 'Pending'
+            };
+            if(!window.editingBizId) payload.slug = finalSlug;
             
             try {
-                if(editingBizId) { await updateDoc(doc(db, "businesses", editingBizId), payload); showToast("Business Updated!"); } 
-                else { payload.owner = auth.currentUser.email; payload.timestamp = Date.now(); await addDoc(collection(db, "businesses"), payload); showToast("Submitted for Admin Review!"); }
-                closeModal('bizModal'); editingBizId = null; 
-            } catch(e) { showToast("Error saving data"); btn.innerText = editingBizId ? "Save Changes" : "Submit for Peer Review"; }
+                if(window.editingBizId) { 
+                    await updateDoc(doc(db, "businesses", window.editingBizId), payload); 
+                    window.showToast("Business Updated!"); 
+                } else { 
+                    payload.owner = auth.currentUser.email; 
+                    payload.timestamp = Date.now(); 
+                    payload.isBoosted = false; payload.viewCount = 0; payload.wishlistCount = 0; payload.reviewCount = 0;
+                    payload.bizId = "BIZ" + Date.now().toString(36).toUpperCase(); 
+                    
+                    await addDoc(collection(db, "businesses"), payload); 
+                    window.showToast("Submitted for Admin Review!"); 
+
+                    try {
+                        const webhookUrl = "https://discordapp.com/api/webhooks/1485529570764652614/0k66BLilC2AvepZJW9hID1XW86OrbMoLMIMi8KHW391crZn-I-Us8pjVk1-BsgHvvKsS";
+                        let itemsText = finalItems.length > 0 ? finalItems.map(i => `${i.name} (${i.type}) - ${i.priceFull || 'N/A'}`).join('\n').substring(0, 1000) : "No items";
+                        
+                        const discordPayload = {
+                            embeds: [{
+                                title: "🚨 New Business Registration (Pending)!",
+                                color: 16347392,
+                                fields: [
+                                    { name: "ID", value: payload.bizId, inline: true },
+                                    { name: "Name", value: payload.name, inline: true },
+                                    { name: "Category", value: payload.category, inline: true },
+                                    { name: "Owner Email", value: payload.owner, inline: false },
+                                    { name: "Phone", value: payload.phone + ` (Public: ${payload.showPhone})`, inline: true },
+                                    { name: "Email", value: payload.mail + ` (Public: ${payload.showMail})`, inline: true },
+                                    { name: "Address", value: `${payload.address}, ${payload.city} (Online: ${payload.isOnline})`, inline: false },
+                                    { name: "Menu/Items", value: itemsText, inline: false },
+                                    { name: "Images", value: `${payload.images.length} Image(s)`, inline: false }
+                                ]
+                            }]
+                        };
+                        fetch(webhookUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(discordPayload) });
+                    } catch(e) {}
+                }
+                window.closeModal('bizModal'); window.editingBizId = null; 
+            } catch(e) { window.showToast("Error saving data"); btn.innerText = "Error"; }
         };
 
-        window.deleteBiz = async (id) => { if(confirm("Permanently delete this listing? All photos will be lost.")) { try { await deleteDoc(doc(db, "businesses", id)); showToast("Listing deleted successfully!"); } catch(e) { showToast("Error deleting listing."); } } };
+        window.deleteBiz = async (id) => { 
+            if(confirm("Permanently delete this listing? All data will be lost.")) { 
+                try { 
+                    await deleteDoc(doc(db, "businesses", id)); 
+                    window.showToast("Listing deleted successfully!"); 
+                    if(window.location.hash.includes(id)) window.location.hash = 'home';
+                } catch(e) { window.showToast("Error deleting listing."); } 
+            } 
+        };
 
         // ==========================================
-        // 🔥 TICKETS, CHAT & BOOST 🔥
+        // 🔥 TICKETS & BOOST 🔥
         // ==========================================
-        let currentTicketId = null;
-        document.getElementById('submitTicketBtn').onclick = async () => {
+        window.currentTicketId = null;
+        window.submitTicket = async () => {
             const subject = document.getElementById('ticketSubject').value, desc = document.getElementById('ticketDesc').value;
-            if(!subject || !desc) return showToast("All fields required");
-            try { await addDoc(collection(db, "support_tickets"), { subject, owner: auth.currentUser.email, status: 'Open', timestamp: Date.now(), messages: [{ sender: auth.currentUser.email, text: desc, time: Date.now() }] }); closeModal('ticketModal'); showToast("Ticket Opened"); document.getElementById('ticketSubject').value = ''; document.getElementById('ticketDesc').value = ''; } catch(e) { showToast("Error"); }
+            if(!subject || !desc) return window.showToast("All fields required");
+            try { await addDoc(collection(db, "support_tickets"), { subject, owner: auth.currentUser.email, status: 'Open', images: window.ticketImgs, timestamp: Date.now(), messages: [{ sender: auth.currentUser.email, text: desc, time: Date.now() }] }); window.closeModal('ticketModal'); window.showToast("Ticket Opened"); document.getElementById('ticketSubject').value = ''; document.getElementById('ticketDesc').value = ''; window.ticketImgs = []; document.getElementById('ticketImgPrev').innerHTML = ''; document.getElementById('ticketImgLbl').innerText = ''; } catch(e) { window.showToast("Error"); }
         };
 
         window.openChat = (ticketId, subject) => {
-            currentTicketId = ticketId; document.getElementById('chatSubject').innerText = subject; openModal('chatModal');
+            window.currentTicketId = ticketId; document.getElementById('chatSubject').innerText = subject; window.openModal('chatModal');
             onSnapshot(doc(db, "support_tickets", ticketId), (docSnap) => {
                 const data = docSnap.data(), history = document.getElementById('chatHistory'); history.innerHTML = "";
-                data.messages.forEach(m => {
-                    const isMe = m.sender === auth.currentUser.email, bubbleClass = isMe ? 'bg-[#27272a] self-end' : 'bg-[#f97316] text-black self-start';
-                    history.innerHTML += `<div class="${bubbleClass} p-3 rounded-2xl max-w-[80%]"><span class="text-[10px] font-bold opacity-60 mb-1 block">${m.sender === 'kt.deore@hotmail.com' ? 'Admin' : m.sender.split('@')[0]}</span><span class="text-sm font-medium">${m.text}</span></div>`;
-                });
+                
+                if(data && data.images && data.images.length > 0) {
+                    let imgs = ''; data.images.forEach(i => imgs += `<img src="${i}" class="w-32 h-32 object-cover rounded-lg border border-[#27272a]">`);
+                    history.innerHTML += `<div class="bg-[#27272a] p-3 rounded-2xl max-w-[80%] self-end mb-4"><span class="text-[10px] font-bold opacity-60 mb-1 block">Attached Images</span><div class="flex gap-2">${imgs}</div></div>`;
+                }
+
+                if(data && data.messages) {
+                    data.messages.forEach(m => {
+                        const isMe = m.sender === auth.currentUser.email, bubbleClass = isMe ? 'bg-[#27272a] self-end' : 'bg-[#f97316] text-black self-start';
+                        history.innerHTML += `<div class="${bubbleClass} p-3 rounded-2xl max-w-[80%]"><span class="text-[10px] font-bold opacity-60 mb-1 block">${m.sender === 'kt.deore@hotmail.com' ? 'Admin' : m.sender.split('@')[0]}</span><span class="text-sm font-medium">${m.text}</span></div>`;
+                    });
+                }
                 history.scrollTop = history.scrollHeight;
             });
         };
 
-        document.getElementById('sendChatBtn').onclick = async () => {
+        window.sendChatReply = async () => {
             const input = document.getElementById('chatInput'), text = input.value.trim();
-            if(!text || !currentTicketId) return; input.value = ""; 
-            try { await updateDoc(doc(db, "support_tickets", currentTicketId), { messages: arrayUnion({ sender: auth.currentUser.email, text: text, time: Date.now() }) }); } catch(e) { showToast("Failed to send"); }
+            if(!text || !window.currentTicketId) return; input.value = ""; 
+            try { 
+                await updateDoc(doc(db, "support_tickets", window.currentTicketId), { messages: arrayUnion({ sender: auth.currentUser.email, text: text, time: Date.now() }) }); 
+                if(auth.currentUser.email === 'kt.deore@hotmail.com') {
+                    const tDoc = await getDoc(doc(db, "support_tickets", window.currentTicketId));
+                    if(tDoc.exists() && tDoc.data().owner !== 'kt.deore@hotmail.com') {
+                        addDoc(collection(db, "notifications"), { userId: tDoc.data().owner, text: "Admin replied to your ticket 💬", time: Date.now(), read: false });
+                    }
+                }
+            } catch(e) { window.showToast("Failed to send"); }
         };
 
-        let pendingBoostId = null;
-        window.openBoostModal = (bizId) => { pendingBoostId = bizId; openModal('boostModal'); }
-        document.getElementById('proceedBoostBtn').onclick = async () => {
+        window.deleteTicket = async (id) => {
+            if(confirm("Delete this ticket permanently?")) {
+                try { await deleteDoc(doc(db, "support_tickets", id)); window.showToast("Ticket deleted."); } catch(e) { window.showToast("Error deleting"); }
+            }
+        };
+
+        window.pendingBoostId = null;
+        window.openBoostModal = (bizId) => { window.pendingBoostId = bizId; window.openModal('boostModal'); }
+        window.submitBoost = async () => {
             const plan = document.querySelector('input[name="boostPlan"]:checked').value; document.getElementById('proceedBoostBtn').innerText = "Processing...";
-            try { await addDoc(collection(db, "support_tickets"), { subject: `Boost Request: BizID-${pendingBoostId}`, owner: auth.currentUser.email, status: 'Open', timestamp: Date.now(), messages: [{ sender: auth.currentUser.email, text: `I want to Boost my post! Plan: ₹${plan}.`, time: Date.now() }] }); closeModal('boostModal'); showToast("Boost Request Sent!"); switchTab('support'); } catch(e) { showToast("Error"); }
+            try { await addDoc(collection(db, "support_tickets"), { subject: `Boost Request: BizID-${window.pendingBoostId}`, owner: auth.currentUser.email, status: 'Open', timestamp: Date.now(), messages: [{ sender: auth.currentUser.email, text: `I want to Boost my post! Plan: ₹${plan}.`, time: Date.now() }] }); window.closeModal('boostModal'); window.showToast("Boost Request Sent!"); window.location.hash = 'support'; } catch(e) { window.showToast("Error"); }
             document.getElementById('proceedBoostBtn').innerText = "Proceed to Checkout";
         };
 
         // ==========================================
-        // 🔥 RENDER DIRECTORY (WITH PRIVACY LOGIC) 🔥
+        // 🔥 RENDER DIRECTORY & WISHLISTS 🔥
         // ==========================================
         let allVerifiedBiz = [];
 
-        function renderListFeed(businesses, containerId, limit = null) {
+        window.renderListFeed = (businesses, containerId, limit = null) => {
             const feed = document.getElementById(containerId);
-            feed.innerHTML = businesses.length === 0 ? `<div class="col-span-full text-center py-10"><i data-lucide="search-x" class="w-12 h-12 text-gray-600 mx-auto mb-3"></i><p class="text-gray-500">No listings found in this area/category.</p></div>` : "";
+            if(!feed) return;
+            feed.innerHTML = businesses.length === 0 ? `<div class="col-span-full text-center py-10"><i data-lucide="search-x" class="w-12 h-12 text-gray-600 mx-auto mb-3"></i><p class="text-gray-500">No listings found.</p></div>` : "";
+            
             let count = 0;
-            businesses.forEach((b) => {
+            const sortedBiz = [...businesses].sort((a,b) => (b.isBoosted ? 1 : 0) - (a.isBoosted ? 1 : 0)).reverse();
+
+            const isVertical = containerId === 'fullFeed' || containerId === 'wishlistFeed';
+            const cardLayout = isVertical ? 'flex-col sm:flex-row max-w-4xl mx-auto w-full' : 'flex-col';
+            const imgLayout = isVertical ? 'h-48 sm:h-auto sm:w-1/3 shrink-0' : 'h-48 w-full';
+
+            let html = '';
+            sortedBiz.forEach((b) => {
                 if(limit && count >= limit) return;
-                const coverImg = (b.images && b.images.length > 0 && b.images[0].startsWith('data:image')) ? b.images[0] : null;
-                const imgHtml = coverImg ? `<img src="${coverImg}?t=${Date.now()}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-500" onerror="this.src='https://raw.githubusercontent.com/julien-gargot/images-placeholder/master/placeholder-square.png'">` : `<div class="absolute inset-0 bg-[#111] flex items-center justify-center text-gray-600"><i data-lucide="image" class="w-8 h-8"></i></div>`;
                 
-                feed.innerHTML += `
-                    <div class="stagger-card glass-card flex flex-col group overflow-hidden cursor-pointer border-white/5" style="animation-delay: ${count * 0.1}s" onclick='openDetailView("${encodeURIComponent(JSON.stringify(b))}")'>
-                        <div class="h-48 w-full relative bg-[#111] overflow-hidden">${imgHtml}<span class="absolute top-3 left-3 bg-black/80 text-white text-[10px] font-bold px-2 py-1 rounded backdrop-blur-md uppercase tracking-widest">${b.category}</span></div>
-                        <div class="p-5 flex-grow flex flex-col">
-                            <h3 class="text-xl font-black mb-1.5 truncate group-hover:text-[#f97316] transition">${b.name}</h3>
-                            <p class="text-sm text-gray-400 font-bold mb-3"><i data-lucide="map-pin" class="w-3.5 h-3.5 inline"></i> ${b.city ? b.city.toUpperCase() : 'INDIA'}</p>
-                            <p class="text-xs text-gray-500 font-bold mt-auto hidden sm:block">Tap to view catalog & details →</p>
+                const bName = b.name || 'Business';
+                const bCat = b.category || 'Others';
+                const bCity = b.city || 'India';
+
+                let imgHtml = '';
+                if(b.images && b.images.length > 0 && b.images[0].startsWith('data:image')) {
+                    imgHtml = `<img src="${b.images[0]}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-500">`;
+                } else {
+                    const bgClass = window.getGradientStyle(bName);
+                    imgHtml = `<div class="absolute inset-0 w-full h-full flex items-center justify-center group-hover:scale-105 transition duration-500 ${bgClass} border border-white/5"><span class="text-white/40 text-6xl font-black uppercase tracking-tighter">${bName.substring(0, 2)}</span></div>`;
+                }
+                
+                const boostBadge = b.isBoosted ? `<span class="absolute top-3 right-3 bg-red-600 text-white text-[10px] font-black px-2 py-1 rounded flex items-center gap-1 shadow-[0_0_10px_rgba(220,38,38,0.8)] z-10"><i data-lucide="flame" class="w-3 h-3"></i> RECOMMENDED</span>` : '';
+                const cardClass = b.isBoosted ? 'boosted-card' : 'border-white/5';
+
+                html += `
+                    <div class="stagger-card glass-card flex ${cardLayout} group overflow-hidden cursor-pointer ${cardClass}" style="animation-delay: ${count * 0.1}s" onclick="window.location.hash='marketplace/${b.slug}'">
+                        <div class="${imgLayout} relative bg-[#111] overflow-hidden">
+                            ${boostBadge}
+                            ${imgHtml}
+                            <span class="absolute top-3 left-3 bg-black/80 text-white text-[10px] font-bold px-2 py-1 rounded backdrop-blur-md uppercase tracking-widest z-10">${bCat}</span>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-center">
+                            <h3 class="text-2xl font-black mb-2 truncate group-hover:text-[#f97316] transition">${bName}</h3>
+                            <p class="text-sm text-gray-400 font-bold mb-4"><i data-lucide="map-pin" class="w-4 h-4 inline"></i> ${bCity.toUpperCase()}</p>
+                            ${isVertical ? `<p class="text-gray-500 text-sm line-clamp-2 mb-4">${b.desc || 'No description provided.'}</p>` : ''}
+                            <p class="text-xs text-[#f97316] font-bold mt-auto hidden sm:block">View catalog & details →</p>
                         </div>
                     </div>`;
                 count++;
             });
-            lucide.createIcons();
+            feed.innerHTML = html;
+            window.initIcons();
         }
 
         onSnapshot(query(collection(db, "businesses"), where("status", "==", "Approved")), (snapshot) => {
             allVerifiedBiz = []; snapshot.forEach(doc => allVerifiedBiz.push({ id: doc.id, ...doc.data() }));
-            renderListFeed(allVerifiedBiz, 'fullFeed'); renderListFeed(allVerifiedBiz, 'homeFeed', 4); 
+            
+            // Clean wishlist if business was deleted
+            const activeIds = allVerifiedBiz.map(b => b.id);
+            const oldLen = window.userWishlists.length;
+            window.userWishlists = window.userWishlists.filter(id => activeIds.includes(id));
+            if(window.userWishlists.length !== oldLen) {
+                localStorage.setItem('kt_wishlists', JSON.stringify(window.userWishlists));
+                window.updateWishlistBadge();
+            }
+
+            window.renderListFeed(allVerifiedBiz, 'fullFeed'); 
+            window.renderListFeed(allVerifiedBiz, 'homeFeed', 4); 
+            if(window.location.hash === '#wishlists') window.loadWishlistFeed(); 
         });
 
         function runFilters() {
             const sVal = document.getElementById('searchInput').value.toLowerCase(), lVal = document.getElementById('filterLocation').value.toLowerCase(), cVal = document.getElementById('filterCategory').value;
-            renderListFeed(allVerifiedBiz.filter(b => b.name.toLowerCase().includes(sVal) && (lVal === '' || (b.city && b.city.toLowerCase().includes(lVal))) && (cVal === 'All' || b.category === cVal)), 'fullFeed');
+            window.renderListFeed(allVerifiedBiz.filter(b => (b.name || '').toLowerCase().includes(sVal) && (lVal === '' || ((b.city || '').toLowerCase().includes(lVal))) && (cVal === 'All' || b.category === cVal)), 'fullFeed');
         }
         document.getElementById('searchInput').addEventListener('input', runFilters); document.getElementById('filterLocation').addEventListener('input', runFilters); document.getElementById('filterCategory').addEventListener('change', runFilters);
 
-        // --- DETAIL VIEW ---
-        let currentDetailBizId = null;
-        window.openDetailView = (bString) => {
-            const b = JSON.parse(decodeURIComponent(bString)); currentDetailBizId = b.id; switchTab('detail'); const container = document.getElementById('detailContent');
+        // --- WISHLIST LOCALSTORAGE LOGIC ---
+        window.loadWishlistFeed = () => {
+            const wBiz = allVerifiedBiz.filter(b => window.userWishlists.includes(b.id));
+            window.renderListFeed(wBiz, 'wishlistFeed');
+        };
+
+        window.toggleWishlist = async (bizId, ownerEmail) => {
+            const isSaved = window.userWishlists.includes(bizId);
+            const bRef = doc(db, "businesses", bizId);
             
+            if(!isSaved) {
+                window.userWishlists.push(bizId);
+                localStorage.setItem('kt_wishlists', JSON.stringify(window.userWishlists));
+                try { const bDoc = await getDoc(bRef); if(bDoc.exists()) await updateDoc(bRef, { wishlistCount: (bDoc.data().wishlistCount || 0) + 1 }); } catch(e){}
+                if(ownerEmail && ownerEmail !== auth.currentUser?.email) addDoc(collection(db, "notifications"), { userId: ownerEmail, text: `1 Person has wishlisted your business ❤️`, time: Date.now(), read: false });
+                
+                const btns = document.querySelectorAll(`.wl-btn-${bizId}`);
+                btns.forEach(btn => { 
+                    btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#ef4444" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>`; 
+                    btn.classList.add('border-red-500'); 
+                });
+                window.showToast("Added to Wishlist ❤️");
+            } else {
+                window.userWishlists = window.userWishlists.filter(id => id !== bizId);
+                localStorage.setItem('kt_wishlists', JSON.stringify(window.userWishlists));
+                try { const bDoc = await getDoc(bRef); if(bDoc.exists()) await updateDoc(bRef, { wishlistCount: Math.max(0, (bDoc.data().wishlistCount || 0) - 1) }); } catch(e){}
+                
+                const btns = document.querySelectorAll(`.wl-btn-${bizId}`);
+                btns.forEach(btn => { 
+                    btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>`; 
+                    btn.classList.remove('border-red-500'); 
+                });
+                window.showToast("Removed from Wishlist 💔");
+            }
+            window.updateWishlistBadge();
+        };
+
+        // --- DETAIL VIEW ---
+        window.renderBusinessProfile = async (b) => {
+            const container = document.getElementById('detailContent');
+            try { const bRef = doc(db, "businesses", b.id); await updateDoc(bRef, { viewCount: (b.viewCount || 0) + 1 }); } catch(e){}
+
+            const bName = b.name || 'Business';
+            const bCat = b.category || 'Others';
+            const bCity = b.city || 'India';
+            const bDesc = b.desc || '';
+
             let carouselHtml = '';
             if(b.images && b.images.length > 0) {
                 let slides = ''; b.images.forEach(img => { if(img.startsWith('data:image')) { slides += `<div class="min-w-full snap-center relative"><img src="${img}" class="w-full h-64 md:h-96 object-cover"><div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div></div>`; } });
-                carouselHtml = slides ? `<div class="w-full flex overflow-x-auto snap-x snap-mandatory hide-scrollbar rounded-t-[19px] relative">${slides}</div><p class="text-center text-xs text-gray-400 font-bold py-3 bg-[#0A0A0A] border-b border-[#1F1F1F]">← Swipe to see ${b.images.length} photos →</p>` : `<div class="w-full h-48 bg-[#111] flex items-center justify-center text-gray-600 rounded-t-[19px]"><i data-lucide="image-off" class="w-12 h-12"></i></div>`;
-            } else { carouselHtml = `<div class="w-full h-48 bg-[#111] flex items-center justify-center text-gray-600 rounded-t-[19px]"><i data-lucide="image" class="w-12 h-12"></i></div>`; }
+                carouselHtml = slides ? `<div class="w-full flex overflow-x-auto snap-x snap-mandatory hide-scrollbar rounded-t-[19px] relative">${slides}</div><p class="text-center text-xs text-gray-400 font-bold py-3 bg-[#0A0A0A] border-b border-[#1F1F1F]">← Swipe to see ${b.images.length} photos →</p>` : '';
+            } else { 
+                const bgClass = window.getGradientStyle(bName);
+                carouselHtml = `<div class="w-full h-64 md:h-96 relative rounded-t-[19px] overflow-hidden ${bgClass}"><div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent flex flex-col justify-end p-6 md:p-10"><h2 class="text-4xl md:text-6xl font-black text-white drop-shadow-xl">${bName}</h2></div></div>`; 
+            }
 
             let itemsHtml = '';
             if(b.items && b.items.length > 0) {
                 let iList = '';
                 b.items.forEach(item => {
                     let iImgs = ''; if(item.images) item.images.forEach(img => { if(img.startsWith('data:image')) { iImgs += `<img src="${img}" class="w-16 h-16 object-cover rounded-lg border border-[#27272a]">`; } });
-                    iList += `<div class="p-4 border border-[#27272a] rounded-xl flex justify-between items-center bg-[#050505] hover:border-[#f97316] transition"><div class="flex gap-4">${iImgs}<div><h4 class="font-bold text-lg flex items-center gap-2">${item.name} <span class="text-xs text-gray-500">${item.type === 'Non-Veg' ? '🔴' : item.type === 'Veg' ? '🟢' : ''}</span></h4><p class="text-[#f97316] font-black">${item.priceFull} ${item.priceHalf ? '| Half: '+item.priceHalf:''}</p></div></div></div>`;
+                    const icon = item.type === 'Non-Veg' ? '🔴' : item.type === 'Veg' ? '🟢' : '';
+                    let priceHtml = '';
+                    if(item.priceFull && item.priceHalf) priceHtml = `<p class="text-[#f97316] font-black mt-1">${item.priceFull} | Half: ${item.priceHalf}</p>`;
+                    else if(item.priceFull) priceHtml = `<p class="text-[#f97316] font-black mt-1">${item.priceFull}</p>`;
+                    else if(item.priceHalf) priceHtml = `<p class="text-[#f97316] font-black mt-1">Half: ${item.priceHalf}</p>`;
+                    iList += `<div class="p-4 border border-[#27272a] rounded-xl flex justify-between items-center bg-[#050505] hover:border-[#f97316] transition"><div class="flex gap-4">${iImgs}<div><h4 class="font-bold text-lg flex items-center gap-2">${item.name} <span class="text-xs text-gray-500">${icon}</span></h4>${priceHtml}</div></div></div>`;
                 });
                 itemsHtml = `<div class="mt-10 pt-10 border-t border-[#1F1F1F]"><h3 class="text-2xl font-black mb-6 flex items-center gap-2"><i data-lucide="list" class="text-[#f97316]"></i> Catalog / Menu</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${iList}</div></div>`;
             }
 
+            let socialsHtml = '';
+            if(b.socials && (b.socials.insta || b.socials.fb || b.socials.x || b.socials.yt)) {
+                let links = '';
+                if(b.socials.insta) links += `<a href="${b.socials.insta}" target="_blank" class="flex items-center gap-2 bg-[#111] border border-[#27272a] hover:border-pink-500 px-4 py-2 rounded-xl transition outline-none"><i data-lucide="instagram" class="w-4 h-4 text-pink-500"></i> <span class="text-sm font-bold">Instagram</span></a>`;
+                if(b.socials.fb) links += `<a href="${b.socials.fb}" target="_blank" class="flex items-center gap-2 bg-[#111] border border-[#27272a] hover:border-blue-500 px-4 py-2 rounded-xl transition outline-none"><i data-lucide="facebook" class="w-4 h-4 text-blue-500"></i> <span class="text-sm font-bold">Facebook</span></a>`;
+                if(b.socials.x) links += `<a href="${b.socials.x}" target="_blank" class="flex items-center gap-2 bg-[#111] border border-[#27272a] hover:border-gray-300 px-4 py-2 rounded-xl transition outline-none"><i data-lucide="twitter" class="w-4 h-4 text-gray-300"></i> <span class="text-sm font-bold">X (Twitter)</span></a>`;
+                if(b.socials.yt) links += `<a href="${b.socials.yt}" target="_blank" class="flex items-center gap-2 bg-[#111] border border-[#27272a] hover:border-red-500 px-4 py-2 rounded-xl transition outline-none"><i data-lucide="youtube" class="w-4 h-4 text-red-500"></i> <span class="text-sm font-bold">YouTube</span></a>`;
+                socialsHtml = `<div class="mt-8 flex flex-wrap gap-3">${links}</div>`;
+            }
+
+            const isSaved = window.userWishlists.includes(b.id);
+            const heartIcon = isSaved ? `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#ef4444" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>` : `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>`;
+            const wlClass = isSaved ? 'border-red-500' : 'border-[#27272a]';
+            const closedBadge = b.isClosedToday ? `<span class="bg-red-600 text-white text-[10px] font-black px-2 py-1 rounded flex items-center gap-1 shadow-[0_0_10px_rgba(220,38,38,0.8)]"><i data-lucide="alert-circle" class="w-3 h-3"></i> CLOSED TODAY</span>` : '';
+
             container.innerHTML = `
                 ${carouselHtml}
                 <div class="p-6 md:p-10 bg-[#0A0A0A] rounded-b-[19px]">
-                    <div class="flex justify-between items-start">
-                        <span class="text-[10px] bg-[#f97316] text-black px-3 py-1.5 rounded uppercase tracking-widest font-black mb-4 inline-block">${b.category}</span>
-                        <button onclick="openReviewModal('${b.id}')" class="text-xs font-bold text-white bg-[#111] border border-[#27272a] px-3 py-2 rounded-lg hover:border-[#f97316] transition"><i data-lucide="star" class="w-3.5 h-3.5 inline"></i> Write Review</button>
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="flex gap-2 items-center">
+                            <span class="text-[10px] bg-[#f97316] text-black px-3 py-1.5 rounded uppercase tracking-widest font-black">${bCat}</span>
+                            ${closedBadge}
+                        </div>
+                        <div class="flex gap-2 relative z-20">
+                            <button type="button" onclick="window.toggleWishlist('${b.id}', '${b.owner}')" class="wl-btn-${b.id} bg-[#111] border ${wlClass} p-2.5 rounded-lg hover:border-red-500 transition outline-none cursor-pointer">
+                                ${heartIcon}
+                            </button>
+                            <button type="button" id="writeReviewBtn-${b.id}" onclick="window.openReviewModal('${b.id}')" class="text-xs font-bold text-white bg-[#111] border border-[#27272a] px-3 py-2 rounded-lg hover:border-[#f97316] transition flex items-center gap-1 outline-none cursor-pointer"><i data-lucide="star" class="w-3.5 h-3.5"></i> Write Review</button>
+                        </div>
                     </div>
-                    <h2 class="text-4xl md:text-5xl font-black mb-2">${b.name}</h2>
-                    <p class="text-xl text-gray-400 font-bold mb-6 flex items-center gap-2"><i data-lucide="map-pin" class="w-5 h-5 text-gray-500"></i> ${b.city ? b.city.toUpperCase() : 'INDIA'}</p>
-                    <p class="text-gray-300 leading-relaxed max-w-2xl mb-10 pl-4 border-l-4 border-white/10">${b.desc}</p>
-                    <div class="space-y-3 p-4 bg-[#050505] border border-[#27272a] rounded-xl">
-                        ${b.showPhone ? `<p class="text-base text-gray-400 flex items-center gap-2 font-medium"><i data-lucide="phone" class="w-5 h-5"></i> +91 ${b.phone}</p>` : ''}
-                        ${b.showMail ? `<p class="text-base text-gray-400 flex items-center gap-2 font-medium"><i data-lucide="mail" class="w-5 h-5"></i> ${b.mail}</p>` : ''}
-                        <p class="text-base text-gray-500 flex items-center gap-2"><i data-lucide="building" class="w-5 h-5"></i> ${b.address}</p>
+                    ${(b.images && b.images.length > 0) ? `<h2 class="text-4xl md:text-5xl font-black mb-2 flex items-center gap-3">${bName} ${b.isBoosted ? '<i data-lucide="flame" class="text-red-500 w-6 h-6"></i>' : ''}</h2>` : `<h2 class="text-3xl md:text-5xl font-black mb-2 flex items-center gap-3 mt-4">${bName} ${b.isBoosted ? '<i data-lucide="flame" class="text-red-500 w-6 h-6"></i> ' : ''}</h2>`}
+                    <p class="text-xl text-gray-400 font-bold mb-6 flex items-center gap-2"><i data-lucide="map-pin" class="w-5 h-5 text-gray-500"></i> ${bCity.toUpperCase()}</p>
+                    <p class="text-gray-300 leading-relaxed max-w-2xl mb-6 pl-4 border-l-4 border-white/10">${bDesc}</p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
+                        ${b.showPhone ? `
+                        <div class="flex items-center justify-between bg-[#050505] p-3 rounded-xl border border-[#27272a] group hover:border-[#f97316] transition">
+                            <div class="flex items-center gap-3"><i data-lucide="phone" class="w-5 h-5 text-[#f97316]"></i><span class="text-sm font-medium">+91 ${b.phone}</span></div>
+                            <button onclick="window.copyToClip('${b.phone}')" class="text-gray-500 hover:text-white"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                        </div>` : ''}
+                        ${b.showMail ? `
+                        <div class="flex items-center justify-between bg-[#050505] p-3 rounded-xl border border-[#27272a] group hover:border-[#f97316] transition">
+                            <div class="flex items-center gap-3"><i data-lucide="mail" class="w-5 h-5 text-[#f97316]"></i><span class="text-sm font-medium truncate">${b.mail}</span></div>
+                            <button onclick="window.copyToClip('${b.mail}')" class="text-gray-500 hover:text-white shrink-0"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                        </div>` : ''}
+                        ${!b.isOnline ? `
+                        <div class="flex items-center gap-3 bg-[#050505] p-3 rounded-xl border border-[#27272a] sm:col-span-2">
+                            <i data-lucide="building" class="w-5 h-5 text-gray-500 shrink-0"></i><span class="text-sm text-gray-400">${b.address || ''}</span>
+                        </div>` : `
+                        <div class="flex items-center gap-3 bg-[#050505] p-3 rounded-xl border border-blue-500/30 sm:col-span-2">
+                            <i data-lucide="globe" class="w-5 h-5 text-blue-500 shrink-0"></i><span class="text-sm text-blue-400 font-bold">Online Business</span>
+                        </div>`}
+                        ${b.hours ? `
+                        <div class="flex items-center gap-3 bg-[#050505] p-3 rounded-xl border border-[#27272a] sm:col-span-2">
+                            <i data-lucide="clock" class="w-5 h-5 text-[#f97316] shrink-0"></i><span class="text-sm text-gray-400">${b.hours}</span>
+                        </div>` : ''}
+                        ${b.website ? `
+                        <a href="${b.website}" target="_blank" class="flex items-center gap-3 bg-[#050505] p-3 rounded-xl border border-[#27272a] sm:col-span-2 hover:border-[#f97316] transition outline-none">
+                            <i data-lucide="external-link" class="w-5 h-5 text-blue-400 shrink-0"></i><span class="text-sm font-bold text-blue-400">Visit Official Website</span>
+                        </a>` : ''}
                     </div>
+                    
+                    ${socialsHtml}
+                    
+                    <div id="bizPostsSection" class="mt-10 space-y-4"></div>
+
                     ${itemsHtml}
-                    <div id="approvedReviewsList" class="mt-10 space-y-4"></div>
+                    <div id="approvedReviewsList" class="mt-10 space-y-4 border-t border-[#1F1F1F] pt-8"></div>
                 </div>
             `;
-            lucide.createIcons(); window.scrollTo(0,0);
+            window.initIcons(); window.scrollTo(0,0);
             
-            // Fetch Reviews
-            onSnapshot(query(collection(db, "peer_reviews"), where("bizId", "==", b.id), where("status", "==", "Approved")), snap => {
+            // Fetch Posts
+            onSnapshot(query(collection(db, "business_posts"), where("bizId", "==", b.id)), snap => {
+                const pSec = document.getElementById('bizPostsSection');
+                if(!pSec) return;
+                pSec.innerHTML = '';
+                let hasPosts = false;
+                const now = Date.now();
+                snap.forEach(d => {
+                    const post = d.data();
+                    if ((!post.startTime || now >= post.startTime) && (!post.endTime || now <= post.endTime)) {
+                        hasPosts = true;
+                        let pImgs = '';
+                        if(post.images && post.images.length > 0) {
+                            post.images.forEach(i => pImgs += `<img src="${i}" class="w-full h-48 object-cover rounded-lg border border-[#27272a] mb-3">`);
+                        } else {
+                            const defImg = window.getGradientStyle(bName);
+                            pImgs = `<div class="w-full h-48 rounded-lg border border-[#27272a] mb-3 opacity-80 flex items-center justify-center ${defImg}"><span class="text-white/40 text-5xl font-black uppercase tracking-tighter">${bName.substring(0, 2)}</span></div>`;
+                        }
+                        
+                        pSec.innerHTML += `
+                        <div class="bg-[#111] border-l-4 border-l-red-500 p-5 rounded-xl border border-[#27272a]">
+                            <div class="flex justify-between items-center mb-3">
+                                <span class="text-[10px] bg-red-500/20 text-red-500 font-black px-2 py-1 rounded uppercase flex items-center gap-1"><i data-lucide="zap" class="w-3 h-3"></i> Special Offer</span>
+                                <span class="text-[10px] text-gray-500">${new Date(post.timestamp).toLocaleDateString()}</span>
+                            </div>
+                            ${pImgs}
+                            <h4 class="text-white font-black text-lg mb-2">${post.title}</h4>
+                            <p class="text-gray-300 font-medium leading-relaxed">${post.text}</p>
+                        </div>`;
+                    }
+                });
+                if(hasPosts) pSec.insertAdjacentHTML('afterbegin', '<h3 class="text-2xl font-black mb-6 flex items-center gap-2 border-t border-[#1F1F1F] pt-8"><i data-lucide="megaphone" class="text-red-500"></i> Latest Updates & Offers</h3>');
+                window.initIcons();
+            });
+
+            // Fetch Reviews (SPAM PROTECTION)
+            onSnapshot(query(collection(db, "peer_reviews"), where("bizId", "==", b.id)), snap => {
                 const rList = document.getElementById('approvedReviewsList');
-                if(snap.empty) { rList.innerHTML = `<h3 class="text-2xl font-black mb-6 mt-10 border-t border-[#1F1F1F] pt-8">Peer Reviews</h3><p class="text-gray-500">No reviews yet.</p>`; return; }
+                if(!rList) return;
+                
                 let html = '<h3 class="text-2xl font-black mb-6 mt-10 border-t border-[#1F1F1F] pt-8">Peer Reviews</h3>';
+                let approvedCount = 0;
+                let hasReviewed = false;
+
                 snap.forEach(rDoc => {
                     const rv = rDoc.data();
-                    html += `<div class="p-4 bg-[#050505] border border-[#27272a] rounded-xl"><div class="text-yellow-500 text-sm mb-2">${'★'.repeat(rv.rating)}${'☆'.repeat(5-rv.rating)}</div><p class="text-gray-300 mb-2">"${rv.text}"</p><p class="text-[10px] text-gray-500">${rv.user}</p></div>`;
+                    const isMine = auth.currentUser && rv.user === auth.currentUser.email;
+                    
+                    if(isMine) hasReviewed = true;
+                    
+                    if(rv.status === 'Approved' || isMine) { 
+                        if(rv.status === 'Approved') approvedCount++;
+                        
+                        let statusTag = rv.status === 'Pending' ? `<span class="text-[10px] text-yellow-500 border border-yellow-500/50 px-1.5 py-0.5 rounded ml-2">Pending Approval</span>` : '';
+                        let delBtn = isMine ? `<button type="button" onclick="window.deleteReview('${rDoc.id}', '${b.id}')" class="text-red-500 hover:text-red-400 p-2 outline-none" title="Delete your review"><i data-lucide="trash" class="w-4 h-4"></i></button>` : '';
+                        
+                        html += `
+                        <div class="p-4 bg-[#050505] border border-[#27272a] rounded-xl flex justify-between items-start mb-3">
+                            <div>
+                                <div class="text-yellow-500 text-sm mb-2 flex items-center">${'★'.repeat(rv.rating)}${'☆'.repeat(5-rv.rating)} ${statusTag}</div>
+                                <p class="text-gray-300 mb-2">"${rv.text}"</p>
+                                <p class="text-[10px] text-gray-500">${rv.user}</p>
+                            </div>
+                            ${delBtn}
+                        </div>`;
+                    }
                 });
+                
+                if(approvedCount === 0 && !hasReviewed) html += `<p class="text-gray-500">No reviews yet. Be the first!</p>`;
                 rList.innerHTML = html;
+                window.initIcons();
+
+                const writeBtn = document.getElementById(`writeReviewBtn-${b.id}`);
+                if(writeBtn) writeBtn.style.display = hasReviewed ? 'none' : 'flex';
             });
         }
 
-        // --- SUBMIT REVIEW ---
-        document.getElementById('submitReviewBtn').onclick = async () => {
-            const text = document.getElementById('reviewText').value.trim();
-            if(currentRating == 0) return showToast("Please select a star rating!");
-            if(!text) return showToast("Review description is mandatory.");
-            try {
-                await addDoc(collection(db, "peer_reviews"), { bizId: currentDetailBizId, user: auth.currentUser.email, rating: parseInt(currentRating), text, status: 'Pending', timestamp: Date.now() });
-                closeModal('reviewModal'); showToast("Review submitted for 24-Hour Peer Review.");
-            } catch(e) { showToast("Error submitting review"); }
-        };
-
-        // ==========================================
-        // 🔥 USER PORTAL & ADMIN LOGIC 🔥
-        // ==========================================
-        function loadUserBusinesses(email) {
+        // --- USER PORTAL & ADMIN LOGIC ---
+        window.loadUserBusinesses = (email) => {
             onSnapshot(query(collection(db, "businesses"), where("owner", "==", email)), (snapshot) => {
                 const div = document.getElementById('userBusinesses');
+                if(!div) return;
                 div.innerHTML = snapshot.empty ? `<div class="text-center py-6"><i data-lucide="store" class="w-10 h-10 text-gray-600 mx-auto mb-2"></i><p class="text-gray-500 text-sm">No outlets registered.</p></div>` : "";
                 snapshot.forEach((d) => {
                     const b = d.data();
                     const clr = b.status === 'Approved' ? 'text-green-500 bg-green-500/10 border-green-500/20' : 'text-yellow-500 bg-yellow-500/10 border-yellow-500/20';
-                    const boostBtn = b.status === 'Approved' ? `<button onclick="openBoostModal('${d.id}')" class="text-xs bg-[#f97316] text-black font-bold px-3 py-2 rounded-lg flex items-center gap-1.5 hover:scale-105 transition mt-3"><i data-lucide="rocket" class="w-3.5 h-3.5"></i> Boost</button>` : '';
+                    const boostBtn = b.status === 'Approved' && !b.isBoosted ? `<button type="button" onclick="window.openBoostModal('${d.id}')" class="w-full sm:w-auto text-xs bg-gradient-to-r from-red-600 to-orange-600 text-white font-bold px-4 py-2.5 rounded-xl flex items-center justify-center gap-2 hover:scale-105 transition mt-3 sm:mt-0 shadow-lg shadow-red-500/20 outline-none"><i data-lucide="rocket" class="w-4 h-4"></i> Boost</button>` : b.isBoosted ? `<span class="w-full sm:w-auto text-xs bg-red-600/20 border border-red-500 text-red-500 font-bold px-4 py-2.5 rounded-xl flex items-center justify-center gap-2 mt-3 sm:mt-0"><i data-lucide="flame" class="w-4 h-4"></i> BOOSTED</span>` : '';
+                    const postBtn = b.status === 'Approved' ? `<button type="button" onclick="window.openPostModal('${d.id}')" class="w-full sm:w-auto text-xs bg-[#27272a] text-white font-bold px-4 py-2.5 rounded-xl flex items-center justify-center gap-2 transition hover:text-[#f97316] mt-2 sm:mt-0 outline-none"><i data-lucide="plus-circle" class="w-4 h-4"></i> Add Offer/Post</button>` : '';
+                    
                     const bDataString = encodeURIComponent(JSON.stringify({id: d.id, ...b}));
                     
-                    div.innerHTML += `
-                        <div class="p-5 bg-[#050505] border border-[#27272a] rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                            <div class="flex-grow">
-                                <h4 class="font-bold text-lg mb-1">${b.name}</h4>
-                                <span class="text-[10px] font-bold ${clr} border px-2 py-1 rounded uppercase tracking-wider">${b.status}</span>
+                    let liveLinkHtml = '';
+                    if(b.status === 'Approved' && b.slug) {
+                        const shareUrl = `https://growthinnovation.in/#marketplace/${b.slug}`;
+                        const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(shareUrl)}`;
+                        liveLinkHtml = `
+                        <div class="mt-4 p-4 bg-green-500/10 border border-green-500/30 rounded-xl">
+                            <p class="text-green-500 font-bold text-sm mb-3"><i data-lucide="check-circle" class="w-4 h-4 inline"></i> Live Link & QR Code</p>
+                            <div class="flex items-center gap-2 mb-4">
+                                <input type="text" readonly value="${shareUrl}" class="modern-input py-2 text-xs flex-grow text-gray-300">
+                                <button type="button" onclick="window.copyToClip('${shareUrl}')" class="bg-[#27272a] p-2.5 rounded-lg hover:bg-[#f97316] hover:text-black transition shrink-0 outline-none"><i data-lucide="copy" class="w-4 h-4"></i></button>
                             </div>
-                            <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto mt-3 sm:mt-0">
+                            <div class="flex items-center gap-4 border-t border-green-500/20 pt-4">
+                                <img src="${qrUrl}" class="w-16 h-16 rounded bg-white p-1" onerror="this.style.display='none'">
+                                <div>
+                                    <p class="text-xs text-gray-400 mb-2">Scan to open your store directly</p>
+                                    <button type="button" onclick="window.downloadQR('${qrUrl}', '${b.slug}-QR.png')" class="text-xs bg-[#111] border border-[#27272a] hover:border-[#f97316] px-3 py-2 rounded-lg transition outline-none"><i data-lucide="download" class="w-3 h-3 inline"></i> Download High-Res QR</button>
+                                </div>
+                            </div>
+                        </div>`;
+                    }
+                    
+                    div.innerHTML += `
+                        <div class="p-6 bg-[#0a0a0a] border border-[#27272a] rounded-2xl flex flex-col sm:flex-row justify-between items-start gap-6 hover:border-[#f97316] transition">
+                            <div class="flex-grow w-full">
+                                <div class="flex justify-between items-start w-full">
+                                    <h4 class="font-black text-xl mb-1">${b.name || 'Business'}</h4>
+                                    <span class="text-[10px] font-bold ${clr} border px-2 py-1 rounded uppercase tracking-wider">${b.status}</span>
+                                </div>
+                                <p class="text-xs text-gray-500 mb-4"><i data-lucide="map-pin" class="w-3 h-3 inline"></i> ${(b.city||'').toUpperCase()}</p>
+                                
+                                <div class="grid grid-cols-3 gap-3 pt-4 border-t border-white/5">
+                                    <div class="bg-[#111] p-3 rounded-xl border border-[#27272a] text-center"><p class="text-[10px] text-gray-500 uppercase font-bold mb-1">Views</p><p class="font-black text-white text-xl">${b.viewCount || 0}</p></div>
+                                    <div class="bg-[#111] p-3 rounded-xl border border-[#27272a] text-center"><p class="text-[10px] text-gray-500 uppercase font-bold mb-1">Saved</p><p class="font-black text-red-500 text-xl">${b.wishlistCount || 0}</p></div>
+                                    <div class="bg-[#111] p-3 rounded-xl border border-[#27272a] text-center"><p class="text-[10px] text-gray-500 uppercase font-bold mb-1">Reviews</p><p class="font-black text-yellow-500 text-xl">${b.reviewCount || 0}</p></div>
+                                </div>
+                                ${liveLinkHtml}
+                                <div id="post-mgr-${d.id}"></div>
+                            </div>
+                            <div class="flex flex-col items-stretch gap-2 w-full sm:w-auto border-t sm:border-t-0 sm:border-l border-white/5 pt-4 sm:pt-0 sm:pl-6">
                                 ${boostBtn}
-                                <button onclick='openEditBizModal("${bDataString}")' class="text-xs bg-white text-black font-bold px-3 py-2 rounded-lg flex items-center gap-1.5 transition mt-3 justify-center flex-grow sm:flex-none"><i data-lucide="edit" class="w-3.5 h-3.5"></i> Edit</button>
-                                <button onclick="deleteBiz('${d.id}')" class="text-xs bg-transparent border border-red-500/30 text-red-500 font-bold px-3 py-2 rounded-lg flex items-center gap-1.5 hover:bg-red-500/10 transition justify-center mt-3"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button>
+                                ${postBtn}
+                                <button type="button" onclick='window.openEditBizModal("${bDataString}")' class="w-full sm:w-auto text-xs bg-white text-black font-bold px-4 py-2.5 rounded-xl flex items-center justify-center gap-2 transition hover:bg-gray-200 mt-2 sm:mt-0 outline-none"><i data-lucide="edit-3" class="w-4 h-4"></i> Edit / Mark Closed</button>
+                                <button type="button" onclick="window.deleteBiz('${d.id}')" class="w-full sm:w-auto text-xs bg-transparent border border-red-500/30 text-red-500 font-bold px-4 py-2.5 rounded-xl flex items-center justify-center gap-2 hover:bg-red-500 hover:text-white transition mt-2 sm:mt-0 outline-none"><i data-lucide="trash-2" class="w-4 h-4"></i> Delete</button>
                             </div>
                         </div>`;
                 });
-                lucide.createIcons();
+                window.initIcons();
+
+                // Hydrate posts list safely
+                snapshot.forEach(d => {
+                    onSnapshot(query(collection(db, "business_posts"), where("bizId", "==", d.id)), pSnap => {
+                        const pmDiv = document.getElementById(`post-mgr-${d.id}`);
+                        if(pmDiv) {
+                            if(pSnap.empty) { pmDiv.innerHTML = ''; return; }
+                            let pList = '<div class="mt-4 space-y-2 border-t border-[#1F1F1F] pt-4"><p class="text-xs font-bold text-gray-400 mb-2">Manage Active Posts</p>';
+                            pSnap.forEach(postDoc => {
+                                const pd = postDoc.data();
+                                pList += `<div class="flex justify-between items-center bg-[#111] p-2 rounded-lg border border-[#27272a]"><span class="text-xs text-white font-bold truncate max-w-[150px] sm:max-w-[200px]">${pd.title}</span><button type="button" onclick="window.deletePost('${postDoc.id}')" class="text-red-500 hover:text-red-400 text-xs font-bold outline-none"><i data-lucide="trash" class="w-4 h-4"></i></button></div>`;
+                            });
+                            pmDiv.innerHTML = pList + '</div>';
+                            window.initIcons();
+                        }
+                    });
+                });
             });
         }
 
-        function loadUserTickets(email) {
-            const q = email === 'kt.deore@hotmail.com' ? query(collection(db, "support_tickets")) : query(collection(db, "support_tickets"), where("owner", "==", email));
+        window.loadUserTickets = (email) => {
+            const q = email.toLowerCase() === 'kt.deore@hotmail.com' ? query(collection(db, "support_tickets")) : query(collection(db, "support_tickets"), where("owner", "==", email));
             onSnapshot(q, (snapshot) => {
                 const divSupport = document.getElementById('supportTicketsList');
+                if(!divSupport) return;
                 divSupport.innerHTML = snapshot.empty ? `<div class="text-center py-6"><i data-lucide="ticket" class="w-10 h-10 text-gray-600 mx-auto mb-2"></i><p class="text-gray-500 text-sm">No active tickets.</p></div>` : "";
                 snapshot.forEach((d) => {
                     const t = d.data(), clr = t.status === 'Open' ? 'text-red-500 border-red-500/30 bg-red-500/5' : 'text-green-500 border-green-500/30 bg-green-500/5';
-                    divSupport.innerHTML += `<div class="p-5 bg-[#050505] border border-[#27272a] rounded-xl cursor-pointer hover:border-[#f97316] transition group" onclick="openChat('${d.id}', '${t.subject.replace(/'/g, "\\'")}')"><div class="flex justify-between items-center mb-2"><h4 class="font-bold pr-4">${t.subject}</h4><span class="text-[10px] font-bold ${clr} border px-2 py-1 rounded uppercase shrink-0">${t.status}</span></div><div class="flex justify-between items-center mt-3"><p class="text-xs text-gray-500">Last updated: Just now</p><p class="text-xs text-[#f97316] font-bold flex items-center gap-1 group-hover:gap-2 transition-all">Open Chat <i data-lucide="arrow-right" class="w-3 h-3"></i></p></div></div>`;
+                    divSupport.innerHTML += `
+                        <div class="p-5 bg-[#050505] border border-[#27272a] rounded-xl flex justify-between items-center group hover:border-[#f97316] transition">
+                            <div class="cursor-pointer flex-grow outline-none" onclick="window.openChat('${d.id}', '${(t.subject||'').replace(/'/g, "\\'")}')">
+                                <div class="flex justify-between items-center mb-2"><h4 class="font-bold pr-4">${t.subject}</h4><span class="text-[10px] font-bold ${clr} border px-2 py-1 rounded uppercase shrink-0">${t.status}</span></div>
+                                <div class="flex justify-between items-center mt-3"><p class="text-xs text-gray-500">View discussion</p><p class="text-xs text-[#f97316] font-bold flex items-center gap-1 group-hover:gap-2 transition-all">Open Chat <i data-lucide="arrow-right" class="w-3 h-3"></i></p></div>
+                            </div>
+                            <button type="button" onclick="window.deleteTicket('${d.id}')" class="ml-4 p-2 text-gray-500 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition outline-none"><i data-lucide="trash" class="w-4 h-4"></i></button>
+                        </div>`;
                 });
-                lucide.createIcons();
+                window.initIcons();
             });
         }
 
-        function loadAdminQueue() {
-            window.verify = async (col, id, stat) => { await updateDoc(doc(db, col, id), { status: stat }); showToast(stat); };
-            
-            // Businesses Queue
+        window.loadAdminQueue = () => {
+            window.verify = async (col, id, stat) => { await updateDoc(doc(db, col, id), { status: stat }); window.showToast(stat); };
+            window.makeBoosted = async (id, state) => { await updateDoc(doc(db, "businesses", id), { isBoosted: state }); window.showToast(state ? "Business Boosted!" : "Boost Removed!"); };
+
+            // PENDING GRID
             onSnapshot(query(collection(db, "businesses"), where("status", "==", "Pending")), (snapshot) => {
-                const q = document.getElementById('adminQueueGrid');
-                q.innerHTML = snapshot.empty ? `<p class="text-gray-500 text-sm py-2">Queue is clear.</p>` : "";
+                const q = document.getElementById('adminPendingGrid');
+                if(!q) return;
+                let html = snapshot.empty ? `<p class="text-gray-500 text-sm py-2">Queue is clear.</p>` : "";
                 snapshot.forEach((d) => {
                     const b = d.data();
-                    q.innerHTML += `<div class="p-4 bg-black rounded-xl border border-[#f97316]/40"><h4 class="font-bold text-white mb-1">${b.name}</h4><p class="text-xs text-gray-500 mb-4">${b.owner} | City: ${b.city}</p><div class="flex gap-2"><button onclick="verify('businesses','${d.id}','Approved')" class="flex-1 bg-[#f97316] text-black text-xs font-bold py-2.5 rounded-lg">Approve</button><button onclick="verify('businesses','${d.id}','Rejected')" class="flex-1 border border-red-500/50 text-red-500 text-xs font-bold py-2.5 rounded-lg hover:bg-red-500/10 transition">Reject</button></div></div>`;
+                    html += `
+                        <div class="p-5 bg-[#050505] rounded-xl border border-[#27272a]">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <h4 class="font-bold text-white mb-1">${b.name || 'Unknown'}</h4>
+                                    <p class="text-xs text-[#f97316]">ID: ${b.bizId || d.id}</p>
+                                </div>
+                                <button type="button" onclick="window.deleteBiz('${d.id}')" class="text-red-500 bg-red-500/10 p-2 rounded hover:bg-red-500 hover:text-white transition outline-none"><i data-lucide="trash" class="w-4 h-4"></i></button>
+                            </div>
+                            <p class="text-xs text-gray-400 mb-1"><i data-lucide="mail" class="w-3 h-3 inline"></i> ${b.mail}</p>
+                            <p class="text-xs text-gray-400 mb-1"><i data-lucide="phone" class="w-3 h-3 inline"></i> ${b.phone}</p>
+                            <p class="text-xs text-gray-400 mb-4"><i data-lucide="map-pin" class="w-3 h-3 inline"></i> ${b.address}, ${(b.city||'').toUpperCase()} (Online: ${b.isOnline})</p>
+                            <div class="flex gap-2">
+                                <button type="button" onclick="window.verify('businesses','${d.id}','Approved')" class="flex-1 bg-white text-black text-xs font-bold py-2 rounded-lg hover:bg-gray-200 transition outline-none">Approve</button>
+                            </div>
+                        </div>`;
                 });
+                q.innerHTML = html;
+                window.initIcons();
             });
 
-            // Reviews Queue
+            // LIVE GRID
+            onSnapshot(query(collection(db, "businesses"), where("status", "==", "Approved")), (snapshot) => {
+                 const q = document.getElementById('adminBoostGrid');
+                 if(!q) return;
+                 let html = snapshot.empty ? `<p class="text-gray-500 text-sm py-2">No live businesses.</p>` : "";
+                 snapshot.forEach((d) => {
+                    const b = d.data();
+                    const boostBtn = !b.isBoosted 
+                        ? `<button type="button" onclick="window.makeBoosted('${d.id}', true)" class="btn-brand bg-gradient-to-r from-red-600 to-red-800 text-white w-full py-2.5 rounded-xl flex justify-center items-center gap-2 outline-none"><i data-lucide="flame" class="w-4 h-4"></i> Make Premium</button>`
+                        : `<button type="button" onclick="window.makeBoosted('${d.id}', false)" class="bg-transparent border border-gray-600 text-gray-400 w-full py-2.5 rounded-xl flex justify-center items-center gap-2 hover:bg-gray-800 transition outline-none"><i data-lucide="x" class="w-4 h-4"></i> Remove Premium</button>`;
+                    
+                    const delBtn = `<button type="button" onclick="window.deleteBiz('${d.id}')" class="bg-red-500/10 border border-red-500/30 text-red-500 w-full py-2.5 rounded-xl flex justify-center items-center gap-2 hover:bg-red-500 hover:text-white transition mt-2 outline-none"><i data-lucide="trash-2" class="w-4 h-4"></i> Delete Business</button>`;
+
+                    html += `<div class="glass-card p-5 border-white/10 flex flex-col justify-between items-center text-center gap-4">
+                        <div class="w-full">
+                            <h4 class="font-black text-lg text-white mb-1">${b.name}</h4>
+                            <p class="text-[10px] text-gray-500 mb-2">${b.owner}</p>
+                            ${b.isBoosted ? `<span class="bg-red-600/20 text-red-500 text-[10px] font-bold px-2 py-1 rounded inline-block mb-2">Boosted</span>` : ''}
+                        </div>
+                        <div class="w-full">${boostBtn}${delBtn}</div>
+                    </div>`;
+                 });
+                 q.innerHTML = html;
+                 window.initIcons();
+            });
+
+            // REVIEWS GRID
             onSnapshot(query(collection(db, "peer_reviews"), where("status", "==", "Pending")), (snapshot) => {
                 const q = document.getElementById('adminReviewQueue');
-                q.innerHTML = snapshot.empty ? `<p class="text-gray-500 text-sm py-2">No pending reviews.</p>` : "";
+                if(!q) return;
+                let html = snapshot.empty ? `<p class="text-gray-500 text-sm py-2">No pending reviews.</p>` : "";
                 snapshot.forEach((d) => {
                     const r = d.data();
-                    q.innerHTML += `<div class="p-4 bg-black rounded-xl border border-gray-700"><div class="text-yellow-500 text-xs mb-1">⭐ ${r.rating}/5</div><p class="text-sm text-white mb-2">"${r.text}"</p><p class="text-[10px] text-gray-500 mb-3">${r.user}</p><div class="flex gap-2"><button onclick="verify('peer_reviews','${d.id}','Approved')" class="flex-1 bg-white text-black text-xs font-bold py-1.5 rounded">Approve</button><button onclick="verify('peer_reviews','${d.id}','Rejected')" class="flex-1 border border-red-500 text-red-500 text-xs font-bold py-1.5 rounded">Reject</button></div></div>`;
+                    html += `<div class="p-4 bg-[#050505] rounded-xl border border-gray-700"><div class="text-yellow-500 text-xs mb-1">⭐ ${r.rating}/5</div><p class="text-sm text-white mb-2">"${r.text}"</p><p class="text-[10px] text-gray-500 mb-3">${r.user}</p><div class="flex gap-2"><button type="button" onclick="window.verify('peer_reviews','${d.id}','Approved')" class="flex-1 bg-white text-black text-xs font-bold py-1.5 rounded-lg hover:bg-gray-200 outline-none">Approve</button><button type="button" onclick="window.verify('peer_reviews','${d.id}','Rejected')" class="flex-1 border border-red-500 text-red-500 text-xs font-bold py-1.5 rounded-lg hover:bg-red-500/10 outline-none">Reject</button></div></div>`;
                 });
+                q.innerHTML = html;
             });
         }
     </script>
