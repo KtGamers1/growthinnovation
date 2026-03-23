@@ -95,7 +95,7 @@
             </nav>
             
             <div class="flex items-center gap-4 relative">
-                <button type="button" onclick="window.toggleNotifPanel()" class="text-gray-400 hover:text-[#f97316] transition relative cursor-pointer group outline-none" title="Notifications">
+                <button type="button" onclick="window.toggleNotifPanel()" class="hidden md:block text-gray-400 hover:text-[#f97316] transition relative cursor-pointer group outline-none" title="Notifications">
                     <i data-lucide="bell" class="w-6 h-6"></i>
                     <span id="notifBadge" class="absolute -top-1 -right-1 bg-red-600 text-white text-[10px] font-black px-1.5 py-0.5 rounded-full hidden border-2 border-black">0</span>
                 </button>
@@ -110,10 +110,11 @@
                     </div>
                 </div>
 
-                <a href="#wishlists" class="text-gray-400 hover:text-red-500 transition relative cursor-pointer group flex items-center justify-center w-10 h-10" title="Saved Wishlists">
+                <a href="#wishlists" class="hidden md:flex text-gray-400 hover:text-red-500 transition relative cursor-pointer group items-center justify-center w-10 h-10" title="Saved Wishlists">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:stroke-red-500 transition"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
                     <span id="wishCountBadge" class="absolute -top-1 -right-1 bg-red-600 text-white text-[10px] font-black px-1.5 py-0.5 rounded-full hidden border-2 border-black shadow-[0_0_8px_rgba(220,38,38,0.8)]">0</span>
                 </a>
+
                 <button type="button" onclick="window.openAuthOrProfile()" class="bg-[#111] border border-[#27272a] hover:border-[#f97316] hover:bg-[#1a1a1a] px-5 py-2.5 rounded-full font-bold text-sm flex items-center gap-2 transition duration-300">
                     <i data-lucide="user-circle" class="w-5 h-5 text-[#f97316]"></i> <span id="navProfileText">Sign In</span>
                 </button>
@@ -132,8 +133,9 @@
                     The Modern Directory for <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500">Local Commerce.</span>
                 </h2>
                 <p class="text-gray-400 text-lg md:text-xl mb-10 max-w-2xl mx-auto">A premium, 100% free ecosystem to list your enterprise and connect with your city or village. Zero algorithms.</p>
-                <div class="flex justify-center gap-4">
+                <div class="flex flex-col items-center justify-center gap-4">
                     <button type="button" onclick="window.location.hash='marketplace'" class="btn-brand">Explore Marketplace <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+                    <a href="https://growthinnovation.in/#privacy" onclick="window.location.hash='privacy'; return false;" class="text-sm font-medium text-gray-500 hover:text-[#f97316] underline transition mt-2">Privacy Policy & Terms</a>
                 </div>
             </div>
             <div class="pt-16">
@@ -472,19 +474,20 @@
     </footer>
 
     <nav class="md:hidden fixed bottom-0 w-full bg-[#000000]/90 backdrop-blur-xl border-t border-[#27272a] flex justify-around p-2 pb-safe z-50">
-        <button type="button" onclick="window.location.hash='home'" class="nav-link flex flex-col items-center justify-center p-2 w-[20%] text-gray-500 hover:text-white transition outline-none"><i data-lucide="home" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Home</span></button>
-        <button type="button" onclick="window.location.hash='marketplace'" class="nav-link flex flex-col items-center justify-center p-2 w-[20%] text-gray-500 hover:text-white transition outline-none"><i data-lucide="layout-grid" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Market</span></button>
+        <button type="button" onclick="window.location.hash='home'" class="nav-link flex flex-col items-center justify-center p-2 flex-1 text-gray-500 hover:text-white transition outline-none"><i data-lucide="home" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Home</span></button>
+        <button type="button" onclick="window.location.hash='marketplace'" class="nav-link flex flex-col items-center justify-center p-2 flex-1 text-gray-500 hover:text-white transition outline-none"><i data-lucide="layout-grid" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Market</span></button>
         
-        <button type="button" onclick="window.toggleNotifPanel()" class="nav-link flex flex-col items-center justify-center p-2 w-[20%] text-gray-500 hover:text-white transition relative outline-none">
+        <button type="button" onclick="window.location.hash='updates'" class="nav-link flex flex-col items-center justify-center p-2 flex-1 text-gray-500 hover:text-white transition outline-none"><i data-lucide="zap" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Updates</span></button>
+        
+        <button type="button" onclick="window.toggleNotifPanel()" class="nav-link flex flex-col items-center justify-center p-2 flex-1 text-gray-500 hover:text-white transition relative outline-none">
             <i data-lucide="bell" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Alerts</span>
             <span id="mobileNotifBadge" class="absolute top-1 right-2 bg-red-600 text-white text-[8px] font-black px-1.5 py-0.5 rounded-full hidden border border-black">0</span>
         </button>
         
-        <a href="#wishlists" data-target="wishlists" class="nav-link flex flex-col items-center justify-center p-2 w-[20%] text-gray-500 hover:text-white transition relative outline-none">
+        <a href="#wishlists" data-target="wishlists" class="nav-link flex flex-col items-center justify-center p-2 flex-1 text-gray-500 hover:text-white transition relative outline-none">
             <i data-lucide="heart" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Saved</span>
             <span id="mobileWishCountBadge" class="absolute top-1 right-2 bg-red-600 text-white text-[8px] font-black px-1.5 py-0.5 rounded-full hidden border border-black">0</span>
         </a>
-        <button type="button" onclick="window.location.hash='support'" class="nav-link flex flex-col items-center justify-center p-2 w-[20%] text-gray-500 hover:text-white transition outline-none"><i data-lucide="life-buoy" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Support</span></button>
     </nav>
 
     <div id="toast"><i data-lucide="info" class="w-5 h-5 text-[#f97316]"></i> <span id="toastMsg"></span></div>
