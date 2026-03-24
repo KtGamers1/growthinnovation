@@ -10,7 +10,6 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-3Q59CHV120');
     </script>
 
@@ -22,13 +21,9 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;900&display=swap');
-        
         body { font-family: 'Outfit', sans-serif; background-color: #050505; color: #fafafa; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; -webkit-tap-highlight-color: transparent; }
         
-        /* 🔥 PROGRESS BAR LOADER 🔥 */
         #topLoader { position: fixed; top: 0; left: 0; height: 4px; background: #f97316; z-index: 99999; width: 0%; transition: width 0.4s ease, opacity 0.4s ease; box-shadow: 0 0 10px #f97316; }
-        
-        /* 🔥 FULL SCREEN INITIAL LOADER 🔥 */
         @keyframes loadingBar { 0% { transform: translateX(-100%); } 100% { transform: translateX(200%); } }
 
         .ambient-blob { position: fixed; border-radius: 50%; filter: blur(120px); z-index: -1; opacity: 0.35; animation: floatBlob 20s infinite alternate ease-in-out; pointer-events: none; }
@@ -67,7 +62,6 @@
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* 🔥 FIXED STAR UI 🔥 */
         .star-btn { background: transparent; border: none; outline: none; cursor: pointer; transition: 0.2s; color: #27272a; padding: 0; display: inline-flex; }
         .star-btn.active { color: #f97316; }
         .star-btn svg { fill: transparent; transition: 0.2s; pointer-events: none; }
@@ -76,17 +70,12 @@
         .legal-text h3 { color: #f97316; font-weight: 800; font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
         .legal-text p { color: #9ca3af; margin-bottom: 1rem; line-height: 1.6; }
         
-        /* Fixed max-width for mobile */
         #notifPanel { position: absolute; top: 60px; right: 0; width: 320px; max-width: 90vw; max-height: 400px; overflow-y: auto; background: #0A0A0A; border: 1px solid #27272a; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); display: none; z-index: 1000; flex-direction: column; }
         #notifPanel.active { display: flex; animation: scaleFadeUp 0.3s ease forwards; }
         
         .pb-safe { padding-bottom: calc(0.5rem + env(safe-area-inset-bottom)); }
 
-        /* 🔥 PREMIUM ABSTRACT BACKGROUNDS 🔥 */
         .pattern-bg-1 { background: linear-gradient(135deg, #1f1108, #050505); background-image: linear-gradient(rgba(249,115,22,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(249,115,22,0.05) 1px, transparent 1px); background-size: 20px 20px; }
-        .pattern-bg-2 { background: linear-gradient(135deg, #0f172a, #050505); background-image: linear-gradient(rgba(59,130,246,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.05) 1px, transparent 1px); background-size: 20px 20px; }
-        .pattern-bg-3 { background: linear-gradient(135deg, #064e3b, #050505); background-image: linear-gradient(rgba(16,185,129,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(16,185,129,0.05) 1px, transparent 1px); background-size: 20px 20px; }
-        .pattern-bg-4 { background: linear-gradient(135deg, #2e1065, #050505); background-image: linear-gradient(rgba(139,92,246,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(139,92,246,0.05) 1px, transparent 1px); background-size: 20px 20px; }
     </style>
 </head>
 <body>
@@ -154,6 +143,30 @@
 
     <main class="flex-grow w-full max-w-6xl mx-auto pt-8 px-4 sm:px-6 pb-32 md:pb-24">
         
+        <section id="view-invite" class="view-section pt-10 md:pt-20 text-center max-w-3xl mx-auto">
+            <div class="glass-card p-8 md:p-12 border-t-4 border-[#f97316] relative overflow-hidden shadow-2xl">
+                <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-[#f97316]/10 to-transparent pointer-events-none"></div>
+                <img src="https://files.catbox.moe/qh0jhv.png" alt="Logo" class="w-32 md:w-40 h-auto mx-auto mb-8 relative z-10 filter drop-shadow-[0_0_15px_rgba(249,115,22,0.3)]">
+                
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#111] text-xs font-bold text-[#f97316] mb-6 border border-orange-500/20">
+                    Exclusive Invitation
+                </div>
+                
+                <h1 class="text-3xl md:text-5xl font-black mb-4 relative z-10 leading-tight">
+                    Hey <span id="inviteBizName" class="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-500">Business</span>!
+                </h1>
+                <h2 class="text-xl md:text-2xl font-bold text-gray-300 mb-8 relative z-10">We are officially inviting you to join Growth Innovation.</h2>
+                <p class="text-gray-400 mb-10 max-w-xl mx-auto relative z-10 leading-relaxed text-sm md:text-base">
+                    Start, Promote, and Earn. Grow your local business rapidly with our zero-commission digital ecosystem. Setup your digital storefront in exactly 2 minutes.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row justify-center gap-4 relative z-10">
+                    <button onclick="window.location.hash='profile'" class="btn-brand py-4 px-8 text-lg w-full sm:w-auto outline-none">Accept Invite & Start 🚀</button>
+                    <button onclick="window.location.hash='tutorial'" class="bg-[#111] border border-[#27272a] text-white py-4 px-8 rounded-xl font-bold hover:border-[#f97316] transition w-full sm:w-auto outline-none">Learn How It Works</button>
+                </div>
+            </div>
+        </section>
+
         <section id="view-home" class="view-section">
             <div class="pt-8 md:pt-20 pb-16 text-center max-w-4xl mx-auto border-b border-white/5">
                 <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#111] text-xs font-bold text-[#f97316] mb-8 border border-orange-500/20 shadow-[0_0_15px_rgba(249,115,22,0.15)]">
@@ -209,7 +222,6 @@
                     <option value="Others">Others</option>
                 </select>
             </div>
-
             <div id="fullFeed" class="flex flex-col gap-6 max-w-5xl mx-auto"></div>
         </section>
 
@@ -224,8 +236,7 @@
 
         <section id="view-detail" class="view-section pt-4 md:pt-8">
             <button type="button" onclick="window.history.back()" class="text-gray-400 hover:text-white mb-6 inline-flex items-center gap-2 font-bold transition outline-none"><i data-lucide="arrow-left" class="w-4 h-4"></i> Back</button>
-            <div id="detailContent" class="glass-card p-0 overflow-hidden border-white/5 shadow-2xl relative z-10">
-                </div>
+            <div id="detailContent" class="glass-card p-0 overflow-hidden border-white/5 shadow-2xl relative z-10"></div>
         </section>
 
         <section id="view-updates" class="view-section pt-4 md:pt-8">
@@ -473,6 +484,21 @@
                     <h4 class="text-white font-bold mb-4 text-xl flex items-center gap-2 border-b border-[#f97316]/20 pb-2"><i data-lucide="star" class="w-5 h-5 text-[#f97316]"></i> Pending Reviews (Peer Review)</h4>
                     <div id="adminReviewQueue" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
                 </div>
+
+                <div class="mt-8 border-t border-[#f97316]/20 pt-8">
+                    <h4 class="text-white font-bold mb-4 text-xl flex items-center gap-2"><i data-lucide="link" class="w-5 h-5 text-[#f97316]"></i> VIP Invite Link Generator</h4>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <input type="text" id="adminInviteName" class="modern-input" placeholder="Enter Business Name (e.g. Ozone Mall)">
+                        <button type="button" onclick="window.generateInviteLink()" class="btn-brand whitespace-nowrap outline-none">Generate Link</button>
+                    </div>
+                    <div id="adminInviteResult" class="mt-4 hidden p-4 bg-green-500/10 border border-green-500/30 rounded-xl">
+                        <p class="text-xs text-green-400 font-bold mb-2">Link Generated! Copy & Send:</p>
+                        <div class="flex items-center gap-2">
+                            <input type="text" id="adminInviteLink" class="modern-input py-2 text-xs flex-grow text-gray-300" readonly>
+                            <button type="button" onclick="window.copyToClip(document.getElementById('adminInviteLink').value)" class="bg-[#27272a] p-2.5 rounded-lg hover:bg-[#f97316] hover:text-black transition shrink-0 outline-none"><i data-lucide="copy" class="w-4 h-4"></i></button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="glass-card p-6 md:p-8 border-white/5">
@@ -507,7 +533,6 @@
         <button type="button" onclick="window.location.hash='home'" class="nav-link flex flex-col items-center justify-center p-2 flex-1 text-gray-500 hover:text-white transition outline-none"><i data-lucide="home" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Home</span></button>
         <button type="button" onclick="window.location.hash='marketplace'" class="nav-link flex flex-col items-center justify-center p-2 flex-1 text-gray-500 hover:text-white transition outline-none"><i data-lucide="layout-grid" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Market</span></button>
         <button type="button" onclick="window.location.hash='updates'" class="nav-link flex flex-col items-center justify-center p-2 flex-1 text-gray-500 hover:text-white transition outline-none"><i data-lucide="zap" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Updates</span></button>
-        
         <button type="button" onclick="window.location.hash='about'" class="nav-link flex flex-col items-center justify-center p-2 flex-1 text-gray-500 hover:text-white transition outline-none"><i data-lucide="info" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">About</span></button>
         <button type="button" onclick="window.location.hash='support'" class="nav-link flex flex-col items-center justify-center p-2 flex-1 text-gray-500 hover:text-white transition outline-none"><i data-lucide="headset" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Support</span></button>
     </nav>
@@ -660,7 +685,7 @@
                                         <input type="text" id="bizBuyNow" class="modern-input pl-28 text-sm py-2 bg-transparent border-none w-full focus:ring-0 focus:outline-none" style="box-shadow:none;" placeholder="eCommerce Product URL">
                                     </div>
                                 </div>
-                                <p class="text-[10px] text-gray-500 mt-1 ml-1 leading-tight">* Here you can enter url of amazon, flipkart, or any other ecommerce website</p>
+                                <p class="text-[10px] text-gray-500 mt-1 ml-1 leading-tight">* Enter url of amazon, flipkart, etc.</p>
                             </div>
                         </div>
                     </div>
@@ -680,7 +705,7 @@
                 <div class="mt-4 flex items-start gap-3 bg-[#111] p-4 rounded-xl border border-[#27272a]">
                     <input type="checkbox" id="acceptTerms" class="mt-1 accent-[#f97316] w-5 h-5 cursor-pointer" onchange="document.getElementById('submitBizBtn').disabled = !this.checked;">
                     <label for="acceptTerms" class="text-sm text-gray-400 cursor-pointer leading-relaxed">
-                        By checking this box, you guarantee that all provided details are 100% correct, and you accept our <button type="button" onclick="window.closeModal('bizModal'); window.switchTab('privacy');" class="text-blue-500 hover:underline bg-transparent border-none p-0 inline">Privacy Policy</button> & <button type="button" onclick="window.closeModal('bizModal'); window.switchTab('terms');" class="text-blue-500 hover:underline bg-transparent border-none p-0 inline">Terms & Conditions</button>.
+                        By checking this box, you guarantee that all provided details are 100% correct, and you accept our <button type="button" onclick="window.closeModal('bizModal'); window.switchTab('privacy');" class="text-blue-500 hover:underline bg-transparent border-none p-0 inline outline-none">Privacy Policy</button> & <button type="button" onclick="window.closeModal('bizModal'); window.switchTab('terms');" class="text-blue-500 hover:underline bg-transparent border-none p-0 inline outline-none">Terms & Conditions</button>.
                     </label>
                 </div>
 
@@ -710,7 +735,7 @@
 
     <div id="ticketModal" class="modal-bg z-[110]">
         <div class="modal-box">
-            <button type="button" onclick="window.closeModal('ticketModal')" class="absolute top-6 right-6 text-gray-500 hover:text-white transition"><i data-lucide="x" class="w-6 h-6"></i></button>
+            <button type="button" onclick="window.closeModal('ticketModal')" class="absolute top-6 right-6 text-gray-500 hover:text-white transition outline-none"><i data-lucide="x" class="w-6 h-6"></i></button>
             <h2 class="text-2xl font-black mb-6 border-l-4 border-white pl-3">Raise Ticket</h2>
             <div class="space-y-4">
                 <input type="text" id="ticketSubject" class="modern-input" placeholder="Issue Subject">
@@ -742,6 +767,18 @@
         </div>
     </div>
 
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').then(reg => {
+                    console.log('Service Worker Registered!', reg);
+                }).catch(err => {
+                    console.log('Service Worker registration failed:', err);
+                });
+            });
+        }
+    </script>
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
@@ -750,24 +787,16 @@
         const firebaseConfig = { apiKey: "AIzaSyA5q7835OdhVNGhSzshtXF8vxoq8yTgb7Q", authDomain: "growth-innovation.firebaseapp.com", projectId: "growth-innovation", storageBucket: "growth-innovation.firebasestorage.app", messagingSenderId: "421919943414", appId: "1:421919943414:web:fee6155d4030afd54e1ad7" };
         const app = initializeApp(firebaseConfig); const auth = getAuth(app); const db = getFirestore(app);
         
-        // Init Icons safely
         window.initIcons = () => { try { lucide.createIcons(); } catch(e){} };
         window.initIcons();
 
-        // HIDE LOADER AFTER EVERYTHING IS READY
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const loader = document.getElementById('fullScreenLoader');
-                if(loader) {
-                    loader.style.opacity = '0';
-                    setTimeout(() => loader.remove(), 700);
-                }
+                if(loader) { loader.style.opacity = '0'; setTimeout(() => loader.remove(), 700); }
             }, 1000); 
         });
 
-        // ==========================================
-        // 🔥 UTILS & SAFE GLOBAL FUNCTIONS 🔥
-        // ==========================================
         window.showToast = (msg) => { const t = document.getElementById('toast'); t.innerText = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3000); }
         window.openModal = (id) => document.getElementById(id).classList.add('active');
         window.closeModal = (id) => document.querySelectorAll('.modal-bg').forEach(m => m.classList.remove('active'));
@@ -806,9 +835,17 @@
             return `bg-gradient-to-br ${gradients[num]} bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:20px_20px]`;
         };
 
-        // ==========================================
-        // 🔥 POSTS (OFFERS) LOGIC 🔥
-        // ==========================================
+        // 🔥 LINK GENERATOR LOGIC 🔥
+        window.generateInviteLink = () => {
+            const name = document.getElementById('adminInviteName').value.trim();
+            if(!name) return window.showToast("Enter a business name first!");
+            const encoded = window.btoa(unescape(encodeURIComponent(name)));
+            const link = `https://growthinnovation.in/#invite/${encoded}`;
+            document.getElementById('adminInviteLink').value = link;
+            document.getElementById('adminInviteResult').classList.remove('hidden');
+            window.initIcons();
+        };
+
         window.togglePostSchedule = () => {
             const isChecked = document.getElementById('wantSchedulePost').checked;
             document.getElementById('postScheduleBox').style.display = isChecked ? 'grid' : 'none';
@@ -839,9 +876,7 @@
                 start = sVal ? new Date(sVal).getTime() : null;
                 end = eVal ? new Date(eVal).getTime() : null;
             }
-            
             if(!title || !text) return window.showToast("Heading and text are mandatory.");
-            
             const btn = document.getElementById('submitPostBtn'); btn.innerText = 'Publishing...';
             try {
                 await addDoc(collection(db, "business_posts"), { 
@@ -855,9 +890,6 @@
 
         window.deletePost = async (id) => { if(confirm("Delete this post?")) { await deleteDoc(doc(db, "business_posts", id)); window.showToast("Post Deleted."); } };
 
-        // ==========================================
-        // 🔥 NOTIFICATIONS 🔥
-        // ==========================================
         window.toggleNotifPanel = () => {
             const panel = document.getElementById('notifPanel');
             if(panel.style.display === 'flex') panel.style.display = 'none';
@@ -888,9 +920,6 @@
             }
         };
 
-        // ==========================================
-        // 🔥 ROUTING 🔥
-        // ==========================================
         window.switchTab = (tab) => { window.location.hash = tab; }
         window.userWishlists = JSON.parse(localStorage.getItem('kt_wishlists')) || [];
 
@@ -915,6 +944,22 @@
         function handleRouting() {
             window.showLoader();
             let hash = window.location.hash.replace('#', '') || 'home';
+
+            // 🔥 INVITE ROUTE LOGIC 🔥
+            if (hash.startsWith('invite/')) {
+                const encodedName = hash.split('/')[1]; 
+                let bizName = "There";
+                try {
+                    bizName = decodeURIComponent(escape(window.atob(encodedName)));
+                } catch(e) {
+                    bizName = decodeURIComponent(encodedName).replace(/-/g, ' ');
+                }
+                document.getElementById('inviteBizName').innerText = bizName;
+                document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+                document.getElementById('view-invite').classList.add('active');
+                window.hideLoader();
+                return;
+            }
             
             if (hash.startsWith('marketplace/')) {
                 const slug = hash.split('/')[1];
@@ -933,7 +978,7 @@
                 return;
             }
 
-            const validTabs = ['home', 'marketplace', 'wishlists', 'updates', 'about', 'support', 'profile', 'detail', 'privacy', 'terms', 'tutorial'];
+            const validTabs = ['home', 'marketplace', 'wishlists', 'updates', 'about', 'support', 'profile', 'detail', 'privacy', 'terms', 'tutorial', 'invite'];
             if (!validTabs.includes(hash)) hash = 'home';
             
             if (hash === 'profile' && !auth.currentUser) {
@@ -959,18 +1004,12 @@
         window.addEventListener('DOMContentLoaded', handleRouting); 
         window.openAuthOrProfile = () => auth.currentUser ? window.switchTab('profile') : window.openModal('authModal');
 
-        // ==========================================
-        // 🔥 REVIEW RATING SYSTEM 🔥
-        // ==========================================
         window.currentRating = 0;
         window.setRating = (val) => {
             window.currentRating = val;
             for(let i=1; i<=5; i++) {
                 const btn = document.getElementById('starBtn'+i);
-                if(btn) {
-                    if(i <= val) { btn.classList.add('active'); } 
-                    else { btn.classList.remove('active'); }
-                }
+                if(btn) { if(i <= val) { btn.classList.add('active'); } else { btn.classList.remove('active'); } }
             }
         };
 
@@ -986,27 +1025,16 @@
             const text = document.getElementById('reviewText').value.trim();
             if(window.currentRating === 0) return window.showToast("Please select 1 to 5 stars!");
             if(!text) return window.showToast("Review description is mandatory.");
-            
-            const btn = document.getElementById('submitReviewBtn'); 
-            btn.innerText = 'Submitting...';
+            const btn = document.getElementById('submitReviewBtn'); btn.innerText = 'Submitting...';
             try {
                 await addDoc(collection(db, "peer_reviews"), { 
-                    bizId: window.currentDetailBizId, 
-                    user: auth.currentUser.email, 
-                    rating: parseInt(window.currentRating), 
-                    text, 
-                    status: 'Pending', 
-                    timestamp: Date.now() 
+                    bizId: window.currentDetailBizId, user: auth.currentUser.email, rating: parseInt(window.currentRating), text, status: 'Pending', timestamp: Date.now() 
                 });
                 const bRef = doc(db, "businesses", window.currentDetailBizId); 
                 const bDoc = await getDoc(bRef);
-                if(bDoc.exists()) {
-                    await updateDoc(bRef, { reviewCount: (bDoc.data().reviewCount || 0) + 1 });
-                }
-                window.closeModal('reviewModal'); 
-                window.showToast("Review submitted for 24-Hour Peer Review.");
-                window.currentRating = 0; 
-                document.getElementById('reviewText').value = ''; 
+                if(bDoc.exists()) await updateDoc(bRef, { reviewCount: (bDoc.data().reviewCount || 0) + 1 });
+                window.closeModal('reviewModal'); window.showToast("Review submitted for 24-Hour Peer Review.");
+                window.currentRating = 0; document.getElementById('reviewText').value = ''; 
                 document.querySelectorAll('#reviewStars button').forEach(b => b.classList.remove('active'));
             } catch(e) { window.showToast("Error submitting review"); }
             btn.innerText = 'Submit Review';
@@ -1018,17 +1046,12 @@
                     await deleteDoc(doc(db, "peer_reviews", reviewId));
                     const bRef = doc(db, "businesses", bizId);
                     const bDoc = await getDoc(bRef);
-                    if(bDoc.exists() && (bDoc.data().reviewCount || 0) > 0) {
-                        await updateDoc(bRef, { reviewCount: bDoc.data().reviewCount - 1 });
-                    }
+                    if(bDoc.exists() && (bDoc.data().reviewCount || 0) > 0) await updateDoc(bRef, { reviewCount: bDoc.data().reviewCount - 1 });
                     window.showToast("Review deleted. You can now write a new one.");
                 } catch(e) { window.showToast("Error deleting review."); }
             }
         };
 
-        // ==========================================
-        // 🔥 IMAGE COMPRESSOR 🔥
-        // ==========================================
         function compressImage(file, maxWidth = 800) {
             return new Promise((resolve) => {
                 const reader = new FileReader(); reader.readAsDataURL(file);
@@ -1052,7 +1075,6 @@
         window.handleMultipleImages = async (e, prevId, lblId, max = 10, contextId = null) => {
             const files = Array.from(e.target.files).slice(0, max);
             const prev = document.getElementById(prevId);
-            
             if(contextId === 'ticket') window.ticketImgs = [];
             else if(contextId === 'post') window.tempItemImgs['post'] = []; 
             else if(contextId) window.tempItemImgs[contextId] = []; 
@@ -1116,19 +1138,13 @@
             document.getElementById('itemsContainer').insertAdjacentHTML('beforeend', html); window.initIcons();
         };
 
-        // ==========================================
-        // 🔥 AUTH LOGIC 🔥
-        // ==========================================
         window.authMode = 'LOGIN';
         document.getElementById('togglePasswordBtn').onclick = () => {
             const p = document.getElementById('password'); p.type = p.type === 'password' ? 'text' : 'password';
             document.getElementById('eyeIcon').setAttribute('data-lucide', p.type === 'password' ? 'eye' : 'eye-off'); window.initIcons();
         };
         
-        document.getElementById('toggleAuthBtn').onclick = () => { 
-            window.authMode = window.authMode === 'LOGIN' ? 'REGISTER' : 'LOGIN'; 
-            window.updateAuthUI(); 
-        };
+        document.getElementById('toggleAuthBtn').onclick = () => { window.authMode = window.authMode === 'LOGIN' ? 'REGISTER' : 'LOGIN'; window.updateAuthUI(); };
         document.getElementById('forgotBtn').onclick = () => { window.authMode = 'FORGOT'; window.updateAuthUI(); };
 
         window.updateAuthUI = () => {
@@ -1168,12 +1184,10 @@
                 document.getElementById('supportLoginPrompt').classList.add('hidden'); document.getElementById('supportDashboard').classList.remove('hidden');
                 
                 onSnapshot(query(collection(db, "notifications"), where("userId", "==", user.email), orderBy("time", "desc")), (snap) => {
-                    const list = document.getElementById('notifList');
-                    let unreadCount = 0;
+                    const list = document.getElementById('notifList'); let unreadCount = 0;
                     list.innerHTML = snap.empty ? `<p class="text-center py-6 text-xs text-gray-500">No new alerts.</p>` : "";
                     snap.forEach((d) => {
-                        const n = d.data();
-                        if(!n.read) unreadCount++;
+                        const n = d.data(); if(!n.read) unreadCount++;
                         const bg = n.read ? 'bg-[#050505]' : 'bg-[#27272a] border-[#f97316]';
                         list.innerHTML += `<div class="p-3 ${bg} border border-[#27272a] rounded-xl mb-2 mx-2"><p class="text-xs text-white font-bold">${n.text}</p><p class="text-[9px] text-gray-500 mt-1">${new Date(n.time).toLocaleString()}</p></div>`;
                     });
@@ -1189,8 +1203,7 @@
                 window.checkBoostReminder();
                 
                 onSnapshot(query(collection(db, "wishlists"), where("userId", "==", user.email)), (snap) => {
-                    window.userWishlists = snap.docs.map(doc => doc.data().bizId);
-                    window.updateWishlistBadge();
+                    window.userWishlists = snap.docs.map(doc => doc.data().bizId); window.updateWishlistBadge();
                     if(window.location.hash === '#wishlists') window.loadWishlistFeed();
                 });
 
@@ -1204,29 +1217,16 @@
             }
         });
 
-        // ==========================================
-        // 🔥 BIZ ADD / EDIT LOGIC 🔥
-        // ==========================================
         window.editingBizId = null;
-
         window.openAddBizModal = () => {
             window.editingBizId = null; 
             document.getElementById('bizModalTitle').innerText = "Register Business"; 
             document.getElementById('submitBizBtn').innerText = "Submit for Peer Review (Max 24 Hrs)";
-            document.getElementById('bizName').value = ''; document.getElementById('bizCategory').value = ''; document.getElementById('bizCity').value = ''; document.getElementById('bizAddress').value = ''; document.getElementById('bizPhone').value = ''; document.getElementById('bizMail').value = ''; document.getElementById('bizDesc').value = '';
-            document.getElementById('bizHours').value = ''; document.getElementById('bizWebsite').value = '';
-            document.getElementById('bizInsta').value = ''; document.getElementById('bizFb').value = ''; document.getElementById('bizX').value = ''; document.getElementById('bizYt').value = '';
-            
-            document.getElementById('bizMap').value = ''; document.getElementById('bizBuyNow').value = '';
-
+            ['bizName','bizCategory','bizCity','bizAddress','bizPhone','bizMail','bizDesc','bizHours','bizWebsite','bizInsta','bizFb','bizX','bizYt','bizMap','bizBuyNow'].forEach(id => document.getElementById(id).value = '');
             document.getElementById('checkShowPhone').checked = true; document.getElementById('checkShowMail').checked = true;
             document.getElementById('isOnlineBiz').checked = false; document.getElementById('isClosedToday').checked = false; window.toggleAddressField();
-            
             document.getElementById('wantListItems').checked = false; document.getElementById('itemsSection').classList.add('hidden'); document.getElementById('itemsContainer').innerHTML = '';
-            
-            document.getElementById('acceptTerms').checked = false;
-            document.getElementById('submitBizBtn').disabled = true;
-
+            document.getElementById('acceptTerms').checked = false; document.getElementById('submitBizBtn').disabled = true;
             window.mainImgs = []; window.tempItemImgs = {}; document.getElementById('mainImagesPreview').innerHTML = ''; document.getElementById('mainImagesLabel').innerText = "Click to Upload Cover Image"; document.getElementById('mainImagesLabel').classList.remove('text-green-500');
             window.openModal('bizModal');
         };
@@ -1235,34 +1235,14 @@
             const b = JSON.parse(decodeURIComponent(bizString)); window.editingBizId = b.id; 
             document.getElementById('bizModalTitle').innerText = "Update Business Details"; 
             document.getElementById('submitBizBtn').innerText = "Save Changes";
+            document.getElementById('bizName').value = b.name || ''; document.getElementById('bizCategory').value = b.category || ''; document.getElementById('bizCity').value = b.city || ''; document.getElementById('bizAddress').value = b.address || ''; document.getElementById('bizPhone').value = b.phone || ''; document.getElementById('bizMail').value = b.mail || ''; document.getElementById('bizDesc').value = b.desc || ''; document.getElementById('bizHours').value = b.hours || ''; document.getElementById('bizWebsite').value = b.website || '';
             
-            document.getElementById('bizName').value = b.name || ''; 
-            document.getElementById('bizCategory').value = b.category || ''; 
-            document.getElementById('bizCity').value = b.city || ''; 
-            document.getElementById('bizAddress').value = b.address || ''; 
-            document.getElementById('bizPhone').value = b.phone || ''; 
-            document.getElementById('bizMail').value = b.mail || ''; 
-            document.getElementById('bizDesc').value = b.desc || '';
-            document.getElementById('bizHours').value = b.hours || ''; 
-            document.getElementById('bizWebsite').value = b.website || '';
-            
-            if(b.socials) {
-                document.getElementById('bizInsta').value = b.socials.insta || ''; document.getElementById('bizFb').value = b.socials.fb || ''; document.getElementById('bizX').value = b.socials.x || ''; document.getElementById('bizYt').value = b.socials.yt || '';
-            } else {
-                document.getElementById('bizInsta').value = ''; document.getElementById('bizFb').value = ''; document.getElementById('bizX').value = ''; document.getElementById('bizYt').value = '';
-            }
-
-            document.getElementById('bizMap').value = b.mapUrl || ''; 
-            document.getElementById('bizBuyNow').value = b.buyNowUrl || '';
-
-            document.getElementById('checkShowPhone').checked = b.showPhone !== false; 
-            document.getElementById('checkShowMail').checked = b.showMail !== false;
-            document.getElementById('isOnlineBiz').checked = b.isOnline || false; 
-            document.getElementById('isClosedToday').checked = b.isClosedToday || false;
-            window.toggleAddressField();
-            
-            document.getElementById('acceptTerms').checked = true;
-            document.getElementById('submitBizBtn').disabled = false;
+            if(b.socials) { document.getElementById('bizInsta').value = b.socials.insta || ''; document.getElementById('bizFb').value = b.socials.fb || ''; document.getElementById('bizX').value = b.socials.x || ''; document.getElementById('bizYt').value = b.socials.yt || ''; } 
+            else { document.getElementById('bizInsta').value = ''; document.getElementById('bizFb').value = ''; document.getElementById('bizX').value = ''; document.getElementById('bizYt').value = ''; }
+            document.getElementById('bizMap').value = b.mapUrl || ''; document.getElementById('bizBuyNow').value = b.buyNowUrl || '';
+            document.getElementById('checkShowPhone').checked = b.showPhone !== false; document.getElementById('checkShowMail').checked = b.showMail !== false;
+            document.getElementById('isOnlineBiz').checked = b.isOnline || false; document.getElementById('isClosedToday').checked = b.isClosedToday || false; window.toggleAddressField();
+            document.getElementById('acceptTerms').checked = true; document.getElementById('submitBizBtn').disabled = false;
 
             window.mainImgs = b.images || []; window.tempItemImgs = {}; 
             const prev = document.getElementById('mainImagesPreview'); prev.innerHTML = '';
@@ -1277,10 +1257,7 @@
 
         window.submitBiz = async () => {
             const name = document.getElementById('bizName').value.trim(), category = document.getElementById('bizCategory').value, city = document.getElementById('bizCity').value.trim().toLowerCase(), addr = document.getElementById('bizAddress').value, phone = document.getElementById('bizPhone').value, mail = document.getElementById('bizMail').value, desc = document.getElementById('bizDesc').value, hours = document.getElementById('bizHours').value, website = document.getElementById('bizWebsite').value;
-            
-            const mapUrl = document.getElementById('bizMap').value.trim();
-            const buyNowUrl = document.getElementById('bizBuyNow').value.trim();
-
+            const mapUrl = document.getElementById('bizMap').value.trim(), buyNowUrl = document.getElementById('bizBuyNow').value.trim();
             if(!name || !category || !city || !addr || !phone || !mail || !desc) return window.showToast("All main fields are Mandatory!");
             
             let finalItems = [];
@@ -1289,20 +1266,12 @@
                 document.querySelectorAll('.item-box').forEach(box => {
                     const id = box.id.replace('box_', ''); const iName = box.querySelector('.item-name').value;
                     if(!iName) { allItemsValid = false; return; }
-                    finalItems.push({ 
-                        name: iName, 
-                        type: box.querySelector('.item-type').value, 
-                        priceFull: box.querySelector('.item-price-full').value, 
-                        priceHalf: box.querySelector('.item-price-half').value, 
-                        url: box.querySelector('.item-url').value.trim(),
-                        images: window.tempItemImgs[id] || [] 
-                    });
+                    finalItems.push({ name: iName, type: box.querySelector('.item-type').value, priceFull: box.querySelector('.item-price-full').value, priceHalf: box.querySelector('.item-price-half').value, url: box.querySelector('.item-url').value.trim(), images: window.tempItemImgs[id] || [] });
                 });
                 if(!allItemsValid) return window.showToast("Item Name is Mandatory for each item.");
             }
             
             const socials = { insta: document.getElementById('bizInsta').value, fb: document.getElementById('bizFb').value, x: document.getElementById('bizX').value, yt: document.getElementById('bizYt').value };
-
             const btn = document.getElementById('submitBizBtn'); btn.innerText = "Processing...";
             
             let baseSlug = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
@@ -1310,51 +1279,18 @@
             let finalSlug = slugQuery.empty ? baseSlug : baseSlug + '-' + Math.floor(Math.random() * 10000);
 
             const payload = { 
-                name, category, city, address: addr, phone, mail, desc, hours, website, socials, 
-                mapUrl, buyNowUrl, 
+                name, category, city, address: addr, phone, mail, desc, hours, website, socials, mapUrl, buyNowUrl, 
                 showPhone: document.getElementById('checkShowPhone').checked, showMail: document.getElementById('checkShowMail').checked, 
                 isOnline: document.getElementById('isOnlineBiz').checked, isClosedToday: document.getElementById('isClosedToday').checked,
-                images: window.mainImgs, items: finalItems, 
-                status: window.editingBizId ? 'Approved' : 'Pending'
+                images: window.mainImgs, items: finalItems, status: window.editingBizId ? 'Approved' : 'Pending'
             };
             if(!window.editingBizId) payload.slug = finalSlug;
             
             try {
-                if(window.editingBizId) { 
-                    await updateDoc(doc(db, "businesses", window.editingBizId), payload); 
-                    window.showToast("Business Updated!"); 
-                } else { 
-                    payload.owner = auth.currentUser.email; 
-                    payload.timestamp = Date.now(); 
-                    payload.isBoosted = false; payload.viewCount = 0; payload.wishlistCount = 0; payload.reviewCount = 0;
-                    payload.bizId = "BIZ" + Date.now().toString(36).toUpperCase(); 
-                    
-                    await addDoc(collection(db, "businesses"), payload); 
-                    window.showToast("Submitted for Admin Review!"); 
-
-                    try {
-                        const webhookUrl = "https://discordapp.com/api/webhooks/1485529570764652614/0k66BLilC2AvepZJW9hID1XW86OrbMoLMIMi8KHW391crZn-I-Us8pjVk1-BsgHvvKsS";
-                        let itemsText = finalItems.length > 0 ? finalItems.map(i => `${i.name} (${i.type}) - ${i.priceFull || 'N/A'}`).join('\n').substring(0, 1000) : "No items";
-                        
-                        const discordPayload = {
-                            embeds: [{
-                                title: "🚨 New Business Registration (Pending)!",
-                                color: 16347392,
-                                fields: [
-                                    { name: "ID", value: payload.bizId, inline: true },
-                                    { name: "Name", value: payload.name, inline: true },
-                                    { name: "Category", value: payload.category, inline: true },
-                                    { name: "Owner Email", value: payload.owner, inline: false },
-                                    { name: "Phone", value: payload.phone + ` (Public: ${payload.showPhone})`, inline: true },
-                                    { name: "Email", value: payload.mail + ` (Public: ${payload.showMail})`, inline: true },
-                                    { name: "Address", value: `${payload.address}, ${payload.city} (Online: ${payload.isOnline})`, inline: false },
-                                    { name: "Menu/Items", value: itemsText, inline: false },
-                                    { name: "Images", value: `${payload.images.length} Image(s)`, inline: false }
-                                ]
-                            }]
-                        };
-                        fetch(webhookUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(discordPayload) });
-                    } catch(e) {}
+                if(window.editingBizId) { await updateDoc(doc(db, "businesses", window.editingBizId), payload); window.showToast("Business Updated!"); } 
+                else { 
+                    payload.owner = auth.currentUser.email; payload.timestamp = Date.now(); payload.isBoosted = false; payload.viewCount = 0; payload.wishlistCount = 0; payload.reviewCount = 0; payload.bizId = "BIZ" + Date.now().toString(36).toUpperCase(); 
+                    await addDoc(collection(db, "businesses"), payload); window.showToast("Submitted for Admin Review!"); 
                 }
                 window.closeModal('bizModal'); window.editingBizId = null; 
             } catch(e) { window.showToast("Error saving data"); btn.innerText = "Error"; }
@@ -1362,59 +1298,20 @@
 
         window.deleteBiz = async (id) => { 
             if(confirm("Permanently delete this listing? All data will be lost.")) { 
-                try { 
-                    await deleteDoc(doc(db, "businesses", id)); 
-                    window.showToast("Listing deleted successfully!"); 
-                    if(window.location.hash.includes(id)) window.location.hash = 'home';
-                } catch(e) { window.showToast("Error deleting listing."); } 
+                try { await deleteDoc(doc(db, "businesses", id)); window.showToast("Listing deleted successfully!"); if(window.location.hash.includes(id)) window.location.hash = 'home'; } catch(e) {} 
             } 
         };
 
-        // ==========================================
-        // 🔥 TICKETS & BOOST 🔥
-        // ==========================================
         window.currentTicketId = null;
         window.submitTicket = async () => {
             const subject = document.getElementById('ticketSubject').value, desc = document.getElementById('ticketDesc').value;
             if(!subject || !desc) return window.showToast("All fields required");
             const btn = document.getElementById('submitTicketBtn'); btn.innerText = "Submitting...";
-            
             try { 
-                // GET COUNT FOR TICKET ID
-                const snap = await getDocs(collection(db, "support_tickets"));
-                const tktId = `#${snap.size + 1}`;
-
-                await addDoc(collection(db, "support_tickets"), { 
-                    ticketId: tktId,
-                    subject, 
-                    owner: auth.currentUser.email, 
-                    status: 'Open', 
-                    images: window.ticketImgs, 
-                    timestamp: Date.now(), 
-                    messages: [{ sender: auth.currentUser.email, text: desc, time: Date.now() }] 
-                }); 
-
-                // WEBHOOK NOTIFICATION
-                try {
-                    const webhookUrl = "https://discordapp.com/api/webhooks/1485529570764652614/0k66BLilC2AvepZJW9hID1XW86OrbMoLMIMi8KHW391crZn-I-Us8pjVk1-BsgHvvKsS";
-                    const discordPayload = {
-                        embeds: [{
-                            title: "🎫 New Support Ticket Created",
-                            color: 3447003,
-                            fields: [
-                                { name: "Ticket ID", value: tktId, inline: true },
-                                { name: "User Email", value: auth.currentUser.email, inline: true },
-                                { name: "Subject", value: subject, inline: false },
-                                { name: "Description", value: desc, inline: false }
-                            ]
-                        }]
-                    };
-                    fetch(webhookUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(discordPayload) });
-                } catch(e) {}
-
+                const snap = await getDocs(collection(db, "support_tickets")); const tktId = `#${snap.size + 1}`;
+                await addDoc(collection(db, "support_tickets"), { ticketId: tktId, subject, owner: auth.currentUser.email, status: 'Open', images: window.ticketImgs, timestamp: Date.now(), messages: [{ sender: auth.currentUser.email, text: desc, time: Date.now() }] }); 
                 window.closeModal('ticketModal'); window.showToast("Ticket Opened"); 
-                document.getElementById('ticketSubject').value = ''; document.getElementById('ticketDesc').value = ''; 
-                window.ticketImgs = []; document.getElementById('ticketImgPrev').innerHTML = ''; document.getElementById('ticketImgLbl').innerText = ''; 
+                document.getElementById('ticketSubject').value = ''; document.getElementById('ticketDesc').value = ''; window.ticketImgs = []; document.getElementById('ticketImgPrev').innerHTML = ''; document.getElementById('ticketImgLbl').innerText = ''; 
             } catch(e) { window.showToast("Error"); }
             btn.innerText = "Submit to Helpdesk";
         };
@@ -1423,12 +1320,10 @@
             window.currentTicketId = ticketId; document.getElementById('chatSubject').innerText = subject; window.openModal('chatModal');
             onSnapshot(doc(db, "support_tickets", ticketId), (docSnap) => {
                 const data = docSnap.data(), history = document.getElementById('chatHistory'); history.innerHTML = "";
-                
                 if(data && data.images && data.images.length > 0) {
                     let imgs = ''; data.images.forEach(i => imgs += `<img src="${i}" class="w-32 h-32 object-cover rounded-lg border border-[#27272a]">`);
                     history.innerHTML += `<div class="bg-[#27272a] p-3 rounded-2xl max-w-[80%] self-end mb-4"><span class="text-[10px] font-bold opacity-60 mb-1 block">Attached Images</span><div class="flex gap-2">${imgs}</div></div>`;
                 }
-
                 if(data && data.messages) {
                     data.messages.forEach(m => {
                         const isMe = m.sender === auth.currentUser.email, bubbleClass = isMe ? 'bg-[#27272a] self-end' : 'bg-[#f97316] text-black self-start';
@@ -1446,76 +1341,31 @@
                 await updateDoc(doc(db, "support_tickets", window.currentTicketId), { messages: arrayUnion({ sender: auth.currentUser.email, text: text, time: Date.now() }) }); 
                 if(auth.currentUser.email === 'kt.deore@hotmail.com') {
                     const tDoc = await getDoc(doc(db, "support_tickets", window.currentTicketId));
-                    if(tDoc.exists() && tDoc.data().owner !== 'kt.deore@hotmail.com') {
-                        addDoc(collection(db, "notifications"), { userId: tDoc.data().owner, text: "Admin replied to your ticket 💬", time: Date.now(), read: false });
-                    }
+                    if(tDoc.exists() && tDoc.data().owner !== 'kt.deore@hotmail.com') addDoc(collection(db, "notifications"), { userId: tDoc.data().owner, text: "Admin replied to your ticket 💬", time: Date.now(), read: false });
                 }
             } catch(e) { window.showToast("Failed to send"); }
         };
 
-        window.deleteTicket = async (id) => {
-            if(confirm("Delete this ticket permanently?")) {
-                try { await deleteDoc(doc(db, "support_tickets", id)); window.showToast("Ticket deleted."); } catch(e) { window.showToast("Error deleting"); }
-            }
-        };
+        window.deleteTicket = async (id) => { if(confirm("Delete this ticket permanently?")) { try { await deleteDoc(doc(db, "support_tickets", id)); window.showToast("Ticket deleted."); } catch(e) {} } };
 
         window.pendingBoostId = null;
         window.openBoostModal = (bizId) => { window.pendingBoostId = bizId; window.openModal('boostModal'); }
         window.submitBoost = async () => {
-            const plan = document.querySelector('input[name="boostPlan"]:checked').value; 
-            document.getElementById('proceedBoostBtn').innerText = "Processing...";
-            
+            const plan = document.querySelector('input[name="boostPlan"]:checked').value; document.getElementById('proceedBoostBtn').innerText = "Processing...";
             try { 
-                // GET COUNT FOR TICKET ID
-                const snap = await getDocs(collection(db, "support_tickets"));
-                const tktId = `#${snap.size + 1}`;
-                const subjectText = `Boost Request: BizID-${window.pendingBoostId}`;
-
-                await addDoc(collection(db, "support_tickets"), { 
-                    ticketId: tktId,
-                    subject: subjectText, 
-                    owner: auth.currentUser.email, 
-                    status: 'Open', 
-                    timestamp: Date.now(), 
-                    messages: [{ sender: auth.currentUser.email, text: `I want to Boost my post! Plan: ₹${plan}.`, time: Date.now() }] 
-                }); 
-
-                // WEBHOOK NOTIFICATION
-                try {
-                    const webhookUrl = "https://discordapp.com/api/webhooks/1485529570764652614/0k66BLilC2AvepZJW9hID1XW86OrbMoLMIMi8KHW391crZn-I-Us8pjVk1-BsgHvvKsS";
-                    const discordPayload = {
-                        embeds: [{
-                            title: "🚀 New Boost Request",
-                            color: 15158332,
-                            fields: [
-                                { name: "Ticket ID", value: tktId, inline: true },
-                                { name: "User Email", value: auth.currentUser.email, inline: true },
-                                { name: "Plan selected", value: `₹${plan}`, inline: true },
-                                { name: "Biz ID", value: window.pendingBoostId, inline: false }
-                            ]
-                        }]
-                    };
-                    fetch(webhookUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(discordPayload) });
-                } catch(e) {}
-
+                const snap = await getDocs(collection(db, "support_tickets")); const tktId = `#${snap.size + 1}`; const subjectText = `Boost Request: BizID-${window.pendingBoostId}`;
+                await addDoc(collection(db, "support_tickets"), { ticketId: tktId, subject: subjectText, owner: auth.currentUser.email, status: 'Open', timestamp: Date.now(), messages: [{ sender: auth.currentUser.email, text: `I want to Boost my post! Plan: ₹${plan}.`, time: Date.now() }] }); 
                 window.closeModal('boostModal'); window.showToast("Boost Request Sent!"); window.location.hash = 'support'; 
             } catch(e) { window.showToast("Error"); }
             document.getElementById('proceedBoostBtn').innerText = "Proceed to Checkout";
         };
 
-        // ==========================================
-        // 🔥 RENDER DIRECTORY & WISHLISTS 🔥
-        // ==========================================
         let allVerifiedBiz = [];
-
         window.renderListFeed = (businesses, containerId, limit = null) => {
-            const feed = document.getElementById(containerId);
-            if(!feed) return;
+            const feed = document.getElementById(containerId); if(!feed) return;
             feed.innerHTML = businesses.length === 0 ? `<div class="col-span-full text-center py-10"><i data-lucide="search-x" class="w-12 h-12 text-gray-600 mx-auto mb-3"></i><p class="text-gray-500">No listings found.</p></div>` : "";
             
-            let count = 0;
-            const sortedBiz = [...businesses].sort((a,b) => (b.isBoosted ? 1 : 0) - (a.isBoosted ? 1 : 0)).reverse();
-
+            let count = 0; const sortedBiz = [...businesses].sort((a,b) => (b.isBoosted ? 1 : 0) - (a.isBoosted ? 1 : 0)).reverse();
             const isVertical = containerId === 'fullFeed' || containerId === 'wishlistFeed';
             const cardLayout = isVertical ? 'flex-col sm:flex-row max-w-4xl mx-auto w-full' : 'flex-col';
             const imgLayout = isVertical ? 'h-48 sm:h-auto sm:w-1/3 shrink-0' : 'h-48 w-full';
@@ -1523,29 +1373,17 @@
             let html = '';
             sortedBiz.forEach((b) => {
                 if(limit && count >= limit) return;
-                
-                const bName = b.name || 'Business';
-                const bCat = b.category || 'Others';
-                const bCity = b.city || 'India';
-
+                const bName = b.name || 'Business', bCat = b.category || 'Others', bCity = b.city || 'India';
                 let imgHtml = '';
-                if(b.images && b.images.length > 0 && b.images[0].startsWith('data:image')) {
-                    imgHtml = `<img src="${b.images[0]}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-500">`;
-                } else {
-                    const bgClass = window.getGradientStyle(bName);
-                    imgHtml = `<div class="absolute inset-0 w-full h-full flex items-center justify-center group-hover:scale-105 transition duration-500 ${bgClass} border border-white/5"><span class="text-white/40 text-6xl font-black uppercase tracking-tighter">${bName.substring(0, 2)}</span></div>`;
-                }
+                if(b.images && b.images.length > 0 && b.images[0].startsWith('data:image')) { imgHtml = `<img src="${b.images[0]}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-500">`; } 
+                else { const bgClass = window.getGradientStyle(bName); imgHtml = `<div class="absolute inset-0 w-full h-full flex items-center justify-center group-hover:scale-105 transition duration-500 ${bgClass} border border-white/5"><span class="text-white/40 text-6xl font-black uppercase tracking-tighter">${bName.substring(0, 2)}</span></div>`; }
                 
                 const boostBadge = b.isBoosted ? `<span class="absolute top-3 right-3 bg-red-600 text-white text-[10px] font-black px-2 py-1 rounded flex items-center gap-1 shadow-[0_0_10px_rgba(220,38,38,0.8)] z-10"><i data-lucide="flame" class="w-3 h-3"></i> RECOMMENDED</span>` : '';
                 const cardClass = b.isBoosted ? 'boosted-card' : 'border-white/5';
 
                 html += `
                     <div class="stagger-card glass-card flex ${cardLayout} group overflow-hidden cursor-pointer ${cardClass}" style="animation-delay: ${count * 0.1}s" onclick="window.location.hash='marketplace/${b.slug}'">
-                        <div class="${imgLayout} relative bg-[#111] overflow-hidden">
-                            ${boostBadge}
-                            ${imgHtml}
-                            <span class="absolute top-3 left-3 bg-black/80 text-white text-[10px] font-bold px-2 py-1 rounded backdrop-blur-md uppercase tracking-widest z-10">${bCat}</span>
-                        </div>
+                        <div class="${imgLayout} relative bg-[#111] overflow-hidden">${boostBadge}${imgHtml}<span class="absolute top-3 left-3 bg-black/80 text-white text-[10px] font-bold px-2 py-1 rounded backdrop-blur-md uppercase tracking-widest z-10">${bCat}</span></div>
                         <div class="p-6 flex-grow flex flex-col justify-center">
                             <h3 class="text-2xl font-black mb-2 truncate group-hover:text-[#f97316] transition">${bName}</h3>
                             <p class="text-sm text-gray-400 font-bold mb-4"><i data-lucide="map-pin" class="w-4 h-4 inline"></i> ${bCity.toUpperCase()}</p>
@@ -1555,25 +1393,15 @@
                     </div>`;
                 count++;
             });
-            feed.innerHTML = html;
-            window.initIcons();
+            feed.innerHTML = html; window.initIcons();
         }
 
         onSnapshot(query(collection(db, "businesses"), where("status", "==", "Approved")), (snapshot) => {
             allVerifiedBiz = []; snapshot.forEach(doc => allVerifiedBiz.push({ id: doc.id, ...doc.data() }));
-            
-            // Clean wishlist if business was deleted
-            const activeIds = allVerifiedBiz.map(b => b.id);
-            const oldLen = window.userWishlists.length;
+            const activeIds = allVerifiedBiz.map(b => b.id); const oldLen = window.userWishlists.length;
             window.userWishlists = window.userWishlists.filter(id => activeIds.includes(id));
-            if(window.userWishlists.length !== oldLen) {
-                localStorage.setItem('kt_wishlists', JSON.stringify(window.userWishlists));
-                window.updateWishlistBadge();
-            }
-
-            window.renderListFeed(allVerifiedBiz, 'fullFeed'); 
-            window.renderListFeed(allVerifiedBiz, 'homeFeed', 4); 
-            if(window.location.hash === '#wishlists') window.loadWishlistFeed(); 
+            if(window.userWishlists.length !== oldLen) { localStorage.setItem('kt_wishlists', JSON.stringify(window.userWishlists)); window.updateWishlistBadge(); }
+            window.renderListFeed(allVerifiedBiz, 'fullFeed'); window.renderListFeed(allVerifiedBiz, 'homeFeed', 4); if(window.location.hash === '#wishlists') window.loadWishlistFeed(); 
         });
 
         function runFilters() {
@@ -1582,87 +1410,46 @@
         }
         document.getElementById('searchInput').addEventListener('input', runFilters); document.getElementById('filterLocation').addEventListener('input', runFilters); document.getElementById('filterCategory').addEventListener('change', runFilters);
 
-        // --- WISHLIST LOCALSTORAGE LOGIC ---
-        window.loadWishlistFeed = () => {
-            const wBiz = allVerifiedBiz.filter(b => window.userWishlists.includes(b.id));
-            window.renderListFeed(wBiz, 'wishlistFeed');
-        };
+        window.loadWishlistFeed = () => { const wBiz = allVerifiedBiz.filter(b => window.userWishlists.includes(b.id)); window.renderListFeed(wBiz, 'wishlistFeed'); };
 
         window.toggleWishlist = async (bizId, ownerEmail) => {
-            const isSaved = window.userWishlists.includes(bizId);
-            const bRef = doc(db, "businesses", bizId);
-            
+            const isSaved = window.userWishlists.includes(bizId), bRef = doc(db, "businesses", bizId);
             if(!isSaved) {
-                window.userWishlists.push(bizId);
-                localStorage.setItem('kt_wishlists', JSON.stringify(window.userWishlists));
+                window.userWishlists.push(bizId); localStorage.setItem('kt_wishlists', JSON.stringify(window.userWishlists));
                 try { const bDoc = await getDoc(bRef); if(bDoc.exists()) await updateDoc(bRef, { wishlistCount: (bDoc.data().wishlistCount || 0) + 1 }); } catch(e){}
                 if(ownerEmail && ownerEmail !== auth.currentUser?.email) addDoc(collection(db, "notifications"), { userId: ownerEmail, text: `1 Person has wishlisted your business ❤️`, time: Date.now(), read: false });
-                
-                const btns = document.querySelectorAll(`.wl-btn-${bizId}`);
-                btns.forEach(btn => { 
-                    btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#ef4444" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>`; 
-                    btn.classList.add('border-red-500'); 
-                });
+                document.querySelectorAll(`.wl-btn-${bizId}`).forEach(btn => { btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#ef4444" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>`; btn.classList.add('border-red-500'); });
                 window.showToast("Added to Wishlist ❤️");
             } else {
-                window.userWishlists = window.userWishlists.filter(id => id !== bizId);
-                localStorage.setItem('kt_wishlists', JSON.stringify(window.userWishlists));
+                window.userWishlists = window.userWishlists.filter(id => id !== bizId); localStorage.setItem('kt_wishlists', JSON.stringify(window.userWishlists));
                 try { const bDoc = await getDoc(bRef); if(bDoc.exists()) await updateDoc(bRef, { wishlistCount: Math.max(0, (bDoc.data().wishlistCount || 0) - 1) }); } catch(e){}
-                
-                const btns = document.querySelectorAll(`.wl-btn-${bizId}`);
-                btns.forEach(btn => { 
-                    btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>`; 
-                    btn.classList.remove('border-red-500'); 
-                });
+                document.querySelectorAll(`.wl-btn-${bizId}`).forEach(btn => { btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>`; btn.classList.remove('border-red-500'); });
                 window.showToast("Removed from Wishlist 💔");
             }
             window.updateWishlistBadge();
         };
 
-        // --- DETAIL VIEW ---
         window.renderBusinessProfile = async (b) => {
             const container = document.getElementById('detailContent');
             try { const bRef = doc(db, "businesses", b.id); await updateDoc(bRef, { viewCount: (b.viewCount || 0) + 1 }); } catch(e){}
-
-            const bName = b.name || 'Business';
-            const bCat = b.category || 'Others';
-            const bCity = b.city || 'India';
-            const bDesc = b.desc || '';
+            const bName = b.name || 'Business', bCat = b.category || 'Others', bCity = b.city || 'India', bDesc = b.desc || '';
 
             let carouselHtml = '';
             if(b.images && b.images.length > 0) {
                 let slides = ''; b.images.forEach(img => { if(img.startsWith('data:image')) { slides += `<div class="min-w-full snap-center relative"><img src="${img}" class="w-full h-64 md:h-96 object-cover"><div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div></div>`; } });
                 carouselHtml = slides ? `<div class="w-full flex overflow-x-auto snap-x snap-mandatory hide-scrollbar rounded-t-[19px] relative">${slides}</div><p class="text-center text-xs text-gray-400 font-bold py-3 bg-[#0A0A0A] border-b border-[#1F1F1F]">← Swipe to see ${b.images.length} photos →</p>` : '';
-            } else { 
-                const bgClass = window.getGradientStyle(bName);
-                carouselHtml = `<div class="w-full h-64 md:h-96 relative rounded-t-[19px] overflow-hidden ${bgClass}"><div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent flex flex-col justify-end p-6 md:p-10"><h2 class="text-4xl md:text-6xl font-black text-white drop-shadow-xl">${bName}</h2></div></div>`; 
-            }
+            } else { const bgClass = window.getGradientStyle(bName); carouselHtml = `<div class="w-full h-64 md:h-96 relative rounded-t-[19px] overflow-hidden ${bgClass}"><div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent flex flex-col justify-end p-6 md:p-10"><h2 class="text-4xl md:text-6xl font-black text-white drop-shadow-xl">${bName}</h2></div></div>`; }
 
             let itemsHtml = '';
             if(b.items && b.items.length > 0) {
                 let iList = '';
                 b.items.forEach(item => {
                     let iImgs = ''; if(item.images) item.images.forEach(img => { if(img.startsWith('data:image')) { iImgs += `<img src="${img}" class="w-16 h-16 object-cover rounded-lg border border-[#27272a]">`; } });
-                    const icon = item.type === 'Non-Veg' ? '🔴' : item.type === 'Veg' ? '🟢' : '';
-                    let priceHtml = '';
+                    const icon = item.type === 'Non-Veg' ? '🔴' : item.type === 'Veg' ? '🟢' : ''; let priceHtml = '';
                     if(item.priceFull && item.priceHalf) priceHtml = `<p class="text-[#f97316] font-black mt-1">${item.priceFull} | Half: ${item.priceHalf}</p>`;
-                    else if(item.priceFull) priceHtml = `<p class="text-[#f97316] font-black mt-1">${item.priceFull}</p>`;
-                    else if(item.priceHalf) priceHtml = `<p class="text-[#f97316] font-black mt-1">Half: ${item.priceHalf}</p>`;
-                    
-                    // 🔥 PRODUCT URL BUTTON (MOBILE FIXED) 🔥
+                    else if(item.priceFull) priceHtml = `<p class="text-[#f97316] font-black mt-1">${item.priceFull}</p>`; else if(item.priceHalf) priceHtml = `<p class="text-[#f97316] font-black mt-1">Half: ${item.priceHalf}</p>`;
                     let itemBtn = item.url ? `<a href="${item.url}" target="_blank" class="bg-[#27272a] hover:bg-blue-600 text-white transition px-4 py-2.5 rounded-lg text-[10px] font-black uppercase tracking-wider flex items-center justify-center gap-1.5 shrink-0 mt-3 sm:mt-0 flex-1 sm:flex-none w-full sm:w-auto"><i data-lucide="shopping-cart" class="w-4 h-4 sm:w-3 sm:h-3"></i> Buy Product</a>` : '';
-
-                    iList += `
-                    <div class="p-4 border border-[#27272a] rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center bg-[#050505] hover:border-[#f97316] transition gap-4">
-                        <div class="flex gap-4 w-full">
-                            ${iImgs}
-                            <div class="flex-grow">
-                                <h4 class="font-bold text-lg flex items-center gap-2">${item.name} <span class="text-xs text-gray-500">${icon}</span></h4>
-                                ${priceHtml}
-                            </div>
-                        </div>
-                        ${itemBtn}
-                    </div>`;
+                    iList += `<div class="p-4 border border-[#27272a] rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center bg-[#050505] hover:border-[#f97316] transition gap-4"><div class="flex gap-4 w-full">${iImgs}<div class="flex-grow"><h4 class="font-bold text-lg flex items-center gap-2">${item.name} <span class="text-xs text-gray-500">${icon}</span></h4>${priceHtml}</div></div>${itemBtn}</div>`;
                 });
                 itemsHtml = `<div class="mt-10 pt-10 border-t border-[#1F1F1F]"><h3 class="text-2xl font-black mb-6 flex items-center gap-2"><i data-lucide="list" class="text-[#f97316]"></i> Catalog / Menu</h3><div class="grid grid-cols-1 md:grid-cols-2 gap-4">${iList}</div></div>`;
             }
@@ -1670,7 +1457,6 @@
             let socialsHtml = '';
             if(b.socials && (b.socials.insta || b.socials.fb || b.socials.x || b.socials.yt)) {
                 let links = '';
-                // 🔥 SOCIAL ICONS FIXED FOR MOBILE 🔥
                 if(b.socials.insta) links += `<a href="${b.socials.insta}" target="_blank" class="flex items-center justify-center gap-2 bg-[#111] border border-[#27272a] hover:border-pink-500 px-4 py-2.5 rounded-xl transition outline-none flex-1 sm:flex-none min-w-[120px]"><i data-lucide="instagram" class="w-4 h-4 text-pink-500 shrink-0"></i> <span class="text-sm font-bold">Instagram</span></a>`;
                 if(b.socials.fb) links += `<a href="${b.socials.fb}" target="_blank" class="flex items-center justify-center gap-2 bg-[#111] border border-[#27272a] hover:border-blue-500 px-4 py-2.5 rounded-xl transition outline-none flex-1 sm:flex-none min-w-[120px]"><i data-lucide="facebook" class="w-4 h-4 text-blue-500 shrink-0"></i> <span class="text-sm font-bold">Facebook</span></a>`;
                 if(b.socials.x) links += `<a href="${b.socials.x}" target="_blank" class="flex items-center justify-center gap-2 bg-[#111] border border-[#27272a] hover:border-gray-300 px-4 py-2.5 rounded-xl transition outline-none flex-1 sm:flex-none min-w-[120px]"><i data-lucide="twitter" class="w-4 h-4 text-gray-300 shrink-0"></i> <span class="text-sm font-bold">X (Twitter)</span></a>`;
@@ -1687,14 +1473,9 @@
                 ${carouselHtml}
                 <div class="p-6 md:p-10 bg-[#0A0A0A] rounded-b-[19px]">
                     <div class="flex justify-between items-start mb-4">
-                        <div class="flex gap-2 items-center">
-                            <span class="text-[10px] bg-[#f97316] text-black px-3 py-1.5 rounded uppercase tracking-widest font-black">${bCat}</span>
-                            ${closedBadge}
-                        </div>
+                        <div class="flex gap-2 items-center"><span class="text-[10px] bg-[#f97316] text-black px-3 py-1.5 rounded uppercase tracking-widest font-black">${bCat}</span>${closedBadge}</div>
                         <div class="flex gap-2 relative z-20">
-                            <button type="button" onclick="window.toggleWishlist('${b.id}', '${b.owner}')" class="wl-btn-${b.id} bg-[#111] border ${wlClass} p-2.5 rounded-lg hover:border-red-500 transition outline-none cursor-pointer">
-                                ${heartIcon}
-                            </button>
+                            <button type="button" onclick="window.toggleWishlist('${b.id}', '${b.owner}')" class="wl-btn-${b.id} bg-[#111] border ${wlClass} p-2.5 rounded-lg hover:border-red-500 transition outline-none cursor-pointer">${heartIcon}</button>
                             <button type="button" id="writeReviewBtn-${b.id}" onclick="window.openReviewModal('${b.id}')" class="text-xs font-bold text-white bg-[#111] border border-[#27272a] px-3 py-2 rounded-lg hover:border-[#f97316] transition flex items-center gap-1 outline-none cursor-pointer"><i data-lucide="star" class="w-3.5 h-3.5"></i> Write Review</button>
                         </div>
                     </div>
@@ -1703,185 +1484,82 @@
                     <p class="text-gray-300 leading-relaxed max-w-2xl mb-6 pl-4 border-l-4 border-white/10">${bDesc}</p>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
-                        ${b.showPhone ? `
-                        <div class="flex items-center justify-between bg-[#050505] p-3 rounded-xl border border-[#27272a] group hover:border-[#f97316] transition">
-                            <div class="flex items-center gap-3"><i data-lucide="phone" class="w-5 h-5 text-[#f97316]"></i><span class="text-sm font-medium">+91 ${b.phone}</span></div>
-                            <button onclick="window.copyToClip('${b.phone}')" class="text-gray-500 hover:text-white"><i data-lucide="copy" class="w-4 h-4"></i></button>
-                        </div>` : ''}
-                        ${b.showMail ? `
-                        <div class="flex items-center justify-between bg-[#050505] p-3 rounded-xl border border-[#27272a] group hover:border-[#f97316] transition">
-                            <div class="flex items-center gap-3"><i data-lucide="mail" class="w-5 h-5 text-[#f97316]"></i><span class="text-sm font-medium truncate">${b.mail}</span></div>
-                            <button onclick="window.copyToClip('${b.mail}')" class="text-gray-500 hover:text-white shrink-0"><i data-lucide="copy" class="w-4 h-4"></i></button>
-                        </div>` : ''}
-                        ${!b.isOnline ? `
-                        <div class="flex items-center gap-3 bg-[#050505] p-3 rounded-xl border border-[#27272a] sm:col-span-2">
-                            <i data-lucide="building" class="w-5 h-5 text-gray-500 shrink-0"></i><span class="text-sm text-gray-400">${b.address || ''}</span>
-                        </div>` : `
-                        <div class="flex items-center gap-3 bg-[#050505] p-3 rounded-xl border border-blue-500/30 sm:col-span-2">
-                            <i data-lucide="globe" class="w-5 h-5 text-blue-500 shrink-0"></i><span class="text-sm text-blue-400 font-bold">Online Business</span>
-                        </div>`}
-                        ${b.hours ? `
-                        <div class="flex items-center gap-3 bg-[#050505] p-3 rounded-xl border border-[#27272a] sm:col-span-2">
-                            <i data-lucide="clock" class="w-5 h-5 text-[#f97316] shrink-0"></i><span class="text-sm text-gray-400">${b.hours}</span>
-                        </div>` : ''}
-                        ${b.website ? `
-                        <a href="${b.website}" target="_blank" class="flex items-center justify-center gap-3 bg-[#050505] p-3 rounded-xl border border-[#27272a] sm:col-span-2 hover:border-[#f97316] transition outline-none">
-                            <i data-lucide="external-link" class="w-5 h-5 text-blue-400 shrink-0"></i><span class="text-sm font-bold text-blue-400">Visit Official Website</span>
-                        </a>` : ''}
-                        
-                        ${b.mapUrl ? `
-                        <a href="${b.mapUrl}" target="_blank" class="flex items-center justify-center gap-3 bg-[#050505] p-3 rounded-xl border border-emerald-500/30 sm:col-span-2 hover:border-emerald-500 transition outline-none">
-                            <i data-lucide="map" class="w-5 h-5 text-emerald-400 shrink-0"></i><span class="text-sm font-bold text-emerald-400">View on Google Maps</span>
-                        </a>` : ''}
-                        
-                        ${b.buyNowUrl ? `
-                        <a href="${b.buyNowUrl}" target="_blank" class="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 p-3 rounded-xl shadow-[0_0_15px_rgba(59,130,246,0.3)] sm:col-span-2 hover:scale-[1.02] transition outline-none mt-2">
-                            <i data-lucide="shopping-cart" class="w-5 h-5 text-white shrink-0"></i><span class="text-sm font-black text-white uppercase tracking-wider">Buy Now / Store</span>
-                        </a>` : ''}
+                        ${b.showPhone ? `<div class="flex items-center justify-between bg-[#050505] p-3 rounded-xl border border-[#27272a] group hover:border-[#f97316] transition"><div class="flex items-center gap-3"><i data-lucide="phone" class="w-5 h-5 text-[#f97316]"></i><span class="text-sm font-medium">+91 ${b.phone}</span></div><button onclick="window.copyToClip('${b.phone}')" class="text-gray-500 hover:text-white"><i data-lucide="copy" class="w-4 h-4"></i></button></div>` : ''}
+                        ${b.showMail ? `<div class="flex items-center justify-between bg-[#050505] p-3 rounded-xl border border-[#27272a] group hover:border-[#f97316] transition"><div class="flex items-center gap-3"><i data-lucide="mail" class="w-5 h-5 text-[#f97316]"></i><span class="text-sm font-medium truncate">${b.mail}</span></div><button onclick="window.copyToClip('${b.mail}')" class="text-gray-500 hover:text-white shrink-0"><i data-lucide="copy" class="w-4 h-4"></i></button></div>` : ''}
+                        ${!b.isOnline ? `<div class="flex items-center gap-3 bg-[#050505] p-3 rounded-xl border border-[#27272a] sm:col-span-2"><i data-lucide="building" class="w-5 h-5 text-gray-500 shrink-0"></i><span class="text-sm text-gray-400">${b.address || ''}</span></div>` : `<div class="flex items-center gap-3 bg-[#050505] p-3 rounded-xl border border-blue-500/30 sm:col-span-2"><i data-lucide="globe" class="w-5 h-5 text-blue-500 shrink-0"></i><span class="text-sm text-blue-400 font-bold">Online Business</span></div>`}
+                        ${b.hours ? `<div class="flex items-center gap-3 bg-[#050505] p-3 rounded-xl border border-[#27272a] sm:col-span-2"><i data-lucide="clock" class="w-5 h-5 text-[#f97316] shrink-0"></i><span class="text-sm text-gray-400">${b.hours}</span></div>` : ''}
+                        ${b.website ? `<a href="${b.website}" target="_blank" class="flex items-center justify-center gap-3 bg-[#050505] p-3 rounded-xl border border-[#27272a] sm:col-span-2 hover:border-[#f97316] transition outline-none"><i data-lucide="external-link" class="w-5 h-5 text-blue-400 shrink-0"></i><span class="text-sm font-bold text-blue-400">Visit Official Website</span></a>` : ''}
+                        ${b.mapUrl ? `<a href="${b.mapUrl}" target="_blank" class="flex items-center justify-center gap-3 bg-[#050505] p-3 rounded-xl border border-emerald-500/30 sm:col-span-2 hover:border-emerald-500 transition outline-none"><i data-lucide="map" class="w-5 h-5 text-emerald-400 shrink-0"></i><span class="text-sm font-bold text-emerald-400">View on Google Maps</span></a>` : ''}
+                        ${b.buyNowUrl ? `<a href="${b.buyNowUrl}" target="_blank" class="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 p-3 rounded-xl shadow-[0_0_15px_rgba(59,130,246,0.3)] sm:col-span-2 hover:scale-[1.02] transition outline-none mt-2"><i data-lucide="shopping-cart" class="w-5 h-5 text-white shrink-0"></i><span class="text-sm font-black text-white uppercase tracking-wider">Buy Now / Store</span></a>` : ''}
                     </div>
-                    
                     ${socialsHtml}
-                    
                     <div id="bizPostsSection" class="mt-10 space-y-4"></div>
-
                     ${itemsHtml}
                     <div id="approvedReviewsList" class="mt-10 space-y-4 border-t border-[#1F1F1F] pt-8"></div>
-                </div>
-            `;
+                </div>`;
             window.initIcons(); window.scrollTo(0,0);
             
-            // Fetch Posts
             onSnapshot(query(collection(db, "business_posts"), where("bizId", "==", b.id)), snap => {
-                const pSec = document.getElementById('bizPostsSection');
-                if(!pSec) return;
-                pSec.innerHTML = '';
-                let hasPosts = false;
-                const now = Date.now();
+                const pSec = document.getElementById('bizPostsSection'); if(!pSec) return; pSec.innerHTML = '';
+                let hasPosts = false; const now = Date.now();
                 snap.forEach(d => {
                     const post = d.data();
                     if ((!post.startTime || now >= post.startTime) && (!post.endTime || now <= post.endTime)) {
-                        hasPosts = true;
-                        let pImgs = '';
-                        if(post.images && post.images.length > 0) {
-                            post.images.forEach(i => pImgs += `<img src="${i}" class="w-full h-48 object-cover rounded-lg border border-[#27272a] mb-3">`);
-                        } else {
-                            const defImg = window.getGradientStyle(bName);
-                            pImgs = `<div class="w-full h-48 rounded-lg border border-[#27272a] mb-3 opacity-80 flex items-center justify-center ${defImg}"><span class="text-white/40 text-5xl font-black uppercase tracking-tighter">${bName.substring(0, 2)}</span></div>`;
-                        }
-                        
-                        pSec.innerHTML += `
-                        <div class="bg-[#111] border-l-4 border-l-red-500 p-5 rounded-xl border border-[#27272a]">
-                            <div class="flex justify-between items-center mb-3">
-                                <span class="text-[10px] bg-red-500/20 text-red-500 font-black px-2 py-1 rounded uppercase flex items-center gap-1"><i data-lucide="zap" class="w-3 h-3"></i> Special Offer</span>
-                                <span class="text-[10px] text-gray-500">${new Date(post.timestamp).toLocaleDateString()}</span>
-                            </div>
-                            ${pImgs}
-                            <h4 class="text-white font-black text-lg mb-2">${post.title}</h4>
-                            <p class="text-gray-300 font-medium leading-relaxed">${post.text}</p>
-                        </div>`;
+                        hasPosts = true; let pImgs = '';
+                        if(post.images && post.images.length > 0) { post.images.forEach(i => pImgs += `<img src="${i}" class="w-full h-48 object-cover rounded-lg border border-[#27272a] mb-3">`); } 
+                        else { const defImg = window.getGradientStyle(bName); pImgs = `<div class="w-full h-48 rounded-lg border border-[#27272a] mb-3 opacity-80 flex items-center justify-center ${defImg}"><span class="text-white/40 text-5xl font-black uppercase tracking-tighter">${bName.substring(0, 2)}</span></div>`; }
+                        pSec.innerHTML += `<div class="bg-[#111] border-l-4 border-l-red-500 p-5 rounded-xl border border-[#27272a]"><div class="flex justify-between items-center mb-3"><span class="text-[10px] bg-red-500/20 text-red-500 font-black px-2 py-1 rounded uppercase flex items-center gap-1"><i data-lucide="zap" class="w-3 h-3"></i> Special Offer</span><span class="text-[10px] text-gray-500">${new Date(post.timestamp).toLocaleDateString()}</span></div>${pImgs}<h4 class="text-white font-black text-lg mb-2">${post.title}</h4><p class="text-gray-300 font-medium leading-relaxed">${post.text}</p></div>`;
                     }
                 });
                 if(hasPosts) pSec.insertAdjacentHTML('afterbegin', '<h3 class="text-2xl font-black mb-6 flex items-center gap-2 border-t border-[#1F1F1F] pt-8"><i data-lucide="megaphone" class="text-red-500"></i> Latest Updates & Offers</h3>');
                 window.initIcons();
             });
 
-            // Fetch Reviews (SPAM PROTECTION)
             onSnapshot(query(collection(db, "peer_reviews"), where("bizId", "==", b.id)), snap => {
-                const rList = document.getElementById('approvedReviewsList');
-                if(!rList) return;
-                
-                let html = '<h3 class="text-2xl font-black mb-6 mt-10 border-t border-[#1F1F1F] pt-8">Peer Reviews</h3>';
-                let approvedCount = 0;
-                let hasReviewed = false;
-
+                const rList = document.getElementById('approvedReviewsList'); if(!rList) return;
+                let html = '<h3 class="text-2xl font-black mb-6 mt-10 border-t border-[#1F1F1F] pt-8">Peer Reviews</h3>', approvedCount = 0, hasReviewed = false;
                 snap.forEach(rDoc => {
-                    const rv = rDoc.data();
-                    const isMine = auth.currentUser && rv.user === auth.currentUser.email;
-                    
+                    const rv = rDoc.data(), isMine = auth.currentUser && rv.user === auth.currentUser.email;
                     if(isMine) hasReviewed = true;
-                    
                     if(rv.status === 'Approved' || isMine) { 
                         if(rv.status === 'Approved') approvedCount++;
-                        
                         let statusTag = rv.status === 'Pending' ? `<span class="text-[10px] text-yellow-500 border border-yellow-500/50 px-1.5 py-0.5 rounded ml-2">Pending Approval</span>` : '';
                         let delBtn = isMine ? `<button type="button" onclick="window.deleteReview('${rDoc.id}', '${b.id}')" class="text-red-500 hover:text-red-400 p-2 outline-none" title="Delete your review"><i data-lucide="trash" class="w-4 h-4"></i></button>` : '';
-                        
-                        html += `
-                        <div class="p-4 bg-[#050505] border border-[#27272a] rounded-xl flex justify-between items-start mb-3">
-                            <div>
-                                <div class="text-yellow-500 text-sm mb-2 flex items-center">${'★'.repeat(rv.rating)}${'☆'.repeat(5-rv.rating)} ${statusTag}</div>
-                                <p class="text-gray-300 mb-2">"${rv.text}"</p>
-                                <p class="text-[10px] text-gray-500">${rv.user}</p>
-                            </div>
-                            ${delBtn}
-                        </div>`;
+                        html += `<div class="p-4 bg-[#050505] border border-[#27272a] rounded-xl flex justify-between items-start mb-3"><div><div class="text-yellow-500 text-sm mb-2 flex items-center">${'★'.repeat(rv.rating)}${'☆'.repeat(5-rv.rating)} ${statusTag}</div><p class="text-gray-300 mb-2">"${rv.text}"</p><p class="text-[10px] text-gray-500">${rv.user}</p></div>${delBtn}</div>`;
                     }
                 });
-                
                 if(approvedCount === 0 && !hasReviewed) html += `<p class="text-gray-500">No reviews yet. Be the first!</p>`;
-                rList.innerHTML = html;
-                window.initIcons();
-
-                const writeBtn = document.getElementById(`writeReviewBtn-${b.id}`);
-                if(writeBtn) writeBtn.style.display = hasReviewed ? 'none' : 'flex';
+                rList.innerHTML = html; window.initIcons();
+                const writeBtn = document.getElementById(`writeReviewBtn-${b.id}`); if(writeBtn) writeBtn.style.display = hasReviewed ? 'none' : 'flex';
             });
         }
 
-        // --- USER PORTAL & ADMIN LOGIC ---
         window.loadUserBusinesses = (email) => {
             onSnapshot(query(collection(db, "businesses"), where("owner", "==", email)), (snapshot) => {
-                const div = document.getElementById('userBusinesses');
-                if(!div) return;
+                const div = document.getElementById('userBusinesses'); if(!div) return;
                 div.innerHTML = snapshot.empty ? `<div class="text-center py-6"><i data-lucide="store" class="w-10 h-10 text-gray-600 mx-auto mb-2"></i><p class="text-gray-500 text-sm">No outlets registered.</p></div>` : "";
                 snapshot.forEach((d) => {
-                    const b = d.data();
-                    const clr = b.status === 'Approved' ? 'text-green-500 bg-green-500/10 border-green-500/20' : 'text-yellow-500 bg-yellow-500/10 border-yellow-500/20';
+                    const b = d.data(); const clr = b.status === 'Approved' ? 'text-green-500 bg-green-500/10 border-green-500/20' : 'text-yellow-500 bg-yellow-500/10 border-yellow-500/20';
                     const boostBtn = b.status === 'Approved' && !b.isBoosted ? `<button type="button" onclick="window.openBoostModal('${d.id}')" class="w-full sm:w-auto text-xs bg-gradient-to-r from-red-600 to-orange-600 text-white font-bold px-4 py-2.5 rounded-xl flex items-center justify-center gap-2 hover:scale-105 transition mt-3 sm:mt-0 shadow-lg shadow-red-500/20 outline-none"><i data-lucide="rocket" class="w-4 h-4"></i> Boost</button>` : b.isBoosted ? `<span class="w-full sm:w-auto text-xs bg-red-600/20 border border-red-500 text-red-500 font-bold px-4 py-2.5 rounded-xl flex items-center justify-center gap-2 mt-3 sm:mt-0"><i data-lucide="flame" class="w-4 h-4"></i> BOOSTED</span>` : '';
                     const postBtn = b.status === 'Approved' ? `<button type="button" onclick="window.openPostModal('${d.id}')" class="w-full sm:w-auto text-xs bg-[#27272a] text-white font-bold px-4 py-2.5 rounded-xl flex items-center justify-center gap-2 transition hover:text-[#f97316] mt-2 sm:mt-0 outline-none"><i data-lucide="plus-circle" class="w-4 h-4"></i> Add Offer/Post</button>` : '';
-                    
                     const bDataString = encodeURIComponent(JSON.stringify({id: d.id, ...b}));
                     
                     let liveLinkHtml = '';
                     if(b.status === 'Approved' && b.slug) {
-                        const shareUrl = `https://growthinnovation.in/#marketplace/${b.slug}`;
-                        const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(shareUrl)}`;
-                        liveLinkHtml = `
-                        <div class="mt-4 p-4 bg-green-500/10 border border-green-500/30 rounded-xl">
-                            <p class="text-green-500 font-bold text-sm mb-3"><i data-lucide="check-circle" class="w-4 h-4 inline"></i> Live Link & QR Code</p>
-                            <div class="flex items-center gap-2 mb-4">
-                                <input type="text" readonly value="${shareUrl}" class="modern-input py-2 text-xs flex-grow text-gray-300">
-                                <button type="button" onclick="window.copyToClip('${shareUrl}')" class="bg-[#27272a] p-2.5 rounded-lg hover:bg-[#f97316] hover:text-black transition shrink-0 outline-none"><i data-lucide="copy" class="w-4 h-4"></i></button>
-                            </div>
-                            <div class="flex items-center gap-4 border-t border-green-500/20 pt-4">
-                                <img src="${qrUrl}" class="w-16 h-16 rounded bg-white p-1" onerror="this.style.display='none'">
-                                <div>
-                                    <p class="text-xs text-gray-400 mb-2">Scan to open your store directly</p>
-                                    <button type="button" onclick="window.downloadQR('${qrUrl}', '${b.slug}-QR.png')" class="text-xs bg-[#111] border border-[#27272a] hover:border-[#f97316] px-3 py-2 rounded-lg transition outline-none"><i data-lucide="download" class="w-3 h-3 inline"></i> Download High-Res QR</button>
-                                </div>
-                            </div>
-                        </div>`;
+                        const shareUrl = `https://growthinnovation.in/#marketplace/${b.slug}`, qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(shareUrl)}`;
+                        liveLinkHtml = `<div class="mt-4 p-4 bg-green-500/10 border border-green-500/30 rounded-xl"><p class="text-green-500 font-bold text-sm mb-3"><i data-lucide="check-circle" class="w-4 h-4 inline"></i> Live Link & QR Code</p><div class="flex items-center gap-2 mb-4"><input type="text" readonly value="${shareUrl}" class="modern-input py-2 text-xs flex-grow text-gray-300"><button type="button" onclick="window.copyToClip('${shareUrl}')" class="bg-[#27272a] p-2.5 rounded-lg hover:bg-[#f97316] hover:text-black transition shrink-0 outline-none"><i data-lucide="copy" class="w-4 h-4"></i></button></div><div class="flex items-center gap-4 border-t border-green-500/20 pt-4"><img src="${qrUrl}" class="w-16 h-16 rounded bg-white p-1" onerror="this.style.display='none'"><div><p class="text-xs text-gray-400 mb-2">Scan to open your store directly</p><button type="button" onclick="window.downloadQR('${qrUrl}', '${b.slug}-QR.png')" class="text-xs bg-[#111] border border-[#27272a] hover:border-[#f97316] px-3 py-2 rounded-lg transition outline-none"><i data-lucide="download" class="w-3 h-3 inline"></i> Download High-Res QR</button></div></div></div>`;
                     }
                     
                     div.innerHTML += `
                         <div class="p-6 bg-[#0a0a0a] border border-[#27272a] rounded-2xl flex flex-col sm:flex-row justify-between items-start gap-6 hover:border-[#f97316] transition">
                             <div class="flex-grow w-full">
-                                <div class="flex justify-between items-start w-full">
-                                    <h4 class="font-black text-xl mb-1">${b.name || 'Business'}</h4>
-                                    <span class="text-[10px] font-bold ${clr} border px-2 py-1 rounded uppercase tracking-wider">${b.status}</span>
-                                </div>
+                                <div class="flex justify-between items-start w-full"><h4 class="font-black text-xl mb-1">${b.name || 'Business'}</h4><span class="text-[10px] font-bold ${clr} border px-2 py-1 rounded uppercase tracking-wider">${b.status}</span></div>
                                 <p class="text-xs text-gray-500 mb-4"><i data-lucide="map-pin" class="w-3 h-3 inline"></i> ${(b.city||'').toUpperCase()}</p>
-                                
-                                <div class="grid grid-cols-3 gap-3 pt-4 border-t border-white/5">
-                                    <div class="bg-[#111] p-3 rounded-xl border border-[#27272a] text-center"><p class="text-[10px] text-gray-500 uppercase font-bold mb-1">Views</p><p class="font-black text-white text-xl">${b.viewCount || 0}</p></div>
-                                    <div class="bg-[#111] p-3 rounded-xl border border-[#27272a] text-center"><p class="text-[10px] text-gray-500 uppercase font-bold mb-1">Saved</p><p class="font-black text-red-500 text-xl">${b.wishlistCount || 0}</p></div>
-                                    <div class="bg-[#111] p-3 rounded-xl border border-[#27272a] text-center"><p class="text-[10px] text-gray-500 uppercase font-bold mb-1">Reviews</p><p class="font-black text-yellow-500 text-xl">${b.reviewCount || 0}</p></div>
-                                </div>
-                                ${liveLinkHtml}
-                                <div id="post-mgr-${d.id}"></div>
+                                <div class="grid grid-cols-3 gap-3 pt-4 border-t border-white/5"><div class="bg-[#111] p-3 rounded-xl border border-[#27272a] text-center"><p class="text-[10px] text-gray-500 uppercase font-bold mb-1">Views</p><p class="font-black text-white text-xl">${b.viewCount || 0}</p></div><div class="bg-[#111] p-3 rounded-xl border border-[#27272a] text-center"><p class="text-[10px] text-gray-500 uppercase font-bold mb-1">Saved</p><p class="font-black text-red-500 text-xl">${b.wishlistCount || 0}</p></div><div class="bg-[#111] p-3 rounded-xl border border-[#27272a] text-center"><p class="text-[10px] text-gray-500 uppercase font-bold mb-1">Reviews</p><p class="font-black text-yellow-500 text-xl">${b.reviewCount || 0}</p></div></div>
+                                ${liveLinkHtml}<div id="post-mgr-${d.id}"></div>
                             </div>
                             <div class="flex flex-col items-stretch gap-2 w-full sm:w-auto border-t sm:border-t-0 sm:border-l border-white/5 pt-4 sm:pt-0 sm:pl-6">
-                                ${boostBtn}
-                                ${postBtn}
+                                ${boostBtn}${postBtn}
                                 <button type="button" onclick='window.openEditBizModal("${bDataString}")' class="w-full sm:w-auto text-xs bg-white text-black font-bold px-4 py-2.5 rounded-xl flex items-center justify-center gap-2 transition hover:bg-gray-200 mt-2 sm:mt-0 outline-none"><i data-lucide="edit-3" class="w-4 h-4"></i> Edit / Mark Closed</button>
                                 <button type="button" onclick="window.deleteBiz('${d.id}')" class="w-full sm:w-auto text-xs bg-transparent border border-red-500/30 text-red-500 font-bold px-4 py-2.5 rounded-xl flex items-center justify-center gap-2 hover:bg-red-500 hover:text-white transition mt-2 sm:mt-0 outline-none"><i data-lucide="trash-2" class="w-4 h-4"></i> Delete</button>
                             </div>
@@ -1889,19 +1567,14 @@
                 });
                 window.initIcons();
 
-                // Hydrate posts list safely
                 snapshot.forEach(d => {
                     onSnapshot(query(collection(db, "business_posts"), where("bizId", "==", d.id)), pSnap => {
                         const pmDiv = document.getElementById(`post-mgr-${d.id}`);
                         if(pmDiv) {
                             if(pSnap.empty) { pmDiv.innerHTML = ''; return; }
                             let pList = '<div class="mt-4 space-y-2 border-t border-[#1F1F1F] pt-4"><p class="text-xs font-bold text-gray-400 mb-2">Manage Active Posts</p>';
-                            pSnap.forEach(postDoc => {
-                                const pd = postDoc.data();
-                                pList += `<div class="flex justify-between items-center bg-[#111] p-2 rounded-lg border border-[#27272a]"><span class="text-xs text-white font-bold truncate max-w-[150px] sm:max-w-[200px]">${pd.title}</span><button type="button" onclick="window.deletePost('${postDoc.id}')" class="text-red-500 hover:text-red-400 text-xs font-bold outline-none"><i data-lucide="trash" class="w-4 h-4"></i></button></div>`;
-                            });
-                            pmDiv.innerHTML = pList + '</div>';
-                            window.initIcons();
+                            pSnap.forEach(postDoc => { const pd = postDoc.data(); pList += `<div class="flex justify-between items-center bg-[#111] p-2 rounded-lg border border-[#27272a]"><span class="text-xs text-white font-bold truncate max-w-[150px] sm:max-w-[200px]">${pd.title}</span><button type="button" onclick="window.deletePost('${postDoc.id}')" class="text-red-500 hover:text-red-400 text-xs font-bold outline-none"><i data-lucide="trash" class="w-4 h-4"></i></button></div>`; });
+                            pmDiv.innerHTML = pList + '</div>'; window.initIcons();
                         }
                     });
                 });
@@ -1911,29 +1584,11 @@
         window.loadUserTickets = (email) => {
             const q = email.toLowerCase() === 'kt.deore@hotmail.com' ? query(collection(db, "support_tickets")) : query(collection(db, "support_tickets"), where("owner", "==", email));
             onSnapshot(q, (snapshot) => {
-                const divSupport = document.getElementById('supportTicketsList');
-                if(!divSupport) return;
+                const divSupport = document.getElementById('supportTicketsList'); if(!divSupport) return;
                 divSupport.innerHTML = snapshot.empty ? `<div class="text-center py-6"><i data-lucide="ticket" class="w-10 h-10 text-gray-600 mx-auto mb-2"></i><p class="text-gray-500 text-sm">No active tickets.</p></div>` : "";
                 snapshot.forEach((d) => {
-                    const t = d.data();
-                    const clr = t.status === 'Open' ? 'text-red-500 border-red-500/30 bg-red-500/5' : 'text-green-500 border-green-500/30 bg-green-500/5';
-                    const tIdDisplay = t.ticketId || 'N/A';
-                    
-                    divSupport.innerHTML += `
-                        <div class="p-5 bg-[#050505] border border-[#27272a] rounded-xl flex justify-between items-center group hover:border-[#f97316] transition">
-                            <div class="cursor-pointer flex-grow outline-none" onclick="window.openChat('${d.id}', '${(t.subject||'').replace(/'/g, "\\'")}')">
-                                <div class="flex justify-between items-center mb-2">
-                                    <h4 class="font-bold pr-4"><span class="text-[#f97316] mr-1">${tIdDisplay}</span> ${t.subject}</h4>
-                                    <span class="text-[10px] font-bold ${clr} border px-2 py-1 rounded uppercase shrink-0">${t.status}</span>
-                                </div>
-                                <p class="text-xs text-gray-500 mb-2">By: ${t.owner}</p>
-                                <div class="flex justify-between items-center mt-3">
-                                    <p class="text-xs text-gray-500">View discussion</p>
-                                    <p class="text-xs text-[#f97316] font-bold flex items-center gap-1 group-hover:gap-2 transition-all">Open Chat <i data-lucide="arrow-right" class="w-3 h-3"></i></p>
-                                </div>
-                            </div>
-                            <button type="button" onclick="window.deleteTicket('${d.id}')" class="ml-4 p-2 text-gray-500 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition outline-none"><i data-lucide="trash" class="w-4 h-4"></i></button>
-                        </div>`;
+                    const t = d.data(), clr = t.status === 'Open' ? 'text-red-500 border-red-500/30 bg-red-500/5' : 'text-green-500 border-green-500/30 bg-green-500/5', tIdDisplay = t.ticketId || 'N/A';
+                    divSupport.innerHTML += `<div class="p-5 bg-[#050505] border border-[#27272a] rounded-xl flex justify-between items-center group hover:border-[#f97316] transition"><div class="cursor-pointer flex-grow outline-none" onclick="window.openChat('${d.id}', '${(t.subject||'').replace(/'/g, "\\'")}')"><div class="flex justify-between items-center mb-2"><h4 class="font-bold pr-4"><span class="text-[#f97316] mr-1">${tIdDisplay}</span> ${t.subject}</h4><span class="text-[10px] font-bold ${clr} border px-2 py-1 rounded uppercase shrink-0">${t.status}</span></div><p class="text-xs text-gray-500 mb-2">By: ${t.owner}</p><div class="flex justify-between items-center mt-3"><p class="text-xs text-gray-500">View discussion</p><p class="text-xs text-[#f97316] font-bold flex items-center gap-1 group-hover:gap-2 transition-all">Open Chat <i data-lucide="arrow-right" class="w-3 h-3"></i></p></div></div><button type="button" onclick="window.deleteTicket('${d.id}')" class="ml-4 p-2 text-gray-500 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition outline-none"><i data-lucide="trash" class="w-4 h-4"></i></button></div>`;
                 });
                 window.initIcons();
             });
@@ -1943,68 +1598,33 @@
             window.verify = async (col, id, stat) => { await updateDoc(doc(db, col, id), { status: stat }); window.showToast(stat); };
             window.makeBoosted = async (id, state) => { await updateDoc(doc(db, "businesses", id), { isBoosted: state }); window.showToast(state ? "Business Boosted!" : "Boost Removed!"); };
 
-            // PENDING GRID
             onSnapshot(query(collection(db, "businesses"), where("status", "==", "Pending")), (snapshot) => {
-                const q = document.getElementById('adminPendingGrid');
-                if(!q) return;
+                const q = document.getElementById('adminPendingGrid'); if(!q) return;
                 let html = snapshot.empty ? `<p class="text-gray-500 text-sm py-2">Queue is clear.</p>` : "";
                 snapshot.forEach((d) => {
                     const b = d.data();
-                    html += `
-                        <div class="p-5 bg-[#050505] rounded-xl border border-[#27272a]">
-                            <div class="flex justify-between items-start mb-2">
-                                <div>
-                                    <h4 class="font-bold text-white mb-1">${b.name || 'Unknown'}</h4>
-                                    <p class="text-xs text-[#f97316]">ID: ${b.bizId || d.id}</p>
-                                </div>
-                                <button type="button" onclick="window.deleteBiz('${d.id}')" class="text-red-500 bg-red-500/10 p-2 rounded hover:bg-red-500 hover:text-white transition outline-none"><i data-lucide="trash" class="w-4 h-4"></i></button>
-                            </div>
-                            <p class="text-xs text-gray-400 mb-1"><i data-lucide="mail" class="w-3 h-3 inline"></i> ${b.mail}</p>
-                            <p class="text-xs text-gray-400 mb-1"><i data-lucide="phone" class="w-3 h-3 inline"></i> ${b.phone}</p>
-                            <p class="text-xs text-gray-400 mb-4"><i data-lucide="map-pin" class="w-3 h-3 inline"></i> ${b.address}, ${(b.city||'').toUpperCase()} (Online: ${b.isOnline})</p>
-                            <div class="flex gap-2">
-                                <button type="button" onclick="window.verify('businesses','${d.id}','Approved')" class="flex-1 bg-white text-black text-xs font-bold py-2 rounded-lg hover:bg-gray-200 transition outline-none">Approve</button>
-                            </div>
-                        </div>`;
+                    html += `<div class="p-5 bg-[#050505] rounded-xl border border-[#27272a]"><div class="flex justify-between items-start mb-2"><div><h4 class="font-bold text-white mb-1">${b.name || 'Unknown'}</h4><p class="text-xs text-[#f97316]">ID: ${b.bizId || d.id}</p></div><button type="button" onclick="window.deleteBiz('${d.id}')" class="text-red-500 bg-red-500/10 p-2 rounded hover:bg-red-500 hover:text-white transition outline-none"><i data-lucide="trash" class="w-4 h-4"></i></button></div><p class="text-xs text-gray-400 mb-1"><i data-lucide="mail" class="w-3 h-3 inline"></i> ${b.mail}</p><p class="text-xs text-gray-400 mb-1"><i data-lucide="phone" class="w-3 h-3 inline"></i> ${b.phone}</p><p class="text-xs text-gray-400 mb-4"><i data-lucide="map-pin" class="w-3 h-3 inline"></i> ${b.address}, ${(b.city||'').toUpperCase()} (Online: ${b.isOnline})</p><div class="flex gap-2"><button type="button" onclick="window.verify('businesses','${d.id}','Approved')" class="flex-1 bg-white text-black text-xs font-bold py-2 rounded-lg hover:bg-gray-200 transition outline-none">Approve</button></div></div>`;
                 });
-                q.innerHTML = html;
-                window.initIcons();
+                q.innerHTML = html; window.initIcons();
             });
 
-            // LIVE GRID
             onSnapshot(query(collection(db, "businesses"), where("status", "==", "Approved")), (snapshot) => {
-                 const q = document.getElementById('adminBoostGrid');
-                 if(!q) return;
+                 const q = document.getElementById('adminBoostGrid'); if(!q) return;
                  let html = snapshot.empty ? `<p class="text-gray-500 text-sm py-2">No live businesses.</p>` : "";
                  snapshot.forEach((d) => {
                     const b = d.data();
-                    const boostBtn = !b.isBoosted 
-                        ? `<button type="button" onclick="window.makeBoosted('${d.id}', true)" class="btn-brand bg-gradient-to-r from-red-600 to-red-800 text-white w-full py-2.5 rounded-xl flex justify-center items-center gap-2 outline-none"><i data-lucide="flame" class="w-4 h-4"></i> Make Premium</button>`
-                        : `<button type="button" onclick="window.makeBoosted('${d.id}', false)" class="bg-transparent border border-gray-600 text-gray-400 w-full py-2.5 rounded-xl flex justify-center items-center gap-2 hover:bg-gray-800 transition outline-none"><i data-lucide="x" class="w-4 h-4"></i> Remove Premium</button>`;
-                    
+                    const boostBtn = !b.isBoosted ? `<button type="button" onclick="window.makeBoosted('${d.id}', true)" class="btn-brand bg-gradient-to-r from-red-600 to-red-800 text-white w-full py-2.5 rounded-xl flex justify-center items-center gap-2 outline-none"><i data-lucide="flame" class="w-4 h-4"></i> Make Premium</button>` : `<button type="button" onclick="window.makeBoosted('${d.id}', false)" class="bg-transparent border border-gray-600 text-gray-400 w-full py-2.5 rounded-xl flex justify-center items-center gap-2 hover:bg-gray-800 transition outline-none"><i data-lucide="x" class="w-4 h-4"></i> Remove Premium</button>`;
                     const delBtn = `<button type="button" onclick="window.deleteBiz('${d.id}')" class="bg-red-500/10 border border-red-500/30 text-red-500 w-full py-2.5 rounded-xl flex justify-center items-center gap-2 hover:bg-red-500 hover:text-white transition mt-2 outline-none"><i data-lucide="trash-2" class="w-4 h-4"></i> Delete Business</button>`;
-
-                    html += `<div class="glass-card p-5 border-white/10 flex flex-col justify-between items-center text-center gap-4">
-                        <div class="w-full">
-                            <h4 class="font-black text-lg text-white mb-1">${b.name}</h4>
-                            <p class="text-[10px] text-gray-500 mb-2">${b.owner}</p>
-                            ${b.isBoosted ? `<span class="bg-red-600/20 text-red-500 text-[10px] font-bold px-2 py-1 rounded inline-block mb-2">Boosted</span>` : ''}
-                        </div>
-                        <div class="w-full">${boostBtn}${delBtn}</div>
-                    </div>`;
+                    html += `<div class="glass-card p-5 border-white/10 flex flex-col justify-between items-center text-center gap-4"><div class="w-full"><h4 class="font-black text-lg text-white mb-1">${b.name}</h4><p class="text-[10px] text-gray-500 mb-2">${b.owner}</p>${b.isBoosted ? `<span class="bg-red-600/20 text-red-500 text-[10px] font-bold px-2 py-1 rounded inline-block mb-2">Boosted</span>` : ''}</div><div class="w-full">${boostBtn}${delBtn}</div></div>`;
                  });
-                 q.innerHTML = html;
-                 window.initIcons();
+                 q.innerHTML = html; window.initIcons();
             });
 
-            // REVIEWS GRID
             onSnapshot(query(collection(db, "peer_reviews"), where("status", "==", "Pending")), (snapshot) => {
-                const q = document.getElementById('adminReviewQueue');
-                if(!q) return;
+                const q = document.getElementById('adminReviewQueue'); if(!q) return;
                 let html = snapshot.empty ? `<p class="text-gray-500 text-sm py-2">No pending reviews.</p>` : "";
                 snapshot.forEach((d) => {
-                    const r = d.data();
-                    html += `<div class="p-4 bg-[#050505] rounded-xl border border-gray-700"><div class="text-yellow-500 text-xs mb-1">⭐ ${r.rating}/5</div><p class="text-sm text-white mb-2">"${r.text}"</p><p class="text-[10px] text-gray-500 mb-3">${r.user}</p><div class="flex gap-2"><button type="button" onclick="window.verify('peer_reviews','${d.id}','Approved')" class="flex-1 bg-white text-black text-xs font-bold py-1.5 rounded-lg hover:bg-gray-200 outline-none">Approve</button><button type="button" onclick="window.verify('peer_reviews','${d.id}','Rejected')" class="flex-1 border border-red-500 text-red-500 text-xs font-bold py-1.5 rounded-lg hover:bg-red-500/10 outline-none">Reject</button></div></div>`;
+                    const r = d.data(); html += `<div class="p-4 bg-[#050505] rounded-xl border border-gray-700"><div class="text-yellow-500 text-xs mb-1">⭐ ${r.rating}/5</div><p class="text-sm text-white mb-2">"${r.text}"</p><p class="text-[10px] text-gray-500 mb-3">${r.user}</p><div class="flex gap-2"><button type="button" onclick="window.verify('peer_reviews','${d.id}','Approved')" class="flex-1 bg-white text-black text-xs font-bold py-1.5 rounded-lg hover:bg-gray-200 outline-none">Approve</button><button type="button" onclick="window.verify('peer_reviews','${d.id}','Rejected')" class="flex-1 border border-red-500 text-red-500 text-xs font-bold py-1.5 rounded-lg hover:bg-red-500/10 outline-none">Reject</button></div></div>`;
                 });
                 q.innerHTML = html;
             });
