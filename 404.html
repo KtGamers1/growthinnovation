@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Growth Innovation | Marketplace</title>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3Q59CHV120"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-3Q59CHV120');
+    </script>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -62,7 +72,8 @@
         .legal-text h3 { color: #f97316; font-weight: 800; font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
         .legal-text p { color: #9ca3af; margin-bottom: 1rem; line-height: 1.6; }
         
-        #notifPanel { position: absolute; top: 60px; right: 0; width: 320px; max-height: 400px; overflow-y: auto; background: #0A0A0A; border: 1px solid #27272a; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); display: none; z-index: 1000; flex-direction: column; }
+        /* Fixed max-width for mobile */
+        #notifPanel { position: absolute; top: 60px; right: 0; width: 320px; max-width: 90vw; max-height: 400px; overflow-y: auto; background: #0A0A0A; border: 1px solid #27272a; border-radius: 16px; box-shadow: 0 10px 40px rgba(0,0,0,0.8); display: none; z-index: 1000; flex-direction: column; }
         #notifPanel.active { display: flex; animation: scaleFadeUp 0.3s ease forwards; }
         
         .pb-safe { padding-bottom: calc(0.5rem + env(safe-area-inset-bottom)); }
@@ -94,7 +105,7 @@
     <div class="ambient-blob blob-2"></div>
 
     <header class="border-b border-white/5 bg-[#000000]/70 backdrop-blur-xl sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-5 md:px-6 h-20 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
             <a href="#home" class="flex items-center gap-3 cursor-pointer group outline-none">
                 <img src="logo.png" alt="Growth Innovation Logo" class="w-10 h-10 object-contain group-hover:scale-110 transition duration-300 drop-shadow-[0_0_10px_rgba(249,115,22,0.5)]" onerror="this.style.display='none'; document.getElementById('fallbackLogo').style.display='block';">
                 <i id="fallbackLogo" data-lucide="zap" class="w-8 h-8 text-[#f97316] hidden"></i>
@@ -109,9 +120,9 @@
                 <a href="#support" data-target="support" class="nav-link text-gray-400 hover:text-white font-bold transition">Support</a>
             </nav>
             
-            <div class="flex items-center gap-4 relative">
-                <button type="button" onclick="window.toggleNotifPanel()" class="hidden md:block text-gray-400 hover:text-[#f97316] transition relative cursor-pointer group outline-none" title="Notifications">
-                    <i data-lucide="bell" class="w-6 h-6"></i>
+            <div class="flex items-center gap-3 md:gap-4 relative">
+                <button type="button" onclick="window.toggleNotifPanel()" class="text-gray-400 hover:text-[#f97316] transition relative cursor-pointer group outline-none" title="Notifications">
+                    <i data-lucide="bell" class="w-6 h-6 md:w-6 md:h-6"></i>
                     <span id="notifBadge" class="absolute -top-1 -right-1 bg-red-600 text-white text-[10px] font-black px-1.5 py-0.5 rounded-full hidden border-2 border-black">0</span>
                 </button>
                 
@@ -125,13 +136,13 @@
                     </div>
                 </div>
 
-                <a href="#wishlists" class="hidden md:flex text-gray-400 hover:text-red-500 transition relative cursor-pointer group items-center justify-center w-10 h-10" title="Saved Wishlists">
+                <a href="#wishlists" class="flex text-gray-400 hover:text-red-500 transition relative cursor-pointer group items-center justify-center w-8 h-8 md:w-10 md:h-10" title="Saved Wishlists">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:stroke-red-500 transition"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
                     <span id="wishCountBadge" class="absolute -top-1 -right-1 bg-red-600 text-white text-[10px] font-black px-1.5 py-0.5 rounded-full hidden border-2 border-black shadow-[0_0_8px_rgba(220,38,38,0.8)]">0</span>
                 </a>
 
-                <button type="button" onclick="window.openAuthOrProfile()" class="bg-[#111] border border-[#27272a] hover:border-[#f97316] hover:bg-[#1a1a1a] px-5 py-2.5 rounded-full font-bold text-sm flex items-center gap-2 transition duration-300">
-                    <i data-lucide="user-circle" class="w-5 h-5 text-[#f97316]"></i> <span id="navProfileText">Sign In</span>
+                <button type="button" onclick="window.openAuthOrProfile()" class="bg-[#111] border border-[#27272a] hover:border-[#f97316] hover:bg-[#1a1a1a] px-4 py-2 md:px-5 md:py-2.5 rounded-full font-bold text-xs md:text-sm flex items-center gap-2 transition duration-300">
+                    <i data-lucide="user-circle" class="w-4 h-4 md:w-5 md:h-5 text-[#f97316]"></i> <span id="navProfileText">Sign In</span>
                 </button>
             </div>
         </div>
@@ -493,15 +504,8 @@
         <button type="button" onclick="window.location.hash='marketplace'" class="nav-link flex flex-col items-center justify-center p-2 flex-1 text-gray-500 hover:text-white transition outline-none"><i data-lucide="layout-grid" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Market</span></button>
         <button type="button" onclick="window.location.hash='updates'" class="nav-link flex flex-col items-center justify-center p-2 flex-1 text-gray-500 hover:text-white transition outline-none"><i data-lucide="zap" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Updates</span></button>
         
-        <button type="button" onclick="window.toggleNotifPanel()" class="nav-link flex flex-col items-center justify-center p-2 flex-1 text-gray-500 hover:text-white transition relative outline-none">
-            <i data-lucide="bell" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Alerts</span>
-            <span id="mobileNotifBadge" class="absolute top-1 right-2 bg-red-600 text-white text-[8px] font-black px-1.5 py-0.5 rounded-full hidden border border-black">0</span>
-        </button>
-        
-        <a href="#wishlists" data-target="wishlists" class="nav-link flex flex-col items-center justify-center p-2 flex-1 text-gray-500 hover:text-white transition relative outline-none">
-            <i data-lucide="heart" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Saved</span>
-            <span id="mobileWishCountBadge" class="absolute top-1 right-2 bg-red-600 text-white text-[8px] font-black px-1.5 py-0.5 rounded-full hidden border border-black">0</span>
-        </a>
+        <button type="button" onclick="window.location.hash='about'" class="nav-link flex flex-col items-center justify-center p-2 flex-1 text-gray-500 hover:text-white transition outline-none"><i data-lucide="info" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">About</span></button>
+        <button type="button" onclick="window.location.hash='support'" class="nav-link flex flex-col items-center justify-center p-2 flex-1 text-gray-500 hover:text-white transition outline-none"><i data-lucide="headset" class="w-5 h-5 mb-1"></i><span class="text-[10px] font-bold">Support</span></button>
     </nav>
 
     <div id="toast"><i data-lucide="info" class="w-5 h-5 text-[#f97316]"></i> <span id="toastMsg"></span></div>
@@ -632,10 +636,10 @@
                     <div class="pt-2">
                         <label class="text-xs text-gray-400 font-bold ml-1 block mb-3">Platform & Media Links (Optional)</label>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="relative"><i data-lucide="instagram" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-pink-500"></i><input type="text" id="bizInsta" class="modern-input pl-10 text-sm py-2" placeholder="Instagram URL"></div>
-                            <div class="relative"><i data-lucide="facebook" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-blue-500"></i><input type="text" id="bizFb" class="modern-input pl-10 text-sm py-2" placeholder="Facebook URL"></div>
-                            <div class="relative"><i data-lucide="twitter" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300"></i><input type="text" id="bizX" class="modern-input pl-10 text-sm py-2" placeholder="Twitter/X URL"></div>
-                            <div class="relative"><i data-lucide="youtube" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-red-500"></i><input type="text" id="bizYt" class="modern-input pl-10 text-sm py-2" placeholder="YouTube URL"></div>
+                            <div class="relative"><i data-lucide="instagram" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-pink-500 pointer-events-none"></i><input type="text" id="bizInsta" class="modern-input pl-10 text-sm py-2" placeholder="Instagram URL"></div>
+                            <div class="relative"><i data-lucide="facebook" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-blue-500 pointer-events-none"></i><input type="text" id="bizFb" class="modern-input pl-10 text-sm py-2" placeholder="Facebook URL"></div>
+                            <div class="relative"><i data-lucide="twitter" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-300 pointer-events-none"></i><input type="text" id="bizX" class="modern-input pl-10 text-sm py-2" placeholder="Twitter/X URL"></div>
+                            <div class="relative"><i data-lucide="youtube" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-red-500 pointer-events-none"></i><input type="text" id="bizYt" class="modern-input pl-10 text-sm py-2" placeholder="YouTube URL"></div>
                             
                             <div class="flex flex-col justify-start">
                                 <div class="relative w-full">
@@ -647,7 +651,7 @@
                             <div class="flex flex-col">
                                 <div class="relative rounded-xl p-[2px] bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-pulse shadow-[0_0_15px_rgba(59,130,246,0.3)]">
                                     <div class="relative bg-[#050505] rounded-[10px] h-full overflow-hidden flex items-center">
-                                        <i data-lucide="shopping-cart" class="absolute left-3 w-4 h-4 text-blue-400 z-10"></i>
+                                        <i data-lucide="shopping-cart" class="absolute left-3 w-4 h-4 text-blue-400 z-10 pointer-events-none"></i>
                                         <span class="absolute left-9 text-sm font-bold text-white z-10 pointer-events-none">Buy Now</span>
                                         <input type="text" id="bizBuyNow" class="modern-input pl-28 text-sm py-2 bg-transparent border-none w-full focus:ring-0 focus:outline-none" style="box-shadow:none;" placeholder="eCommerce Product URL">
                                     </div>
@@ -1093,7 +1097,7 @@
                     </div>
                     <div class="grid grid-cols-1 gap-3 mb-3 pr-6">
                         <div class="relative">
-                            <i data-lucide="link" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-blue-400"></i>
+                            <i data-lucide="link" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-blue-400 pointer-events-none"></i>
                             <input type="url" class="modern-input pl-10 py-2 text-sm item-url bg-[#050505]" placeholder="Product / Buy Now Link (Optional)" value="${data && data.url ? data.url : ''}">
                         </div>
                     </div>
@@ -1286,7 +1290,7 @@
                         type: box.querySelector('.item-type').value, 
                         priceFull: box.querySelector('.item-price-full').value, 
                         priceHalf: box.querySelector('.item-price-half').value, 
-                        url: box.querySelector('.item-url').value.trim(), // 🔥 URL SAVED HERE
+                        url: box.querySelector('.item-url').value.trim(),
                         images: window.tempItemImgs[id] || [] 
                     });
                 });
@@ -1641,8 +1645,8 @@
                     else if(item.priceFull) priceHtml = `<p class="text-[#f97316] font-black mt-1">${item.priceFull}</p>`;
                     else if(item.priceHalf) priceHtml = `<p class="text-[#f97316] font-black mt-1">Half: ${item.priceHalf}</p>`;
                     
-                    // 🔥 PRODUCT URL BUTTON 🔥
-                    let itemBtn = item.url ? `<a href="${item.url}" target="_blank" class="bg-[#27272a] hover:bg-blue-600 text-white transition px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-wider flex items-center justify-center gap-1.5 shrink-0 mt-3 sm:mt-0"><i data-lucide="shopping-cart" class="w-3 h-3"></i> Buy Product</a>` : '';
+                    // 🔥 PRODUCT URL BUTTON (MOBILE FIXED) 🔥
+                    let itemBtn = item.url ? `<a href="${item.url}" target="_blank" class="bg-[#27272a] hover:bg-blue-600 text-white transition px-4 py-2.5 rounded-lg text-[10px] font-black uppercase tracking-wider flex items-center justify-center gap-1.5 shrink-0 mt-3 sm:mt-0 flex-1 sm:flex-none w-full sm:w-auto"><i data-lucide="shopping-cart" class="w-4 h-4 sm:w-3 sm:h-3"></i> Buy Product</a>` : '';
 
                     iList += `
                     <div class="p-4 border border-[#27272a] rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center bg-[#050505] hover:border-[#f97316] transition gap-4">
@@ -1662,10 +1666,11 @@
             let socialsHtml = '';
             if(b.socials && (b.socials.insta || b.socials.fb || b.socials.x || b.socials.yt)) {
                 let links = '';
-                if(b.socials.insta) links += `<a href="${b.socials.insta}" target="_blank" class="flex items-center gap-2 bg-[#111] border border-[#27272a] hover:border-pink-500 px-4 py-2 rounded-xl transition outline-none"><i data-lucide="instagram" class="w-4 h-4 text-pink-500"></i> <span class="text-sm font-bold">Instagram</span></a>`;
-                if(b.socials.fb) links += `<a href="${b.socials.fb}" target="_blank" class="flex items-center gap-2 bg-[#111] border border-[#27272a] hover:border-blue-500 px-4 py-2 rounded-xl transition outline-none"><i data-lucide="facebook" class="w-4 h-4 text-blue-500"></i> <span class="text-sm font-bold">Facebook</span></a>`;
-                if(b.socials.x) links += `<a href="${b.socials.x}" target="_blank" class="flex items-center gap-2 bg-[#111] border border-[#27272a] hover:border-gray-300 px-4 py-2 rounded-xl transition outline-none"><i data-lucide="twitter" class="w-4 h-4 text-gray-300"></i> <span class="text-sm font-bold">X (Twitter)</span></a>`;
-                if(b.socials.yt) links += `<a href="${b.socials.yt}" target="_blank" class="flex items-center gap-2 bg-[#111] border border-[#27272a] hover:border-red-500 px-4 py-2 rounded-xl transition outline-none"><i data-lucide="youtube" class="w-4 h-4 text-red-500"></i> <span class="text-sm font-bold">YouTube</span></a>`;
+                // 🔥 SOCIAL ICONS FIXED FOR MOBILE 🔥
+                if(b.socials.insta) links += `<a href="${b.socials.insta}" target="_blank" class="flex items-center justify-center gap-2 bg-[#111] border border-[#27272a] hover:border-pink-500 px-4 py-2.5 rounded-xl transition outline-none flex-1 sm:flex-none min-w-[120px]"><i data-lucide="instagram" class="w-4 h-4 text-pink-500 shrink-0"></i> <span class="text-sm font-bold">Instagram</span></a>`;
+                if(b.socials.fb) links += `<a href="${b.socials.fb}" target="_blank" class="flex items-center justify-center gap-2 bg-[#111] border border-[#27272a] hover:border-blue-500 px-4 py-2.5 rounded-xl transition outline-none flex-1 sm:flex-none min-w-[120px]"><i data-lucide="facebook" class="w-4 h-4 text-blue-500 shrink-0"></i> <span class="text-sm font-bold">Facebook</span></a>`;
+                if(b.socials.x) links += `<a href="${b.socials.x}" target="_blank" class="flex items-center justify-center gap-2 bg-[#111] border border-[#27272a] hover:border-gray-300 px-4 py-2.5 rounded-xl transition outline-none flex-1 sm:flex-none min-w-[120px]"><i data-lucide="twitter" class="w-4 h-4 text-gray-300 shrink-0"></i> <span class="text-sm font-bold">X (Twitter)</span></a>`;
+                if(b.socials.yt) links += `<a href="${b.socials.yt}" target="_blank" class="flex items-center justify-center gap-2 bg-[#111] border border-[#27272a] hover:border-red-500 px-4 py-2.5 rounded-xl transition outline-none flex-1 sm:flex-none min-w-[120px]"><i data-lucide="youtube" class="w-4 h-4 text-red-500 shrink-0"></i> <span class="text-sm font-bold">YouTube</span></a>`;
                 socialsHtml = `<div class="mt-8 flex flex-wrap gap-3">${links}</div>`;
             }
 
