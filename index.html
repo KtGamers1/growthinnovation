@@ -14,6 +14,10 @@
       gtag('config', 'G-3Q59CHV120');
     </script>
 
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#050505">
+    <link rel="apple-touch-icon" href="./logo.png">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -750,7 +754,7 @@
         window.initIcons = () => { try { lucide.createIcons(); } catch(e){} };
         window.initIcons();
 
-        // 🔥 HIDE LOADER AFTER EVERYTHING IS READY 🔥
+        // HIDE LOADER AFTER EVERYTHING IS READY
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const loader = document.getElementById('fullScreenLoader');
@@ -758,7 +762,7 @@
                     loader.style.opacity = '0';
                     setTimeout(() => loader.remove(), 700);
                 }
-            }, 1000); // 1s visual buffer
+            }, 1000); 
         });
 
         // ==========================================
@@ -1721,12 +1725,12 @@
                             <i data-lucide="clock" class="w-5 h-5 text-[#f97316] shrink-0"></i><span class="text-sm text-gray-400">${b.hours}</span>
                         </div>` : ''}
                         ${b.website ? `
-                        <a href="${b.website}" target="_blank" class="flex items-center gap-3 bg-[#050505] p-3 rounded-xl border border-[#27272a] sm:col-span-2 hover:border-[#f97316] transition outline-none">
+                        <a href="${b.website}" target="_blank" class="flex items-center justify-center gap-3 bg-[#050505] p-3 rounded-xl border border-[#27272a] sm:col-span-2 hover:border-[#f97316] transition outline-none">
                             <i data-lucide="external-link" class="w-5 h-5 text-blue-400 shrink-0"></i><span class="text-sm font-bold text-blue-400">Visit Official Website</span>
                         </a>` : ''}
                         
                         ${b.mapUrl ? `
-                        <a href="${b.mapUrl}" target="_blank" class="flex items-center gap-3 bg-[#050505] p-3 rounded-xl border border-emerald-500/30 sm:col-span-2 hover:border-emerald-500 transition outline-none">
+                        <a href="${b.mapUrl}" target="_blank" class="flex items-center justify-center gap-3 bg-[#050505] p-3 rounded-xl border border-emerald-500/30 sm:col-span-2 hover:border-emerald-500 transition outline-none">
                             <i data-lucide="map" class="w-5 h-5 text-emerald-400 shrink-0"></i><span class="text-sm font-bold text-emerald-400">View on Google Maps</span>
                         </a>` : ''}
                         
